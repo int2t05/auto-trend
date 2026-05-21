@@ -5,9 +5,64 @@
 [![GitHub Pages](https://img.shields.io/badge/Live-GitHub%20Pages-blue?logo=github)](https://int2t05.github.io/auto-trend/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Daily GitHub Trending scraper with LLM-powered structured analysis, auto-published to GitHub Pages.
+> LLM 驱动的 GitHub Trending 日报，自动发布到 GitHub Pages
+>
+> LLM-powered daily GitHub Trending analysis, auto-published to GitHub Pages
 
-## How It Works
+---
+
+## Fork & Deploy
+
+**5 minutes to your own trending report.**
+
+### 1. Fork this repo
+
+Fork → uncheck "Copy the `master` branch only" → Create fork.
+
+### 2. Enable GitHub Actions
+
+Your repo → Settings → Actions → General → Allow all actions.
+
+### 3. Set secrets
+
+Settings → Secrets and variables → Actions → New repository secret:
+
+| Secret | Description |
+|--------|-------------|
+| `LLM_API_KEY` | Your LLM API key (**required**) |
+| `LLM_BASE_URL` | API endpoint (optional, defaults to OpenAI) |
+| `LLM_MODEL` | Model name (optional, defaults to `gpt-4.1-mini`) |
+| `DAILY_REPO_LIMIT` | Max repos per run (optional, defaults to `20`) |
+
+### 4. Enable GitHub Pages
+
+Settings → Pages → Source: **Deploy from a branch** → Branch: `master` / `/docs`.
+
+### 5. Replace URLs
+
+Replace `int2t05` with your GitHub username in these files:
+
+| File | Lines to update |
+|------|-----------------|
+| `docs/_layouts/default.html` | GitHub link (line 406), footer (line 446) |
+| `docs/index.md` | Footer link (line 14) |
+| `README.md` | Badge URL, Live Reports link |
+
+```bash
+grep -r "int2t05" --include="*.md" --include="*.html" --include="*.js" --include="*.json" .
+```
+
+### 6. Trigger first run
+
+Actions → Daily Trending Report → Run workflow. Your first report appears at:
+
+```
+https://<your-username>.github.io/auto-trend/
+```
+
+---
+
+## How It Works · 工作原理
 
 ```
 GitHub Actions cron (UTC 00:30)
@@ -20,73 +75,73 @@ GitHub Actions cron (UTC 00:30)
   → GitHub Pages auto-publish
 ```
 
-Each repo gets analyzed across 6 dimensions: summary, technical highlights, use cases, competitive comparison, maturity assessment, and trend signal.
+Each repo is analyzed across 6 dimensions: **summary**, **technical highlights**, **use cases**, **competitive comparison**, **maturity**, and **trend signal**.
 
-## Live Reports
+每个仓库输出 6 个维度的结构化分析：一句话概括、技术亮点、适用场景、竞品对比、成熟度评估、趋势信号。
 
-Daily reports are published at: **[int2t05.github.io/auto-trend](https://int2t05.github.io/auto-trend/)**
-
-## Quick Start
+## Local Dev · 本地运行
 
 ```bash
-# Install
 pip install -r requirements.txt
 
-# Configure
 export LLM_API_KEY=sk-your-key
-export LLM_BASE_URL=https://api.openai.com/v1   # optional
-export LLM_MODEL=gpt-4.1-mini                     # optional
-export DAILY_REPO_LIMIT=20                        # optional
+export LLM_BASE_URL=https://api.openai.com/v1   # 可选
+export LLM_MODEL=gpt-4.1-mini                   # 可选
+export DAILY_REPO_LIMIT=20                      # 可选
 
-# Run
 python scripts/main.py
+# 非 CI 环境不会自动 commit/push
 ```
-
-## Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `LLM_API_KEY` | LLM API key | **required** |
-| `LLM_BASE_URL` | LLM API endpoint | `https://api.openai.com/v1` |
-| `LLM_MODEL` | Model name | `gpt-4.1-mini` |
-| `DAILY_REPO_LIMIT` | Max repos to analyze | `20` |
 
 Compatible with OpenAI, Anthropic, DeepSeek, or any OpenAI-compatible endpoint.
 
-## Project Structure
+## Environment Variables · 环境变量
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `LLM_API_KEY` | LLM API 密钥 | **required** |
+| `LLM_BASE_URL` | API 地址 | `https://api.openai.com/v1` |
+| `LLM_MODEL` | 模型名称 | `gpt-4.1-mini` |
+| `DAILY_REPO_LIMIT` | 每日分析上限 | `20` |
+
+## Project Structure · 项目结构
 
 ```
 auto-trend/
-├── .github/workflows/daily.yml    # GitHub Actions cron job
-├── scripts/                       # Core pipeline
-│   ├── main.py                    # Orchestrator
+├── .github/workflows/daily.yml    # Cron trigger
+├── scripts/                       # Pipeline
+│   ├── main.py                    # Orchestrator · 编排
 │   ├── config.py                  # Env config
-│   ├── fetcher.py                 # HTML scraper + README fetcher
-│   ├── analyzer.py                # LLM analysis (OpenAI-compatible)
+│   ├── fetcher.py                 # Scraper + README fetcher
+│   ├── analyzer.py                # LLM analysis (OpenAI SDK)
 │   ├── renderer.py                # Markdown report generator
-│   └── indexer.py                 # Index page updater
+│   └── indexer.py                 # Index updater
 ├── prompts/analysis.md            # LLM system prompt
-├── tests/                         # Python unit tests (pytest)
-├── e2e/                           # Playwright E2E tests
-├── docs/                          # GitHub Pages source (Jekyll)
-│   ├── _layouts/default.html      # Page layout (Apple-style 3-col)
-│   ├── daily/                     # Generated daily reports
+├── tests/                         # pytest (unit)
+├── e2e/                           # Playwright (E2E)
+├── docs/                          # GitHub Pages (Jekyll)
+│   ├── _layouts/default.html      # Apple-style 3-col layout
+│   ├── daily/                     # Generated reports
 │   └── index.md                   # Report index
-├── requirements.txt               # Python dependencies
-└── package.json                   # E2E test dependencies
+├── requirements.txt
+└── package.json                   # E2E dependencies
 ```
 
-## Testing
+## Testing · 测试
 
 ```bash
-# Unit tests
+# Unit
 pip install -r requirements.txt
 pytest tests/ -v
 
-# E2E browser tests
+# E2E
 npm install
 npx playwright test
 ```
+
+## Live Reports · 日报浏览
+
+**[int2t05.github.io/auto-trend](https://int2t05.github.io/auto-trend/)**
 
 ## License
 
