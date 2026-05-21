@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }} | {{ site.title }}</title>
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --body: #1d1d1f;
+      --body-muted: #6e6e73;
+      --canvas: #ffffff;
+      --canvas-parchment: #f5f5f7;
+      --primary: #0066cc;
+      --primary-on-dark: #2997ff;
+      --hairline: #d2d2d7;
+      --divider-soft: #f0f0f0;
+      --sidebar-width: 220px;
+      --toc-width: 200px;
+      --content-max: 720px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.47;
+      color: var(--body);
+      background: var(--canvas);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--hairline);
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .site-header-inner {
+      max-width: calc(var(--sidebar-width) + var(--content-max) + var(--toc-width) + 48px);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .site-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.224px;
+    }
+
+    .site-title:hover { color: var(--primary); }
+
+    .header-spacer { flex: 1; }
+
+    .header-gh-link {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--body-muted);
+      text-decoration: none;
+      letter-spacing: -0.224px;
+      transition: color 0.15s;
+    }
+
+    .header-gh-link:hover { color: var(--primary); }
+
+    /* ── Layout ── */
+    .page-wrapper {
+      max-width: calc(var(--sidebar-width) + var(--content-max) + var(--toc-width) + 48px);
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+      min-height: calc(100vh - 52px);
+    }
+
+    /* ── Left Sidebar ── */
+    .sidebar-left {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      padding: 40px 0;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--divider-soft);
+    }
+
+    .sidebar-left::-webkit-scrollbar { width: 4px; }
+    .sidebar-left::-webkit-scrollbar-thumb { background: var(--hairline); border-radius: 2px; }
+
+    .sidebar-nav-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--body-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0 24px 12px;
+    }
+
+    .sidebar-nav-list {
+      list-style: none;
+    }
+
+    .sidebar-nav-list li {
+      padding: 0;
+    }
+
+    .sidebar-nav-list a {
+      display: block;
+      padding: 6px 24px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.224px;
+      border-left: 3px solid transparent;
+      transition: all 0.12s;
+    }
+
+    .sidebar-nav-list a:hover {
+      color: var(--primary);
+      background: rgba(0, 102, 204, 0.04);
+    }
+
+    .sidebar-nav-list a.active {
+      color: var(--primary);
+      font-weight: 600;
+      border-left-color: var(--primary);
+      background: rgba(0, 102, 204, 0.06);
+    }
+
+    .sidebar-nav-list a.home-link {
+      font-weight: 600;
+      font-size: 15px;
+      padding: 8px 24px;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--divider-soft);
+      margin: 16px 24px;
+    }
+
+    /* ── Center Content ── */
+    .content-area {
+      flex: 1;
+      min-width: 0;
+      padding: 48px 48px 80px;
+    }
+
+    .content-area h1 {
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .content-area h2 {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.14;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-top: 48px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--divider-soft);
+    }
+
+    .content-area h3 {
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.19;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+      margin-top: 32px;
+      margin-bottom: 8px;
+    }
+
+    .content-area h4 {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.24;
+      color: var(--ink);
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    .content-area p {
+      margin-bottom: 16px;
+      color: var(--body);
+    }
+
+    .content-area a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .content-area a:hover { text-decoration: underline; }
+
+    .content-area ul, .content-area ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    .content-area li { margin-bottom: 6px; }
+
+    .content-area code {
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+      font-size: 14px;
+      background: var(--canvas-parchment);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--ink);
+    }
+
+    .content-area pre {
+      background: #1d1d1f;
+      color: #f5f5f7;
+      padding: 20px 24px;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .content-area pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    .content-area blockquote {
+      border-left: 3px solid var(--primary);
+      margin: 16px 0;
+      padding: 8px 20px;
+      color: var(--body-muted);
+      background: var(--canvas-parchment);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .content-area table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .content-area th {
+      text-align: left;
+      font-weight: 600;
+      color: var(--ink);
+      padding: 10px 16px;
+      border-bottom: 2px solid var(--hairline);
+    }
+
+    .content-area td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--divider-soft);
+    }
+
+    .content-area hr {
+      border: none;
+      border-top: 1px solid var(--divider-soft);
+      margin: 40px 0;
+    }
+
+    .content-area img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    /* ── Right TOC ── */
+    .sidebar-right {
+      width: var(--toc-width);
+      flex-shrink: 0;
+      padding: 40px 0;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+    }
+
+    .sidebar-right::-webkit-scrollbar { width: 4px; }
+    .sidebar-right::-webkit-scrollbar-thumb { background: var(--hairline); border-radius: 2px; }
+
+    .toc-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--body-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 12px;
+    }
+
+    .toc-list {
+      list-style: none;
+      border-left: 1px solid var(--divider-soft);
+    }
+
+    .toc-list li { padding: 0; }
+
+    .toc-list a {
+      display: block;
+      padding: 5px 0 5px 16px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--body-muted);
+      text-decoration: none;
+      letter-spacing: -0.12px;
+      border-left: 2px solid transparent;
+      margin-left: -1px;
+      transition: all 0.12s;
+    }
+
+    .toc-list a:hover {
+      color: var(--ink);
+    }
+
+    .toc-list a.toc-h2 { padding-left: 16px; }
+    .toc-list a.toc-h3 { padding-left: 28px; font-size: 12px; }
+
+    .toc-list a.active {
+      color: var(--primary);
+      border-left-color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--divider-soft);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--body-muted);
+      letter-spacing: -0.12px;
+      background: var(--canvas-parchment);
+    }
+
+    .site-footer a {
+      color: var(--body-muted);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover { color: var(--primary); }
+
+    /* ── Empty State ── */
+    .sidebar-empty {
+      padding: 0 24px;
+      font-size: 13px;
+      color: var(--body-muted);
+      font-style: italic;
+      letter-spacing: -0.12px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1200px) {
+      .sidebar-right { display: none; }
+      :root { --toc-width: 0px; }
+    }
+
+    @media (max-width: 900px) {
+      .sidebar-left {
+        display: none;
+      }
+      :root { --sidebar-width: 0px; }
+      .content-area {
+        padding: 32px 24px 64px;
+      }
+      .content-area h1 { font-size: 34px; }
+    }
+
+    @media (max-width: 480px) {
+      .content-area h1 { font-size: 28px; }
+      .content-area h2 { font-size: 24px; }
+      .site-header { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+      <span class="header-spacer"></span>
+      <a href="https://github.com/int2t05/auto-trend" class="header-gh-link">GitHub</a>
+    </div>
+  </header>
+
+  <div class="page-wrapper">
+    <!-- Left Sidebar: Navigation -->
+    <aside class="sidebar-left">
+      <div class="sidebar-nav-title">导航</div>
+      <ul class="sidebar-nav-list">
+        <li><a href="{{ '/' | relative_url }}" class="home-link{% if page.url == '/' %} active{% endif %}">日报索引</a></li>
+      </ul>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-nav-title">日报列表</div>
+      {% assign daily_pages = site.pages | where_exp: "p", "p.path contains 'daily/'" | sort: "path" | reverse %}
+      {% if daily_pages.size > 0 %}
+      <ul class="sidebar-nav-list">
+        {% for dp in daily_pages %}
+        <li><a href="{{ dp.url | relative_url }}"{% if page.url == dp.url %} class="active"{% endif %}>{{ dp.title | default: dp.name | replace: '.md', '' }}</a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="sidebar-empty">日报将在 CI 运行后出现</div>
+      {% endif %}
+    </aside>
+
+    <!-- Center Content -->
+    <main class="content-area">
+      {{ content }}
+    </main>
+
+    <!-- Right TOC Sidebar -->
+    <aside class="sidebar-right">
+      <div class="toc-title">本页大纲</div>
+      <nav>
+        <ul class="toc-list" id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <p>由 <a href="https://github.com/int2t05/auto-trend">Auto-Trend</a> 自动生成 &mdash; 每日 GitHub Trending 项目分析日报</p>
+  </footer>
+
+  <script>
+  (function() {
+    var content = document.querySelector('.content-area');
+    var tocList = document.getElementById('toc-list');
+    if (!content || !tocList) return;
+
+    var headings = content.querySelectorAll('h1, h2, h3');
+    if (headings.length === 0) {
+      tocList.parentElement.style.display = 'none';
+      return;
+    }
+
+    var items = [];
+    headings.forEach(function(h, i) {
+      var tag = h.tagName.toLowerCase();
+      if (!h.id) { h.id = 'heading-' + i; }
+      items.push({
+        id: h.id,
+        text: h.textContent,
+        level: tag === 'h1' ? 1 : tag === 'h2' ? 2 : 3,
+        el: h
+      });
+    });
+
+    // Skip if only one h1 and nothing else
+    if (items.length <= 1) {
+      tocList.parentElement.style.display = 'none';
+      return;
+    }
+
+    items.forEach(function(item) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + item.id;
+      a.textContent = item.text;
+      a.className = 'toc-h' + item.level;
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        item.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + item.id);
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Active TOC highlighting on scroll
+    var tocLinks = tocList.querySelectorAll('a');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(function(a) {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -80% 0px' });
+
+    items.forEach(function(item) { observer.observe(item.el); });
+  })();
+  </script>
+</body>
+</html>
