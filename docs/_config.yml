@@ -1,0 +1,5 @@
+title: Auto-Trend Daily Reports
+description: 每日 GitHub Trending 项目分析日报
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme

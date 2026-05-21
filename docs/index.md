@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Auto-Trend Daily Reports
 
 每日自动抓取 GitHub Trending 项目，经 LLM 结构化分析后生成日报。
