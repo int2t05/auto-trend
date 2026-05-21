@@ -44,3 +44,50 @@ async def test_fetch_trending_repos_parses_html():
     assert repos[0]["stars_today"] == "1,234"
     assert repos[0]["forks_today"] == "56"
     assert repos[0]["url"] == "https://github.com/owner-one/repo-one"
+
+
+class MockResponse:
+    def __init__(self, status_code, text):
+        self.status_code = status_code
+        self.text = text
+
+
+@pytest.mark.asyncio
+async def test_fetch_readme_returns_markdown_text(mocker):
+    mock_client = mocker.patch("httpx.AsyncClient")
+    mock_client.return_value.__aenter__.return_value.get.return_value = MockResponse(200, "# Hello World")
+
+    from scripts.fetcher import fetch_readme
+
+    readme = await fetch_readme("testowner", "testrepo")
+    assert readme == "# Hello World"
+
+
+@pytest.mark.asyncio
+async def test_fetch_readme_handles_missing_readme(mocker):
+    mock_client = mocker.patch("httpx.AsyncClient")
+    mock_client.return_value.__aenter__.return_value.get.return_value = MockResponse(404, "")
+
+    from scripts.fetcher import fetch_readme
+
+    readme = await fetch_readme("testowner", "emptyrepo")
+    assert readme == ""
+
+
+@pytest.mark.asyncio
+async def test_fetch_all_readmes_adds_readme_key(mocker):
+    mock_client = mocker.patch("httpx.AsyncClient")
+    mock_client.return_value.__aenter__.return_value.get.return_value = MockResponse(200, "# Test README")
+
+    from scripts.fetcher import fetch_all_readmes
+
+    repos = [
+        {"owner": "a", "name": "x", "full_name": "a/x"},
+        {"owner": "b", "name": "y", "full_name": "b/y"},
+    ]
+    result = await fetch_all_readmes(repos)
+
+    assert len(result) == 2
+    for r in result:
+        assert r["readme"] == "# Test README"
+        assert r["full_name"] in ("a/x", "b/y")

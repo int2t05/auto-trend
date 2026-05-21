@@ -55,3 +55,27 @@ async def fetch_trending_repos(limit: int = 20) -> list[dict]:
         resp.raise_for_status()
         repos = _parse_trending_html(resp.text)
         return repos[:limit]
+
+
+async def fetch_readme(owner: str, repo: str) -> str:
+    url = f"https://raw.githubusercontent.com/{owner}/{repo}/master/README.md"
+    async with httpx.AsyncClient(timeout=15) as client:
+        resp = await client.get(url, follow_redirects=True)
+        if resp.status_code == 200:
+            return resp.text
+        url = f"https://raw.githubusercontent.com/{owner}/{repo}/main/README.md"
+        resp = await client.get(url, follow_redirects=True)
+        if resp.status_code == 200:
+            return resp.text
+        return ""
+
+
+async def fetch_all_readmes(repos: list[dict]) -> list[dict]:
+    import asyncio
+
+    async def _fetch_one(repo):
+        readme = await fetch_readme(repo["owner"], repo["name"])
+        repo["readme"] = readme[:8000]
+        return repo
+
+    return await asyncio.gather(*[_fetch_one(r) for r in repos])
