@@ -29,5 +29,6 @@ jobs:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          DAILY_REPO_LIMIT: ${{ secrets.DAILY_REPO_LIMIT }}
           CI: "true"
         run: python scripts/main.py
