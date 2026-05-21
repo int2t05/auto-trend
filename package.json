@@ -1,0 +1,23 @@
+{
+  "name": "auto-trend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Daily GitHub Trending scraper with LLM analysis, published to GitHub Pages",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/int2t05/auto-trend.git"
+  },
+  "scripts": {
+    "test:e2e": "npx playwright test",
+    "test:e2e:pages": "npx playwright test --project=pages-desktop --project=pages-mobile",
+    "test:e2e:trending": "npx playwright test --project=trending-desktop",
+    "test:e2e:ui": "npx playwright test --ui",
+    "test:e2e:report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/mcp": "^0.0.75",
+    "@playwright/test": "^1.60.0",
+    "dotenv": "^17.4.2"
+  }
+}
