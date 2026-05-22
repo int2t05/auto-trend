@@ -38,11 +38,13 @@ def test_render_daily_report_contains_sections():
             "summary": "一个轻量级 LLM 编排框架",
             "core_features": ["异步架构", "插件系统"],
             "use_cases": "构建多步骤 LLM 流水线的团队",
+            "trend_signal": "AI agent 编排需求激增",
         },
         "bob/othertool": {
             "summary": "高性能序列化库",
             "core_features": ["零拷贝设计"],
             "use_cases": "需要高性能数据交换的系统",
+            "trend_signal": "性能优化工具持续受关注",
         },
     }
 
@@ -65,6 +67,7 @@ def test_render_daily_report_contains_sections():
     assert "高性能序列化库" in report
     assert "核心功能" in report
     assert "适用场景" in report
+    assert "趋势信号" in report
     assert "⭐ 15,000 · 今日 +1,500" in report
     assert "⭐ 8,000 · 今日 +800" in report
 
@@ -98,8 +101,8 @@ def test_render_sorts_by_daily_stars_descending():
     ]
 
     analyses = {
-        "alice/lowstars": {"summary": "low", "core_features": [], "use_cases": ""},
-        "bob/highstars": {"summary": "high", "core_features": [], "use_cases": ""},
+        "alice/lowstars": {"summary": "low", "core_features": [], "use_cases": "", "trend_signal": ""},
+        "bob/highstars": {"summary": "high", "core_features": [], "use_cases": "", "trend_signal": ""},
     }
 
     report = render_daily_report(

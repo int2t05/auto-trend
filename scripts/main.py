@@ -84,6 +84,7 @@ async def run_pipeline(report_date: date) -> None:
                 "summary": repo.get("description", ""),
                 "core_features": [],
                 "use_cases": "",
+                "trend_signal": "",
             }
 
     print("[auto-trend] Generating trend summary...")

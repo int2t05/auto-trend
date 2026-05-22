@@ -82,6 +82,11 @@ def render_daily_report(
             lines.append(f"**适用场景**: {use_cases}")
             lines.append("")
 
+        trend_signal = analysis.get("trend_signal", "")
+        if trend_signal:
+            lines.append(f"**趋势信号**: {trend_signal}")
+            lines.append("")
+
         lines.append("---")
         lines.append("")
 

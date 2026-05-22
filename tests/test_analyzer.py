@@ -23,7 +23,8 @@ class MockChat:
             return MockCompletion(
                 '{"summary": "一个轻量级多智能体编排框架", '
                 '"core_features": ["基于 asyncio 的高并发架构", "插件式工具系统"], '
-                '"use_cases": "构建多步骤 LLM 流水线的团队，需要生产级可靠性"}'
+                '"use_cases": "构建多步骤 LLM 流水线的团队，需要生产级可靠性", '
+                '"trend_signal": "AI agent 编排需求激增，开发者寻求 LangChain 的轻量替代"}'
             )
         return MockCompletion(
             "Today's trending shows a clear focus on AI agent infrastructure "
@@ -59,6 +60,7 @@ def test_analyze_repo_returns_structured_dict():
     assert "core_features" in result
     assert isinstance(result["core_features"], list)
     assert "use_cases" in result
+    assert "trend_signal" in result
 
 
 def test_analyze_trends_returns_string():
