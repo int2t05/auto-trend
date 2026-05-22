@@ -43,7 +43,7 @@ README excerpt:
             ],
             response_format={"type": "json_object"},
             temperature=0.3,
-            max_tokens=500,
+            max_tokens=1500,
         )
         content = resp.choices[0].message.content.strip()
         return json.loads(content)

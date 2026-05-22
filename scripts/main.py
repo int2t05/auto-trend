@@ -86,8 +86,11 @@ async def run_pipeline(report_date: date) -> None:
             print(f"  [auto-trend] ✗ {repo['full_name']}: {e}")
             analyses[repo["full_name"]] = {
                 "summary": repo.get("description", ""),
+                "highlights": [],
                 "core_features": [],
                 "use_cases": "",
+                "competitive_comparison": "",
+                "maturity": "",
                 "trend_signal": "",
             }
 

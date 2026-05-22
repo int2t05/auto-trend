@@ -12,4 +12,10 @@ Output a JSON object with these keys:
 
 - "use_cases": Who exactly needs this and when. 1-2 sentences in Chinese. Be specific about user persona and business scenario — name the tools, roles, or workflows involved.
 
+- "highlights": 1-2 standout technical or design decisions worth calling out. Array of strings in Chinese. What makes this project technically interesting or unique — architecture choices, novel approaches, performance tricks. Not generic praise.
+
+- "competitive_comparison": How this project compares to known alternatives in the same space. 1-2 sentences in Chinese. Name actual competing projects if possible, and state the key differentiator. If no clear competitor, say "暂无直接竞品".
+
+- "maturity": Production readiness assessment. 1 sentence in Chinese. Consider: version number (<1.0 = early), commit frequency, documentation quality, community size, issue responsiveness. Examples: "早期项目，API 可能不稳定" or "生产可用，已有企业用户验证".
+
 - "trend_signal": Why this repo is trending now. 1 sentence in Chinese. Be specific — reference actual events, releases, technology shifts, or community dynamics. If unclear, say "原因不明".

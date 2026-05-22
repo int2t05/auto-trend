@@ -69,6 +69,14 @@ def render_daily_report(
             lines.append(f"> {summary}")
             lines.append("")
 
+        highlights = analysis.get("highlights", [])
+        if highlights:
+            lines.append("**亮点**")
+            lines.append("")
+            for h in highlights:
+                lines.append(f"- {h}")
+            lines.append("")
+
         core_features = analysis.get("core_features", [])
         if core_features:
             lines.append("**核心功能**")
@@ -80,6 +88,16 @@ def render_daily_report(
         use_cases = analysis.get("use_cases", "")
         if use_cases:
             lines.append(f"**适用场景**: {use_cases}")
+            lines.append("")
+
+        competitive_comparison = analysis.get("competitive_comparison", "")
+        if competitive_comparison:
+            lines.append(f"**竞品对比**: {competitive_comparison}")
+            lines.append("")
+
+        maturity = analysis.get("maturity", "")
+        if maturity:
+            lines.append(f"**成熟度**: {maturity}")
             lines.append("")
 
         trend_signal = analysis.get("trend_signal", "")
