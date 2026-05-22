@@ -19,15 +19,11 @@ class MockChat:
         self.completions = self
 
     def create(self, **kwargs):
-        # analyze_trends doesn't pass response_format; analyze_repo passes json_object
         if kwargs.get("response_format", {}).get("type") == "json_object":
             return MockCompletion(
-                '{"summary": "A lightweight LLM orchestration framework that simplifies multi-agent workflows", '
-                '"highlights": ["Built on asyncio for high concurrency", "Plugin-based tool system"], '
-                '"use_cases": "Teams building multi-step LLM pipelines who need production reliability", '
-                '"comparison": "Compared to LangChain it is lighter and less opinionated", '
-                '"maturity": "成长期", '
-                '"trend_signal": "The surge in AI agent adoption is driving demand for simpler orchestration tools"}'
+                '{"summary": "一个轻量级多智能体编排框架", '
+                '"core_features": ["基于 asyncio 的高并发架构", "插件式工具系统"], '
+                '"use_cases": "构建多步骤 LLM 流水线的团队，需要生产级可靠性"}'
             )
         return MockCompletion(
             "Today's trending shows a clear focus on AI agent infrastructure "
@@ -51,6 +47,7 @@ def test_analyze_repo_returns_structured_dict():
         "description": "A test repo for unit testing",
         "language": "Python",
         "stars_today": "100",
+        "total_stars": 1000,
         "readme": "# Test Repo\n\nThis is a test repository.",
         "topics": ["llm", "agents"],
     }
@@ -59,13 +56,9 @@ def test_analyze_repo_returns_structured_dict():
 
     assert isinstance(result, dict)
     assert "summary" in result
-    assert "highlights" in result
-    assert isinstance(result["highlights"], list)
+    assert "core_features" in result
+    assert isinstance(result["core_features"], list)
     assert "use_cases" in result
-    assert "comparison" in result
-    assert "maturity" in result
-    assert result["maturity"] in ("早期", "成长期", "成熟")
-    assert "trend_signal" in result
 
 
 def test_analyze_trends_returns_string():

@@ -1,5 +1,9 @@
+import asyncio
+
 import httpx
 from bs4 import BeautifulSoup
+
+from scripts.config import GITHUB_TOKEN
 
 GITHUB_TRENDING_URL = "https://github.com/trending"
 
@@ -40,9 +44,24 @@ def _parse_trending_html(html: str) -> list[dict]:
             "stars_today": stars_today,
             "forks_today": forks_today,
             "url": f"https://github.com/{owner}/{name}",
+            "total_stars": 0,
         })
 
     return repos
+
+
+async def _fetch_total_stars(owner: str, name: str, client: httpx.AsyncClient) -> int:
+    url = f"https://api.github.com/repos/{owner}/{name}"
+    headers = {"Accept": "application/vnd.github+json"}
+    if GITHUB_TOKEN:
+        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+    try:
+        resp = await client.get(url, headers=headers, timeout=10)
+        if resp.status_code == 200:
+            return resp.json().get("stargazers_count", 0)
+    except Exception:
+        pass
+    return 0
 
 
 async def fetch_trending_repos(limit: int = 20) -> list[dict]:
@@ -54,6 +73,12 @@ async def fetch_trending_repos(limit: int = 20) -> list[dict]:
         )
         resp.raise_for_status()
         repos = _parse_trending_html(resp.text)
+
+        stars_tasks = [_fetch_total_stars(r["owner"], r["name"], client) for r in repos]
+        total_stars_list = await asyncio.gather(*stars_tasks)
+        for repo, total_stars in zip(repos, total_stars_list):
+            repo["total_stars"] = total_stars
+
         return repos[:limit]
 
 
@@ -71,8 +96,6 @@ async def fetch_readme(owner: str, repo: str) -> str:
 
 
 async def fetch_all_readmes(repos: list[dict]) -> list[dict]:
-    import asyncio
-
     async def _fetch_one(repo):
         readme = await fetch_readme(repo["owner"], repo["name"])
         repo["readme"] = readme[:8000]

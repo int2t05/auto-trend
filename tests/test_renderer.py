@@ -17,6 +17,7 @@ def test_render_daily_report_contains_sections():
             "language": "Python",
             "stars_today": "1,500",
             "forks_today": "200",
+            "total_stars": 15000,
             "url": "https://github.com/alice/cooltool",
         },
         {
@@ -27,6 +28,7 @@ def test_render_daily_report_contains_sections():
             "language": "Rust",
             "stars_today": "800",
             "forks_today": "50",
+            "total_stars": 8000,
             "url": "https://github.com/bob/othertool",
         },
     ]
@@ -34,19 +36,13 @@ def test_render_daily_report_contains_sections():
     analyses = {
         "alice/cooltool": {
             "summary": "一个轻量级 LLM 编排框架",
-            "highlights": ["异步架构", "插件系统"],
+            "core_features": ["异步架构", "插件系统"],
             "use_cases": "构建多步骤 LLM 流水线的团队",
-            "comparison": "比 LangChain 更轻量",
-            "maturity": "成长期",
-            "trend_signal": "AI agent 需求激增",
         },
         "bob/othertool": {
             "summary": "高性能序列化库",
-            "highlights": ["零拷贝设计"],
+            "core_features": ["零拷贝设计"],
             "use_cases": "需要高性能数据交换的系统",
-            "comparison": "比 serde 更快",
-            "maturity": "成熟",
-            "trend_signal": "性能优化工具持续受关注",
         },
     }
 
@@ -61,11 +57,58 @@ def test_render_daily_report_contains_sections():
 
     assert "# GitHub Trending 日报 · 2026-05-21" in report
     assert "## 概览" in report
-    assert "## 今日精选" in report
-    assert "## 完整列表" in report
+    assert "## 项目详情" in report
     assert "## 趋势观察" in report
-    assert "alice/cooltool" in report
-    assert "bob/othertool" in report
+    assert "[alice/cooltool](https://github.com/alice/cooltool)" in report
+    assert "[bob/othertool](https://github.com/bob/othertool)" in report
     assert "一个轻量级 LLM 编排框架" in report
     assert "高性能序列化库" in report
-    assert "| 排名 | 项目 | 语言 | Stars | 一句话概括 |" in report
+    assert "核心功能" in report
+    assert "适用场景" in report
+    assert "⭐ 15,000 · 今日 +1,500" in report
+    assert "⭐ 8,000 · 今日 +800" in report
+
+
+def test_render_sorts_by_daily_stars_descending():
+    from scripts.renderer import render_daily_report
+
+    repos = [
+        {
+            "full_name": "alice/lowstars",
+            "owner": "alice",
+            "name": "lowstars",
+            "description": "",
+            "language": "Go",
+            "stars_today": "100",
+            "forks_today": "10",
+            "total_stars": 1000,
+            "url": "https://github.com/alice/lowstars",
+        },
+        {
+            "full_name": "bob/highstars",
+            "owner": "bob",
+            "name": "highstars",
+            "description": "",
+            "language": "Rust",
+            "stars_today": "5,000",
+            "forks_today": "200",
+            "total_stars": 50000,
+            "url": "https://github.com/bob/highstars",
+        },
+    ]
+
+    analyses = {
+        "alice/lowstars": {"summary": "low", "core_features": [], "use_cases": ""},
+        "bob/highstars": {"summary": "high", "core_features": [], "use_cases": ""},
+    }
+
+    report = render_daily_report(
+        report_date=date(2026, 5, 21),
+        repos=repos,
+        analyses=analyses,
+        trend_summary="test",
+    )
+
+    high_pos = report.find("bob/highstars")
+    low_pos = report.find("alice/lowstars")
+    assert high_pos < low_pos

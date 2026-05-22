@@ -25,6 +25,7 @@ class Analyzer:
 Name: {repo['full_name']}
 Description: {repo.get('description', '')}
 Language: {repo.get('language', '')}
+Stars (total): {repo.get('total_stars', 0)}
 Stars today: {repo.get('stars_today', '')}
 Topics: {', '.join(repo.get('topics', []))}
 
@@ -42,7 +43,7 @@ README excerpt:
             ],
             response_format={"type": "json_object"},
             temperature=0.3,
-            max_tokens=600,
+            max_tokens=400,
         )
         content = resp.choices[0].message.content.strip()
         return json.loads(content)
@@ -56,11 +57,11 @@ README excerpt:
                 {
                     "role": "system",
                     "content": (
-                        "You are a technology trend analyst. Given a list of today's "
-                        "trending GitHub repo summaries, write a concise trend observation "
-                        "paragraph (200-300 chars in Chinese). Identify patterns, emerging "
-                        "themes, and what they signal about the developer ecosystem right "
-                        "now. Be specific, not generic."
+                        "You are a technology trend analyst. Given a list of trending "
+                        "GitHub repo summaries, write a concise "
+                        "trend observation paragraph (200-300 chars in Chinese). "
+                        "Identify patterns, emerging themes, and what they signal "
+                        "about the developer ecosystem right now. Be specific, not generic."
                     ),
                 },
                 {"role": "user", "content": f"Today's trending repos:\n{joined}"},
