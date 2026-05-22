@@ -53,6 +53,10 @@ def git_commit_and_push(report_date: date) -> None:
          f"report: daily trending analysis for {report_date.isoformat()}"],
         check=True, cwd=REPO_ROOT,
     )
+    subprocess.run(
+        ["git", "pull", "--rebase"],
+        check=True, cwd=REPO_ROOT,
+    )
     subprocess.run(["git", "push"], check=True, cwd=REPO_ROOT)
 
 
