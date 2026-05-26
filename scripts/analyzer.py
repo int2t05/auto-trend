@@ -12,6 +12,25 @@ SYSTEM_PROMPT_PATH = os.path.join(
 with open(SYSTEM_PROMPT_PATH, encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()
 
+REQUIRED_FIELDS = [
+    "summary", "core_features", "use_cases",
+    "highlights", "competitive_comparison", "maturity", "trend_signal",
+]
+
+
+def audit_analysis(analysis: dict) -> list[str]:
+    """Return list of field names that are missing or empty."""
+    missing = []
+    for field in REQUIRED_FIELDS:
+        value = analysis.get(field)
+        if value is None:
+            missing.append(field)
+        elif isinstance(value, str) and not value.strip():
+            missing.append(field)
+        elif isinstance(value, list) and len(value) == 0:
+            missing.append(field)
+    return missing
+
 
 class Analyzer:
     """LLM-based repo analyzer."""

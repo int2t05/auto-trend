@@ -76,3 +76,37 @@ def test_analyze_trends_returns_string():
 
     assert isinstance(result, str)
     assert len(result) > 0
+
+
+def test_audit_analysis_all_present():
+    from scripts.analyzer import audit_analysis
+
+    complete = {
+        "summary": "A summary",
+        "core_features": ["f1", "f2"],
+        "use_cases": "Some use cases",
+        "highlights": ["h1"],
+        "competitive_comparison": "No competitors",
+        "maturity": "Early stage",
+        "trend_signal": "Hot topic",
+    }
+    assert audit_analysis(complete) == []
+
+
+def test_audit_analysis_detects_missing_fields():
+    from scripts.analyzer import audit_analysis
+
+    incomplete = {
+        "summary": "",
+        "core_features": [],
+        "use_cases": None,
+        "highlights": ["h1"],
+        "competitive_comparison": "  ",
+    }
+    missing = audit_analysis(incomplete)
+    assert "summary" in missing
+    assert "core_features" in missing
+    assert "use_cases" in missing
+    assert "competitive_comparison" in missing
+    assert "maturity" in missing
+    assert "trend_signal" in missing

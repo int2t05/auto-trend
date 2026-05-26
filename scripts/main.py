@@ -14,7 +14,7 @@ from pathlib import Path
 
 from scripts.config import DAILY_REPO_LIMIT
 from scripts.fetcher import fetch_trending_repos, fetch_all_readmes
-from scripts.analyzer import Analyzer
+from scripts.analyzer import Analyzer, audit_analysis
 from scripts.renderer import render_daily_report
 from scripts.indexer import update_index
 
@@ -22,6 +22,8 @@ from scripts.indexer import update_index
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DOCS_DIR = REPO_ROOT / "docs"
 DAILY_DIR = DOCS_DIR / "daily"
+
+MAX_ANALYSIS_ATTEMPTS = 3
 
 
 def get_report_date() -> date:
@@ -48,6 +50,13 @@ def git_commit_and_push(report_date: date) -> None:
         ["git", "add", str(report_path), str(index_path)],
         check=True, cwd=REPO_ROOT,
     )
+    result = subprocess.run(
+        ["git", "diff", "--cached", "--quiet"],
+        cwd=REPO_ROOT,
+    )
+    if result.returncode == 0:
+        print("[auto-trend] No changes to commit, skipping.")
+        return
     subprocess.run(
         ["git", "commit", "-m",
          f"report: daily trending analysis for {report_date.isoformat()}"],
@@ -77,22 +86,42 @@ async def run_pipeline(report_date: date) -> None:
     print("[auto-trend] Analyzing repos with LLM...")
     analyzer = Analyzer()
     analyses: dict[str, dict] = {}
+
+    FALLBACK = {
+        "summary": "",
+        "highlights": [],
+        "core_features": [],
+        "use_cases": "",
+        "competitive_comparison": "",
+        "maturity": "",
+        "trend_signal": "",
+    }
+
     for repo in repos:
-        try:
-            analysis = analyzer.analyze_repo(repo)
+        analysis = None
+        for attempt in range(1, MAX_ANALYSIS_ATTEMPTS + 1):
+            try:
+                analysis = analyzer.analyze_repo(repo)
+                missing = audit_analysis(analysis)
+                if not missing:
+                    break
+                print(
+                    f"  [auto-trend] ⚠ {repo['full_name']} "
+                    f"attempt {attempt}: missing {missing}"
+                )
+            except Exception as e:
+                print(
+                    f"  [auto-trend] ✗ {repo['full_name']} "
+                    f"attempt {attempt}: {e}"
+                )
+
+        if analysis is None:
+            print(f"  [auto-trend] ✗ {repo['full_name']}: all attempts failed")
+            analysis = {**FALLBACK, "summary": repo.get("description", "")}
+            analyses[repo["full_name"]] = analysis
+        else:
             analyses[repo["full_name"]] = analysis
             print(f"  [auto-trend] ✓ {repo['full_name']}")
-        except Exception as e:
-            print(f"  [auto-trend] ✗ {repo['full_name']}: {e}")
-            analyses[repo["full_name"]] = {
-                "summary": repo.get("description", ""),
-                "highlights": [],
-                "core_features": [],
-                "use_cases": "",
-                "competitive_comparison": "",
-                "maturity": "",
-                "trend_signal": "",
-            }
 
     print("[auto-trend] Generating trend summary...")
     try:
