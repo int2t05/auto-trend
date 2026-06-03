@@ -1,7 +1,7 @@
 <h1>GitHub Trending 日报索引</h1>
 <p style="color: var(--body-muted); margin-bottom: 32px;">点击有标记的日期查看当日日报</p>
 
-{% assign daily_pages = site.pages | where_exp: "p", "p.path contains 'daily/'" | sort: "path" %}
+{% assign daily_pages = site.pages | where_exp: "p", "p.path =~ 'daily/'" | sort: "path" %}
 <script>
   window.__reportDates = [{% for dp in daily_pages %}{% assign fname = dp.name | replace: '.md', '' %}"{{ fname }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
 </script>
