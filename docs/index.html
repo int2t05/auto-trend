@@ -1,0 +1,266 @@
+---
+layout: default
+title: 日报索引
+permalink: /
+---
+
+<h1>GitHub Trending 日报索引</h1>
+<p style="color: var(--body-muted); margin-bottom: 32px;">点击有标记的日期查看当日日报</p>
+
+{% comment %} Collect all available dates from daily pages {% endcomment %}
+{% assign daily_pages = site.pages | where_exp: "p", "p.path contains 'daily/' and p.path contains '.md'" | sort: "path" %}
+<script>
+  window.__reportDates = [
+    {% for dp in daily_pages %}
+      {% assign fname = dp.name | replace: '.md', '' %}"{{ fname }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+</script>
+
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button class="cal-nav-btn" id="cal-prev" aria-label="上一月">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="cal-title">
+      <select id="cal-year" class="cal-select"></select>
+      <span class="cal-sep">年</span>
+      <select id="cal-month" class="cal-select"></select>
+      <span class="cal-sep">月</span>
+    </div>
+    <button class="cal-nav-btn" id="cal-next" aria-label="下一月">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="calendar-weekdays">
+    <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+  </div>
+  <div class="calendar-grid" id="cal-grid"></div>
+</div>
+
+<style>
+  .calendar-container {
+    max-width: 420px;
+    background: var(--canvas);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .cal-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .cal-select {
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--canvas-parchment);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .cal-select:focus { border-color: var(--primary); }
+
+  .cal-sep {
+    font-weight: 400;
+    color: var(--body-muted);
+    user-select: none;
+  }
+
+  .cal-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    background: var(--canvas);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .cal-nav-btn:hover {
+    background: var(--canvas-parchment);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .calendar-weekdays span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--body-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 4px 0;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--body-muted);
+    border-radius: 10px;
+    cursor: default;
+    transition: all 0.12s;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .cal-day.in-month {
+    color: var(--ink);
+  }
+
+  .cal-day.has-report {
+    color: var(--canvas);
+    background: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .cal-day.has-report:hover {
+    background: #0055aa;
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgba(0,102,204,0.25);
+  }
+
+  .cal-day.today {
+    box-shadow: inset 0 0 0 2px var(--primary);
+  }
+  .cal-day.today.has-report {
+    box-shadow: 0 0 0 2px var(--primary), 0 2px 8px rgba(0,102,204,0.25);
+  }
+
+  .cal-day.empty {
+    visibility: hidden;
+  }
+</style>
+
+<script>
+(function() {
+  var reportSet = new Set(window.__reportDates || []);
+  var grid = document.getElementById('cal-grid');
+  var yearSel = document.getElementById('cal-year');
+  var monthSel = document.getElementById('cal-month');
+  var prevBtn = document.getElementById('cal-prev');
+  var nextBtn = document.getElementById('cal-next');
+
+  var now = new Date();
+  var curYear = now.getFullYear();
+  var curMonth = now.getMonth(); // 0-based
+  var todayStr = now.toISOString().slice(0, 10);
+
+  // Populate year select: from 2026 to current year + 1
+  for (var y = 2026; y <= curYear + 1; y++) {
+    var opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y;
+    yearSel.appendChild(opt);
+  }
+
+  // Populate month select
+  for (var m = 1; m <= 12; m++) {
+    var opt = document.createElement('option');
+    opt.value = m - 1;
+    opt.textContent = m;
+    monthSel.appendChild(opt);
+  }
+
+  yearSel.value = curYear;
+  monthSel.value = curMonth;
+
+  function getReportUrl(dateStr) {
+    return '{{ "/daily/" | relative_url }}' + dateStr + '.html';
+  }
+
+  function render() {
+    var year = parseInt(yearSel.value);
+    var month = parseInt(monthSel.value);
+    grid.innerHTML = '';
+
+    var firstDay = new Date(year, month, 1);
+    // Monday=0 ... Sunday=6
+    var startDow = (firstDay.getDay() + 6) % 7;
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Empty cells before first day
+    for (var i = 0; i < startDow; i++) {
+      var cell = document.createElement('span');
+      cell.className = 'cal-day empty';
+      grid.appendChild(cell);
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var dateStr = year + '-' +
+        String(month + 1).padStart(2, '0') + '-' +
+        String(d).padStart(2, '0');
+
+      var cell;
+      if (reportSet.has(dateStr)) {
+        cell = document.createElement('a');
+        cell.href = getReportUrl(dateStr);
+        cell.className = 'cal-day in-month has-report';
+      } else {
+        cell = document.createElement('span');
+        cell.className = 'cal-day in-month';
+      }
+      cell.textContent = d;
+      if (dateStr === todayStr) cell.classList.add('today');
+      grid.appendChild(cell);
+    }
+  }
+
+  yearSel.addEventListener('change', render);
+  monthSel.addEventListener('change', render);
+
+  prevBtn.addEventListener('click', function() {
+    var m = parseInt(monthSel.value);
+    var y = parseInt(yearSel.value);
+    if (m === 0) { monthSel.value = 11; yearSel.value = y - 1; }
+    else { monthSel.value = m - 1; }
+    render();
+  });
+
+  nextBtn.addEventListener('click', function() {
+    var m = parseInt(monthSel.value);
+    var y = parseInt(yearSel.value);
+    if (m === 11) { monthSel.value = 0; yearSel.value = y + 1; }
+    else { monthSel.value = m + 1; }
+    render();
+  });
+
+  render();
+})();
+</script>
