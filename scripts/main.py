@@ -16,8 +16,6 @@ from scripts.config import DAILY_REPO_LIMIT
 from scripts.fetcher import fetch_trending_repos, fetch_all_readmes
 from scripts.analyzer import Analyzer, audit_analysis
 from scripts.renderer import render_daily_report
-from scripts.indexer import update_index
-
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DOCS_DIR = REPO_ROOT / "docs"
@@ -35,7 +33,6 @@ def get_report_date() -> date:
 
 def git_commit_and_push(report_date: date) -> None:
     report_path = DAILY_DIR / f"{report_date.isoformat()}.md"
-    index_path = DOCS_DIR / "index.md"
 
     subprocess.run(
         ["git", "config", "user.name", "github-actions[bot]"],
@@ -47,7 +44,7 @@ def git_commit_and_push(report_date: date) -> None:
         check=True, cwd=REPO_ROOT,
     )
     subprocess.run(
-        ["git", "add", str(report_path), str(index_path)],
+        ["git", "add", str(report_path)],
         check=True, cwd=REPO_ROOT,
     )
     result = subprocess.run(
@@ -137,10 +134,6 @@ async def run_pipeline(report_date: date) -> None:
     report_path.write_text(report_md, encoding="utf-8")
     print(f"[auto-trend] Report written to {report_path}")
 
-    print("[auto-trend] Updating index...")
-    index_path = DOCS_DIR / "index.md"
-    update_index(index_path, report_date)
-    print(f"[auto-trend] Index updated at {index_path}")
 
     if os.environ.get("CI"):
         print("[auto-trend] Committing and pushing...")
