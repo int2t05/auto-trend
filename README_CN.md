@@ -112,8 +112,7 @@ auto-trend/
 │   ├── config.py                  # 环境配置
 │   ├── fetcher.py                 # 爬虫 + README 获取
 │   ├── analyzer.py                # LLM 分析 (OpenAI SDK)
-│   ├── renderer.py                # Markdown 报告生成
-│   └── indexer.py                 # 索引更新
+│   └── renderer.py                # Markdown 报告生成
 ├── prompts/analysis.md            # LLM 系统提示
 ├── tests/                         # pytest 单元测试
 ├── e2e/                           # Playwright E2E 测试

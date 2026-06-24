@@ -112,8 +112,7 @@ auto-trend/
 │   ├── config.py                  # Env config
 │   ├── fetcher.py                 # Scraper + README fetcher
 │   ├── analyzer.py                # LLM analysis (OpenAI SDK)
-│   ├── renderer.py                # Markdown report generator
-│   └── indexer.py                 # Index updater
+│   └── renderer.py                # Markdown report generator
 ├── prompts/analysis.md            # LLM system prompt
 ├── tests/                         # pytest (unit)
 ├── e2e/                           # Playwright (E2E)

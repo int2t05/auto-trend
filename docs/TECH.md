@@ -12,10 +12,9 @@ GitHub Actions cron (UTC 00:30)
   ├─ 4. analyzer.analyze_trends()        跨项目趋势总结
   │
   ├─ 5. renderer.render_daily_report()   组装 Markdown 日报
-  ├─ 6. indexer.update_index()           更新日报索引
   │
-  ├─ 7. git add + commit + push
-  └─ 8. GitHub Pages 自动发布
+  ├─ 6. git add + commit + push
+  └─ 7. GitHub Pages 自动发布
 ```
 
 薄层设计，零数据库，零后端服务。整个 pipeline 由 GitHub Actions 驱动，一个 Python 脚本跑完全程。
@@ -105,18 +104,7 @@ DAILY_REPO_LIMIT  = 20                               # 可选
 ## 趋势观察       ← LLM 跨项目趋势判断
 ```
 
-### 5. `scripts/indexer.py` (24 行)
-
-**职责**：维护 `docs/index.md`（日报索引）。新条目插入最前，超过 30 条自动裁剪。
-
-```markdown
-# GitHub Trending 日报索引
-
-- [2026-05-21](daily/2026-05-21.md)
-- [2026-05-20](daily/2026-05-20.md)
-```
-
-### 6. `scripts/main.py` (124 行)
+### 5. `scripts/main.py` (124 行)
 
 **职责**：编排整个 pipeline。
 
@@ -143,9 +131,6 @@ LLM API
 
 render_daily_report(repos, analyses, trend_summary)
   → Markdown string
-
-update_index(index_path, date)
-  → docs/index.md (增/改)
 ```
 
 ## 错误处理
@@ -169,7 +154,6 @@ update_index(index_path, date)
 | fetcher | 4 | 1 个纯函数测试 + 3 个 mock httpx |
 | analyzer | 2 | mock OpenAI client，按 `response_format` 区分返回值 |
 | renderer | 1 | 纯函数，给定输入验证输出包含所有 section |
-| indexer | 3 | 使用 tmp_path fixture |
 
 ```bash
 LLM_API_KEY=sk-test pytest tests/ -v
@@ -208,8 +192,7 @@ python scripts/main.py
 | fetcher.py | 81 |
 | analyzer.py | 71 |
 | renderer.py | 86 |
-| indexer.py | 24 |
 | main.py | 124 |
-| **总计** | **392** |
+| **总计** | **368** |
 
 控制在 500 行以内的目标达成。

@@ -4,17 +4,25 @@ title: 日报索引
 permalink: /
 ---
 
-<h1>GitHub Trending 日报索引</h1>
-<p style="color: var(--body-muted); margin-bottom: 32px;">点击有标记的日期查看当日日报</p>
+{% assign report_count = 0 %}
+{% for p in site.pages %}{% if p.path contains 'daily/' %}{% assign report_count = report_count | plus: 1 %}{% endif %}{% endfor %}
+
+<div class="hero">
+  <p class="hero-kicker">每日自动分析</p>
+  <h1 class="hero-title">GitHub Trending 日报</h1>
+  <p class="hero-desc">LLM 驱动的 GitHub Trending 项目深度分析，每日自动发布。已生成 <strong>{{ report_count }}</strong> 期日报。</p>
+</div>
+
+<div class="section-label">选择日期</div>
 
 <script>
   window.__reportDates = "{% for p in site.pages %}{% if p.path contains 'daily/' %}{{ p.name | replace: '.md', '' }},{% endif %}{% endfor %}".split(',').filter(Boolean);
 </script>
 
-<div class="calendar-container">
+<div class="calendar-card">
   <div class="calendar-header">
     <button class="cal-nav-btn" id="cal-prev" aria-label="上一月">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.25 13.5L6.75 9L11.25 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <div class="cal-title">
       <select id="cal-year" class="cal-select"></select>
@@ -23,30 +31,86 @@ permalink: /
       <span class="cal-sep">月</span>
     </div>
     <button class="cal-nav-btn" id="cal-next" aria-label="下一月">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>
+
   <div class="calendar-weekdays">
     <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
   </div>
   <div class="calendar-grid" id="cal-grid"></div>
+
+  <div class="calendar-legend">
+    <span class="legend-dot"></span>
+    <span>有日报</span>
+    <span class="legend-dot legend-today"></span>
+    <span>今天</span>
+  </div>
 </div>
 
 <style>
-  .calendar-container {
+  .hero {
+    margin-bottom: 48px;
+  }
+
+  .hero-kicker {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    line-height: 1.47;
+    color: var(--body-muted);
+    max-width: 460px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--body-muted);
+    margin-bottom: 16px;
+    padding-bottom: 0;
+  }
+
+  .calendar-card {
     max-width: 420px;
     background: var(--canvas);
     border: 1px solid var(--hairline);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .calendar-card:hover {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 8px 32px rgba(0, 0, 0, 0.06);
   }
 
   .calendar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .cal-title {
@@ -64,14 +128,19 @@ permalink: /
     font-weight: 600;
     color: var(--ink);
     background: var(--canvas-parchment);
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 5px 10px;
     cursor: pointer;
     outline: none;
-    transition: border-color 0.15s;
+    transition: all 0.15s ease;
   }
-  .cal-select:focus { border-color: var(--primary); }
+  .cal-select:hover { background: #ececee; }
+  .cal-select:focus {
+    border-color: var(--primary);
+    background: var(--canvas);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.12);
+  }
 
   .cal-sep {
     font-weight: 400;
@@ -85,32 +154,35 @@ permalink: /
     justify-content: center;
     width: 36px;
     height: 36px;
-    border: 1px solid var(--hairline);
+    border: none;
     border-radius: 10px;
-    background: var(--canvas);
-    color: var(--ink);
+    background: transparent;
+    color: var(--body-muted);
     cursor: pointer;
-    transition: all 0.12s;
+    transition: all 0.12s ease;
   }
   .cal-nav-btn:hover {
     background: var(--canvas-parchment);
-    border-color: var(--primary);
-    color: var(--primary);
+    color: var(--ink);
+  }
+  .cal-nav-btn:active {
+    background: #ececee;
+    transform: scale(0.96);
   }
 
   .calendar-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
   .calendar-weekdays span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--body-muted);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    padding: 4px 0;
+    letter-spacing: 0.06em;
+    padding: 6px 0;
   }
 
   .calendar-grid {
@@ -129,7 +201,7 @@ permalink: /
     color: var(--body-muted);
     border-radius: 10px;
     cursor: default;
-    transition: all 0.12s;
+    transition: all 0.15s ease;
     text-decoration: none;
     position: relative;
   }
@@ -143,22 +215,69 @@ permalink: /
     background: var(--primary);
     font-weight: 600;
     cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 102, 204, 0.2);
   }
   .cal-day.has-report:hover {
     background: #0055aa;
-    transform: scale(1.08);
-    box-shadow: 0 2px 8px rgba(0,102,204,0.25);
+    transform: scale(1.1);
+    box-shadow: 0 3px 12px rgba(0, 102, 204, 0.3);
+  }
+  .cal-day.has-report:active {
+    transform: scale(0.96);
   }
 
   .cal-day.today {
     box-shadow: inset 0 0 0 2px var(--primary);
   }
   .cal-day.today.has-report {
-    box-shadow: 0 0 0 2px var(--primary), 0 2px 8px rgba(0,102,204,0.25);
+    box-shadow: inset 0 0 0 2px var(--canvas), 0 0 0 3px var(--primary), 0 2px 8px rgba(0, 102, 204, 0.25);
   }
 
   .cal-day.empty {
     visibility: hidden;
+  }
+
+  .calendar-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--divider-soft);
+    font-size: 12px;
+    color: var(--body-muted);
+    letter-spacing: -0.12px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: var(--primary);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .legend-dot.legend-today {
+    background: var(--canvas);
+    box-shadow: inset 0 0 0 2px var(--primary);
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 36px;
+    }
+    .calendar-card {
+      padding: 20px;
+      border-radius: 16px;
+    }
+    .cal-day {
+      font-size: 14px;
+      border-radius: 8px;
+    }
+    .calendar-grid {
+      gap: 3px;
+    }
   }
 </style>
 
@@ -173,10 +292,9 @@ permalink: /
 
   var now = new Date();
   var curYear = now.getFullYear();
-  var curMonth = now.getMonth(); // 0-based
+  var curMonth = now.getMonth();
   var todayStr = now.toISOString().slice(0, 10);
 
-  // Populate year select: from 2026 to current year + 1
   for (var y = 2026; y <= curYear + 1; y++) {
     var opt = document.createElement('option');
     opt.value = y;
@@ -184,7 +302,6 @@ permalink: /
     yearSel.appendChild(opt);
   }
 
-  // Populate month select
   for (var m = 1; m <= 12; m++) {
     var opt = document.createElement('option');
     opt.value = m - 1;
@@ -205,11 +322,9 @@ permalink: /
     grid.innerHTML = '';
 
     var firstDay = new Date(year, month, 1);
-    // Monday=0 ... Sunday=6
     var startDow = (firstDay.getDay() + 6) % 7;
     var daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    // Empty cells before first day
     for (var i = 0; i < startDow; i++) {
       var cell = document.createElement('span');
       cell.className = 'cal-day empty';

@@ -47,7 +47,7 @@ def render_daily_report(
     lines.append(trend_summary)
     lines.append("")
 
-    # Project details — sorted by weekly stars descending
+    # Project details — sorted by daily stars descending
     lines.append("## 项目详情")
     lines.append("")
     for repo in sorted_repos:
@@ -55,13 +55,13 @@ def render_daily_report(
         analysis = analyses.get(full_name, {})
 
         lang = repo.get("language", "") or ""
-        total_stars = _fmt_stars(repo.get("total_stars", 0))
         today = repo.get("stars_today", "0")
+        total_stars = _fmt_stars(repo.get("total_stars", 0))
 
         lines.append(f"### [{full_name}]({repo['url']})")
         lines.append("")
         lang_tag = f" `{lang}`" if lang else ""
-        lines.append(f"{lang_tag} ⭐ {total_stars} · 今日 +{today}")
+        lines.append(f"{lang_tag} ⭐ +{today} 今日新增 · {total_stars} 总星数")
         lines.append("")
 
         summary = analysis.get("summary", repo.get("description", ""))

@@ -68,8 +68,8 @@ def test_render_daily_report_contains_sections():
     assert "核心功能" in report
     assert "适用场景" in report
     assert "趋势信号" in report
-    assert "⭐ 15,000 · 今日 +1,500" in report
-    assert "⭐ 8,000 · 今日 +800" in report
+    assert "⭐ +1,500 今日新增 · 15,000 总星数" in report
+    assert "⭐ +800 今日新增 · 8,000 总星数" in report
 
 
 def test_render_sorts_by_daily_stars_descending():

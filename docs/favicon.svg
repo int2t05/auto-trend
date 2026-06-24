@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Grid lines suggesting data/chart -->
+  <line x1="4" y1="24" x2="28" y2="24" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round"/>
+  <line x1="4" y1="16" x2="20" y2="16" stroke="#d2d2d7" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="4" y1="8" x2="12" y2="8" stroke="#d2d2d7" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Upward trend line -->
+  <polyline points="6,26 16,18 24,8 28,6" stroke="#1d1d1f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Arrow tip -->
+  <polygon points="28,4 27.2,8 30.5,6.7" fill="#1d1d1f"/>
+</svg>
