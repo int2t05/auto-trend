@@ -76,11 +76,10 @@ README excerpt:
                 {
                     "role": "system",
                     "content": (
-                        "You are a technology trend analyst. Given a list of trending "
-                        "GitHub repo summaries, write a concise "
-                        "trend observation paragraph (200-300 chars in Chinese). "
-                        "Identify patterns, emerging themes, and what they signal "
-                        "about the developer ecosystem right now. Be specific, not generic."
+                        "你是技术趋势分析员。根据下面的热门 GitHub 项目摘要，写一段"
+                        "热点观察（200-300 字中文）。要求：用大白话，短句为主；"
+                        "点出这些项目反映了什么共同趋势，说明当下的新闻热点和开发者"
+                        "生态正在发生什么；不写空话套话，也不要扭捏的感叹。"
                     ),
                 },
                 {"role": "user", "content": f"Today's trending repos:\n{joined}"},
