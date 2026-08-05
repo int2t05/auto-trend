@@ -45,7 +45,7 @@ Replace `int2t05` with your GitHub username in these files:
 | File | Lines to update |
 |------|-----------------|
 | `docs/_layouts/default.html` | GitHub link (line 406), footer (line 446) |
-| `docs/index.md` | Footer link (line 14) |
+| `docs/index.html` | Footer link (line 14) |
 | `README.md` | Badge URL, Live Reports link |
 
 ```bash
@@ -65,7 +65,7 @@ https://<your-username>.github.io/auto-trend/
 ## How It Works
 
 ```
-GitHub Actions cron (UTC 00:30)
+GitHub Actions cron (UTC 00:17)
   → Scrape GitHub Trending (httpx + BeautifulSoup)
   → Fetch READMEs concurrently (asyncio)
   → LLM structured analysis per repo (JSON mode)
@@ -119,7 +119,7 @@ auto-trend/
 ├── docs/                          # GitHub Pages (Jekyll)
 │   ├── _layouts/default.html      # Apple-style 3-col layout
 │   ├── daily/                     # Generated reports
-│   └── index.md                   # Report index
+│   └── index.html                 # Report index
 ├── requirements.txt
 └── package.json                   # E2E dependencies
 ```

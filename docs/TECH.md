@@ -3,7 +3,7 @@
 ## 架构总览
 
 ```
-GitHub Actions cron (UTC 00:30)
+GitHub Actions cron (UTC 00:17)
   │
   ├─ 1. fetcher.fetch_trending_repos()   抓 GitHub Trending 页面 HTML
   ├─ 2. fetcher.fetch_all_readmes()      并发抓各项目 README (raw.githubusercontent.com)
@@ -34,7 +34,7 @@ GitHub Actions cron (UTC 00:30)
 
 ## 模块设计
 
-### 1. `scripts/config.py` (6 行)
+### 1. `scripts/config.py` (7 行)
 
 环境变量读取层。所有配置通过环境变量注入，代码中无硬编码。
 
@@ -45,12 +45,13 @@ LLM_MODEL         = "gpt-4.1-mini"                   # 可选
 DAILY_REPO_LIMIT  = 20                               # 可选
 ```
 
-### 2. `scripts/fetcher.py` (81 行)
+### 2. `scripts/fetcher.py` (114 行)
 
 **职责**：获取 GitHub Trending 数据。
 
-- `_parse_trending_html(html)` — 解析 Trending 页面 DOM，提取项目名、描述、语言、Star/Fork 数
-- `fetch_trending_repos(limit)` — GET `github.com/trending`，返回 repo dict 列表
+- `_parse_trending_html(html)` — 解析 Trending 页面 DOM，提取项目名、描述、语言、当日 Star 增长
+- `_stars_today(article)` — 从 `span` 中提取 `"1,234 stars today"`，返回当日新增 Star 数（与页面上显示的总星数 `a.Link--muted` 区分）
+- `fetch_trending_repos(limit)` — GET `github.com/trending`，并行调 GitHub API 补全总星数
 - `fetch_readme(owner, repo)` — 从 `raw.githubusercontent.com` 抓 README.md（先试 master 分支，再试 main）
 - `fetch_all_readmes(repos)` — `asyncio.gather` 并发抓取，每个 README 截断到 8000 字符
 
@@ -62,23 +63,24 @@ DAILY_REPO_LIMIT  = 20                               # 可选
     "full_name": "alice/cooltool",
     "description": "A cool tool",
     "language": "Python",
-    "stars_today": "1,234",
-    "forks_today": "56",
+    "stars_today": 1234,          # 当日新增 Star 数（int），来自 "1,234 stars today"
     "url": "https://github.com/alice/cooltool",
+    "total_stars": 100000,        # 由 GitHub API 补全（stargazers_count）
     "readme": "# Cool Tool\n\n..."  # 由 fetch_all_readmes 添加
 }
 ```
 
-### 3. `scripts/analyzer.py` (71 行)
+### 3. `scripts/analyzer.py` (89 行)
 
 **职责**：调 LLM 做结构化分析。
 
 - `Analyzer` 类，构造函数接受可选 `client` 参数（便于测试注入 mock）
 - `analyze_repo(repo)` — 单项目分析，输出 6 维 JSON：
   - `summary` — 一句话概括（中文 ≤80 字）
-  - `highlights` — 2-3 个技术亮点
+  - `highlights` — 1-2 个独特设计或技术决策
+  - `core_features` — 2-3 条具体的技术亮点
   - `use_cases` — 适用场景
-  - `comparison` — 竞品对比
+  - `competitive_comparison` — 竞品对比
   - `maturity` — 成熟度（早期/成长期/成熟）
   - `trend_signal` — 趋势信号
 - `analyze_trends(analyses)` — 跨项目趋势总结，输出 200-300 字中文段落
@@ -87,7 +89,7 @@ DAILY_REPO_LIMIT  = 20                               # 可选
 
 **System Prompt**：定义在 `prompts/analysis.md`，要求 LLM 做判断而非复述 README。
 
-### 4. `scripts/renderer.py` (86 行)
+### 4. `scripts/renderer.py` (113 行)
 
 **职责**：将结构化数据组装为 Markdown 日报。纯函数，无副作用。
 
@@ -97,14 +99,17 @@ DAILY_REPO_LIMIT  = 20                               # 可选
 
 ## 概览          ← 项目统计 + 语言分布 + LLM 趋势总结
 
-## 今日精选       ← 前 5 个项目深度分析（6 维展开）
-
-## 完整列表       ← 所有项目的表格（排名/项目/语言/Stars/一句话概括）
+## 项目详情       ← 所有项目按当日新增 Star 降序，逐个展开 6 维分析
 
 ## 趋势观察       ← LLM 跨项目趋势判断
 ```
 
-### 5. `scripts/main.py` (124 行)
+每个项目头部展示当日新增与总星数：
+```
+ `Python` ⭐ +1,234 今日新增 · 100,000 总星数
+```
+
+### 5. `scripts/main.py` (151 行)
 
 **职责**：编排整个 pipeline。
 
@@ -140,9 +145,9 @@ render_daily_report(repos, analyses, trend_summary)
 | GitHub Trending 页面抓取失败 | httpx 抛异常，pipeline 终止（下次 cron 重试） |
 | 单个 README 抓取失败 | 返回空字符串，不影响其他项目 |
 | LLM 单次调用失败 | tenacity 指数退避重试 2 次 |
-| LLM 重试仍失败 | 降级为仅使用 description，maturity=早期 |
+| LLM 重试仍失败 | 降级为仅使用 description，其余分析字段留空 |
 | 趋势总结 LLM 失败 | 降级为"今日无法生成趋势总结" |
-| GitHub Actions 超时 | workflow 设 `timeout-minutes: 10`，正常 2-3 分钟完成 |
+| GitHub Actions 超时 | workflow 设 `timeout-minutes: 100`，正常 2-3 分钟完成 |
 
 ## 测试
 
@@ -174,9 +179,9 @@ python scripts/main.py
 ## CI/CD
 
 `.github/workflows/daily.yml`：
-- **触发**：UTC 00:30 cron + workflow_dispatch（手动触发）
-- **超时**：10 分钟
-- **Secrets**：`LLM_API_KEY`（必填）、`LLM_BASE_URL`、`LLM_MODEL`
+- **触发**：UTC 00:17 cron + workflow_dispatch（手动触发）
+- **超时**：100 分钟
+- **Secrets**：`LLM_API_KEY`（必填）、`LLM_BASE_URL`、`LLM_MODEL`、`DAILY_REPO_LIMIT`
 
 ## 成本
 
@@ -188,11 +193,11 @@ python scripts/main.py
 
 | 模块 | 行数 |
 |------|------|
-| config.py | 6 |
-| fetcher.py | 81 |
-| analyzer.py | 71 |
-| renderer.py | 86 |
-| main.py | 124 |
-| **总计** | **368** |
+| config.py | 7 |
+| fetcher.py | 114 |
+| analyzer.py | 89 |
+| renderer.py | 113 |
+| main.py | 151 |
+| **总计** | **474** |
 
 控制在 500 行以内的目标达成。

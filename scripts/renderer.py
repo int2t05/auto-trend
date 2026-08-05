@@ -16,13 +16,9 @@ def render_daily_report(
     analyses: dict[str, dict],
     trend_summary: str,
 ) -> str:
-    # Sort by daily stars descending
+    # Sort by daily star growth descending
     def _sort_key(r):
-        raw = r.get("stars_today", "0")
-        try:
-            return int(raw.replace(",", ""))
-        except (ValueError, TypeError):
-            return 0
+        return r.get("stars_today", 0)
 
     sorted_repos = sorted(repos, key=_sort_key, reverse=True)
 
@@ -55,7 +51,7 @@ def render_daily_report(
         analysis = analyses.get(full_name, {})
 
         lang = repo.get("language", "") or ""
-        today = repo.get("stars_today", "0")
+        today = _fmt_stars(repo.get("stars_today", 0))
         total_stars = _fmt_stars(repo.get("total_stars", 0))
 
         lines.append(f"### [{full_name}]({repo['url']})")

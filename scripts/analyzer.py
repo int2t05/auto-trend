@@ -46,7 +46,6 @@ Description: {repo.get('description', '')}
 Language: {repo.get('language', '')}
 Stars (total): {repo.get('total_stars', 0)}
 Stars today: {repo.get('stars_today', '')}
-Topics: {', '.join(repo.get('topics', []))}
 
 README excerpt:
 {repo.get('readme', '')[:8000]}

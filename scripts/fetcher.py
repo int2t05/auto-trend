@@ -1,4 +1,5 @@
 import asyncio
+import re
 
 import httpx
 from bs4 import BeautifulSoup
@@ -6,6 +7,25 @@ from bs4 import BeautifulSoup
 from scripts.config import GITHUB_TOKEN
 
 GITHUB_TRENDING_URL = "https://github.com/trending"
+
+_STARS_TODAY_RE = re.compile(r"([\d,.]+[kK]?)\s+stars?\s+today")
+
+
+def _parse_count(text: str) -> int:
+    """Parse a count like '1,234' or '2.1k' into an int."""
+    text = text.replace(",", "")
+    if text.endswith(("k", "K")):
+        return int(float(text[:-1]) * 1000)
+    return int(text)
+
+
+def _stars_today(article) -> int:
+    """Daily star growth shown on the trending page, e.g. '1,234 stars today'."""
+    for el in article.select("span"):
+        m = _STARS_TODAY_RE.search(el.get_text(strip=True))
+        if m:
+            return _parse_count(m.group(1))
+    return 0
 
 
 def _parse_trending_html(html: str) -> list[dict]:
@@ -16,24 +36,15 @@ def _parse_trending_html(html: str) -> list[dict]:
         h2 = article.select_one("h2 a")
         if not h2:
             continue
-        href = h2.get("href", "").strip()
-        parts = href.strip("/").split("/")
+        parts = h2.get("href", "").strip("/").split("/")
         if len(parts) < 2:
             continue
         owner, name = parts[0], parts[1]
 
         desc_el = article.select_one("p.col-9")
         description = desc_el.get_text(strip=True) if desc_el else ""
-
         lang_el = article.select_one('[itemprop="programmingLanguage"]')
         language = lang_el.get_text(strip=True) if lang_el else ""
-
-        links = article.select("a.Link--muted")
-        stars_today = ""
-        forks_today = ""
-        if len(links) >= 2:
-            stars_today = links[0].get_text(strip=True)
-            forks_today = links[1].get_text(strip=True)
 
         repos.append({
             "owner": owner,
@@ -41,8 +52,7 @@ def _parse_trending_html(html: str) -> list[dict]:
             "full_name": f"{owner}/{name}",
             "description": description,
             "language": language,
-            "stars_today": stars_today,
-            "forks_today": forks_today,
+            "stars_today": _stars_today(article),
             "url": f"https://github.com/{owner}/{name}",
             "total_stars": 0,
         })

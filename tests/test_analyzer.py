@@ -47,10 +47,9 @@ def test_analyze_repo_returns_structured_dict():
         "full_name": "testowner/testrepo",
         "description": "A test repo for unit testing",
         "language": "Python",
-        "stars_today": "100",
+        "stars_today": 100,
         "total_stars": 1000,
         "readme": "# Test Repo\n\nThis is a test repository.",
-        "topics": ["llm", "agents"],
     }
 
     result = analyzer.analyze_repo(repo)

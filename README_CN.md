@@ -45,7 +45,7 @@ Settings → Pages → Source: **Deploy from a branch** → Branch: `master` / `
 | 文件 | 需修改位置 |
 |------|-----------|
 | `docs/_layouts/default.html` | GitHub 链接（第 406 行）、页脚（第 446 行） |
-| `docs/index.md` | 页脚链接（第 14 行） |
+| `docs/index.html` | 页脚链接（第 14 行） |
 | `README.md` | Badge URL、Live Reports 链接 |
 
 ```bash
@@ -65,7 +65,7 @@ https://<你的用户名>.github.io/auto-trend/
 ## 工作原理
 
 ```
-GitHub Actions cron (UTC 00:30)
+GitHub Actions cron (UTC 00:17)
   → 抓取 GitHub Trending 页面 (httpx + BeautifulSoup)
   → 并发获取各项目 README (asyncio)
   → LLM 结构化分析 (JSON mode)
@@ -119,7 +119,7 @@ auto-trend/
 ├── docs/                          # GitHub Pages (Jekyll)
 │   ├── _layouts/default.html      # Apple 风格三栏布局
 │   ├── daily/                     # 生成的日报
-│   └── index.md                   # 日报索引
+│   └── index.html                 # 日报索引
 ├── requirements.txt
 └── package.json                   # E2E 依赖
 ```

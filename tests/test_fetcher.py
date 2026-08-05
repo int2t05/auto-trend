@@ -13,8 +13,14 @@ SAMPLE_TRENDING_HTML = """
     </h2>
     <p class="col-9 color-fg-muted my-1 pr-4">A sample description for repo one</p>
     <span itemprop="programmingLanguage">Python</span>
-    <a class="Link--muted d-inline-block mr-3" href="/owner-one/repo-one/stargazers">1,234</a>
-    <a class="Link--muted d-inline-block mr-3" href="/owner-one/repo-one/forks">56</a>
+    <div class="f6 color-fg-muted mt-2">
+      <a class="Link--muted d-inline-block mr-3" href="/owner-one/repo-one/stargazers">1,234</a>
+      <a class="Link--muted d-inline-block mr-3" href="/owner-one/repo-one/forks">56</a>
+      <span class="d-inline-block float-sm-right">
+        <svg aria-label="flame" class="octicon octicon-flame"><path d="M8 0z"></path></svg>
+        150 stars today
+      </span>
+    </div>
   </div>
   <div class="Box-row">
     <h2 class="h3 lh-condensed">
@@ -22,8 +28,11 @@ SAMPLE_TRENDING_HTML = """
     </h2>
     <p class="col-9 color-fg-muted my-1 pr-4">Another description</p>
     <span itemprop="programmingLanguage">TypeScript</span>
-    <a class="Link--muted d-inline-block mr-3" href="/owner-two/repo-two/stargazers">5,678</a>
-    <a class="Link--muted d-inline-block mr-3" href="/owner-two/repo-two/forks">123</a>
+    <div class="f6 color-fg-muted mt-2">
+      <a class="Link--muted d-inline-block mr-3" href="/owner-two/repo-two/stargazers">5,678</a>
+      <a class="Link--muted d-inline-block mr-3" href="/owner-two/repo-two/forks">123</a>
+      <span class="d-inline-block float-sm-right">2.1k stars today</span>
+    </div>
   </div>
 </div>
 """
@@ -41,9 +50,11 @@ async def test_fetch_trending_repos_parses_html():
     assert repos[0]["full_name"] == "owner-one/repo-one"
     assert repos[0]["description"] == "A sample description for repo one"
     assert repos[0]["language"] == "Python"
-    assert repos[0]["stars_today"] == "1,234"
-    assert repos[0]["forks_today"] == "56"
+    assert repos[0]["stars_today"] == 150
     assert repos[0]["url"] == "https://github.com/owner-one/repo-one"
+    # total stars come from the GitHub API later, not the page's stargazers link
+    assert repos[0]["total_stars"] == 0
+    assert repos[1]["stars_today"] == 2100
 
 
 class MockResponse:
