@@ -35,12 +35,11 @@ def git_commit_and_push(report_date: date) -> None:
     report_path = DAILY_DIR / f"{report_date.isoformat()}.md"
 
     subprocess.run(
-        ["git", "config", "user.name", "github-actions[bot]"],
+        ["git", "config", "user.name", "int2t"],
         check=True, cwd=REPO_ROOT,
     )
     subprocess.run(
-        ["git", "config", "user.email",
-         "github-actions[bot]@users.noreply.github.com"],
+        ["git", "config", "user.email", "2103859514@qq.com"],
         check=True, cwd=REPO_ROOT,
     )
     subprocess.run(
