@@ -122,6 +122,9 @@ async def run_pipeline(report_date: date) -> None:
     print("[auto-trend] Generating trend summary...")
     try:
         trend_summary = analyzer.analyze_trends(list(analyses.values()))
+        if not trend_summary or not trend_summary.strip():
+            print("[auto-trend] Trend summary empty, using fallback")
+            trend_summary = "今日趋势总结生成失败，请查看下方项目详情。"
     except Exception as e:
         print(f"[auto-trend] Trend summary failed: {e}")
         trend_summary = "今日无法生成趋势总结。"

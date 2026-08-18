@@ -51,7 +51,7 @@ README excerpt:
 {repo.get('readme', '')[:8000]}
 """
 
-    @retry(stop=stop_after_attempt(2), wait=wait_exponential(min=1, max=10))
+    @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=2, max=20))
     def analyze_repo(self, repo: dict) -> dict:
         resp = self.client.chat.completions.create(
             model=LLM_MODEL,
@@ -61,11 +61,12 @@ README excerpt:
             ],
             response_format={"type": "json_object"},
             temperature=0.3,
-            max_tokens=1500,
+            max_tokens=2500,
         )
         content = resp.choices[0].message.content.strip()
         return json.loads(content)
 
+    @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=2, max=20))
     def analyze_trends(self, analyses: list[dict]) -> str:
         summaries = [a.get("summary", "") for a in analyses]
         joined = "\n".join(f"- {s}" for s in summaries)
@@ -76,14 +77,15 @@ README excerpt:
                     "role": "system",
                     "content": (
                         "你是技术趋势分析员。根据下面的热门 GitHub 项目摘要，写一段"
-                        "热点观察（200-300 字中文）。要求：用大白话，短句为主；"
+                        "热点观察（300-500 字中文）。要求：用大白话，短句为主；"
                         "点出这些项目反映了什么共同趋势，说明当下的新闻热点和开发者"
                         "生态正在发生什么；不写空话套话，也不要扭捏的感叹。"
+                        "必须写完整，不要中途停止——结尾要收束，不要留半句话。"
                     ),
                 },
                 {"role": "user", "content": f"Today's trending repos:\n{joined}"},
             ],
             temperature=0.5,
-            max_tokens=400,
+            max_tokens=1200,
         )
         return resp.choices[0].message.content.strip()
