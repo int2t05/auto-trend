@@ -16,12 +16,14 @@ from scripts.config import DAILY_REPO_LIMIT
 from scripts.fetcher import fetch_trending_repos, fetch_all_readmes
 from scripts.analyzer import Analyzer, audit_analysis
 from scripts.renderer import render_daily_report
+from scripts.verify_report import verify_report
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DOCS_DIR = REPO_ROOT / "docs"
 DAILY_DIR = DOCS_DIR / "daily"
 
 MAX_ANALYSIS_ATTEMPTS = 3
+MAX_PIPELINE_ATTEMPTS = 3  # 生成失败后整体重跑次数（含首次）
 
 
 def get_report_date() -> date:
@@ -107,17 +109,17 @@ async def run_pipeline(report_date: date) -> None:
                 )
             except Exception as e:
                 print(
-                    f"  [auto-trend] ✗ {repo['full_name']} "
+                    f"  [auto-trend] FAIL: {repo['full_name']} "
                     f"attempt {attempt}: {e}"
                 )
 
         if analysis is None:
-            print(f"  [auto-trend] ✗ {repo['full_name']}: all attempts failed")
+            print(f"  [auto-trend] FAIL: {repo['full_name']}: all attempts failed")
             analysis = {**FALLBACK, "summary": repo.get("description", "")}
             analyses[repo["full_name"]] = analysis
         else:
             analyses[repo["full_name"]] = analysis
-            print(f"  [auto-trend] ✓ {repo['full_name']}")
+            print(f"  [auto-trend] OK: {repo['full_name']}")
 
     print("[auto-trend] Generating trend summary...")
     try:
@@ -137,16 +139,36 @@ async def run_pipeline(report_date: date) -> None:
     print(f"[auto-trend] Report written to {report_path}")
 
 
-    if os.environ.get("CI"):
-        print("[auto-trend] Committing and pushing...")
-        git_commit_and_push(report_date)
-    else:
-        print("[auto-trend] Not in CI, skipping git commit/push.")
-
-
 def main():
     report_date = get_report_date()
-    asyncio.run(run_pipeline(report_date))
+    report_path = DAILY_DIR / f"{report_date.isoformat()}.md"
+
+    for attempt in range(1, MAX_PIPELINE_ATTEMPTS + 1):
+        print(f"\n[auto-trend] === Pipeline attempt {attempt}/{MAX_PIPELINE_ATTEMPTS} ===")
+        asyncio.run(run_pipeline(report_date))
+
+        # 生成后验证：结构完整性校验，拦截 LLM 截断
+        failures = verify_report(report_path)
+        if not failures:
+            print("[auto-trend] OK: 报告校验通过")
+            if os.environ.get("CI"):
+                print("[auto-trend] Committing and pushing...")
+                git_commit_and_push(report_date)
+            else:
+                print("[auto-trend] Not in CI, skipping git commit/push.")
+            return
+
+        print(f"[auto-trend] FAIL: 报告校验失败 (attempt {attempt}):")
+        for f in failures:
+            print(f"  - {f}")
+
+        if attempt < MAX_PIPELINE_ATTEMPTS:
+            print("[auto-trend] 重跑生成流程...")
+        else:
+            print("[auto-trend] 已达最大重试次数，保留残缺报告（不 commit）")
+            if os.environ.get("CI"):
+                print("[auto-trend] 残缺报告未通过校验，跳过 commit/push")
+            sys.exit(1)
 
 
 if __name__ == "__main__":
