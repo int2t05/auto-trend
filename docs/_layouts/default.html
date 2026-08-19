@@ -509,5 +509,18 @@
     items.forEach(function(item) { observer.observe(item.el); });
   })();
   </script>
+  <script>
+  // 日报内容外链（项目名等）在新标签页打开，保留当前索引页
+  (function() {
+    var content = document.querySelector('.content-area');
+    if (!content) return;
+    content.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(function(a) {
+      if (a.origin !== location.origin) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+    });
+  })();
+  </script>
 </body>
 </html>
