@@ -80,11 +80,13 @@ README excerpt:
                         "热点观察（300-500 字中文）。要求：用大白话，短句为主；"
                         "点出这些项目反映了什么共同趋势，说明当下的新闻热点和开发者"
                         "生态正在发生什么；不写空话套话，也不要扭捏的感叹。"
-                        "必须写完整，不要中途停止——结尾要收束，不要留半句话。"
+                        "必须写完整，不要中途停止——结尾要收束，不要留半句话。\n"
+                        '返回 JSON: {"trend_summary": "你的观察"}'
                     ),
                 },
                 {"role": "user", "content": f"Today's trending repos:\n{joined}"},
             ],
+            response_format={"type": "json_object"},
             temperature=0.5,
             max_tokens=1200,
         )
@@ -94,4 +96,4 @@ README excerpt:
         content = content.strip()
         if not content:
             raise ValueError("LLM 返回 content 为空字符串")
-        return content
+        return json.loads(content)["trend_summary"]

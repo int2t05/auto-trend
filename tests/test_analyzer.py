@@ -20,6 +20,18 @@ class MockChat:
 
     def create(self, **kwargs):
         if kwargs.get("response_format", {}).get("type") == "json_object":
+            sys_msg = ""
+            for m in kwargs.get("messages", []):
+                if m.get("role") == "system":
+                    sys_msg = m.get("content", "")
+                    break
+            if "技术趋势分析员" in sys_msg:
+                return MockCompletion(
+                    '{"trend_summary": "Today\'s trending shows a clear focus on AI agent '
+                    'infrastructure and developer tooling. Several projects aim to simplify '
+                    'LLM orchestration, suggesting the market is moving from experimentation '
+                    'to production."}'
+                )
             return MockCompletion(
                 '{"summary": "一个轻量级多智能体编排框架", '
                 '"core_features": ["基于 asyncio 的高并发架构", "插件式工具系统"], '
