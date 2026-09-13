@@ -2,8 +2,12 @@ name: Daily Trending Report
 
 on:
   schedule:
-    - cron: "17 0 * * *"  
+    - cron: "17 0 * * *"
   workflow_dispatch:
+    inputs:
+      report_date:
+        description: "报告日期 (YYYY-MM-DD)，留空则为今天"
+        required: false
 
 
 permissions:
@@ -33,4 +37,4 @@ jobs:
           DAILY_REPO_LIMIT: ${{ secrets.DAILY_REPO_LIMIT }}
           CI: "true"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/main.py
+        run: python scripts/main.py ${{ inputs.report_date }}
