@@ -88,4 +88,10 @@ README excerpt:
             temperature=0.5,
             max_tokens=1200,
         )
-        return resp.choices[0].message.content.strip()
+        content = resp.choices[0].message.content
+        if content is None:
+            raise ValueError("LLM 返回 content 为 None，可能为推理模型未输出最终回答")
+        content = content.strip()
+        if not content:
+            raise ValueError("LLM 返回 content 为空字符串")
+        return content
