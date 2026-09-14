@@ -88,7 +88,7 @@ README excerpt:
             ],
             response_format={"type": "json_object"},
             temperature=0.5,
-            max_tokens=1200,
+            max_tokens=2000,
         )
         content = resp.choices[0].message.content
         if content is None:
@@ -96,4 +96,8 @@ README excerpt:
         content = content.strip()
         if not content:
             raise ValueError("LLM 返回 content 为空字符串")
-        return json.loads(content)["trend_summary"]
+        result = json.loads(content)
+        trend_summary = result.get("trend_summary", "")
+        if not trend_summary or not trend_summary.strip():
+            raise ValueError("LLM 返回的 trend_summary 为空")
+        return trend_summary.strip()
