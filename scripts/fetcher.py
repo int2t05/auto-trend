@@ -1,10 +1,11 @@
 import asyncio
 import re
 
+import feedparser
 import httpx
 from bs4 import BeautifulSoup
 
-from scripts.config import GITHUB_TOKEN
+from scripts.config import GITHUB_TOKEN, RSS_ITEMS_PER_FEED
 
 GITHUB_TRENDING_URL = "https://github.com/trending"
 
@@ -55,6 +56,7 @@ def _parse_trending_html(html: str) -> list[dict]:
             "stars_today": _stars_today(article),
             "url": f"https://github.com/{owner}/{name}",
             "total_stars": 0,
+            "source": "github-trending",
         })
 
     return repos
@@ -112,3 +114,58 @@ async def fetch_all_readmes(repos: list[dict]) -> list[dict]:
         return repo
 
     return await asyncio.gather(*[_fetch_one(r) for r in repos])
+
+
+def _truncate(text: str, limit: int) -> str:
+    """截断文本到指定字符数，保留前 limit 个字符。"""
+    if not text:
+        return ""
+    return text[:limit]
+
+
+async def fetch_rss_items(feeds: list[dict]) -> list[dict]:
+    """抓取多个 RSS feed，返回统一 dict 列表。
+
+    单 feed 抓取失败不中断，打日志跳过。
+    """
+    items: list[dict] = []
+    if not feeds:
+        return items
+
+    async with httpx.AsyncClient(timeout=20) as client:
+        for feed in feeds:
+            name = feed["name"]
+            url = feed["url"]
+            limit = feed.get("limit") or RSS_ITEMS_PER_FEED
+            try:
+                resp = await client.get(url, follow_redirects=True)
+                resp.raise_for_status()
+            except Exception as e:
+                print(f"[auto-trend] RSS feed '{name}' 抓取失败，跳过: {e}")
+                continue
+
+            parsed = feedparser.parse(resp.text)
+            for entry in parsed.entries[:limit]:
+                title = entry.get("title", "").strip()
+                if not title:
+                    continue
+                # 优先用 content，其次 summary
+                content = ""
+                if entry.get("content"):
+                    content = entry["content"][0].get("value", "")
+                if not content:
+                    content = entry.get("summary", "")
+
+                items.append({
+                    "full_name": f"{name} · {title}",
+                    "description": _truncate(entry.get("summary", ""), 500),
+                    "readme": _truncate(content, 8000),
+                    "url": entry.get("link", ""),
+                    "source": f"rss:{name}",
+                    "language": "",
+                    "stars_today": 0,
+                    "total_stars": 0,
+                })
+
+    return items
+

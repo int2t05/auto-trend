@@ -38,12 +38,15 @@ def verify_report(report_path: Path) -> list[str]:
         failures.append(f"代码块未闭合（``` 出现 {fence_count} 次，应为偶数）")
 
     # 3. 每个 repo 小节必须有 summary（> 开头行）
+    #    同时覆盖 ## 项目详情 与 ## RSS 热点 两个章节，限定到 ## 趋势观察 之前
     repo_headers = re.findall(r"^### \[.+\]", content, re.MULTILINE)
     if not repo_headers:
         failures.append("未找到任何项目小节 '### [repo]'")
     else:
-        # 抽样检查：至少 80% 的 repo 小节有 summary
-        sections = re.split(r"^### \[.+\]", content, flags=re.MULTILINE)[1:]
+        # 截取 ## 趋势观察 之前的内容，避免把趋势观察的文本也算进小节
+        trend_idx = content.find("## 趋势观察")
+        body = content if trend_idx == -1 else content[:trend_idx]
+        sections = re.split(r"^### \[.+\]", body, flags=re.MULTILINE)[1:]
         missing_summary = sum(
             1 for s in sections if not re.search(r"^>\s+\S", s, re.MULTILINE)
         )

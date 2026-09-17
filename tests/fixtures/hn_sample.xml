@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Hacker News: Front Page</title>
+    <link>https://news.ycombinator.com/</link>
+    <description>Links for the intellectually curious.</description>
+    <item>
+      <title>Rust 1.78 released</title>
+      <link>https://news.ycombinator.com/item?id=40123456</link>
+      <description>Rust 1.78 ships with proc-macro improvements and diagnostic enhancements.</description>
+      <pubDate>Wed, 17 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Show HN: A new database engine written in Zig</title>
+      <link>https://news.ycombinator.com/item?id=40123457</link>
+      <description>A column-oriented OLAP database built from scratch in Zig.</description>
+      <pubDate>Wed, 17 Sep 2026 01:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Why SQLite is the most deployed database</title>
+      <link>https://news.ycombinator.com/item?id=40123458</link>
+      <description>SQLite runs on every phone, every browser, and billions of devices.</description>
+      <pubDate>Wed, 17 Sep 2026 02:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

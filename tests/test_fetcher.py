@@ -62,6 +62,10 @@ class MockResponse:
         self.status_code = status_code
         self.text = text
 
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise Exception(f"HTTP {self.status_code}")
+
 
 @pytest.mark.asyncio
 async def test_fetch_readme_returns_markdown_text(mocker):
@@ -102,3 +106,80 @@ async def test_fetch_all_readmes_adds_readme_key(mocker):
     for r in result:
         assert r["readme"] == "# Test README"
         assert r["full_name"] in ("a/x", "b/y")
+
+
+def _load_hn_sample() -> str:
+    from pathlib import Path
+    fixture = Path(__file__).parent / "fixtures" / "hn_sample.xml"
+    return fixture.read_text(encoding="utf-8")
+
+
+@pytest.mark.asyncio
+async def test_fetch_rss_items_parses_xml(mocker):
+    xml = _load_hn_sample()
+    mock_client = mocker.patch("httpx.AsyncClient")
+    mock_client.return_value.__aenter__.return_value.get.return_value = MockResponse(200, xml)
+
+    from scripts.fetcher import fetch_rss_items
+
+    feeds = [{"name": "Hacker News", "url": "https://hnrss.org/frontpage", "limit": 10}]
+    items = await fetch_rss_items(feeds)
+
+    assert len(items) == 3
+    assert items[0]["full_name"] == "Hacker News · Rust 1.78 released"
+    assert items[0]["source"] == "rss:Hacker News"
+    assert items[0]["url"] == "https://news.ycombinator.com/item?id=40123456"
+    assert "Rust 1.78" in items[0]["description"]
+    assert "Rust 1.78" in items[0]["readme"]
+    assert items[0]["language"] == ""
+    assert items[0]["stars_today"] == 0
+    assert items[0]["total_stars"] == 0
+
+
+@pytest.mark.asyncio
+async def test_fetch_rss_items_respects_limit(mocker):
+    xml = _load_hn_sample()
+    mock_client = mocker.patch("httpx.AsyncClient")
+    mock_client.return_value.__aenter__.return_value.get.return_value = MockResponse(200, xml)
+
+    from scripts.fetcher import fetch_rss_items
+
+    feeds = [{"name": "Hacker News", "url": "https://hnrss.org/frontpage", "limit": 2}]
+    items = await fetch_rss_items(feeds)
+
+    assert len(items) == 2
+
+
+@pytest.mark.asyncio
+async def test_fetch_rss_items_skips_failed_feed(mocker):
+    mock_client = mocker.patch("httpx.AsyncClient")
+    mock_client.return_value.__aenter__.return_value.get.return_value = MockResponse(500, "")
+
+    from scripts.fetcher import fetch_rss_items
+
+    feeds = [{"name": "Broken Feed", "url": "https://example.com/broken", "limit": 10}]
+    items = await fetch_rss_items(feeds)
+
+    assert items == []
+
+
+@pytest.mark.asyncio
+async def test_fetch_rss_items_empty_feeds():
+    from scripts.fetcher import fetch_rss_items
+
+    items = await fetch_rss_items([])
+    assert items == []
+
+
+@pytest.mark.asyncio
+async def test_fetch_trending_repos_sets_source_field(mocker):
+    """验证 GitHub trending repos 带 source='github-trending' 字段。"""
+    mock_client = mocker.patch("httpx.AsyncClient")
+    trending_resp = MockResponse(200, SAMPLE_TRENDING_HTML)
+    api_resp = MockResponse(200, '{"stargazers_count": 9999}')
+    mock_client.return_value.__aenter__.return_value.get.side_effect = [trending_resp, api_resp, api_resp]
+
+    from scripts.fetcher import fetch_trending_repos
+
+    repos = await fetch_trending_repos(limit=5)
+    assert all(r["source"] == "github-trending" for r in repos)

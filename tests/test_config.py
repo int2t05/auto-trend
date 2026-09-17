@@ -48,3 +48,43 @@ def test_config_missing_api_key_raises():
     finally:
         if old is not None:
             os.environ["LLM_API_KEY"] = old
+
+
+def test_load_feeds_reads_yaml():
+    from scripts.config import load_feeds
+    feeds = load_feeds()
+    assert isinstance(feeds, list)
+    assert len(feeds) >= 1
+    assert all("name" in f and "url" in f for f in feeds)
+
+
+def test_load_feeds_returns_empty_when_missing(monkeypatch):
+    from scripts import config
+    import importlib
+    importlib.reload(config)
+    monkeypatch.setattr(config, "FEEDS_CONFIG_PATH",
+                        config.REPO_ROOT / "nonexistent_feeds.yml")
+    feeds = config.load_feeds()
+    assert feeds == []
+
+
+def test_config_reads_rss_items_per_feed(monkeypatch):
+    monkeypatch.setenv("LLM_API_KEY", "sk-test")
+    monkeypatch.setenv("RSS_ITEMS_PER_FEED", "5")
+
+    from scripts import config
+    import importlib
+    importlib.reload(config)
+
+    assert config.RSS_ITEMS_PER_FEED == 5
+
+
+def test_config_rss_items_per_feed_default(monkeypatch):
+    monkeypatch.setenv("LLM_API_KEY", "sk-test")
+    monkeypatch.delenv("RSS_ITEMS_PER_FEED", raising=False)
+
+    from scripts import config
+    import importlib
+    importlib.reload(config)
+
+    assert config.RSS_ITEMS_PER_FEED == 10
