@@ -16,6 +16,7 @@ from scripts.config import DAILY_REPO_LIMIT, load_feeds
 from scripts.fetcher import fetch_trending_repos, fetch_all_readmes, fetch_rss_items
 from scripts.analyzer import Analyzer, audit_analysis
 from scripts.renderer import render_daily_report
+from scripts.rss import render_rss_feed
 from scripts.verify_report import verify_report
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -42,6 +43,7 @@ def get_report_date() -> date:
 
 def git_commit_and_push(report_date: date) -> None:
     report_path = DAILY_DIR / f"{report_date.isoformat()}.md"
+    feed_path = DOCS_DIR / "feed.xml"
 
     subprocess.run(
         ["git", "config", "user.name", "int2t"],
@@ -52,7 +54,7 @@ def git_commit_and_push(report_date: date) -> None:
         check=True, cwd=REPO_ROOT,
     )
     subprocess.run(
-        ["git", "add", str(report_path)],
+        ["git", "add", str(report_path), str(feed_path)],
         check=True, cwd=REPO_ROOT,
     )
     result = subprocess.run(
@@ -153,6 +155,12 @@ async def run_pipeline(report_date: date) -> None:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(report_md, encoding="utf-8")
     print(f"[auto-trend] Report written to {report_path}")
+
+    print("[auto-trend] Rendering RSS feed...")
+    feed_xml = render_rss_feed(items, analyses, report_date)
+    feed_path = DOCS_DIR / "feed.xml"
+    feed_path.write_text(feed_xml, encoding="utf-8")
+    print(f"[auto-trend] RSS feed written to {feed_path}")
 
 
 def main():
