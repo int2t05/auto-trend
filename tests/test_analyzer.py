@@ -121,3 +121,105 @@ def test_audit_analysis_detects_missing_fields():
     assert "competitive_comparison" in missing
     assert "maturity" in missing
     assert "trend_signal" in missing
+
+
+def test_normalize_analysis_coerces_list_typed_string_fields():
+    """LLM 偶尔把 string 字段返回成数组，normalize 必须把它们变回 str。
+
+    回归 2026-09-19 RSS 渲染崩溃：use_cases/competitive_comparison 被返回为 list，
+    传到 html.escape 时触发 AttributeError: 'list' object has no attribute 'replace'。
+    """
+    from scripts.analyzer import _normalize_analysis
+
+    raw = {
+        "summary": ["一句话摘要"],
+        "use_cases": ["场景一", "场景二"],
+        "competitive_comparison": ["对比项 A", "对比项 B"],
+        "maturity": ["早期项目"],
+        "trend_signal": ["信号 X"],
+        "highlights": ["亮点 1"],
+        "core_features": ["特性 1", "特性 2"],
+    }
+    normalized = _normalize_analysis(raw)
+
+    for field in ("summary", "use_cases", "competitive_comparison",
+                  "maturity", "trend_signal"):
+        assert isinstance(normalized[field], str), f"{field} 应为 str"
+        assert normalized[field]  # 不能为空
+
+    for field in ("highlights", "core_features"):
+        assert isinstance(normalized[field], list)
+        assert all(isinstance(v, str) for v in normalized[field])
+
+    # 多元素 list 应拼接为单个 str，不丢内容
+    assert "场景一" in normalized["use_cases"]
+    assert "场景二" in normalized["use_cases"]
+
+
+def test_normalize_analysis_coerces_list_typed_list_fields():
+    """list 字段被返回为 str 时应包装成单元素 list；None 应变成空 list。"""
+    from scripts.analyzer import _normalize_analysis
+
+    normalized = _normalize_analysis({
+        "highlights": "单条亮点",
+        "core_features": None,
+    })
+    assert normalized["highlights"] == ["单条亮点"]
+    assert normalized["core_features"] == []
+
+
+def test_normalize_analysis_preserves_correct_types():
+    """类型已正确的输入应原样返回（不丢字段、不改值）。"""
+    from scripts.analyzer import _normalize_analysis
+
+    raw = {
+        "summary": "正确摘要",
+        "use_cases": "正确场景",
+        "competitive_comparison": "正确对比",
+        "maturity": "成熟",
+        "trend_signal": "信号",
+        "highlights": ["h1", "h2"],
+        "core_features": ["f1"],
+    }
+    normalized = _normalize_analysis(raw)
+    assert normalized == raw
+
+
+def test_analyze_repo_normalizes_list_typed_llm_output():
+    """端到端回归：mock LLM 返回 list 类型的 use_cases，
+    analyzer 出口应为 str，避免下游 renderer/rss 崩溃。"""
+    from scripts.analyzer import Analyzer
+
+    class ListTypedMockChat:
+        def __init__(self):
+            self.completions = self
+
+        def create(self, **kwargs):
+            if kwargs.get("response_format", {}).get("type") == "json_object":
+                return MockCompletion(
+                    '{"summary": "Rust 1.78 发布", '
+                    '"use_cases": ["Rust 开发者", "嵌入式团队"], '
+                    '"competitive_comparison": ["比 Go 快", "比 C++ 安全"], '
+                    '"maturity": "已发布稳定版", '
+                    '"trend_signal": "Rust 生态扩张", '
+                    '"highlights": ["编译器诊断增强"], '
+                    '"core_features": ["proc-macro 改进"]}'
+                )
+            return MockCompletion("plain text")
+
+    class ListTypedMockOpenAI:
+        def __init__(self, **kwargs):
+            self.chat = ListTypedMockChat()
+
+    analyzer = Analyzer(client=ListTypedMockOpenAI())
+    result = analyzer.analyze_repo({
+        "full_name": "test/repo",
+        "description": "test",
+        "readme": "readme",
+    })
+
+    # LLM 返回了 list，但出口必须是 str，否则 html.escape 会崩
+    assert isinstance(result["use_cases"], str)
+    assert isinstance(result["competitive_comparison"], str)
+    assert "Rust 开发者" in result["use_cases"]
+    assert "嵌入式团队" in result["use_cases"]

@@ -17,6 +17,43 @@ REQUIRED_FIELDS = [
     "highlights", "competitive_comparison", "maturity", "trend_signal",
 ]
 
+# 字段类型契约：string 字段必须为 str，list 字段必须为 list[str]
+STRING_FIELDS = (
+    "summary", "use_cases", "competitive_comparison", "maturity", "trend_signal",
+)
+LIST_FIELDS = ("highlights", "core_features")
+
+
+def _normalize_analysis(analysis: dict) -> dict:
+    """规整 LLM 返回的字段类型，确保下游消费方拿到一致的 schema。
+
+    LLM 偶尔会把本应是字符串的字段（如 use_cases）返回成数组，
+    直接传给 html.escape 会触发 AttributeError。这里在 LLM 边界做兜底：
+    string 字段统一为 str，list 字段统一为 list[str]。
+    """
+    result = dict(analysis)
+    for field in STRING_FIELDS:
+        value = result.get(field, "")
+        if isinstance(value, list):
+            value = " ".join(str(v) for v in value if v)
+        elif value is None:
+            value = ""
+        elif not isinstance(value, str):
+            value = str(value)
+        result[field] = value
+    for field in LIST_FIELDS:
+        value = result.get(field, [])
+        if value is None:
+            value = []
+        elif isinstance(value, str):
+            value = [value] if value else []
+        elif not isinstance(value, list):
+            value = [str(value)]
+        else:
+            value = [str(v) for v in value if v]
+        result[field] = value
+    return result
+
 
 def audit_analysis(analysis: dict) -> list[str]:
     """Return list of field names that are missing or empty."""
@@ -78,8 +115,13 @@ README excerpt:
             temperature=0.3,
             max_tokens=2500,
         )
-        content = resp.choices[0].message.content.strip()
-        return json.loads(content)
+        content = resp.choices[0].message.content
+        if content is None:
+            raise ValueError("LLM 返回 content 为 None，可能为推理模型未输出最终回答")
+        content = content.strip()
+        if not content:
+            raise ValueError("LLM 返回 content 为空字符串")
+        return _normalize_analysis(json.loads(content))
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=2, max=20))
     def analyze_trends(self, analyses: list[dict]) -> str:

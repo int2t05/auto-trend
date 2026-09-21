@@ -33,6 +33,8 @@ Settings → Secrets and variables → Actions → New repository secret：
 | `LLM_BASE_URL` | API 地址（可选，默认 OpenAI） |
 | `LLM_MODEL` | 模型名称（可选，默认 `gpt-4.1-mini`） |
 | `DAILY_REPO_LIMIT` | 每日分析上限（可选，默认 `20`） |
+| `RSS_ITEMS_PER_FEED` | 单 RSS feed 抓取条数（可选，默认 `10`） |
+| `GITHUB_TOKEN` | GitHub API token（可选，提升 API 配额） |
 
 ### 4. 启用 GitHub Pages
 
@@ -67,15 +69,17 @@ https://<你的用户名>.github.io/auto-trend/
 ```
 GitHub Actions cron (UTC 00:17)
   → 抓取 GitHub Trending 页面 (httpx + BeautifulSoup)
+  → 并发抓取 RSS 源 (feedparser)
   → 并发获取各项目 README (asyncio)
   → LLM 结构化分析 (JSON mode)
   → 全局趋势总结
-  → 生成 Markdown 日报
+  → 生成 Markdown 日报 + RSS feed
+  → 结构完整性校验
   → git commit + push
   → GitHub Pages 自动发布
 ```
 
-每个仓库输出 6 个维度的分析：**一句话概括**、**技术亮点**、**适用场景**、**竞品对比**、**成熟度评估**、**趋势信号**。
+每个条目输出 7 个维度的分析：**一句话概括**、**亮点**、**核心功能**、**适用场景**、**竞品对比**、**成熟度评估**、**趋势信号**。
 
 ## 本地运行
 
@@ -101,6 +105,8 @@ python scripts/main.py
 | `LLM_BASE_URL` | API 地址 | `https://api.openai.com/v1` |
 | `LLM_MODEL` | 模型名称 | `gpt-4.1-mini` |
 | `DAILY_REPO_LIMIT` | 每日分析上限 | `20` |
+| `RSS_ITEMS_PER_FEED` | 单 feed 抓取条数 | `10` |
+| `GITHUB_TOKEN` | GitHub API token（提升配额） | _无_ |
 
 ## 项目结构
 
@@ -110,16 +116,20 @@ auto-trend/
 ├── scripts/                       # 核心流水线
 │   ├── main.py                    # 编排器
 │   ├── config.py                  # 环境配置
-│   ├── fetcher.py                 # 爬虫 + README 获取
+│   ├── fetcher.py                 # 爬虫 + README + RSS 获取
 │   ├── analyzer.py                # LLM 分析 (OpenAI SDK)
-│   └── renderer.py                # Markdown 报告生成
+│   ├── renderer.py                # Markdown 报告生成
+│   ├── rss.py                     # RSS 2.0 feed 生成
+│   └── verify_report.py           # 生成后结构校验
 ├── prompts/analysis.md            # LLM 系统提示
 ├── tests/                         # pytest 单元测试
 ├── e2e/                           # Playwright E2E 测试
 ├── docs/                          # GitHub Pages (Jekyll)
 │   ├── _layouts/default.html      # Apple 风格三栏布局
 │   ├── daily/                     # 生成的日报
+│   ├── feed.xml                   # 生成的 RSS feed
 │   └── index.html                 # 日报索引
+├── feeds.yml                      # RSS 源配置
 ├── requirements.txt
 └── package.json                   # E2E 依赖
 ```
@@ -129,7 +139,7 @@ auto-trend/
 ```bash
 # 单元测试
 pip install -r requirements.txt
-pytest tests/ -v
+LLM_API_KEY=sk-test pytest tests/ -v
 
 # E2E 测试
 npm install

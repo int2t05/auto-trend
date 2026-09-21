@@ -33,6 +33,8 @@ Settings → Secrets and variables → Actions → New repository secret:
 | `LLM_BASE_URL` | API endpoint (optional, defaults to OpenAI) |
 | `LLM_MODEL` | Model name (optional, defaults to `gpt-4.1-mini`) |
 | `DAILY_REPO_LIMIT` | Max repos per run (optional, defaults to `20`) |
+| `RSS_ITEMS_PER_FEED` | Items per RSS feed (optional, defaults to `10`) |
+| `GITHUB_TOKEN` | GitHub API token (optional, raises rate limit) |
 
 ### 4. Enable GitHub Pages
 
@@ -67,15 +69,17 @@ https://<your-username>.github.io/auto-trend/
 ```
 GitHub Actions cron (UTC 00:17)
   → Scrape GitHub Trending (httpx + BeautifulSoup)
+  → Fetch RSS feeds concurrently (feedparser)
   → Fetch READMEs concurrently (asyncio)
-  → LLM structured analysis per repo (JSON mode)
+  → LLM structured analysis per item (JSON mode)
   → Global trend summary
-  → Render Markdown report
+  → Render Markdown report + RSS feed
+  → Structural verification
   → git commit + push
   → GitHub Pages auto-publish
 ```
 
-Each repo is analyzed across 6 dimensions: **summary**, **technical highlights**, **use cases**, **competitive comparison**, **maturity**, and **trend signal**.
+Each item is analyzed across 7 dimensions: **summary**, **highlights**, **core features**, **use cases**, **competitive comparison**, **maturity**, and **trend signal**.
 
 ## Local Dev
 
@@ -101,6 +105,8 @@ Compatible with OpenAI, Anthropic, DeepSeek, or any OpenAI-compatible endpoint.
 | `LLM_BASE_URL` | API endpoint | `https://api.openai.com/v1` |
 | `LLM_MODEL` | Model name | `gpt-4.1-mini` |
 | `DAILY_REPO_LIMIT` | Max repos per run | `20` |
+| `RSS_ITEMS_PER_FEED` | Items per RSS feed | `10` |
+| `GITHUB_TOKEN` | GitHub API token (raises rate limit) | _none_ |
 
 ## Project Structure
 
@@ -110,16 +116,20 @@ auto-trend/
 ├── scripts/                       # Pipeline
 │   ├── main.py                    # Orchestrator
 │   ├── config.py                  # Env config
-│   ├── fetcher.py                 # Scraper + README fetcher
+│   ├── fetcher.py                 # Scraper + README + RSS fetcher
 │   ├── analyzer.py                # LLM analysis (OpenAI SDK)
-│   └── renderer.py                # Markdown report generator
+│   ├── renderer.py                # Markdown report generator
+│   ├── rss.py                     # RSS 2.0 feed generator
+│   └── verify_report.py           # Post-generation structural check
 ├── prompts/analysis.md            # LLM system prompt
 ├── tests/                         # pytest (unit)
 ├── e2e/                           # Playwright (E2E)
 ├── docs/                          # GitHub Pages (Jekyll)
 │   ├── _layouts/default.html      # Apple-style 3-col layout
 │   ├── daily/                     # Generated reports
+│   ├── feed.xml                   # Generated RSS feed
 │   └── index.html                 # Report index
+├── feeds.yml                      # RSS feed sources
 ├── requirements.txt
 └── package.json                   # E2E dependencies
 ```
@@ -129,7 +139,7 @@ auto-trend/
 ```bash
 # Unit
 pip install -r requirements.txt
-pytest tests/ -v
+LLM_API_KEY=sk-test pytest tests/ -v
 
 # E2E
 npm install

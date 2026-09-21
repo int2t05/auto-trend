@@ -169,7 +169,17 @@ def main():
 
     for attempt in range(1, MAX_PIPELINE_ATTEMPTS + 1):
         print(f"\n[auto-trend] === Pipeline attempt {attempt}/{MAX_PIPELINE_ATTEMPTS} ===")
-        asyncio.run(run_pipeline(report_date))
+        try:
+            asyncio.run(run_pipeline(report_date))
+        except Exception as e:
+            print(f"[auto-trend] FAIL: pipeline 运行时异常 (attempt {attempt}): {e}")
+            if attempt < MAX_PIPELINE_ATTEMPTS:
+                print("[auto-trend] 重跑生成流程...")
+                continue
+            print("[auto-trend] 已达最大重试次数，pipeline 持续崩溃")
+            if os.environ.get("CI"):
+                print("[auto-trend] pipeline 崩溃，跳过 commit/push")
+            sys.exit(1)
 
         # 生成后验证：结构完整性校验，拦截 LLM 截断
         failures = verify_report(report_path)
