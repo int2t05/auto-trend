@@ -73,13 +73,16 @@ GitHub Actions cron (UTC 00:17)
   → 并发获取各项目 README (asyncio)
   → LLM 结构化分析 (JSON mode)
   → 全局趋势总结
-  → 生成 Markdown 日报 + RSS feed
+  → 生成 Markdown 日报
+  → 生成 RSS feed（每份日报一条 item）
   → 结构完整性校验
   → git commit + push
   → GitHub Pages 自动发布
 ```
 
 每个条目输出 7 个维度的分析：**一句话概括**、**亮点**、**核心功能**、**适用场景**、**竞品对比**、**成熟度评估**、**趋势信号**。
+
+站点本身作为一个 RSS 源（`/feed.xml`），提供可订阅的 RSS 链接，每份日报对应一条 item。
 
 ## 本地运行
 

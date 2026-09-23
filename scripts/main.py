@@ -157,7 +157,7 @@ async def run_pipeline(report_date: date) -> None:
     print(f"[auto-trend] Report written to {report_path}")
 
     print("[auto-trend] Rendering RSS feed...")
-    feed_xml = render_rss_feed(items, analyses, report_date)
+    feed_xml = render_rss_feed(DAILY_DIR)
     feed_path = DOCS_DIR / "feed.xml"
     feed_path.write_text(feed_xml, encoding="utf-8")
     print(f"[auto-trend] RSS feed written to {feed_path}")

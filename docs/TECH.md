@@ -13,7 +13,7 @@ GitHub Actions cron (UTC 00:17)
   ├─ 4. analyzer.analyze_trends()         跨条目趋势总结
   │
   ├─ 5. renderer.render_daily_report()   组装 Markdown 日报
-  ├─ 6. rss.render_rss_feed()            组装 RSS 2.0 XML（feed.xml）
+  ├─ 6. rss.render_rss_feed()            扫描 docs/daily/*.md 生成 RSS feed（每份日报一条 item）
   ├─ 7. verify_report.verify_report()    结构完整性校验，拦截 LLM 截断
   │
   └─ 8. git add + commit + push  →  GitHub Pages 自动发布
@@ -142,16 +142,15 @@ RSS_ITEMS_PER_FEED = 10                                # 可选，单 feed 抓�
 
 ### 5. `scripts/rss.py`
 
-**职责**：将 trending repos + RSS 热点渲染为 RSS 2.0 XML（`docs/feed.xml`）。纯函数，无副作用。
+**职责**：将每日日报生成为 RSS 2.0 XML（`docs/feed.xml`），供订阅者通过 RSS 链接获取更新。纯函数，无副作用。
 
-- `render_rss_feed(repos, analyses, report_date)` — 每条条目作为一个 `<item>`：
-  - title: owner/repo 或 "Feed · Title"
-  - link: GitHub URL 或 RSS link
+- `render_rss_feed(daily_dir)` — 扫描 `docs/daily/*.md`，每份日报对应一条 `<item>`：
+  - title: "GitHub Trending 日报 · YYYY-MM-DD"
+  - link: `/daily/YYYY-MM-DD.html`
   - pubDate: 日报日期（UTC 00:00，RFC 822）
-  - description: LLM summary
-  - content:encoded: 完整分析 HTML
-
-GitHub repos 按日增星数降序，RSS items 同序，GitHub repos 在前、RSS items 在后。
+  - description: 从 Markdown "## 趋势观察" 段落提取（截断 300 字符）
+- 按日期降序排列（最新在前）
+- 每次生成时全量扫描，无状态累积
 
 ### 6. `scripts/verify_report.py`
 
@@ -201,8 +200,8 @@ analyses
 render_daily_report(repos+rss_items, analyses, trend_summary)
   → Markdown 日报 (docs/daily/YYYY-MM-DD.md)
 
-render_rss_feed(repos+rss_items, analyses, report_date)
-  → RSS XML (docs/feed.xml)
+render_rss_feed(daily_dir)
+  → 扫描 docs/daily/*.md 生成 RSS XML (docs/feed.xml)
 
 verify_report(report_path)
   → 结构校验通过 → git commit + push
@@ -234,7 +233,7 @@ verify_report(report_path)
 | fetcher | 9 | 1 个纯函数测试 + 8 个 mock httpx（含 RSS 解析、limit、失败跳过） |
 | analyzer | 8 | mock OpenAI client + `_normalize_analysis` 类型规整测试 |
 | renderer | 4 | 纯函数，验证 section、排序、RSS 分区 |
-| rss | 4 | 纯函数，验证 XML 结构、类型漂移不崩、排序、来源分区 |
+| rss | 4 | 纯函数，验证 XML 结构、日期降序、跳过非日报文件、空目录 |
 | main | 2 | mock run_pipeline，验证异常重试与恢复 |
 
 ```bash
@@ -274,7 +273,7 @@ python scripts/main.py
 | fetcher.py | 171 |
 | analyzer.py | 160 |
 | renderer.py | 143 |
-| rss.py | 112 |
+| rss.py | 82 |
 | verify_report.py | 90 |
 | main.py | 209 |
-| **总计** | **914** |
+| **总计** | **884** |

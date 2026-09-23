@@ -1,127 +1,92 @@
-"""RSS feed 渲染测试。
+"""RSS feed 生成测试。
 
-回归 2026-09-19 RSS 渲染崩溃：LLM 返回的 string 字段被当成 list，
-html.escape 在 list 上调用 s.replace 触发 AttributeError。
-analyzer 端做 normalize 后，rss 渲染应稳定不崩。
+验证 RSS 2.0 XML 结构：每份日报一条 item，按日期降序排列。
 """
 import os
 import sys
 from datetime import date
+from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 
-def test_render_rss_feed_basic_structure():
+def _write_report(daily_dir: Path, report_date: date, trend_text: str) -> Path:
+    """生成一份测试用日报 Markdown。"""
+    md = (
+        f"# GitHub Trending 日报 · {report_date.isoformat()}\n\n"
+        f"## 概览\n\n{trend_text}\n\n"
+        f"## 项目详情\n\n### [test/repo](https://github.com/test/repo)\n\n> 摘要\n\n---\n\n"
+        f"## 趋势观察\n\n{trend_text}\n"
+    )
+    path = daily_dir / f"{report_date.isoformat()}.md"
+    path.write_text(md, encoding="utf-8")
+    return path
+
+
+def test_render_rss_feed_basic_structure(tmp_path):
+    """验证 RSS XML 基本结构：xml 声明、channel、item、title、link。"""
     from scripts.rss import render_rss_feed
 
-    repos = [
-        {
-            "full_name": "alice/cooltool",
-            "url": "https://github.com/alice/cooltool",
-            "source": "github-trending",
-            "stars_today": 100,
-        },
-    ]
-    analyses = {
-        "alice/cooltool": {
-            "summary": "一个轻量级 LLM 编排框架",
-            "highlights": ["异步架构"],
-            "core_features": ["插件系统"],
-            "use_cases": "构建多步骤 LLM 流水线的团队",
-            "competitive_comparison": "比 X 轻量",
-            "maturity": "生产可用",
-            "trend_signal": "AI agent 编排需求激增",
-        },
-    }
+    daily_dir = tmp_path / "daily"
+    daily_dir.mkdir()
+    _write_report(daily_dir, date(2026, 9, 21), "今日 AI agent 基础设施持续升温。")
 
-    xml = render_rss_feed(repos, analyses, date(2026, 9, 19))
+    xml = render_rss_feed(daily_dir)
 
     assert '<?xml version="1.0"' in xml
     assert "<rss" in xml
     assert "<channel>" in xml
     assert "<item>" in xml
-    assert "<title>alice/cooltool</title>" in xml
-    assert "<link>https://github.com/alice/cooltool</link>" in xml
-    assert "一个轻量级 LLM 编排框架" in xml
+    assert "GitHub Trending 日报 · 2026-09-21" in xml
+    assert "/daily/2026-09-21.html" in xml
+    assert "今日 AI agent 基础设施持续升温" in xml
     assert "</item>" in xml
     assert "</channel>" in xml
     assert "</rss>" in xml
 
 
-def test_render_rss_feed_handles_list_typed_fields():
-    """LLM 即使返回 list 类型的 string 字段，rss 渲染也不应崩。
-
-    这是 2026-09-19 崩溃的精确回归：use_cases 返回 list，
-    html.escape 调用 list.replace 抛 AttributeError。
-    注：analyzer._normalize_analysis 已在 LLM 边界兜底，
-    这里直接喂 normalize 后的合法数据，验证 rss 路径稳定。
-    """
+def test_render_rss_feed_sorts_by_date_descending(tmp_path):
+    """多份日报时，最新日期排最前。"""
     from scripts.rss import render_rss_feed
 
-    repos = [
-        {
-            "full_name": "alice/cooltool",
-            "url": "https://github.com/alice/cooltool",
-            "source": "github-trending",
-            "stars_today": 100,
-        },
-    ]
-    # 模拟 analyzer normalize 后的输出：所有 string 字段都是 str
-    analyses = {
-        "alice/cooltool": {
-            "summary": "一个框架",
-            "highlights": ["亮点"],
-            "core_features": ["特性"],
-            "use_cases": "场景一 场景二",  # normalize 已把 list 拼成 str
-            "competitive_comparison": "对比 A 对比 B",
-            "maturity": "生产可用",
-            "trend_signal": "信号",
-        },
-    }
+    daily_dir = tmp_path / "daily"
+    daily_dir.mkdir()
+    _write_report(daily_dir, date(2026, 9, 19), "第一天")
+    _write_report(daily_dir, date(2026, 9, 21), "第三天")
+    _write_report(daily_dir, date(2026, 9, 20), "第二天")
 
-    xml = render_rss_feed(repos, analyses, date(2026, 9, 19))
-    assert "<item>" in xml
-    assert "场景一 场景二" in xml
+    xml = render_rss_feed(daily_dir)
+    pos_21 = xml.find("2026-09-21")
+    pos_20 = xml.find("2026-09-20")
+    pos_19 = xml.find("2026-09-19")
+
+    assert 0 < pos_21 < pos_20 < pos_19
 
 
-def test_render_rss_feed_sorts_by_stars_today_descending():
-    """GitHub repos 按日增星数降序，与 Markdown 日报同序。"""
+def test_render_rss_feed_skips_non_date_files(tmp_path):
+    """非日期格式的 .md 文件应被跳过。"""
     from scripts.rss import render_rss_feed
 
-    repos = [
-        {"full_name": "low/stars", "url": "https://github.com/low/stars",
-         "source": "github-trending", "stars_today": 10},
-        {"full_name": "high/stars", "url": "https://github.com/high/stars",
-         "source": "github-trending", "stars_today": 5000},
-    ]
-    analyses = {
-        "low/stars": {"summary": "low"},
-        "high/stars": {"summary": "high"},
-    }
+    daily_dir = tmp_path / "daily"
+    daily_dir.mkdir()
+    _write_report(daily_dir, date(2026, 9, 21), "正常日报")
+    (daily_dir / "README.md").write_text("not a report", encoding="utf-8")
 
-    xml = render_rss_feed(repos, analyses, date(2026, 9, 19))
-    high_pos = xml.find("<title>high/stars</title>")
-    low_pos = xml.find("<title>low/stars</title>")
-    assert high_pos < low_pos
+    xml = render_rss_feed(daily_dir)
+
+    assert "2026-09-21" in xml
+    assert "README" not in xml
 
 
-def test_render_rss_feed_includes_rss_items_after_github_repos():
-    """RSS 热点排在 GitHub repos 之后，与日报布局一致。"""
+def test_render_rss_feed_empty_dir(tmp_path):
+    """空目录应生成有效但无 item 的 RSS XML。"""
     from scripts.rss import render_rss_feed
 
-    repos = [
-        {"full_name": "alice/repo", "url": "https://github.com/alice/repo",
-         "source": "github-trending", "stars_today": 100},
-        {"full_name": "dev.to · Article",
-         "url": "https://dev.to/article",
-         "source": "rss:dev.to", "stars_today": 0},
-    ]
-    analyses = {
-        "alice/repo": {"summary": "GitHub 项目"},
-        "dev.to · Article": {"summary": "RSS 热点"},
-    }
+    daily_dir = tmp_path / "daily"
+    daily_dir.mkdir()
 
-    xml = render_rss_feed(repos, analyses, date(2026, 9, 19))
-    github_pos = xml.find("<title>alice/repo</title>")
-    rss_pos = xml.find("<title>dev.to · Article</title>")
-    assert 0 < github_pos < rss_pos
+    xml = render_rss_feed(daily_dir)
+
+    assert "<channel>" in xml
+    assert "<item>" not in xml
+    assert "</rss>" in xml

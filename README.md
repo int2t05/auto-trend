@@ -73,13 +73,16 @@ GitHub Actions cron (UTC 00:17)
   → Fetch READMEs concurrently (asyncio)
   → LLM structured analysis per item (JSON mode)
   → Global trend summary
-  → Render Markdown report + RSS feed
+  → Render Markdown report
+  → Generate RSS feed (one item per daily report)
   → Structural verification
   → git commit + push
   → GitHub Pages auto-publish
 ```
 
 Each item is analyzed across 7 dimensions: **summary**, **highlights**, **core features**, **use cases**, **competitive comparison**, **maturity**, and **trend signal**.
+
+The site itself serves as an RSS source (`/feed.xml`), providing a subscribable RSS link where each daily report is one item.
 
 ## Local Dev
 
