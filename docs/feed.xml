@@ -3,400 +3,890 @@
   <channel>
     <title>Auto-Trend GitHub Trending 日报</title>
     <link>https://int2t05.github.io/auto-trend/</link>
-    <description>每日 GitHub Trending + RSS 热点 LLM 分析 · 2026-09-23</description>
+    <description>每日 GitHub Trending + RSS 热点 LLM 分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 05:56:23 GMT</lastBuildDate>
     <item>
-      <title>google/ax</title>
-      <link>https://github.com/google/ax</link>
-      <guid isPermaLink="false">https://github.com/google/ax</guid>
+      <title>GitHub Trending 日报 · 2026-09-23</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-23.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-23.html</guid>
       <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Google 开源的 Go 语言 agent 编排运行时,把 agent 任务当 K8s 式声明式工作负载来管:沙箱隔离、预挂仓库、锁出站网络、可暂停恢复。</description>
-      <content:encoded><![CDATA[<p><em>Google 开源的 Go 语言 agent 编排运行时,把 agent 任务当 K8s 式声明式工作负载来管:沙箱隔离、预挂仓库、锁出站网络、可暂停恢复。</em></p>
-<p><strong>亮点</strong></p><ul><li>Gateway 默认只放开你列出的出站主机。agent 调模型 API 和工具服务器都走这条路,能挡住 agent 死循环刷 API 烧钱——这是 agent 相比普通微服务最容易失控的地方。</li><li>把 agent 状态检查点做进 suspend/resume。agent 会持续积累状态,既不是无状态微服务也不是跑完就退的批处理,所以能存下状态、暂停再续跑是它的核心取舍。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>四个声明式原语,全写成 ax.io/v1alpha1 YAML 一次 apply:Task(任务加 CPU/内存限制)、Workspace(启动前预挂 Git 仓库、MCP server、skill 包,让 agent 一上来就是热的)、Gateway(出站流量锁到显式 host 白名单)、Model(指定平台用哪个 LLM,凭据从 K8s secret 取)。</li><li>CLI 走 gRPC 控制面,动作和 kubectl 一样:apply/get/describe/watch/delete,外加 agent 专属动词 ax ssh(进运行中的沙箱看它在干嘛)、suspend/resume(检查点 actor 状态后暂停,再精确恢复)。</li><li>控制面部署在 K8s 上(用 ko 构建镜像,Redis 存状态),沙箱执行交给 Agent Substrate;atenet 路由器负责让你从集群内、笔记本或 gRPC 客户端连到运行中的 task。</li></ul>
-<p><strong>适用场景</strong>: 平台和基础设施工程师,要在集群里同时跑几千个不受信任的 agent。典型流程:agent 克隆仓库改 Go 代码、调 MCP 工具、打模型 API,团队需要卡住每个 agent 的 CPU/内存和能访问的外网域名,还要能随时 ssh 进去看或把它暂停掉。</p>
-<p><strong>竞品对比</strong>: 和 E2B、Daytona 这类沙箱 SDK 比,AX 管的是整个集群的调度和声明式生命周期,不只是创建单个沙箱。和直接拿裸 K8s 跑 agent 比,它多了模型凭据、MCP 预热、出站网络围栏、状态检查点这些 agent 专属的东西。</p>
-<p><strong>成熟度</strong>: 早期项目,API 是 v1alpha1,README 自己警告稳定版之前会有重大破坏性改动;还要自备 K8s 集群和 Agent Substrate 才能跑起来。</p>
-<p><strong>趋势信号</strong>: Google 官方下场做 agent 运行时,正好撞上 MCP 生态铺开、agent 数量变多管不住的窗口,社区缺一层把 agent 当集群工作负载来调度的东西,一天涨 2300 星是这个需求的直接反映。</p>]]></content:encoded>
+      <description>今天热榜有条明显主线：Agent 正在从 demo 变成基础设施。Google 一口气放出两个底座，一个把闲置 agent 当 actor 塞进少量 Pod，密度翻十倍、休眠恢复不到 500ms；另一个用 K8s 风格 YAML 把 agent 关进沙箱。Anthropic 开源金融 Agent 参考实现，一条 npx 命令给 Claude Code 装好全套配置，browser-use 用文本转录让 agent 剪片子，treg 做工具商店，一个 token 调 3000 多个 API。方向很清楚：大家不再纠结模型本身，开始拼怎么把 agent 跑起来、管住、接上工具。 第二条主线是安全。A</description>
     </item>
     <item>
-      <title>mvt-project/mvt</title>
-      <link>https://github.com/mvt-project/mvt</link>
-      <guid isPermaLink="false">https://github.com/mvt-project/mvt</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Amnesty 国际安全实验室开源的移动端取证工具，扫描 iPhone 备份和 Android 提取数据，用公开 IOC 追查 Pegasus 等间谍软件痕迹。近日合并 v3 分支重构 CLI，热度上涨。</description>
-      <content:encoded><![CDATA[<p><em>Amnesty 国际安全实验室开源的移动端取证工具，扫描 iPhone 备份和 Android 提取数据，用公开 IOC 追查 Pegasus 等间谍软件痕迹。近日合并 v3 分支重构 CLI，热度上涨。</em></p>
-<p><strong>亮点</strong></p><ul><li>把检测拆成独立 check 模块，每个模块只扫一类痕迹（域名、进程、配置文件），原始结果全部存成 JSON/JSONL 供二次分析，不做一个&#x27;是/否被黑&#x27;的黑盒结论</li><li>采用自定义许可证，明确只允许经被检者同意的取证分析，禁止用它去查别人的手机，这是同类开源工具里少见的限制</li></ul>
-<p><strong>核心功能</strong></p><ul><li>解析 iOS 备份里的 Manifest.db、plist、netusage.sqlite、shutdown.log、短信/WhatsApp 数据库；Android 侧解析 ADB 或 AndroidQF 抓取的 dumpsys、packages.list、系统日志，从这些系统痕迹里找间谍软件的进程名、异常关机、可疑域名访问</li><li>用 STIX2 格式的 IOC（入侵指标：已知恶意域名、文件哈希、进程名清单）做匹配，IOC 来自 Amnesty 和 mvt-indicators 仓库，可 mvt download-iocs 拉取更新</li><li>v3 引入插件机制，第三方 Python 包通过 entry points 注册自己的 check-* 模块和顶层命令，扩展检测项不用改主仓库代码</li></ul>
-<p><strong>适用场景</strong>: 记者、人权调查员、数字安全取证人员。场景：拿到疑似被盯上的人的 iPhone 本地备份或 Android 全量数据，跑 mvt-ios check-backup 或 mvt-android check-backup，输出 JSON 报告再人工分析。</p>
-<p><strong>竞品对比</strong>: 对比 Cellebrite、Magnet AXIOM 这类商业取证套件（贵、闭源、主要卖给执法机构），MVT 开源免费、面向记者和人权组织，靠公开 IOC 而非厂商私有情报；对比 iMazing、Elcomsoft 的备份解析工具，前者只是导出数据，MVT 专做间谍软件 IOC 匹配。</p>
-<p><strong>成熟度</strong>: 项目 2021 年起由 Amnesty 维护，有完整文档站和 CI，已被记者和人权组织实际使用；但刚合并的 v3 是破坏性变更，依赖其输出格式的脚本可能已失效，API 仍在调整。</p>
-<p><strong>趋势信号</strong>: v3 分支刚合并进主分支，CLI 结构重做并引入插件系统，官方在 issue #757 里说明破坏性变更，引发关注和迁移讨论。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-22</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-22.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-22.html</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批项目看下来，最明显的一句话是：AI Agent 正在从炫技走向接线。BuilderIO 让一份 action 同时被 agent 和前端调用；有人给各种 AI 编程 CLI 加长期记忆；有人做 computer-use 的桌面驱动和评测工具；自托管开发环境专门把 LLM 密钥挡在工作区外面。共同点很清楚：大家不再满足于 demo，开始解决记忆、权限、隔离、验证这些脏活。Anthropic 官方直接开源金融行业的 agent 合集，说明大厂也在抢这块地盘。第二股力量是刹车。zoom-out 技能防止 agent 假装修完就交差；多开 agent 带来验证债务；Linear 复盘说 AI 写代</description>
     </item>
     <item>
-      <title>anthropics/financial-services</title>
-      <link>https://github.com/anthropics/financial-services</link>
-      <guid isPermaLink="false">https://github.com/anthropics/financial-services</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Anthropic 官方开源的金融业 Agent 参考实现，覆盖投行、股票研究、PE、基金管理十个工作流。同一份 system prompt 和 skills，既能装成 Cowork 插件，也能通过 Managed Agents API 自建部署。</description>
-      <content:encoded><![CDATA[<p><em>Anthropic 官方开源的金融业 Agent 参考实现，覆盖投行、股票研究、PE、基金管理十个工作流。同一份 system prompt 和 skills，既能装成 Cowork 插件，也能通过 Managed Agents API 自建部署。</em></p>
-<p><strong>亮点</strong></p><ul><li>全流程卡在人工签核这一步：明确不做投资建议、不下单、不记账、不放行开户，所有输出都停在待审状态。这是为了绕开金融机构最怕的合规问题，也让 Agent 只能当草稿工具用。</li><li>Skills 单一来源加同步：领域知识只在 vertical-plugins 里写一次，各 agent 打包同步副本，配合 scripts/check.py、validate.py 做一致性校验，保证插件和托管两种跑法的行为一致。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>一份源码、两种部署形态：同一份 system prompt 加 skills 目录，既可打包成 Cowork/Marketplace 插件，也能用 scripts/deploy-managed-agent.sh 解析文件引用、上传 skills、创建 leaf-worker 子代理，再 POST 到 /v1/agents。</li><li>Agent 自包含打包：每个 agent 目录里带一份它用到的 skills 副本（源头是 vertical-plugins，靠 sync-agent-skills.py 同步），装一个 agent 不用再装别的；全部是 markdown 加 JSON，没有构建步骤。</li><li>数据接入走 MCP server：核心插件 financial-analysis 里用 .mcp.json 配了 11 个连接器（行情终端、研究平台、文档库），另外有 LSEG、S&amp;P Global 两个合作方写的 partner-built 插件。</li></ul>
-<p><strong>适用场景</strong>: 投行分析师、股票研究员、PE 投资经理、基金管理会计和财务运营。典型场景：拉 comps/DCF/LBO 模型、写 IC memo 和 earnings note、GL 对账找差异、月末结账跑权责和滚动表、LP 报表分发前审计、KYC 开户材料过规则引擎。</p>
-<p><strong>竞品对比</strong>: 对比 Hebbia、Rogo、AlphaSense 这类金融垂直 AI 产品，它不开箱即用，也不自带数据授权，本质是给企业自己接数据、改 prompt 的参考实现，胜在免费开源且绑死 Claude 生态；对比自建 prompt 库或 LangGraph 之类的通用 Agent 框架，它省掉了投行/PE 工作流的领域知识和插件协议这块。</p>
-<p><strong>成熟度</strong>: Anthropic 官方维护，文档和目录结构完整，但 subagent 委派（callable_agents）还标着 Research Preview，agent 模板是需要按自家流程改的起点，不是买了就能用的产品。</p>
-<p><strong>趋势信号</strong>: Anthropic 正在推 Cowork 和 Managed Agents API，拿付费能力最强的金融业做样板间，顺手用开源 repo 拉企业开发者——官方亲自下场做垂直 Agent 模板，这波热度主要来自这里。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-21</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-21.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-21.html</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单看着杂，其实都在干同一件事：给 AI agent 补工程课。 最上面一层是搭脚手架。技能、记忆、安全层一次配置、多端复用；Cloudflare 把内部漏洞审计流程做成技能；Anthropic 出金融模板库；Coder 把 agent 循环塞进控制面。大家都在攒标准件：技能包、模板、action 框架、编排层。Google 亲自下场做 AX，MCP 该不该存在吵成热帖，说明入口和协议还没定，谁都想先占坑。 中间一层是开始不信任模型。金融问答大部分答错；CTF 沙箱配错连上真网，四个模型看出目标是真的还继续打；有人做差分攻击，两次合规查询相减就能锁定个人。反应也整齐：把纯逻辑锁进确定性内</description>
     </item>
     <item>
-      <title>dream-num/univer</title>
-      <link>https://github.com/dream-num/univer</link>
-      <guid isPermaLink="false">https://github.com/dream-num/univer</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>开源 Office SDK，把表格、文档、PPT 做成可嵌入组件，浏览器和 Node.js 共用一套代码；现在转做 AI Agent 读写办公文件的底座。</description>
-      <content:encoded><![CDATA[<p><em>开源 Office SDK，把表格、文档、PPT 做成可嵌入组件，浏览器和 Node.js 共用一套代码；现在转做 AI Agent 读写办公文件的底座。</em></p>
-<p><strong>亮点</strong></p><ul><li>Agent 改动走 worktree 隔离：Agent 在草稿分支里编辑，人看完 diff 再决定合并，避免 Agent 直接覆盖正式文件。</li><li>表格、文档、PPT、关系表、白板共用一个存储和计算运行时，跨类型的引用和联动数据能一起更新，而不是几个独立编辑器拼在一起。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用 Canvas 画整个表格画布，只渲染可视区域，而不是像 Handsontable/AG Grid 那样给每个单元格建 DOM 节点，所以几十万行的表也能滚动；公式计算单独抽成一个引擎，靠依赖图做增量重算，只重算受影响的单元格。</li><li>所有能力都是插件：单元格、公式、协同、UI 各自独立，可懒加载、替换或整个拆掉；官方再给几套预置插件包（presets）供快速拼出一个能用的编辑器，另有统一 Facade API 封装 workbook/range/formula/command 这些操作。</li><li>同构设计：同一份代码既能跑浏览器 UI，也能在 Node.js 无头运行，服务端可直接批量读写工作簿、跑公式，Agent 不用开浏览器就能改文件。</li></ul>
-<p><strong>适用场景</strong>: 适合要把表格或文档编辑嵌进自己产品的团队：SaaS 里的报价单/报表、BI 工具里的在线表、低代码平台的数据网格。也适合做 AI Agent 的人——让 Agent 在 Node 侧生成和修改 xlsx/PPT，再交给人在界面上审核。</p>
-<p><strong>竞品对比</strong>: 同团队的老项目 Luckysheet 已基本停更，Univer 是它的 TypeScript 重写，改成插件化 + Canvas；对比 OnlyOffice/Collabora 这类完整套件，它只给 SDK 不管界面和部署；对比 Handsontable/AG Grid，后者是表格控件，没有公式引擎也不管文档和演示；SheetJS/ExcelJS 只做文件解析生成，不提供编辑界面。</p>
-<p><strong>成熟度</strong>: 版本号仍在 0.x，API 有变动可能；但背后是公司团队维护、文档和示例齐全，核心开源加 Pro 商业功能混合，已有商业项目在用。</p>
-<p><strong>趋势信号</strong>: 最近一批 Agent 工具（DeepSeek Harness、OpenClaw、WorkBuddy、MCP 生态）都缺一个能让人和 Agent 共同编辑、并且可审核的办公文件界面，Univer 顺势把定位从「开源 Excel SDK」改成「AI Agent 的 Office Harness」，还配套放出多个 Agent 集成仓库，因此今天涨星。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-20</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-20.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-20.html</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜基本围着 Agent 转。一边是「给 Agent 配装备」：ECC 想统一七家客户端的技能和记忆，Addy Osmani 把开发流程拆成技能包，Cloudflare 拿六个阶段加互相证伪做安全审计，Anthropic 直接给金融行业发模板。另一边是「让 Agent 有手有脚」：Cua 给它一台真电脑，BuilderIO 和 Vercel 让它和 UI 共用一套工具与状态。共同点很清楚：大家不再只比谁家模型强，而是比谁的 Agent 更能干活、更安全、更能复用。开发者生态正从「写提示词」转向「搭基建」——技能、编排、断点续跑、审计证据、缓存字段，全是工程活。MCP 成了焦点，也成了靶子</description>
     </item>
     <item>
-      <title>agent-substrate/substrate</title>
-      <link>https://github.com/agent-substrate/substrate</link>
-      <guid isPermaLink="false">https://github.com/agent-substrate/substrate</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Google 开源的 Agent 运行环境：把大量大部分时间在空闲的 Agent 实例多路复用到少量 worker 上，靠内存+文件系统快照做亚秒级挂起恢复，实现高密度沙箱托管。</description>
-      <content:encoded><![CDATA[<p><em>Google 开源的 Agent 运行环境：把大量大部分时间在空闲的 Agent 实例多路复用到少量 worker 上，靠内存+文件系统快照做亚秒级挂起恢复，实现高密度沙箱托管。</em></p>
-<p><strong>亮点</strong></p><ul><li>不自己造一套调度和编排，而是把 Kubernetes 当底座——Pod、HPA 这些直接复用，只在上面加 Agent 专属的调度和低延迟路由。好处是 agent 运行、推理、训练能共用同一套基础设施做整体优化。</li><li>刻意做「低观点」系统：它不管你是不是 AI Agent，只管容器的创建、销毁、挂起、恢复和流量路由。状态存在快照里而不是进程里，所以换机器不用重建，恢复后接着用。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>Actor/Worker 复用模型：把几百上千个有状态 Agent（叫 actor）映射到少量常驻 worker 上，赌的是 Agent 大部分时间在等模型返回、处于空闲，靠这个做超卖。官方 demo 是 250 个有状态 actor 跑在 8 个物理 pod 上，约 30 倍超分。</li><li>全状态挂起/恢复：冻结时把内存和文件系统一起快照下来，恢复只要不到 500ms，单机每秒能做 500 次以上挂起/恢复，actor 可以直接「传送」到池子里任意一台 worker 上接着跑。</li><li>隔离层用 gVisor 和 microVM，管的是标准 OCI 容器，所以对 Agent 框架无感；上层套 Kubernetes，靠 atelet DaemonSet 管 worker、atenet-router 按 header 路由流量到指定 actor，worker 版本用节点 label 卡住。</li></ul>
-<p><strong>适用场景</strong>: 跑大量有状态编码 Agent 会话的团队，比如同时开几百个 Claude Code、Codex 环境并保留文件系统状态；也适合把 MCP 工具服务器做成常驻沙箱，以及 RL 训练里需要成千上万并发 agent 环境的场景。kagent 这类 K8s 原生 Agent 框架的用户是直接目标。</p>
-<p><strong>竞品对比</strong>: 对标 E2B、Modal、Daytona 这类 Agent 沙箱方案，它们基本是一会话一沙箱、用完即弃；Substrate 的重点是把空闲 actor 超卖到共享 worker 池，并深度绑定 Kubernetes，更适合已经有大集群、想自建而非买托管服务的团队。</p>
-<p><strong>成熟度</strong>: 早期项目，README 明确写了不适合生产、API 几乎一定会变，连 Google 官方支持产品都不算，目前只适合尝鲜和内部试点。</p>
-<p><strong>趋势信号</strong>: 和 Google 最近推的 Agent Executor（google/ax）以及 CNCF kagent 接入直接相关，Agent 沙箱基础设施正是当下各家抢着做的赛道，Google 用自家 gVisor 加 K8s 入场所以关注度集中。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-19</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-19.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-19.html</guid>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批项目指向同一件事：AI Agent 正在从玩具变成基础设施，开发者忙着给它补工程配套。 第一类是统一层。给 Claude Code、Cursor 等不同工具套同一套技能、记忆和安全规则；把资深工程师的流程打包成 Markdown 技能，70 多个 Agent 共用。想法很直白：别每个工具学一遍。Vercel 那个生成式 UI 框架也是同路数，AI 只能从组件目录里挑，不让它直接写前端代码。 第二类是上生产。Google 的 AX 把 Agent 当 K8s 工作负载跑，带沙箱隔离和断点续跑。Cloudflare 开源编码 Agent 的安全审计技能，拆成六个阶段，多个子 Agent 交叉验</description>
     </item>
     <item>
-      <title>superdesigndev/treg</title>
-      <link>https://github.com/superdesigndev/treg</link>
-      <guid isPermaLink="false">https://github.com/superdesigndev/treg</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>treg 是给 AI Agent 用的「工具版 OpenRouter」：一个 base URL 加一个 token，就能调用 3000+ 个第三方接口（SEO、社媒、爬虫、人物公司信息等），按次计费，不用逐个注册厂商账号。</description>
-      <content:encoded><![CDATA[<p><em>treg 是给 AI Agent 用的「工具版 OpenRouter」：一个 base URL 加一个 token，就能调用 3000+ 个第三方接口（SEO、社媒、爬虫、人物公司信息等），按次计费，不用逐个注册厂商账号。</em></p>
-<p><strong>亮点</strong></p><ul><li>不做模型路由、只做工具路由，并且自己持有 Semrush、Crunchbase、Apollo 这些 $99-$139/月的订阅账号来转售按次调用，绕开注册墙和邀请制 API</li><li>同一个 token 同时覆盖外部目录接口和团队私有工具，私有 key 优先、不计费，等于把「公共工具市场 + 企业密钥管理」合成一层</li><li>配了 Claude Code 插件市场、Claude.ai Connector 和 MiniMax 插件市场三条分发路径，装完不带 token 也能自动引导完成登录和 mcp install</li></ul>
-<p><strong>核心功能</strong></p><ul><li>代理只做转发不改写请求（relays, never models），认证在服务端注入，调用方永远不持有厂商 key，所以上游 API 改了也不用客户端改代码</li><li>四级凭证阶梯：团队自己注册的工具 &gt; 团队存的密钥（走虚拟工具注入）&gt; 已验证的公开免密路由（免费）&gt; 用 treg 自己的账号代付（扣团队预付费余额），自带 key 永远优先且不计费</li><li>一次请求可绑多个密钥（bindings），比如同时注入 OAuth bearer 和 developer-token 头；CLI 类型工具直接把密钥注入到 stripe/gh/vercel 这类厂商二进制里跑</li><li>余额不足返回 HTTP 402，body 里带 balance_micro、estimated_cost_micro、topup_url，Agent 不用读自然语言就能自己决定充值</li><li>MCP 服务分两个面：/mcp/v2/ 只暴露精选目录接口，且把读调用和写调用分开，好让 Claude 拿到准确的安全信号；/mcp/ 则开放团队自有工具和导入的 skills</li><li>strict_query 校验：标记为 strict 的接口会拒绝未声明或重复的 query 参数、不支持的值和请求体</li></ul>
-<p><strong>适用场景</strong>: 适合做 Agent 产品的团队和个人开发者：需要在产品里接一堆第三方数据源（找邮箱、查外链、抓 TikTok 数据、生成语音），又不想一家家开户、按月订阅。也适合企业把内部 API、OAuth 连接和 SKILL.md 统一注册一次，让全团队的 Agent 共用，密钥不出服务器。</p>
-<p><strong>竞品对比</strong>: 和 Composio、Arcade.dev、Smithery 这类工具接入/MCP 注册表比，最大差别是 treg 自己承担厂商账号和账单、按调用次数收费，而不是只帮你管 OAuth；和 OpenRouter 比，它路由的是工具不是模型，但借用了「一个 key 打通全部」的模式。</p>
-<p><strong>成熟度</strong>: 早期项目，仓库刚起来（约 2300 星），有托管服务和自部署文档，但没有版本号和企业落地案例，API 和计费规则还可能变。</p>
-<p><strong>趋势信号</strong>: MCP 在 2025 年成了 Agent 接工具的事实标准，Claude Code 插件市场又刚开放，大家对「工具从哪来、密钥怎么管」的需求集中爆发，treg 正好卡在这个位置，所以一天涨 230 星。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-18</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-18.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-18.html</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天这批项目，几乎都在干同一件事：给 AI 编程 Agent 补流程、补纪律。 以前是问一句答一句，现在流行把资深工程师的做法写成 markdown 技能包，塞进 Claude Code、Cursor 等各家 Agent，让它按 spec、测试、评审的顺序干活。阿里、Cloudflare、Anthropic 都在出这类东西。编排层也冒出来了：父 Agent 拆任务、划文件范围，Worker 走 MCP 执行，父 Agent 跑真实验证才算完成。 第二个共同点是本地优先和自托管。语音工作室、知识库、多智能体助手，都强调数据不出自己机器。模型也尽量不绑厂商，一套配置想在七种工具里通用。 第三，推理</description>
     </item>
     <item>
-      <title>browser-use/video-use</title>
-      <link>https://github.com/browser-use/video-use</link>
-      <guid isPermaLink="false">https://github.com/browser-use/video-use</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>browser-use 出的 video-use，让你在 Claude Code 或 Codex 里对话剪视频：把素材丢进文件夹，它读转写稿做决策，输出 final.mp4，全程不用 GUI。</description>
-      <content:encoded><![CDATA[<p><em>browser-use 出的 video-use，让你在 Claude Code 或 Codex 里对话剪视频：把素材丢进文件夹，它读转写稿做决策，输出 final.mp4，全程不用 GUI。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心思路跟 browser-use 给 LLM 喂结构化 DOM 而不是截图是同一套：视频也先转成文本接口，只在关键决策点（含糊的停顿、重拍对比、切点检查）才按需生成可视化 PNG。</li><li>以 Agent Skill 形式分发（SKILL.md + 软链到 ~/.claude/skills/），不自建 UI，Claude Code、Codex、Hermes 都能挂载，剪辑能力跟着你的 Agent 走而不是锁在一个 App 里。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>把视频转成文字喂给 LLM：用 ElevenLabs Scribe 一次转写拿到词级时间戳、说话人分离和 (laughter) 这类音频事件，所有 take 压成一个约 12KB 的 takes_packed.md 当主视图；对比逐帧塞给模型（3 万帧 ≈ 4500 万 token）的做法。</li><li>LLM 先输出 EDL（编辑决策表，写明每段从几分几秒切到几分几秒），交给 ffmpeg 渲染；渲染完成后在每个剪切点跑 timeline_view（胶片条+波形+词标签拼成一张图）自检，发现跳帧、爆音、字幕遮挡就打回重渲染，最多 3 轮。</li><li>后期细节用现成工具拼：每个切点加 30ms 音频淡入淡出避免 pop 声，调色走自定义 ffmpeg 链，字幕烧进画面，动画叠加用 Remotion、Manim、HyperFrames 或 PIL，每个动画开一个子 Agent 并行生成。</li><li>会话状态存进 project.md，下次打开同一文件夹能接着上一轮的剪辑思路继续做。</li></ul>
-<p><strong>适用场景</strong>: 做口播、教程、播客、采访的视频创作者和内容团队，用 Claude Code / Codex 在终端里直接剪片，省掉在 Premiere、Descript 或剪映里手动拖时间线、逐个抠 umm 和空白的活。</p>
-<p><strong>竞品对比</strong>: 同赛道有 Descript、剪映的文本剪辑、Opus Clip、auto-editor。最大差别是它没有 GUI，剪辑策略由 LLM 读转写稿自己定并产出 EDL，交互入口直接复用你已有的编码 Agent 和 shell。</p>
-<p><strong>成熟度</strong>: 早期项目，没有版本号，强依赖 ElevenLabs 付费 API 和本地 ffmpeg，安装靠文档驱动，接口和技能规范都可能变。</p>
-<p><strong>趋势信号</strong>: Claude Code / Agent Skills 生态眼下正是热点，加上 browser-use 团队自带关注度，把 Descript 验证过的&quot;文本剪辑&quot;方向搬进终端 Agent，踩中了两个热度叠加。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-17</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-17.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-17.html</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这份热榜有个明显信号：模型不再是主角，围着模型搭的「脚手架」才是。 一眼看过去，一半项目和 AI 编码有关。阿里开源了内部用了两年的代码审查工具，Cloudflare 把 AI 变成必须交叉复核的安全审计员，Anthropic 官方放出按岗位打包的插件，还有 OpenSpec 用 Markdown 规格文件约束 AI 动手前先讲清楚要改什么。共同点很清楚：大家不再比谁的模型强，而是比谁的流程稳。 第二个趋势是「验证」被顶到台前。有人做 hooks，逼 AI 先跑命令拿到真实输出才准说修好了。有人提出 prompt 要进仓库、锁死模型版本、用属性断言做回归测试。有人讲备份跑成功不算数，能真恢复才</description>
     </item>
     <item>
-      <title>davila7/claude-code-templates</title>
-      <link>https://github.com/davila7/claude-code-templates</link>
-      <guid isPermaLink="false">https://github.com/davila7/claude-code-templates</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>把 Claude Code 的 agent、斜杠命令、MCP 集成、hook、settings 打包成 npm 模板库，一条 npx 命令装进项目，另带会话监控和体检面板。</description>
-      <content:encoded><![CDATA[<p><em>把 Claude Code 的 agent、斜杠命令、MCP 集成、hook、settings 打包成 npm 模板库，一条 npx 命令装进项目，另带会话监控和体检面板。</em></p>
-<p><strong>亮点</strong></p><ul><li>把 Claude Code 的六种扩展点（agent / command / hook / MCP / setting / skill）抽象成同一种「模板」，用同一套 CLI 参数安装，省掉了手工往 .claude 目录里写 JSON 和 markdown 的活</li><li>用 npm + npx 分发配置而不是走 git clone：版本号跟着 npm 走，安装零依赖，还顺带做了个 aitmpl.com 网页目录当索引</li></ul>
-<p><strong>核心功能</strong></p><ul><li>按分类路径装组件：`npx claude-code-templates@latest --agent development-team/frontend-developer --mcp development/github-integration --yes`，直接把 agent、slash 命令、MCP、hook、setting 写进项目的 Claude Code 配置目录，不用 clone 仓库</li><li>把多个来源的 Skills 聚成一个目录统一索引：包括 Anthropic 官方 anthropics/skills（21 个）、K-Dense-AI 的科研 skills（139 个，生物/化学/医学）、obra/superpowers 的 14 个工作流 skill，用户在 aitmpl.com 上按类浏览后一条命令装上</li><li>自带三个运维工具：`--analytics` 实时看 Claude Code 会话状态和指标，`--chats` 提供手机适配的对话查看页并可用 Cloudflare Tunnel 做远程访问，`--health-check` 体检本地 Claude Code 安装，`--plugins` 统一管插件市场、已装插件和权限</li></ul>
-<p><strong>适用场景</strong>: 日常用 Claude Code 写代码的个人和团队。想让 AI 按团队规范干活的人，会预装 code-reviewer agent、pre-commit 校验 hook、PostgreSQL 或 GitHub 的 MCP 连接；想统一团队里每个人 Claude Code 配置的 Tech Lead 也用得上。</p>
-<p><strong>竞品对比</strong>: 和 awesome-claude-code 这类纯链接清单比，它多了可执行的安装器和监控 UI；和 Claude Code 官方的 plugin marketplace 比，它是第三方聚合，覆盖社区和科研类 skill 更杂，但权威性和审核不如官方。</p>
-<p><strong>成熟度</strong>: 工具本身可用、有文档站（docs.aitmpl.com）和多家赞助（Z.AI、Bright Data、Neon、Vercel OSS），但里面收录的模板来源混杂、质量参差，装之前最好自己看一眼内容。</p>
-<p><strong>趋势信号</strong>: Claude Code 在 2025 年下半年带火了 MCP 和 Skills 生态，加上官方插件市场刚起步，社区急需一个「配置分发器」把散落各处的 agent/skill 收在一起，这个仓库正好卡在这个位置。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-16</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-16.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-16.html</guid>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜，共同点很直白：大家都想把软件的控制权拿回来。 阿里开源AI代码审查，只输出行级评论，省8/9 token。这说明AI编码Agent不再比谁更全能，而是比谁更准、更省。纯C的MoE推理引擎，把显存、内存、硬盘当一层用，让744B模型在消费级机器上跑。大模型正在从云端往本地沉。 另一边，开源企业管理系统把ERP、CRM、人事、招聘全塞进一套平台，自托管替代一堆SaaS。VoiceStudio本地跑语音克隆，31k星，卖点就一个：数据不出本机，不用订阅。AI销售CRM自托管，AI接管WhatsApp成交。LibreChat让企业把AI对话和工具调用放自己服务器。 开发者生态也在变。编码A</description>
     </item>
     <item>
-      <title>Hacker News · Data-Only Attacks Are Easier Than You Think</title>
-      <link>https://www.usenix.org/publications/loginonline/data-only-attacks-are-easier-you-think</link>
-      <guid isPermaLink="false">https://www.usenix.org/publications/loginonline/data-only-attacks-are-easier-you-think</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>USENIX ;login: 一篇文章讲数据-only 攻击：不劫持控制流，只改数据（权限标志、长度、路径、token）就能得手，绕开 CFI 这类防护。</description>
-      <content:encoded><![CDATA[<p><em>USENIX ;login: 一篇文章讲数据-only 攻击：不劫持控制流，只改数据（权限标志、长度、路径、token）就能得手，绕开 CFI 这类防护。</em></p>
-<p><strong>亮点</strong></p><ul><li>把防御视角从“控制流完整性”拽回“数据完整性”：只守返回地址和虚表指针不够，权限标志、配置、会话数据同样是被攻击目标。</li><li>强调经济学而非新原语：不是发现新漏洞类型，而是指出数据-only 路线的成本远低于控制流劫持，防御投入和攻击投入不成比例。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>不改控制流，只改数据：把 isAdmin 布尔值、文件路径、收件人字段、权限位、长度字段改成攻击者想要的值，程序自己会走合法路径，用不着 ROP 链或 shellcode。</li><li>专挑控制流防护的盲区：Intel CET 影子栈、Clang CFI、ASLR 只校验返回地址和间接跳转目标，数据域被篡改它们根本不触发。</li><li>攻击门槛被低估：很多数据-only 攻击不需要内存破坏原语（越界写、UAF），一个逻辑漏洞加一次任意写就能收工，比构造完整 ROP 链省事得多。（注：RSS 只给了标题和链接，正文未抓到，以上为该领域的通用技术点。）</li></ul>
-<p><strong>适用场景</strong>: 面向安全研究员、浏览器/内核/系统开发者，以及做威胁建模的安全工程师。典型场景是评估现有缓解措施（CET、CFI、MTE）到底覆盖了多少攻击面，别以为开了 CFI 就万事大吉。</p>
-<p><strong>竞品对比</strong>: 和 Intel CET 影子栈、Clang CFI、ASLR 这些控制流防护不是同一层面——那些压根不防数据篡改。学术上 Data-Oriented Programming（CCS 2016）等已论证过数据-only 攻击的图灵完备性，本文更像面向工程实践的解释与提醒。</p>
-<p><strong>成熟度</strong>: 信息成熟度：USENIX ;login: 是正式出版物，文章可信；但我只拿到标题和链接，正文没抓到，属于“知道有这篇、细节待读”的阶段，HN 上仅 6 分 0 评论。</p>
-<p><strong>趋势信号</strong>: 控制流防护这两年陆续硬件化落地（Intel CET、ARM MTE、Clang CFI），攻击者自然往这些机制覆盖不到的数据域挪，所以数据-only 攻击的话题又被翻出来讨论；不过这个具体帖子热度很低，基本没人评论。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-15</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-15.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-15.html</guid>
+      <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这些项目看着杂，指向很集中：AI 正在从云上订阅，变成本地自托管的基础设施。推理引擎把内存、显存、NVMe 拼成缓存，让千亿万亿 MoE 在消费级机器上跑。语音克隆、音乐生成、TTS、离线知识库、局域网传输、Bitwarden 服务端、企业管理全家桶，都是同一个方向：数据放自己手里，能力不买账号。开发者不再只等大厂 API，而是把模型、工具、数据流拆开，装进自己的机器。第二个趋势是 Agent 从聊天框走向工作流。AI 代码审查接确定性管线，按行报缺陷；社交平台 CLI 给 Agent 装眼睛；技能注册表做哈希锁定和漏洞扫描；红队方法论打包成 SKILL.md。大家开始把 Agent 当执行单</description>
     </item>
     <item>
-      <title>Hacker News · Transit rewards (Waymo pays you to take the train)</title>
-      <link>https://waymo.com/blog/2026/09/transit-rewards/</link>
-      <guid isPermaLink="false">https://waymo.com/blog/2026/09/transit-rewards/</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Waymo 推出乘车奖励：用户改坐公交地铁就能换 Waymo 乘车额度，把自动驾驶从&#x27;取代公交&#x27;重新定位成&#x27;接驳公交&#x27;。</description>
-      <content:encoded><![CDATA[<p><em>Waymo 推出乘车奖励：用户改坐公交地铁就能换 Waymo 乘车额度，把自动驾驶从&#x27;取代公交&#x27;重新定位成&#x27;接驳公交&#x27;。</em></p>
-<p><strong>亮点</strong></p><ul><li>商业姿态反着来：自动驾驶公司通常被公交系统当成抢客的对手，Waymo 反过来掏钱补贴公交，换的是监管好感和&#x27;最后一公里&#x27;这个公交本来就做不好的细分市场</li><li>如果奖励以乘车额度而非现金发放，会计上更接近&#x27;公共交通补贴&#x27;而不是&#x27;打折促销&#x27;，在对自动驾驶态度摇摆的城市更容易拿到政策支持</li></ul>
-<p><strong>核心功能</strong></p><ul><li>奖励设计是&#x27;用额度换行为&#x27;：坐一次地铁或公交，返一笔 Waymo 乘车抵扣，钱不发现金、最终回流到自家订单，本质是用补贴买用户少开一趟车</li><li>落地难点在数据打通——要把公交刷卡/购票记录和 Waymo 账户对上号才能自动发奖，跨公司、跨票务系统的对接才是主要工程量</li><li>多半会绑定&#x27;起点或终点在车站附近&#x27;的接驳行程，只补公交覆盖不到的那 1-2 公里，而不是补贴全程打车</li></ul>
-<p><strong>适用场景</strong>: 旧金山、凤凰城这类 Waymo 已运营城市里的通勤族，尤其是住在地铁站一两公里外、又不想把车停到站边的人；公交局也能拿它做联合推广，缓解站点周边停车压力。</p>
-<p><strong>竞品对比</strong>: Uber 和 Lyft 早就有 Transit 功能，把公交时刻表和购票塞进自家 App，但那只是导流，不给钱；Waymo 直接掏钱补贴公交，差别在于它要证明自己是公交的补充而不是替代。</p>
-<p><strong>成熟度</strong>: 只有一篇官方博客，Hacker News 上 32 分、13 条评论，属于早期试点或营销动作；具体奖励规则、覆盖城市、是否长期有效都没披露，落地细节无法验证。</p>
-<p><strong>趋势信号</strong>: Robotaxi 正在多个城市扩张，同时各地政府在推&#x27;减少市中心拥堵、扶持公交&#x27;，Waymo 需要用&#x27;帮公交&#x27;的姿态换取运营许可和公众好感。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-14</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-14.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-14.html</guid>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单就一句话：AI 正往「工具层」和「本地」两头猛扎，模型本身不再是主角。 一头是往下压成本。纯 C 的 MoE 推理引擎把 SSD 当内存用，744B 模型跑消费级硬件。Rust 重写的 Bitwarden，几十 MB 内存自建密码库。断网也能用的离线百科服务器。都是同一个思路：不租云、不订阅、不上传，东西得留在自己手里。 另一头是给 Agent 装手脚。有 CLI 让 Agent 借浏览器登录态刷推特、Reddit、小红书，一条路被封就自动换下一条。有 Skill 注册中心，把提示词和工作流做成可锁版本的包，发布前先扫安全。有给 Hermes 加的操作层，管长期记忆、按任务挑模型。连</description>
     </item>
     <item>
-      <title>Hacker News · US criticises Australia&#x27;s proposed algorithm opt-out laws as &#x27;censorship&#x27;</title>
-      <link>https://www.bbc.com/news/articles/cqj3dgy8x3vro</link>
-      <guid isPermaLink="false">https://www.bbc.com/news/articles/cqj3dgy8x3vro</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>澳大利亚拟立法让用户关掉推荐算法、改看纯时间线，美国批这是变相审查。平台合规、言论自由、算法监管三方撞在一起，在 HN 上吵成热帖。</description>
-      <content:encoded><![CDATA[<p><em>澳大利亚拟立法让用户关掉推荐算法、改看纯时间线，美国批这是变相审查。平台合规、言论自由、算法监管三方撞在一起，在 HN 上吵成热帖。</em></p>
-<p><strong>亮点</strong></p><ul><li>监管思路换了方向：过去几年各国主要在要求平台『披露算法、做风险评估』，澳大利亚这次直接要求『给用户一个关掉算法的开关』，不动模型只动入口</li><li>美方把强制排序规则直接定性为审查，把技术监管和言论自由绑到一张桌上谈，这个定性一旦被接受，会影响其他国家抄不抄这份作业</li></ul>
-<p><strong>核心功能</strong></p><ul><li>算法开关：强制平台（TikTok、Instagram、YouTube 这类）给用户一个非个性化信息流选项，内容按时间倒序或纯关注队列排，不走推荐模型</li><li>合规与执法：由澳洲监管机构（如 eSafety/ACMA）负责落地，违规平台可能被罚款，具体罚则和豁免条款是争论重点</li><li>争议核心在定义权：反对方认为由政府规定信息怎么排序，等于政府间接决定用户看到什么，所以被叫成 censorship</li></ul>
-<p><strong>适用场景</strong>: 关注平台治理的合规法务、政策研究者，以及做推荐系统的工程师——后者要评估一件事：如果给用户一键关掉个性化排序，日活、停留时长、广告收入会掉多少。</p>
-<p><strong>竞品对比</strong>: 欧盟 DSA 走的是『披露 + 风险评估 + 给研究者数据访问』的软路线，不强制提供非算法版本；澳大利亚这条更硬，直接落到产品功能上。美国本土则靠 FTC 和州法零散处理，没有联邦统一要求。</p>
-<p><strong>成熟度</strong>: 立法提案阶段，还没通过，具体条款和罚则都可能改，现在讨论的是方向不是定稿。</p>
-<p><strong>趋势信号</strong>: 这两年各国密集推算法监管（欧盟 DSA、澳大利亚未成年社媒禁令），加上美国官方近期频繁公开反对盟友的社媒立法，一有新的表态就容易冲上 HN 热榜。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-13</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-13.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-13.html</guid>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，主线很清楚：AI 正在从聊天框走向干活。数学建模、交易套利、渗透测试、CRM 销售，都有 Agent 接管流程。它们不再只生成文字，而是拆任务、调工具、下单、发消息、写论文。低价模型把单次成本打到一块钱，Agent 才敢大规模跑。 第二条线是自托管和替代订阅。巴西 CRM 接管 WhatsApp，ArmorPaint 替代 Substance，SmartTube 替代官方客户端，追剧工具重建媒体库。开发者不想把数据、渠道和月费交给平台。能自己部署，就自己部署。 第三条线是绕过封锁和平台限制。伪造 TCP、把流量塞进文档和消息通道、iOS 侧载工具，都在对抗 DPI、商店审核和区域</description>
     </item>
     <item>
-      <title>Hacker News · The current balance of power in open models</title>
-      <link>https://www.interconnects.ai/p/the-current-balance-of-power-in-open</link>
-      <guid isPermaLink="false">https://www.interconnects.ai/p/the-current-balance-of-power-in-open</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Nathan Lambert 分析当下开放权重模型的势力分布，讨论中美实验室各站在什么位置。</description>
-      <content:encoded><![CDATA[<p><em>Nathan Lambert 分析当下开放权重模型的势力分布，讨论中美实验室各站在什么位置。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心论点是开放阵营的重心已经移到中国实验室，美国前沿实验室（OpenAI、Anthropic、Google）基本不参与，Meta 的开放姿态也在收缩，所以「开放 vs 闭源」不再是美国内部的路线之争。</li><li>把开放权重看成闭源实验室的免费分发渠道：生态、人才、下游工具链都在给闭源模型打工，这一点常被当成「开源威胁论」的反面论证。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>区分「开放权重」和「开源」：参数能下载，但训练数据、训练代码、数据配方基本不公开，只有少数（如 OLMo、部分 Qwen 版本）给了完整训练栈。</li><li>用可核查的外部信号做判断依据：LMArena 和 Artificial Analysis 的排行、Hugging Face 下载量、vLLM/Ollama 上的下游采用度，而不是只看模型卡上的自报分数。</li><li>把发布节奏当成核心指标：中国实验室（DeepSeek、Qwen、Kimi、GLM、MiniMax）按月级别放新权重，美国这边除 Meta 之外主要是 AI2、Nvidia 这类非前沿玩家在撑场。</li></ul>
-<p><strong>适用场景</strong>: 做模型选型的工程团队和创业公司 CTO，用来决定是继续买闭源 API 还是切到自托管开源权重；政策研究者和记者用它理解「开源 AI 监管该不该管、管谁」。</p>
-<p><strong>竞品对比</strong>: 同类信息源里，Epoch AI 和 Stanford AI Index 偏数据统计，SemiAnalysis 偏算力和商业，Interconnects 的特点是作者本人在开源模型圈内（AI2），观点带立场、敢下结论，但不如排行榜那样可复现。</p>
-<p><strong>成熟度</strong>: 观点型分析文章，无代码无数据集；结论依赖写作当时的排行榜快照，几周内就会过时，引用前需核对最新榜单。</p>
-<p><strong>趋势信号</strong>: 2025 年下半年中国实验室（DeepSeek、Qwen、Kimi K2、GLM）密集放出接近前沿的开放权重，同期 Meta 在 Llama 上的开放策略明显退坡，社区在讨论「开放阵营还剩谁」，这条 HN 讨论就是这个情绪的直接反应。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-12</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-12.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-12.html</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜，主线就一条：AI Agent 正在从聊天变成干活。销售 CRM 让 agent 直接上 WhatsApp 接客成单。交易 agent 接十个预测市场和一堆 DEX，聊天就能下单。渗透测试用多 agent 关在 Docker 沙箱里跑。数学建模竞赛直接出论文，一次一块钱。连追剧都能自动抓种、改名、升画质。Agent 不再只是回答问题，而是替你把活干完。第二条线是 agent 开始成群出现。wt 用 Rust 管 git worktree，让多个 agent 各占一个目录并行干活。Agent Skills 生态爆发，一个 100+ 应用合集靠一条 npx 命令就能装成 coding a</description>
     </item>
     <item>
-      <title>Hacker News · Microsoft killed FoxPro in 2007. Anyway, here&#x27;s FoxPro revived</title>
-      <link>https://foxscript.org/</link>
-      <guid isPermaLink="false">https://foxscript.org/</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>用 Rust 重写 Visual FoxPro 运行时并编译成 wasm，让停更 18 年的 VFP9 老应用继续跑，行为对真实 vfp9.exe 做校验。</description>
-      <content:encoded><![CDATA[<p><em>用 Rust 重写 Visual FoxPro 运行时并编译成 wasm，让停更 18 年的 VFP9 老应用继续跑，行为对真实 vfp9.exe 做校验。</em></p>
-<p><strong>亮点</strong></p><ul><li>思路不是让用户迁移，而是做一个兼容运行时：同一个语言、同一份代码，只换引擎，这才是遗留系统续命的现实做法</li><li>选 wasm 当目标平台，顺手绕开了对 32 位 Windows 运行时的依赖，跨平台和进程隔离一起解决</li></ul>
-<p><strong>核心功能</strong></p><ul><li>新运行时用 Rust 写、编译成 WebAssembly，并以真实 vfp9.exe 作为对照基准逐项校验行为，目标是老代码语义不变</li><li>突破 VFP 原本 2 GB 的表文件上限，同时老式 32 位 .fll 扩展插件仍能加载</li><li>在原语言上补了 lambda、JSON 支持和内置 HTTP 服务器，方便老应用直接对外提供接口</li></ul>
-<p><strong>适用场景</strong>: 手里有一二十年历史的 FoxPro 业务系统、又不敢重写的企业 IT 和外包团队。典型场景是制造业、医疗、政府里那些没人敢碰的内部管理软件，业务逻辑全在里面，重写风险大于收益。</p>
-<p><strong>竞品对比</strong>: 微软 2007 年就停掉了 VFP，所以真正能比的是两类方案：把老系统重写成 .NET/Web 的迁移项目，以及只读写 DBF 文件的库（Python 的 dbf、Rust 的 dbase 等）。FoxScript 的差别是保留完整 VFP 语言和运行行为，而不是只读表数据。</p>
-<p><strong>成熟度</strong>: 早期项目：报告功能尚未实现，构建产物未签名，MIT 许可，由一个客户的续命需求驱动。</p>
-<p><strong>趋势信号</strong>: 它赶上了两股力量叠加：一是「用 Rust/WASM 复活老语言运行时」这一波做法（此前已有 COBOL、Delphi 类似尝试），二是大量企业 VFP 系统在 32 位 Windows 支持逐步退场的背景下急着找续命方案，所以 HN 上一天就攒到 234 分、149 条评论。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-11</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-11.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-11.html</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这份榜单最明显的信号，是 AI Agent 从聊天走向干活。数学建模有 Agent 分三个角色读题、建模、写 LaTeX 论文；渗透测试有 PentAGI 在沙箱里自动跑 nmap；交易有 Claude 代理管上千个预测市场；CRM 直接让 AI 在 WhatsApp 上接待、筛选、成交。不是演示，是真接活。 第二个信号是给 Agent 备料。ChatGPT、Claude、Gemini 的官方 system prompt 被逐字收录；红队方法论打包成 78 份 SKILL.md；100 多个模板一条命令塞进 Cursor。模型不缺，缺的是能直接喂进去的技能包。Claude Skills 刚火，</description>
     </item>
     <item>
-      <title>Hacker News · Native apps written in TypeScript and CSS</title>
-      <link>https://github.com/geastack/examples</link>
-      <guid isPermaLink="false">https://github.com/geastack/examples</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一个示例仓库，展示用 TypeScript 写逻辑、CSS 写样式，直接编译成原生 App，不走 WebView 也不跑 JS 引擎。HN 上 94 分、34 条评论。</description>
-      <content:encoded><![CDATA[<p><em>一个示例仓库，展示用 TypeScript 写逻辑、CSS 写样式，直接编译成原生 App，不走 WebView 也不跑 JS 引擎。HN 上 94 分、34 条评论。</em></p>
-<p><strong>亮点</strong></p><ul><li>把赌注押在编译期转换而不是运行时桥接上：RN 是 JS 引擎跑逻辑 + 桥接调原生，Flutter 是自带渲染引擎自绘，而这个走的是直接把 TS 翻译成原生代码，理论上更贴近平台，代价是编译器和控件覆盖要自己啃</li><li>输入语言选的是前端已有的 TS 和 CSS，不用新学一门 DSL，迁移成本比 Dart 或 SwiftUI 低</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用编译器把 TypeScript 转成各平台原生代码，App 包里不带 JS 运行时，界面是平台原生控件而不是网页渲染出来的</li><li>CSS 只取布局和样式的一个子集，映射到系统原生布局（比如约束或 flex 类的布局系统），不是套一个浏览器渲染引擎</li><li>仓库是 examples 性质，给的是能直接跑的最小示例，用来看同一份 TS/CSS 在 iOS、Android 等平台各自编译出什么</li></ul>
-<p><strong>适用场景</strong>: 会写前端但不想学 Swift/Kotlin 的开发者，想用 TS + CSS 做移动端或桌面端 App；也适合对 RN、Flutter 的包体和启动速度不满意、想试试编译成原生这条路的团队做技术选型预研。</p>
-<p><strong>竞品对比</strong>: 对手是 React Native、Flutter 和 Capacitor/Tauri。最大差别是不带 JS 引擎、不套 WebView、也不自绘，直接出原生代码；好处是启动和包体，短板是生态、第三方库和控件覆盖远不如 RN/Flutter 成熟。</p>
-<p><strong>成熟度</strong>: RSS 里只有标题和仓库链接，没给版本号、文档和提交频率；从 examples 仓库的定位看属于早期项目，别上生产。</p>
-<p><strong>趋势信号</strong>: HN 上「绕开 WebView 和 JS 运行时、直接把 TS 编译成原生」这条线最近反复被讨论，背景是 RN 新架构和 Flutter 都在处理运行时开销，社区在找更轻的跨平台路子。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-10</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-10.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-10.html</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜，几乎全是给 AI 编程助手“打补丁”。不是补模型，是补流程、技能、配置和记忆。共同趋势很清楚：Agent 正从聊天框变成工程系统。大家不再满足于问一句答一句，而是让它先问需求、写规格、拆任务、跑 TDD，再派子 Agent 干活。更关键的是，这些能力正在标准化。MCP 成了接外部工具的插口。Agent Skills 刚开放，插件市场也在成形。OpenAI 官方放 Codex 插件示例，腾讯做配置同步 CLI，都是同一个方向：把零散提示词变成可复用、可共享、可版本管理的资产。开发者生态也在变。以前分享 prompt，现在分享技能包、规则、插件清单。以前手抄配置，现在一条命令同步到十几</description>
     </item>
     <item>
-      <title>Hacker News · Obscura: VPN that can&#x27;t log your activity</title>
-      <link>https://obscura.com/#faq-technical</link>
-      <guid isPermaLink="false">https://obscura.com/#faq-technical</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Obscura 推出一款号称&#x27;记录不了你活动&#x27;的 VPN，用双跳拆分架构把&#x27;你是谁&#x27;和&#x27;你访问什么&#x27;分给两家看，HN 上 100 分 84 条讨论。</description>
-      <content:encoded><![CDATA[<p><em>Obscura 推出一款号称&#x27;记录不了你活动&#x27;的 VPN，用双跳拆分架构把&#x27;你是谁&#x27;和&#x27;你访问什么&#x27;分给两家看，HN 上 100 分 84 条讨论。</em></p>
-<p><strong>亮点</strong></p><ul><li>把&#x27;无日志&#x27;从营销承诺变成架构约束：不是靠公司自称不记录，而是设计上任何一方都无法凑齐信息。</li><li>信任被拆成两半，审计范围随之缩小——只需验证转发节点确实不落盘，而不用审计整条链路。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>双跳拆分信任：入口节点只看得到你的真实 IP、看不到目标网站；出口节点只看到目标网站、看不到你的 IP。任何一方单独被查或被迫配合，都拼不出完整的上网记录。</li><li>客户端侧完成加密，入口节点只做转发、不解析目的地，所以&#x27;不记日志&#x27;不是公司口头承诺，而是入口方在协议层就拿不到目标地址。</li><li>入口和出口由不同运营主体分别持有，类似 iCloud Private Relay 的双供应商模型——单一实体无法既知道付款人又知道访问内容。</li></ul>
-<p><strong>适用场景</strong>: 适合记者、跨境远程办公者，以及不想让同一家 VPN 厂商既掌握&#x27;付钱的人是谁&#x27;又掌握&#x27;访问了哪些站点&#x27;的普通用户。对已经在用 iCloud Private Relay、但需要跨设备或自定义出口的人也对口。</p>
-<p><strong>竞品对比</strong>: 对比 Mullvad、Proton VPN 这类&#x27;自己运营全部节点、靠第三方审计和声誉背书&#x27;的方案，Obscura 把信任分散到两个主体。对比 Apple iCloud Private Relay，它不绑定 Safari 或 Apple ID，也不限制在苹果设备上。</p>
-<p><strong>成熟度</strong>: 信息成熟度偏低：目前主要依据官网 FAQ 技术页和 HN 讨论，暂未见公开代码、版本号或第三方审计报告的细节，属于需要自行验证的早期阶段。</p>
-<p><strong>趋势信号</strong>: 近两年英国《调查权力法》修订、美国部分州推动强制留存浏览记录，加上 iCloud Private Relay 只覆盖 Safari，HN 社区对&#x27;架构上就没法记日志&#x27;的思路关注度明显上升。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-09</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-09.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-09.html</guid>
+      <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一眼扫下来，这批热门项目大多围着同一个核心转：AI编程助手。Claude Code、Codex、Cursor，几乎每个仓库都在给它们加外挂。 一个很明显的信号是——“技能包”在密集爆发。有给AI立规矩、让它别废话的ADHD友好规则；有塞38种图表模板专治AI画图丑的；还有覆盖CRO、SEO、营销的垂直方法论包。过去大家嫌AI助手话多、图丑、不懂专业门道，现在靠一套套技能文件直接补上。这本质上是把老师傅的经验固化给AI。 另一个趋势是，AI代理正在从“聊天生成代码”走向“真正去干活”。有人在训练它像人一样操作浏览器、点按钮填表单；有人给它加了隐身能力绕过Cloudflare反爬；有人把它调出来省</description>
     </item>
     <item>
-      <title>Hacker News · Pentagon says overreliance on AI contributed to missile strike on Iran school</title>
-      <link>https://www.bloomberg.com/graphics/2026-iran-school-attack/</link>
-      <guid isPermaLink="false">https://www.bloomberg.com/graphics/2026-iran-school-attack/</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>五角大楼承认，对 AI 的过度依赖导致了伊朗一所学校被导弹误击。这是官方罕见地把事故原因直接归到自动化决策流程上，而不只是某个操作员失误。</description>
-      <content:encoded><![CDATA[<p><em>五角大楼承认，对 AI 的过度依赖导致了伊朗一所学校被导弹误击。这是官方罕见地把事故原因直接归到自动化决策流程上，而不只是某个操作员失误。</em></p>
-<p><strong>亮点</strong></p><ul><li>官方把原因写成&#x27;过度依赖 AI&#x27;，等于承认这是系统性流程问题，不是单个士兵或单个模型出错</li><li>对做 Agent 的人是个现成教训：如果人在环只是点一下确认按钮，那这个人其实不在环里</li></ul>
-<p><strong>核心功能</strong></p><ul><li>AI 辅助目标生成：把情报、传感器、坐标数据自动比对，直接产出打击候选清单，而不是只做参谋建议</li><li>人类复核环节被压缩：决策链里人只负责点确认，实际上变成走过场，这就是自动化偏见（automation bias，人倾向相信机器的判断）</li><li>失效点在置信度和阈值：目标附近有学校这类民用设施时，系统没有触发强制人工复核，说明风险规则没跟坐标数据打通</li></ul>
-<p><strong>适用场景</strong>: 军队指挥与情报分析人员：需要重新设计 AI 生成目标清单时的强制复核点 AI 安全、AI 治理和政策研究者：拿它当自动化决策失控的真实案例 做自动驾驶、医疗、信贷等自动化决策的工程师：参考&#x27;人类在环&#x27;怎么设计才不是摆设</p>
-<p><strong>竞品对比</strong>: 和之前曝光的以色列 Lavender、Gospel 目标生成系统是同一类问题。最大差别是这次由美国官方自己出面承认，而不是外部记者或 NGO 爆料。</p>
-<p><strong>成熟度</strong>: 新闻事件，仍在发酵；目前主要依据是 Bloomberg 的图形报道和 HN 讨论，独立核实的信息有限。</p>
-<p><strong>趋势信号</strong>: AI Agent 和自动化决策正大规模落地，叠加此前加沙 AI 目标系统的报道，&#x27;机器做决定、出事谁负责&#x27;已经是技术社区主流议题——HN 上 514 分、253 条评论就是证明。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-08</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-08.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-08.html</guid>
+      <pubDate>Tue, 08 Sep 2026 00:00:00 GMT</pubDate>
+      <description>最近GitHub上这批项目，围着一个词转：AI代理。不管叫Agent还是别的，反正AI开始自己动手干活了。 以前AI只会聊天，现在要让它写代码、做视频、盯行情。所以一堆工具冒出来，就像给AI配齐“手脚”和“记忆”。比如用HTML/CSS直接生成视频的框架，就是让AI编程代理能直接产出视频，不用人再导素材。还有微软开源的那个转换工具，把PDF、图片、音频全转成干净的Markdown，说白了就是给AI“洗菜”，让非结构化数据能入口。 另外一个明显动向是：大家开始省AI的“脑力”。有MCP服务器把工具输出关在沙箱里，压缩上下文占用98%，用SQLite存记录，以后还能找回。还有用Zig从零写无头浏览</description>
     </item>
     <item>
-      <title>Hacker News · SAML: A fractal of bad design</title>
-      <link>https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/</link>
-      <guid isPermaLink="false">https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>安全公司 Trail of Bits 发长文批评 SAML 协议设计，指其 XML 签名与规范化的组合让正确实现几乎不可能，HN 上引发 190 分、116 条讨论。</description>
-      <content:encoded><![CDATA[<p><em>安全公司 Trail of Bits 发长文批评 SAML 协议设计，指其 XML 签名与规范化的组合让正确实现几乎不可能，HN 上引发 190 分、116 条讨论。</em></p>
-<p><strong>亮点</strong></p><ul><li>把问题归因到 XML 本身：命名空间 + 规范化 + 签名三者叠加，导致「正确实现」的门槛高到多数库都做不到，而不是某个厂商写错了</li><li>指出规范留白太多，不同 IdP 和 SP 库对同一份文档的解析行为不一致，安全边界靠实现者自己猜</li></ul>
-<p><strong>核心功能</strong></p><ul><li>XML 签名验证是整个 SAML 最脆的环节：签名对象是 XML 节点树而不是一串字节，验证前要做规范化（C14N），命名空间、属性顺序、空白字符稍有差异，同一个逻辑文档就有多种合法序列化，攻击者可借机做 XML Signature Wrapping，把签名元素挪到别处仍能校验通过</li><li>断言（Assertion）是一张 IdP 用私钥签名的自包含 XML 票据，SP 只验签名，如果漏检 Audience、NotOnOrAfter、InResponseTo 这几个字段，票据就能被重放或挪给别的应用使用</li><li>IdP-initiated SSO 流程里 SP 没发过请求就收到断言，无法用 InResponseTo 做关联校验，等于协议层留了一个只能靠实现者自觉堵的口子</li></ul>
-<p><strong>适用场景</strong>: 企业里负责接 SSO 的工程师和安全团队，对接 Okta、Azure AD、OneLogin 这类 IdP 时要排查签名校验漏洞；渗透测试人员用 SAML Raider 这类 Burp 插件找 XSW 和断言重放问题。</p>
-<p><strong>竞品对比</strong>: 对比 OAuth 2.0 / OIDC：后者用 JSON + JWT，签名对象就是一段确定的字符串，没有规范化歧义，接入代码也短得多。SAML 唯一撑住的是存量——大量企业 IdP 只认它，短期换不掉。</p>
-<p><strong>成熟度</strong>: 这是 Trail of Bits 的安全评论文章而非代码仓库，观点来自一线安全团队，HN 190 分 116 评论说明社区关注度高，但「协议烂还是实现烂」的结论仍有争议。</p>
-<p><strong>趋势信号</strong>: 企业 SSO 一直是漏洞高发区，SAML 装机量巨大却没人愿意重写，安全圈每隔几年就要重提一次它的设计问题，这次由 Trail of Bits 出面发长文把老账重新翻出来。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-07</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-07.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-07.html</guid>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批 GitHub 热榜项目指向一个再明显不过的信号：AI 编程代理（coding agent）正在从“玩具”变成“生产工具”。但火的不再是 agent 本身，而是围绕它的插件、技能包、编排框架——也就是生态基建。Claude Code、Codex 这些明星项目是底座，真正让开发者兴奋的是往上堆的“可调教”层。 技能包是最大热点。Matt Pocock 把自己的代理技能开源，核心不是炫技，而是给 agent 立规矩：先问需求、按 TDD 写码、少写废话。另一个“懒惰老手”技能包干脆用决策阶梯逼 AI 别过度工程，实测代码量减半。这些项目指向同一个痛点：大模型写代码不缺能力，缺的是靠谱。开发者想</description>
     </item>
     <item>
-      <title>Hacker News · Unreal Agent</title>
-      <link>https://unreallabs.ai/blog/unreal-agent/</link>
-      <guid isPermaLink="false">https://unreallabs.ai/blog/unreal-agent/</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Unreal Labs 发布开源项目 Unreal Agent，冲上 Hacker News 首页（147 分/90 评论），但目前只有仓库和博客链接，技术细节待核实。</description>
-      <content:encoded><![CDATA[<p><em>Unreal Labs 发布开源项目 Unreal Agent，冲上 Hacker News 首页（147 分/90 评论），但目前只有仓库和博客链接，技术细节待核实。</em></p>
-<p><strong>亮点</strong></p><ul><li>发布方式本身是信号：先写博客再挂 GitHub，配上 HN 首发，典型的开源项目冷启动打法，靠一次性流量拉第一批用户和 issue。</li><li>评论（90 条）比点赞（147 分）的比例偏高，在 HN 上一般意味着有人在质疑实际效果或指出和竞品高度相似——这块讨论往往比博客本身信息量更大。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>RSS 抓到的正文只有一行 GitHub 链接（unreallabsai/unreal-agent）和 HN 讨论页，没有任何架构描述，所以它到底用没用 MCP、做没做代码索引、支持哪些模型，都得打开仓库才能确认。</li><li>从命名和发布渠道看，这是一个 Agent 方向的工具（公司名 Unreal Labs，产品名 Unreal Agent），不是模型本身，大概率是跑在现有大模型之上的 agent 框架或客户端。</li><li>唯一可确认的硬数据是社区热度：147 points、90 条评论，评论数相对分数偏高，通常说明有争议或有实际踩坑讨论。</li></ul>
-<p><strong>适用场景</strong>: 想给团队搭一个 AI 编码/自动化 agent 的开发者，会点开博客看它和现有 agent 工具怎么对接。 关注 agent 框架选型的技术负责人，主要看它是否兼容自己已有的模型供应商、IDE 和 CI 流程。</p>
-<p><strong>竞品对比</strong>: 无法判断。现有信息里没有提到任何一个竞品名字，也没给出差异化描述；Agent 框架这赛道已经很挤（LangGraph、CrewAI、OpenAI/Anthropic 官方 SDK、各类 CLI coding agent），它靠什么立足得看仓库 README。</p>
-<p><strong>成熟度</strong>: 未知。没有版本号、提交频率、issue 响应、文档质量中的任何一项信息，建议先看 GitHub 的 release 页和最近 30 天提交情况再决定要不要用。</p>
-<p><strong>趋势信号</strong>: 刚被发到 HN 并拿到 147 分、90 条评论，属于发布当天的流量高峰；但具体触发点（新功能发布、融资、还是社区争议）从这份 RSS 摘要里看不出来。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-06</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-06.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-06.html</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批热门仓库透出一个明确信号：AI编码助手已经告别“能写就行”，进入“怎么管着它写”的阶段。榜单上十几个项目，一大半是围绕Claude Code、Codex、Cursor这类工具的调教方案。有人给AI加“技能包”，让它写代码前先对齐需求；有人搞“懒惰包”，逼它优先复用已有代码、按阶梯决定少写少改——开发者早就受够了AI把项目越搅越臃肿的毛病。 这背后是三类需求集中爆发。第一，给AI立规矩。技能、规则、hooks、记忆存储全上阵，本质是把Agent当新成员管，要求它听话、有规范、不瞎发挥。Anthropic官方放出Skills仓库，说明厂家也认可这个方向。第二，跨工具统管。一套配置管多个Agen</description>
     </item>
     <item>
-      <title>dev.to · I went looking for sandwiches and found a DEX pool trading with itself</title>
-      <link>https://dev.to/edycutjong/i-went-looking-for-sandwiches-and-found-a-dex-pool-trading-with-itself-2kj8</link>
-      <guid isPermaLink="false">https://dev.to/edycutjong/i-went-looking-for-sandwiches-and-found-a-dex-pool-trading-with-itself-2kj8</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一个纯 Python 写的 DEX 交易检测器，用 CoinMarketCap 免密钥接口抓 swap，本来想抓三明治攻击，却查出某排行榜第一的池子三分之二交易量是三个钱包自买自卖。</description>
-      <content:encoded><![CDATA[<p><em>一个纯 Python 写的 DEX 交易检测器，用 CoinMarketCap 免密钥接口抓 swap，本来想抓三明治攻击，却查出某排行榜第一的池子三分之二交易量是三个钱包自买自卖。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心信号是&quot;同一钱包在同一区块两侧出现&quot;，用 log index 精确到区块内的先后顺序，完全绕开 mempool 和第三方 MEV 标签。</li><li>纯标准库 Python、MIT 协议、不用 API key，抓数到出结论全在公开数据上跑，部署成本极低。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>只用 CoinMarketCap 免密钥的 /v1/dex/tokens/transactions 接口，按游标翻页拿最近 swap，每行带 maker 钱包、区块号、区块内 log 序号、买卖方向、两个金额。不用 mempool 也不用 MEV 标签，因为中间人一定会在链上留下成交记录。</li><li>检测规则：同一个钱包在同一区块内做两笔、方向相反、两笔金额差在 5% 以内，就认定它站在区块两侧；两腿之间夹着哪些成交决定这是不是三明治。因为接口不给池子地址，只能按交易场所加两个代币合约来分组。</li><li>接口里区块号 h 和 log 序号 lgid 是字符串，直接当文本排序 &quot;99&quot; 会排到 &quot;1000&quot; 后面，所有&quot;中间&quot;判断都会算错还不报错。所以引擎第一步就把它们转成整数，转不了的行丢弃并计数，每次出结果都报这个数，还写了一个同名回归测试把坑钉死。</li></ul>
-<p><strong>适用场景</strong>: 适合链上数据分析师、量化研究员，以及做 DEX 聚合器或交易量榜单的团队。他们想搞清自己的成交前后到底发生了什么，或者要判断某个池子的高交易量是真活跃还是刷出来的。</p>
-<p><strong>竞品对比</strong>: 和 EigenPhi、libmev、Flashbots 那类看板比，它们大多做 MEV 标签化或 mempool 抢跑分析，需要付费数据或节点。这个工具只要公开的 DEX 成交接口，而且方向反过来——它真正抓到的是自买自卖的刷量（wash trading），不是三明治。</p>
-<p><strong>成熟度</strong>: 个人早期项目，代码是 stdlib-only 且带回归测试，有线上页面可跑，但没有版本号和社区规模，API 和数据口径可能还会变。</p>
-<p><strong>趋势信号</strong>: 最近的关注点是 DEX 交易量造假和排行榜可信度——文章直接点出被自成交刷到第一名的池子，正好撞上大家对榜单数据是不是真的这类质疑。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-05</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-05.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-05.html</guid>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天榜上最热闹的，全是 AI 编程代理的周边生意。Claude Code、Codex 这波工具烧了几个月，大家发现一个尴尬事：代理能跑，但写出来又啰嗦又不安全，还费 token。于是这榜上好几个项目，本质是给这些代理“上规矩”。 第一个信号是技能包标准化。Anthropic 自己发了 Agent Skills 官方仓库，第三方也在做各种 SKILL 包——把需求对齐、测试循环、画图表这些经验封装成代理能调用的命令。这说明大家已经承认：纯靠模型裸奔不靠谱，得把工程最佳实践做成固定动作。 第二个信号更明显：省钱成了卖点。有插件逼代理先走“7级最少代码阶梯”，砍掉平均54%的代码；还有个搞笑的，让代</description>
     </item>
     <item>
-      <title>dev.to · Two in three &#x27;liquidity pulled&#x27; alerts are the same wallet putting it back</title>
-      <link>https://dev.to/edycutjong/two-in-three-liquidity-pulled-alerts-are-the-same-wallet-putting-it-back-5f2f</link>
-      <guid isPermaLink="false">https://dev.to/edycutjong/two-in-three-liquidity-pulled-alerts-are-the-same-wallet-putting-it-back-5f2f</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>用 CoinMarketCap DEX API 的 maker 钱包过滤，把「撤池」和「几小时后回补」两条记录关联起来，发现三分之二的 LP 撤离警报其实是同一钱包在换池。</description>
-      <content:encoded><![CDATA[<p><em>用 CoinMarketCap DEX API 的 maker 钱包过滤，把「撤池」和「几小时后回补」两条记录关联起来，发现三分之二的 LP 撤离警报其实是同一钱包在换池。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心洞察是「第二条记录本来就在同一个 API 里，只是没人去 join」——加一个 maker= 参数就把误报率打下来，而不是训练模型或接链上索引。</li><li>每次调用的原始响应体都存进 receipt 并打 sha256，整个结论可复现可审计；示例中 14 次请求全 200、0 credits、50.6 秒跑完。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用 CMC DEX API 的 maker= 服务端过滤，一次免密钥请求就能拿到某个钱包在该代币所有池子上的全部流动性事件，把「撤出」和「回补」两条记录 join 起来——这是纯 API 使用方式问题，不是新算法。</li><li>startTime 在免密钥层被限流（HTTP 403，错误码 1013），但 endTime 可用，所以改用 lastId 游标向过去翻页，客户端按 ts 自己切出 t0 ±6 小时的窗口。</li><li>判定完全是对 tu（该笔事件的美元金额）做算术：同池回补占比 vs 跨池回补占比，输出 REBALANCE / MIGRATION / CONSOLIDATION / PARTIAL 四类，没有任何模型参与出数。</li></ul>
-<p><strong>适用场景</strong>: 跑 DeFi 国库监控或社群警报机器人的团队、盯盘的交易所/基金风控值班人。以前群里看到「LP removed −$2100 万」只能猜是不是做市商跑了，现在能直接看出是同池补回还是换池搬走。</p>
-<p><strong>竞品对比</strong>: 相比 Whale Alert、各类 DEX 报警 bot 只看第一行就发推送，以及 Nansen / Arkham / DeBank 这类要付费订阅的地址标签服务，它的差异是免密钥、只用公开 API、把同钱包的前后事件做关联，成本几乎为零。</p>
-<p><strong>成熟度</strong>: 个人早期项目，MIT 协议，纯标准库 Python，只有线上 demo（forwarding.edycu.dev），无版本号，样本是 335 条撤池记录，结论依赖单一数据源。</p>
-<p><strong>趋势信号</strong>: DeFi 误报警报长期是社群噪音源，加上近期「LLM 生成的数字不能信」的讨论升温，这篇明确强调「没有模型产生数字」，踩中了当下对可验证、可审计数据的偏好。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-04</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-04.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-04.html</guid>
+      <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
+      <description>GitHub 上这几天，风向特别明显：大家已经不满足于“AI 会不会写代码”，而是在认真琢磨“怎么让 AI 写代码更听话、更省钱、更像个人”。 最热闹的赛道就是给 Claude Code、Codex 这类编程代理加“规矩”。有的做成了技能包，用斜杠命令把头脑风暴、TDD、代码审查这些正经工程流程塞给 AI；有的像 Ponytail 那样，用一套“懒惰阶梯”逼着 AI 少写废话、少搞过度设计；还有人管起了记忆和上下文——你让 AI 别啰嗦，它倒是真的能省下 65% 的 token 费。Anthropic 官方的 Agent Skills 库也挤进来了，连 docx、pdf、xlsx 的读写都有标</description>
     </item>
     <item>
-      <title>dev.to · Why I Chose P2P Instead of S3 for My File Transfer Product</title>
-      <link>https://dev.to/anirban00537/why-i-chose-p2p-instead-of-s3-for-my-file-transfer-product-3mgo</link>
-      <guid isPermaLink="false">https://dev.to/anirban00537/why-i-chose-p2p-instead-of-s3-for-my-file-transfer-product-3mgo</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>作者做 ButterShare 大文件传输工具时放弃 S3 中转架构，改用 WebRTC 直连，因为文件从发送方直接传到接收方，服务器只做信令协调，省掉双倍带宽和存储成本。</description>
-      <content:encoded><![CDATA[<p><em>作者做 ButterShare 大文件传输工具时放弃 S3 中转架构，改用 WebRTC 直连，因为文件从发送方直接传到接收方，服务器只做信令协调，省掉双倍带宽和存储成本。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心判断不是 S3 不好，而是 S3 解决的是存储问题，ButterShare 要解决的是传输问题，需求和基础设施的错配才是换架构的原因</li><li>P2P 把成本关系从&#x27;用户越多、存储和带宽越贵&#x27;改成数据面不落在自己服务器上，后端只承担协调角色</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用 WebRTC 做点对点直连，文件字节不经过服务器，后端只负责信令和连接协调</li><li>只在发送方和接收方同时在线时传输，不做持久化中间副本，避免 100GB 文件在基础设施里走两遍</li><li>把存储和传输拆开看：S3 适合文件要在上传者离线后仍可下载的场景，P2P 适合双方在线的一次性搬运</li></ul>
-<p><strong>适用场景</strong>: 适合做大文件临时发送的独立开发者或小团队，比如视频素材、设计工程文件在两人之间直接传，用户不想登录云盘、不想等上传完成，也不想为存储和出网流量付月费。</p>
-<p><strong>竞品对比</strong>: 和 WeTransfer、Dropbox、Google Drive 这类云盘中转方案比，最大差异是不留云端副本、双方在线即传即走；代价是接收方必须在线，不能像 S3 那样异步下载。</p>
-<p><strong>成熟度</strong>: 个人项目自述性质的文章，不是发布版产品，架构思路可参考但无版本号、无性能数据支撑。</p>
-<p><strong>趋势信号</strong>: 大文件传输的带宽和出网（egress）成本一直是独立开发者的痛点，加上 WebRTC 在浏览器端直连的成熟，越来越多人尝试把数据面从云厂商手里挪走。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-03</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-03.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-03.html</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜，AI 编程助手几乎占据了半壁江山。但有意思的是，火的不是模型本身，而是围绕它们长出来的“配套设施”：给 Agent 做版本控制、统一记忆、精简代码、省 token、管安全。Claude Code、Cursor 这些工具已经不再是玩具，开发者开始把它们当成正经的团队成员，自然就要解决“怎么协作、怎么审计、怎么省钱”这类工程问题。这说明 AI 编码正在从“能跑就行”迈向工程化。 另一条线索是模型服务遍地开花，催生了 OpenClaude 这类“一个终端接所有模型”的工具。开发者不想被任何一家锁死，谁能提供统一入口，谁就有价值。谷歌一口气甩出多个项目——TimesFM 时序预测、浏览器 </description>
     </item>
     <item>
-      <title>dev.to · TVL Trend Analysis &amp; Liquidity Risk Assessment: Gemini</title>
-      <link>https://dev.to/dannydoes_2abdf9c/tvl-trend-analysis-liquidity-risk-assessment-gemini-1ila</link>
-      <guid isPermaLink="false">https://dev.to/dannydoes_2abdf9c/tvl-trend-analysis-liquidity-risk-assessment-gemini-1ila</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇发在 dev.to 的 Gemini 流动性风险报告，列了 TVL 增长表、10 个攻击向量和整改清单。但署名是占位符、数据无法核实，更像模板或 AI 生成的引流文。</description>
-      <content:encoded><![CDATA[<p><em>一篇发在 dev.to 的 Gemini 流动性风险报告，列了 TVL 增长表、10 个攻击向量和整改清单。但署名是占位符、数据无法核实，更像模板或 AI 生成的引流文。</em></p>
-<p><strong>亮点</strong></p><ul><li>把跨链桥日利用率（1.9% TVL/天）单独拎出来当「单点故障」，而不是只看桥的审计报告——这个视角在同类风险报告里不常见</li><li>把治理攻击和热钱包被盗分开列为两条向量，并给出各自的 TVL 影响上限（15% 和 2.5%），而不是笼统写「治理风险」</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用「7 日平均提现量占 TVL 比例」当流动性健康度指标（当前 3.6%），再叠加 Top-5 资产集中度（USDC 占 45%、ETH 18%）来判断单一资产风险</li><li>按「发生概率 × 影响（占 TVL 百分比）」给 10 个攻击向量排序，涵盖稳定币发行方冻结/脱锚、Optimism 标准桥被利用、Chainlink/Pyth 预言机操纵、多签+热钱包被攻破等</li><li>拿订单簿滑点估退出冲击（1 亿美元 USDC 滑点 0.12%、ETH 0.45%），并用 2.5 亿美元「Liquidity Shield」保险池对 57.95 亿 TVL 算出 4.3% 覆盖率</li><li>以「48 小时内 30% TVL 流出」做压力测试场景，结论是日常提现无压力、但短时会出现偿付缺口</li></ul>
-<p><strong>适用场景</strong>: 面向 DeFi 风控、加密基金投研和交易所尽调团队，做协议流动性体检时的参考框架；但这份具体报告的数据不能直接当事实用，更适合当写作模板。</p>
-<p><strong>竞品对比</strong>: 对标 Gauntlet、Chaos Labs、Rekt 这类 DeFi 风险分析，人家有链上地址、方法论和可复现数据源；这篇没有数据出处、没有链上证据，权威性差一大截，属于社区贴文级别。</p>
-<p><strong>成熟度</strong>: 信息成熟度很低：署名还是占位符「[Your Firm]」，日期写成 2026 年 9 月 23 日，且把「Gemini Earn 接入 Aave/Compound」「DAO 治理」「Liquidity Shield 保险池」当作现状描述，但这些和 Gemini 的公开事实对不上（Gemini Earn 2023 年就停了），基本可判定为模板或 AI 生成，不可作为尽调依据。</p>
-<p><strong>趋势信号</strong>: dev.to 上这类「某某协议 TVL 趋势 + 风险评级」的模板文越来越多，多半是审计/安全团队用 AI 批量生成、靠 Gemini 这类大名字蹭 DeFi 关键词做引流获客。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-02</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-02.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-02.html</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批项目有一个共同的暗线：**Agent 正在从“聊天机器人”变成“能干事的下属”，而开发者们正在加班给它配各种“专业装备”。** Claude Code、Codex 这类编码助手跑火之后，大家发现它能写代码但不懂科研、不写专利、不会剪辑。于是涌现了一大批“技能包”项目——给 agent 配上生物医药数据库、专利挖掘流程、学术引用审计规则、课程生成逻辑。本质上是把行业老手几十年的工作流程，压缩成 agent 能照着执行的标准步骤。 现在是“AI Agent 生态的基础设施抢建期”：技能包负责让 agent 变“专业”，ECC 这类产品负责让 agent 跑得“更稳稳更快”，爬虫负责喂数据。与此</description>
     </item>
     <item>
-      <title>dev.to · I had 47 tabs open during an incident. Never again.</title>
-      <link>https://dev.to/karaniph/i-had-47-tabs-open-during-an-incident-never-again-2kg8</link>
-      <guid isPermaLink="false">https://dev.to/karaniph/i-had-47-tabs-open-during-an-incident-never-again-2kg8</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇 AWS 工程师的使用体验文：28KB 的 Chrome 扩展 FocusTab Manager，按域名自动分组标签、用 Chrome 原生 discard 冻结闲置页、零配置可撤销，解决值班时几十个标签卡死笔记本的问题。</description>
-      <content:encoded><![CDATA[<p><em>一篇 AWS 工程师的使用体验文：28KB 的 Chrome 扩展 FocusTab Manager，按域名自动分组标签、用 Chrome 原生 discard 冻结闲置页、零配置可撤销，解决值班时几十个标签卡死笔记本的问题。</em></p>
-<p><strong>亮点</strong></p><ul><li>反向取舍：市面上 Toby、Workona 那类工具都在做 workspace、正则规则、团队同步，它只做「一键整理 + 可撤销」两件事。作者的原话是不想「像管理 AWS Organization 一样管理浏览器」</li><li>用 discard 而不是卸载标签来省内存，这保住了没法重建的上下文——AI 对话历史和调好的 Logs Insights 查询，这些关掉就得重来。代价是内存数字只能估算（写约 60MB/冻结标签），因为 Chrome 不给扩展暴露单标签内存</li></ul>
-<p><strong>核心功能</strong></p><ul><li>按域名自动分组，不用写正则：github.com 的标签合并成「github.com (4)」，*.console.aws.amazon.com 归一组，claude.ai 的对话归一组，组名和颜色自动生成</li><li>冻结闲置标签用的是 Chrome 原生 tab discard，不是关闭页面。标签变灰但 SSO 登录态、Bedrock 试验页状态、Claude 对话滚动位置都还在，点一下秒回</li><li>整个扩展 28KB，设置存在 chrome.storage.local，无账号、无遥测、无云同步；主按钮旁边直接放着 Undo / 折叠 / 全部展开，一键还原</li><li>Ctrl+Shift+D 不开弹窗就冻结全部标签，用于共享屏幕前清理画面</li></ul>
-<p><strong>适用场景</strong>: SRE / 云工程师 / 值班 on-call 的人，在 PagerDuty 报警后要同时开 CloudWatch Logs Insights、EKS 控制台、多个 AWS 账号 SSO 页面和几个 AI 对话标签。也适合任何平时开 40+ 标签、又不想为标签管理器再学一套配置系统的人。</p>
-<p><strong>竞品对比</strong>: 和 Workona、Toby 比，那两家要配工作区、连账号、跨设备同步，FocusTab 全本地零配置；和 OneTab 比，OneTab 是把标签转成列表，恢复时状态可能丢，它靠原生 discard 保住页面状态；和 Chrome 自带的 Memory Saver 比，自带的不分组、不能搜索、也没有一键撤销。</p>
-<p><strong>成熟度</strong>: 本质上是带推广性质的使用体验文，没提版本号和更新记录；扩展本身功能面很窄、只做本地存储、来自个人开发者，能用但长期维护和边界情况（比如多窗口、大量标签时）情况不明。</p>
-<p><strong>趋势信号</strong>: AI 对话标签变成了「不能关」的上下文载体，加上多账号 SSO 频繁过期、控制台标签按账号和区域分裂，让「标签关不掉」从 2015 年的收藏癖变成了 2025-2026 的值班实际痛点；同时大家对 SaaS 标签管理器上传 URL 和 prompt 的做法越来越反感，本地优先的小工具因此有了市场。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-09-01</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-01.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-01.html</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批项目非常能说明当前开发者生态的变化。 第一个关键词是“AI 代理”，但不再是那种什么都能干的聊天机器人，而是更具体的“技能包”和“路由规则”。给 Claude Code、Codex 这类编程助手加上安全方法论、专利挖掘、科研数据库技能，本质上就是给 AI 装上行业脑子。开发者已经受够了 AI 乱猜命令，开始用工程手段约束它——明确流程、可验证、确定性编译。这是从“能聊”到“能用”的必经阶段。 第二个趋势是“私有化和低成本”。ODS 一键把电脑变成私有 AI 服务器，数据不出机器；有人只花三块钱、两小时就从零训练出一个小模型。这跟大厂拼算力的路线完全不同，普通开发者和个人用户都够得着，也踩中</description>
     </item>
     <item>
-      <title>dev.to · Angular Security Headers: A Practical Guide to Securing Your Angular Application</title>
-      <link>https://dev.to/amit-jangid/angular-security-headers-a-practical-guide-to-securing-your-angular-application-g4i</link>
-      <guid isPermaLink="false">https://dev.to/amit-jangid/angular-security-headers-a-practical-guide-to-securing-your-angular-application-g4i</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇讲 Angular 应用怎么配 HTTP 安全响应头的入门文章，逐个解释 8 个头的用途，后续会给出 Nginx 和 Docker 的落地配置。</description>
-      <content:encoded><![CDATA[<p><em>一篇讲 Angular 应用怎么配 HTTP 安全响应头的入门文章，逐个解释 8 个头的用途，后续会给出 Nginx 和 Docker 的落地配置。</em></p>
-<p><strong>亮点</strong></p><ul><li>不堆一张&#x27;安全头大全&#x27;清单，而是按&#x27;这个头解决什么问题、在真实部署链路里该放哪一层&#x27;来讲，后面用 Nginx 配置和 Dockerfile 收口。</li><li>把控制分成两层：浏览器侧行为限制（X-Frame-Options、Permissions-Policy）和 HTTP 侧策略下发（HSTS、CSP、COOP/CORP），强调单配一个没用，要成套生效。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>逐个拆解 8 个响应头对应的具体攻击面：HSTS 挡 HTTPS 降级和中间人，X-Content-Type-Options 挡浏览器 MIME 嗅探，X-Frame-Options 挡点击劫持，Referrer-Policy 控制 Referer 往外泄露多少信息，Permissions-Policy 直接关掉用不到的摄像头、定位等浏览器能力。</li><li>用 COOP + CORP 做跨源隔离：COOP 切断 window.opener 引用，防别的页面通过引用操作你的窗口；CORP 限制外部站点直接引用你的资源，挡住跨源读取。</li><li>CSP 被单独拎出来讲，因为它才是防 XSS 的最后一道，也是唯一需要跟 Angular 构建产物（内联脚本、nonce/hash）对齐的头，文中说这部分留到后续配 Nginx 时展开。</li></ul>
-<p><strong>适用场景</strong>: 自己部署 Angular 应用的开发者和管 Nginx/容器的 DevOps。典型触发点是安全扫描工具（Mozilla Observatory、OWASP ZAP）报缺少安全响应头，或者过渗透测试、等保整改时被要求补上。</p>
-<p><strong>竞品对比</strong>: 和 Angular 官方 security guide（主要讲模板 XSS 和消毒，安全头基本一句带过）、OWASP Secure Headers Project（只给通用头清单，不关心你怎么部署）比，差异是它绑死了 Angular + Nginx + Docker 这套具体形态，讲的是配置写在哪、怎么写。</p>
-<p><strong>成熟度</strong>: 系列第 1 篇，属概念铺垫，还没有能直接复制的配置代码；个人博客文章，无版本号和同行评审。</p>
-<p><strong>趋势信号</strong>: 前端从纯托管 SPA 转向自托管 SSR 和容器化部署后，安全头不再由托管平台默认兜底，得开发者自己配，而 CSP 又和 Angular 的构建产物耦合，这类落地文章的需求就上来了。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-08-31</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-31.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-31.html</guid>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <description>这波趋势很清楚：AI Agent 正在从“聊天玩具”变成“真干活的工具”。生态里所有项目都在围绕同一个问题打转——怎么让大模型更聪明地理解数据、调用工具、搞定复杂任务。 最典型的是 MCP 协议。列表里至少四五个项目直接挂在 MCP 上，从爬虫、SEO、代码知识图谱到架构图生成，都在用它做“模型和工具之间的万能插座”。这说明开发者已经默认了，以后 AI 要接外部系统，走 MCP 就像当年 REST API 一样自然。 另一个大趋势是 Agent 不再瞎干活了。GitNexus 解析代码库知识图谱，Archify 画架构图，这些都在解决同一个痛点：AI 改代码不知道项目长什么样，越改越乱。给 A</description>
     </item>
     <item>
-      <title>dev.to · How I Send 100GB+ Files Directly Between Browsers Without Cloud Storage</title>
-      <link>https://dev.to/anirban00537/how-i-send-100gb-files-directly-between-browsers-without-cloud-storage-544j</link>
-      <guid isPermaLink="false">https://dev.to/anirban00537/how-i-send-100gb-files-directly-between-browsers-without-cloud-storage-544j</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇复盘文章，讲作者用 WebRTC Data Channel 做了 ButterShare，让两个浏览器直接对传 100GB 大文件，文件不落地服务器。</description>
-      <content:encoded><![CDATA[<p><em>一篇复盘文章，讲作者用 WebRTC Data Channel 做了 ButterShare，让两个浏览器直接对传 100GB 大文件，文件不落地服务器。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心取舍是砍掉存储层：同样一个 100GB 文件，传统架构要在自家服务器上走一遍上行一遍下行、差不多 200GB 流量，直连方案里服务器只剩信令开销</li><li>直接复用浏览器自带的 WebRTC Data Channel 传文件分片，不用装客户端也不用自己写传输协议，发个链接就能开始</li></ul>
-<p><strong>核心功能</strong></p><ul><li>文件数据走 WebRTC Data Channel 传二进制分片，服务器只当信令用——交换 SDP offer/answer 和 ICE candidate 帮两端找到彼此，不碰任何一个文件分片</li><li>把「传文件」和「存文件」当两个产品拆开：云存储是异步的（发件人可以关机），直连是同步的（双方必须同时在线），大文件场景下砍掉存储层能省掉上行+下行两份流量</li><li>必须自己处理 NAT/防火墙打洞、分片缓冲、流控和浏览器内存上限，以及断点续传——100GB 传到 97% 断了不能从头再来一遍</li></ul>
-<p><strong>适用场景</strong>: 给同事或客户传几十上百 GB 的工程文件、视频素材、虚拟机镜像的人，比如剪辑师、设计师、游戏开发者。前提是双方同时在线，不想占云盘配额、也不想等上传。</p>
-<p><strong>竞品对比</strong>: 对比 WeTransfer、Google Drive、Dropbox 这类「先上传再发链接」的方案，最大区别是文件不落盘、没有存储配额和带宽账单；对比 Snapdrop、PairDrop 这类已有的浏览器 P2P 传输工具，差异点在于它冲着 100GB 级别的超大文件设计了分片和断点续传。</p>
-<p><strong>成熟度</strong>: 这是个人项目的技术复盘文章，不是开源仓库发布，没有版本号、跑分或生产环境数据，只能说思路可用、落地程度未知。</p>
-<p><strong>趋势信号</strong>: 原因不明——WebRTC 传文件已不是新话题，近期云盘陆续限速和收紧免费额度，绕开服务器中转的方案又被翻出来讨论，但这篇本身没绑定具体发布事件。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-08-30</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-30.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-30.html</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <description>这批项目放在一起，能看出一个很清晰的主线：AI编程助手正在从“写代码的玩具”变成“干活的同事”。 最明显的是生态开始分层了。Claude Code官方插件市场上线、Composio整理1000+技能清单、同行给AI打包25个工程规范技能——这些都是在做同一件事：让agent不再只会聊天，而是能按生产标准干活。同时有模型路由器自动调度不同LLM省钱，有科学技能库让agent做基因组研究，有带测验和3D互动的AI课程生成器。这已经不是单点工具，而是围绕agent的一整条产业链。 另一条暗线是“去审查”和“本地化”。abliteration一键去审查的工具，社区已经产出了5000多个模型——这对应的</description>
     </item>
     <item>
-      <title>dev.to · Production RAG on the Lakehouse with BigQuery Vector Search and Apache Iceberg</title>
-      <link>https://dev.to/gde/production-rag-on-the-lakehouse-with-bigquery-vector-search-and-apache-iceberg-5g3</link>
-      <guid isPermaLink="false">https://dev.to/gde/production-rag-on-the-lakehouse-with-bigquery-vector-search-and-apache-iceberg-5g3</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>主张别再把数据搬进独立向量库，而是把向量当普通列存进 BigQuery/Iceberg 表，让向量检索直接在湖仓里做，省掉同步链路和数据漂移。</description>
-      <content:encoded><![CDATA[<p><em>主张别再把数据搬进独立向量库，而是把向量当普通列存进 BigQuery/Iceberg 表，让向量检索直接在湖仓里做，省掉同步链路和数据漂移。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心取舍是&quot;把 AI 搬到数据旁边&quot;而不是&quot;把数据搬到 AI 旁边&quot;：牺牲专用向量库在索引结构上的灵活性，换掉整条同步管道和两套安全模型</li><li>用同一笔事务同时写文本和向量，把 RAG 准确性问题从&quot;管道可靠性问题&quot;降级成&quot;普通数据库一致性问题&quot;</li></ul>
-<p><strong>核心功能</strong></p><ul><li>把 embedding 存成 Iceberg 或 BigQuery 原生表里的一个普通列（ARRAY&lt;FLOAT64&gt;），向量索引建在这列上，和源数据同一张表、同一事务，不再往 Pinecone/Milvus/Weaviate 做 ETL 复制</li><li>更新一行时文本、元数据、向量一起原子提交，不存在&quot;源库改了、向量库还是旧的&quot;这种不一致，原文称之为 metadata drift（元数据漂移）</li><li>权限不走第二套：行级策略、列级脱敏、IAM 角色直接在检索路径上沿用，不需要在向量库里重新实现一遍访问控制</li></ul>
-<p><strong>适用场景</strong>: 适合已经有湖仓、又在做企业 RAG 的数据平台团队，典型场景是商品目录、客服知识库这类数据频繁变更的业务——价格改了、状态改成&quot;已召回&quot;，问答机器人必须立刻跟着变，而不能等同步任务跑完。</p>
-<p><strong>竞品对比</strong>: 对手是 Pinecone、Milvus、Weaviate 这类独立向量库，以及 pgvector 这种把向量塞进现有库的做法；最大的差异在于 BigQuery/Iceberg 方案连数据都不复制，检索和治理是同一个系统，而独立向量库天生要面对同步延迟和权限重复实现。</p>
-<p><strong>成熟度</strong>: 这是一篇厂商立场（Google GDE）的架构倡导文，不是项目发布：BigQuery 向量检索本身已可用、Iceberg 集成也已上线，但文中没有压测数据、成本对比或客户案例，属于方案宣讲而非可复现的实践报告。</p>
-<p><strong>趋势信号</strong>: RAG 从 demo 走向生产后，独立向量库的运维和一致性成本被集中吐槽，Databricks、Snowflake、BigQuery 几乎同时把向量检索塞进自家湖仓，这篇就是这场&quot;向量库要不要单独存在&quot;争论里 Google 侧的喊话。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-08-29</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-29.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-29.html</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <description>这波热门项目基本都绕着一个核心转：AI编程助手正在从&quot;能聊天&quot;变成&quot;真干活&quot;。 先看插件目录、MCP调试器、代码知识图谱、Agent技能库这些——它们都在干同一件事：给AI编织助手补上下文、补工具、补规范。以前AI画图瞎编结构，现在有Archify这种技能去验证架构图；以前AI编码代理写老式Go代码，现在有JetBrains开源规范纠正它。这说明什么问题？说明大家发现，模型本身已经够强，卡脖子的反而是周边配套，于是扎堆搞插件分发、搞信任体系、搞工具协议。 再看另一拨：科学技能库、AI视频制作、截图转代码、语音代理框架。这些是AI助手在往外扩张，进实验室、进剪辑室、进UI设计、进电话客服。背后推</description>
     </item>
     <item>
-      <title>dev.to · Windows can decode (and encode) HEIC without ImageMagick - but your browser can&#x27;t decode it at all</title>
-      <link>https://dev.to/_8729c5bde46be2/windows-can-decode-and-encode-heic-without-imagemagick-but-your-browser-cant-decode-it-at-all-51ca</link>
-      <guid isPermaLink="false">https://dev.to/_8729c5bde46be2/windows-can-decode-and-encode-heic-without-imagemagick-but-your-browser-cant-decode-it-at-all-51ca</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇 dev.to 实测：Windows 11 自带 HEIF 编解码，可用 PowerShell/WIC 把 HEIC 批量转 JPG，而浏览器仍不能直接解码 HEIC。</description>
-      <content:encoded><![CDATA[<p><em>一篇 dev.to 实测：Windows 11 自带 HEIF 编解码，可用 PowerShell/WIC 把 HEIC 批量转 JPG，而浏览器仍不能直接解码 HEIC。</em></p>
-<p><strong>亮点</strong></p><ul><li>不用第三方工具，直接调系统自带 WIC/WinRT 编解码器；PowerShell 循环即可批量转换，还能直接写 HEIC 做测试样本。</li><li>明确区分“改扩展名”和“真转码”，并用 xxd 看文件头验证，避免上传时格式校验失败。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用 Windows WIC（系统图像编解码接口）从 PowerShell 调 BitmapDecoder 读取 HEIC，再用 JpegBitmapEncoder 批量导出 JPG，不需要装 ImageMagick。</li><li>通过文件头识别真实格式：photo.heic 前 16 字节含 ftypheic，重命名成 .jpg 不会改内容，Windows 仍会识别为 Microsoft HEIF Decoder。</li><li>依赖 Microsoft.HEIFImageExtension 免费包；HEIC 内层是 HEVC 压缩，部分机器还需付费的 Microsoft.HEVCVideoExtension。反向编码用 WinRT BitmapEncoder.HeifEncoderId，因为 WPF 没有 HEIF 编码器。</li></ul>
-<p><strong>适用场景</strong>: Windows 用户或开发者收到 iPhone 的 HEIC 照片，需要批量转 JPG 上传到只收 JPG 的表单或后端；也适合不想把私人照片传到在线转换站的人。</p>
-<p><strong>竞品对比</strong>: 和 ImageMagick、在线 HEIC 转 JPG 网站相比，优势是免安装、本地处理、不泄露照片；限制是只适用于已装 HEIF/HEVC 扩展的 Windows，跨平台和浏览器端仍无原生方案。</p>
-<p><strong>成熟度</strong>: 这是经验分享文章，基于 Windows 11 25H2 实测，步骤可用但依赖 Store 扩展和具体版本；不是正式库或生产工具。</p>
-<p><strong>趋势信号</strong>: iPhone 默认拍 HEIC，很多 Web 上传仍只认 JPG，而主流浏览器至今不原生解码 HEIC，所以免安装的本地转换方法现在被反复讨论。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-08-28</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-28.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-28.html</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+      <description>这些热门项目有一个共同点：AI Agent 成了绝对主线。不管是 Claude Code、Cursor 的官方插件市场，还是 MCP 控制 Chrome、LiveKit 做实时语音，大家都在忙同一件事——给 Agent 配齐&quot;手脚&quot;和&quot;工具箱&quot;。 先说插件生态。Claude Code 和 Cursor 都开了官方插件仓库，这意味着 Agent 开发正从&quot;各玩各的&quot;走向统一标准，插件发现、安装、信任这些问题有人管了。MCP 协议也在快速落地，控制浏览器这种基础能力，正在成为 AI 辅助开发的标配。 再看数据和工具链。有人把 163 个科研技能打包给 Agent 用，有人把 34 家免费 LLM </description>
     </item>
     <item>
-      <title>dev.to · The one law the whole series assumes: an AI that goes down silently is worse than one that&#x27;s dead</title>
-      <link>https://dev.to/derekwang85/the-one-law-the-whole-series-assumes-an-ai-that-goes-down-silently-is-worse-than-one-thats-dead-3fc7</link>
-      <guid isPermaLink="false">https://dev.to/derekwang85/the-one-law-the-whole-series-assumes-an-ai-that-goes-down-silently-is-worse-than-one-thats-dead-3fc7</guid>
-      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
-      <description>dev.to 系列第六篇，讲 AI 编码项目最底层的可靠性：靠幂等、带标注的降级、可见性、快速恢复四招，防止 Agent 静默失败拖垮系统。</description>
-      <content:encoded><![CDATA[<p><em>dev.to 系列第六篇，讲 AI 编码项目最底层的可靠性：靠幂等、带标注的降级、可见性、快速恢复四招，防止 Agent 静默失败拖垮系统。</em></p>
-<p><strong>亮点</strong></p><ul><li>把&quot;静默失败最贵&quot;当第一条原则：报错会触发告警、重试、人工介入，静默什么都不触发，系统看起来健康，直到用户发现业务已经坏了几个小时。</li><li>恢复的瓶颈是定位而不是修补：pre-compile-check.sh 一次性扫出陈旧 import、@ConditionalOnProperty 条件环、启动冒烟三类已知问题族，让人做窄修复而不是一个个踩雷，单次恢复从 45 分钟压到 5 分钟以内。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>幂等靠数据库兜底：seed 脚本从硬编码 ID 改成 INSERT ... ON DUPLICATE KEY UPDATE status=status，重复执行等于空操作；调用方拿不准自己上次写没写成功时，用 idempotencyKey 换第一次的结果，不给第二次下单/扣款。</li><li>降级必须带标注：外部汇率源（NCC feed）挂掉时返回缓存汇率，同时显式提示&quot;汇率数据可能延迟&quot;。作者强调静默降级比直接报错更糟，因为下游会拿过期数据做决策而没人知道。</li><li>后台 worker 不能用 set -e：多 agent swarm 集体启动失败，根因是 set -e 加上 flock 锁竞争，一个 worker 退出把锁污染，后续全部静默死在启动阶段。改成 set +e 加自己的恢复路径，再加一个 5 分钟轮询进程健康、自动重启的 watchdog，恢复时间从手动 30 分钟降到 5 分钟以内。</li></ul>
-<p><strong>适用场景</strong>: 给在生产环境跑 LLM Agent 或多 agent 编排的后端/平台工程师看，尤其是交易、支付、订单这类不能重复扣款、也不能悄悄挂掉的系统。文章里的案例都来自作者自己的交易系统 UAT 和 worker swarm。</p>
-<p><strong>竞品对比</strong>: 思路和《Release It!》里的断路器/隔板、Stripe 的 idempotency key 是同一套可靠性工程，最大差别是前提换了：它假定 AI 比人死得更干净利落——人会变慢、会求助、留半句话，AI 直接静默停住或者假装还在干活，所以冗余和可见性的优先级要往前排。</p>
-<p><strong>成熟度</strong>: 系列文章第六篇，属个人项目经验总结，有具体故障和数字支撑，但没有配套代码仓库、版本号和可复现测试，比成熟的 SRE 实践还差一层。</p>
-<p><strong>趋势信号</strong>: 越来越多团队把 AI agent 和多 agent 编排推上生产，静默失败的事故开始批量出现，于是断路器、幂等、watchdog 这些老工程被重新搬回来套在 Agent 上。</p>]]></content:encoded>
+      <title>GitHub Trending 日报 · 2026-08-27</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-27.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-27.html</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+      <description>翻完今天这批热门项目，一句话概括：AI编程工具正在长出整个生态，而且速度比想象中快。不再是一个孤零零的Claude Code，而是围绕它出现了插件目录、技能库、导航站、本地网关——一套完整的“应用商店”雏形。Anthropic官方维护的插件市场出现两次（目录和社区市场），第五个、第十六个项目都在做Agent Skills的收集和分发，这意味着“装技能”正在变成AI编程的日常操作，和当年装浏览器插件一样。一个格式只要被大厂力推、社区跟上，它很快就是事实标准。 另一个共同点是省钱。把免费模型接入编码代理的本地网关、让Agent少写代码的懒人插件、本地优先的AI大脑——开发者开始精打细算了。不烧To</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-26</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-26.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-26.html</guid>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天榜单上二十多个项目，十九个跟AI沾边。这不是偶然，是整个开发者生态正在被AI重写。 最明显的信号是Agent爆发。TradingAgents十万星，用多智能体模拟真实交易公司；AI求职框架靠自动化投递拿到offer；100+模板的Agent合集克隆即用。智能体不再是概念，正在变成标准工作流。基础模型本身没多大意思了，Agent才是应用层的主战场。 第二个信号是“本地优先”成了共识。AI代理工作区进Apache孵化，Rust写的本地助手一周趋势九连冠，还有本地搜索引擎、Obsidian知识库自动化——全是数据留在自己电脑上、隐私不依赖云端。AI代理做了越来越多事，用户开始要求看得见、管得住、</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-25</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-25.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-25.html</guid>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天榜单透露一个信号：AI Agent 从聊概念进入了“接活”阶段。Claude Code 成了小区块核心，围着一圈人做插件、写框架、定规范、存笔记。模型本身不稀奇了，怎么把代理用好、管住、串起来，才是真需求。Karpathy 一句话就能带火一套规则文件，说明大家被“乱改代码”的 Agent 整得够呛，急着找行为准则。 另一个明显趋势是本地优先。从密码管理、Logitech 外设控制、笔记工作流，到 Apache 孵化的 Agent 日志系统，全往自托管和隐私控制上走。Rust 在这波里出镜率极高，终端编码代理、Bitwarden 兼容服务器、个人 AI 助手记忆树，都用 Rust 重写或构建</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-24</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-24.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-24.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天的趋势榜几乎被 AI 编程助手生态霸屏了。Claude Code、Codex 这些工具火了，但用起来问题不少——所以一堆项目在补周边：把需求对齐、TDD、调试做成可复用技能包；整理 1500 多个经过验证的 Agent 技能仓库；做个官方插件市场让安装一键搞定；甚至有人写了个系统，给多个编程代理统一加记忆和协作能力。这说明 AI 编程助手已经过了&quot;能跑就行&quot;的阶段，开发者开始认真解决它靠不靠谱、能不能协同、怎么沉淀经验的问题。 另一条线是本地优先和自托管。好几个项目都是 Rust 写的，比如 OpenAI 的终端编码代理、个人 AI 助手 OpenHuman、罗技外设替代品、Bitward</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-23</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-23.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-23.html</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
+      <description>最近 GitHub 热门项目几乎被同一件事占满：AI 编程助手。OpenAI、Anthropic 官方工具免费开放，Cursor 发布插件规范，Claude Code 用法被整理成方法论，甚至连 CLAUDE.md 这种“给 AI 写行为守则”的文件都能火。说明 AI 编码已经不是概念，而是日常。 开发者生态正在围绕“让 Agent 别乱写代码”淘金。技能集、增强层、TDD 工作流、红队安全扫描，全在补同一个漏洞：AI 写代码很爽，但不可控。PostHog 让 Agent 看数据自己修 bug，腾讯朱雀实验室做 AI 安全体检，方向一致——从“能写”到“敢用”。 同时，成本问题被摆上台面。Su</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-22</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-22.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-22.html</guid>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜项目，几乎全是围着 AI 打转。但不再是简单堆模型、炫生成效果，而是给 AI 编程助手“上规矩”：让它们先问清需求、写计划、按 TDD 流程干活、用子代理拆任务。这意味着“vibe coding”那套随便糊弄的玩法正在退潮，开发者开始要求 AI 产出真实可维护的工程代码。 另一个明显信号是“本地优先”和“隐私”成卖点。罗技替代品用 Rust 重写、干掉遥测；旅行视频生成在手机端完成、数据不上传；AI 代理工作区把日志做成不可变记录。大家厌倦了大厂无偿拿走数据，宁可自己折腾开源方案。 同时，开发者生态正把 AI 工具从“单机孤岛”拉成“协作网络”。PostHog 让 AI Agent </description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-21</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-21.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-21.html</guid>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天热榜基本被 AI 开发工具刷屏了。最明显的感觉是：AI 编程助手正在从&quot;能跑&quot;往&quot;好用、规范、靠谱&quot;进化。 一堆项目在补 agent 的短板。给 AI 编程助手做技能包、做方法论的，本质上是嫌它跑偏、废话多、质量差，想把它摁到正规软件开发流程里来。Cursor 官方插件仓库是平台方在主动扩生态，跟社区自己搞的技能包一个意思。带长期记忆、多终端多 agent 协作的那些工具，解决的是切换工具就失忆的烦人事。省 token 那个更是直击痛点——大模型 API 调用费是实打实的成本，省 33% 谁不爱。腾讯朱雀那个红队平台，则是给 AI 应用上线前做体检，典型的后置需求。 另一个共同趋势是：开发</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-20</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-20.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-20.html</guid>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+      <description>最近 GitHub 热门项目几乎都围着 AI 转，但重点变了：不是追新模型，而是给 AI 装“规矩”和“帮手”。视频生成、求职、安全分析、交易回测，全都在用 Agent 自动化流程。AI 编码代理更是爆款——Claude Code、Codex 用的人多，但难控制、容易跑偏，于是有人写技能集、有人套 TDD 流程、有人做多代理协作，本质都是给大模型补上“项目管理”和“代码审查”的能力。这不只是工具链，更像是在给 AI 建一套职业规范。 另一条主线是“本地化”和“省成本”。上下文数据库按需加载省 token，Mac 上的推理服务器优化 KV 缓存，Rust 交易引擎一套代码跑回测和实盘。开发者在用</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-19</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-19.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-19.html</guid>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天榜单上最扎眼的就是AI Agent相关项目扎堆。记忆、上下文、多代理协作、安全技能库——几乎每个热点都在解决同一个问题：让AI代理真正能干活，而不是聊完就忘。比如给CLI工具加长期记忆、用虚拟文件系统管理知识、让“克隆老板”自动分派任务，本质上都在补“记忆”和“协作”这两块短板。这不是巧合，是Agent落地到真实工作流必须过的坎。 另一个信号是“本地化”和“开源硬件”在回归。Apple Silicon上的推理服务器、基于Arch的发行版、甚至开源相控阵雷达，都强调自主可控和透明。开发者不再满足于黑盒云服务，想自己掌握工具链甚至硬件。DHH推Linux发行版和MITRE F3安全框架发布，正</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-18</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-18.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-18.html</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天热榜项目有点泾渭分明：一拨围着AI Agent打转，另一拨是纯工具党。但细看，其实都在讲同一件事——开发者想要自己掌控的东西。 AI Agent那边最扎眼。有管记忆的，有协调多个Agent的，有把上下文做成虚拟文件系统的，还有给Agent用的安全技能库。核心问题很直白：AI写代码从单打独斗变成了团队协作。但团队一多，记忆串台、上下文贵、各干各的，麻烦就来了。于是大家都在补基础设施——长期记忆、跨Agent切换、共享上下文、降低token消耗。这说明Agent已经不是炫技了，大家默认它能干正经活，现在拼的是在长任务、多Agent场景下干得稳、干得省。 另一个信号是本地化和自部署。Apple </description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-17</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-17.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-17.html</guid>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <description>这几天 GitHub 上几个热门项目，背后其实是一件事：AI 应用正在从“聊聊天”变成“真干活”。Unsloth 让普通人在本地就能微调大模型，ToolJet 直接用自然语言生成内部工具，连 14MB 的端侧模型都专做工具调用——开发者不再只关心模型多聪明，更关心它能不能稳定地调 API、读数据、操作系统。 另一个看点是“开源平替”的节奏变快了。CapCut 被禁，立刻有人用 Rust 重写视频编辑器；Koishi 的底层 cordis 把插件编排做成通用能力，让复杂系统不再靠一团乱麻。DHH 发个 Arch 发行版就能火，说明开发者受够了配置地狱，想要开箱即用、桌面还得是现代 Wayland</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-16</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-16.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-16.html</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
+      <description>最近的热门项目，几乎都围着 AI 编程助手和 Agent 生态转。Claude Code、Codex 火了之后，开发者不再只满足于“聊天生成代码”，而是想要一个能自己干活、能接入各种工具的智能体。所以有了让 AI 通过命令行操作任意软件的桥接工具，也有了专门给 AI 代理用的浏览器，连你的登录状态都能共享。 另一个明显趋势是“本地化”和“小而美”。14MB 的小模型能跑在手表和机器人上，8B 模型在 4GB 显卡上就能微调，本地跑大模型的桌面应用直接支持最新开源模型。大家开始在意数据隐私、不想每步都上云。 插件化和低代码也在加速。Cursor 官方插件仓库、Koishi 社区推的 Cordis</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-15</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-15.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-15.html</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-14</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-14.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-14.html</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-13</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-13.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-13.html</guid>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-12</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-12.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-12.html</guid>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜，AI Agent 算是彻底“占领”了。但有意思的是，大家不再晒 Demo</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-11</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-11.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-11.html</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-10</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-10.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-10.html</guid>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
+      <description>这些项目集中反映出两件事：AI编程Agent进入爆发期，以及整个开发生态在围绕它们重构。 Prime Agent、T3 Code这些工具，解决的不再是“能不能生成代码”，而是“怎么让AI自己干活、怎么管多个AI干活”。Agent角色库和Agent Skills的出现，说明大家都在往“给AI配团队”的方向走——不是单个工具，是一整套协作系统。 另一个明显趋势是，做底层基础设施的，开始为AI“重做一遍”。witr把进程、容器、端口串成因果链，是对传统运维工具的语义升级。RAG知识库瞄准monorepo，身份提供商做SSO，都在为agent提供更结构化的上下文。传统工具</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-09</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-09.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-09.html</guid>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+      <description>这次上榜的项目，信号很清晰：**AI 正在从“聊天玩具”变成“真同事”**。几个 Skill 包和 Agent 项目，核心思路一致</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-08</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-08.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-08.html</guid>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-07</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-07.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-07.html</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-06</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-06.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-06.html</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-05</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-05.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-05.html</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI代理基建：记忆中枢、安全检测、方法论注入成为核心，标志从“能用”转向“可信、可复用”。同时，推理成本优化（分层流式、前缀缓存）与工具链扩展（渗透、视频编辑）大幅拓展代理能力边界。前端与运行时持续迭代，Rust驱动的高性能工具（打包器、CSS框架）显露出底层重构趋势。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-04</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-04.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-04.html</guid>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-03</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-03.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-03.html</guid>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势呈现 AI 应用层爆发与工具链重构。微软双课程（12周AI入门、21周生成式AI）聚焦零基础培养，反应体系化学习需求；而大量仓库围绕 AI Agent 基建——腾讯云记忆中心、MCP 服务器、统一CLI聚合社媒、安全逆向路由包，说明开发者正从“调模型”转向“组Agent”，解决协作、记忆、工具调用的实际问题。同时本地推理引擎与4GB显存跑70B模型，标志端侧部署与成本优化成为新焦点。另一边，自托管YouTube前端、极简项目管理替代Jira、逆向还原N64源码，体现对自主可控、去臃肿和底層原理的集体偏好。整体信号：AI从炫技走向工程化，开发者追求轻量、私有、高性价比的基础设施。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-02</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-02.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-02.html</guid>
+      <pubDate>Sun, 02 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-08-01</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-08-01.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-08-01.html</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-31</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-31.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-31.html</guid>
+      <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-30</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-30.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-30.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-29</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-29.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-29.html</guid>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势显示：**AI代理生态走向成熟**——从Neuro-sama复刻、统一API接口、代理操作系统到微软治理工具包，开发者正系统性解决协调、记忆、安全等生产级痛点；同时**多模态交互加速**：3D建筑编辑器（WebGPU）、Claude视频理解、语音代理流水线，释放视觉与实时交互潜力；**本地优先与轻量化**趋势明显：自托管AI伴侣、本地量化引擎、Tauri+DuckDB-WASM GIS、Go终端管理器，反映对数据主权和低延迟的追求。整体信号：开源社区正从单一模型应用转向**可组合、可治理、可落地的AI基础设施**，并在交互范式和计算边界上持续突破。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-28</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-28.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-28.html</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示：AI Agent 走向实用化（虚拟伴侣、编程助手、多平台搜索），自托管与去中心化服务持续升温（聊天、VPN、去中心化 AI），同时开源领域模型（金融 K 线）与本地优先工具（GIS、终端管理器）崭露头角。开发者正追求隐私、高效与跨平台自动化，AI 正从代码辅助渗透到具体业务场景。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-27</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-27.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-27.html</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势突显两大主线：一是基于Nostr/蓝牙Mesh的去中心化通信与协作工具兴起，强调无服务器、离线可用；二是AI代理工具链快速成熟，从专用浏览器、统一界面到设计规范、代码审查，开发者正构建去中心化+AI自主可控的生态。同时，Rust重写经典服务（Minecraft）、金融基础模型等垂类创新频繁，信号：开源社区正以“自托管+多模型统一”重塑开发与协作范式。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-26</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-26.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-26.html</guid>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势显示三大信号：**去中心化协作**（Nostr协议的自托管平台、蓝牙Mesh即时通讯）和**AI代理生态爆发**（浏览器、视频编辑器、代码审查CLI、技能组合框架）成为主流，强调人类-Agent在统一日志中的对齐与执行。**Rust持续渗透**高性能场景（Minecraft服务器、英语语法检查器、向量索引），追求极致效率。同时，金融领域首个开源基础模型、全栈大模型教程涌现，开发者正加速构建可组合、隐私优先的多智能体基础设施。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-25</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-25.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-25.html</guid>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，**AI代理正从单点工具进化为完整生态**：自托管协作平台、并行浏览器、MCP网关聚合千余技能，共同构建自主工作流。**Rust逆袭多领域**：Minecraft服务器、离线语法检查器均以极致性能与低资源著称。开源垂直模型崛起（金融K线模型）、**架构即代码**（LikeC4）与**无线感知**（WiFi呼吸监测）预示开发者正将AI嵌入物理与金融世界。隐私优先、自托管CMS/终端文件管理器持续受宠，历史源码（阿波罗11号）则折射对技术根源的致敬。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-24</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-24.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-24.html</guid>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub热门趋势：AI代理生态加速成熟——从专用浏览器、CAD插件到统一API网关与代码审查CLI，开发者正批量构建AGI时代的基础设施；自托管与隐私优先持续升温，Rust重写的语法检查器、WiFi感知硬件、Jellyfin等替代方案凸显用户对控制权的渴求；同时复古代码（阿波罗11号源码）与开源金融模型并存，折射出技术社区在深耕前沿与回溯根源间的双重热情。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-23</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-23.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-23.html</guid>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
+      <description>当前趋势信号强烈：**本地优先与隐私保护**（WiFi感知、离线语音工作室、PAKE加密传输）成为核心诉求；**AI工具链整合**（统一网关、Claude Skills、约束解码库）追求效率与成本控制；**Rust生态持续爆发**（全栈框架、Minecraft服务器、Hyprland）覆盖性能敏感场景；**基础设施自托管**（部署平台、临时邮箱）和**领域专用模型**（金融K线）反映深度定制需求；**代码可视化与上下文优化**（代码智能图、模型驱动架构图）直击AI</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-22</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-22.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-22.html</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势揭示开发者生态三大转向：**AI Agent从概念走向工程化**（书籍+实验代码、多平台框架、技能库），**本地优先与成本效率成刚需**（代码智能图减少token、硬件适配推荐、免费额度聚合网关、Rust高性能工具），**工具链去SaaS化与垂直替代**（自托管SEO/CI/CD、TradingView分析、CAD自动化）。信号：开发者正聚焦“可落地、低消耗、强自控”的Agent基础设施，告别大而全，拥抱精准垂直。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-21</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-21.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-21.html</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub热点凸显两大趋势：**AI代理生态成熟化**与**本地优先的实用主义**。MCP协议已渗透至代码图谱、语音、搜索等工具链，形成“代理+记忆+工具”的闭环。同时，从CPU-GPU异构推理到替代Semrush/OpenAI的产品，开源正降低AI应用成本，推动开发者从实验转向生产级部署。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-20</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-20.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-20.html</guid>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示开发者正从追逐大模型转向工程化落地：本地优先、资源高效（4GB GPU跑70B模型）、上下文压缩（Tree-sitter减token）成为焦点；AI代理框架与开源替代（ElevenLabs、Copilot SDK）井喷，强调可集成性与隐私；系统性AI教育（全栈课程、名校路线）和底层原理重构（从零构建经典）反映社区回归理性，追求可控与深度理解。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-19</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-19.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-19.html</guid>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，AI工程化与开发者体验成为核心焦点：从低显存推理（4GB单卡跑70B模型）、零成本本地搜索到代码结构图降本，均聚焦资源效率；同时，标准化语义元数据、红队测试工具与全栈课程涌现，预示生态正从模型竞赛转向可靠、可互操作的生产级部署。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-18</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-18.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-18.html</guid>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦“本地化+去中心化”AI工具链：从本地量化模型（1-bit/27B可手机运行）到MCP协议驱动的代码智能图，再到BYOK嵌入的Copilot代理SDK，开发者正追求低延迟、高可控的自主开发环境。Rust重写（编译代理/视频编辑器）、自托管（电子签名/AI辅导）与从零构建教程并行，反映对底层原理与效率的极致追求。AI编码从“辅助”走向“工程化”，强调非AI感的UI设计与评估驱动。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-17</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-17.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-17.html</guid>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势显示：AI编码代理与智能体技能模板持续爆发，Rust重写、反模板化UI设计、超低比特量化模型等方向凸显开发者对高效、低成本、本地化AI的强烈需求；同时，跨平台实用工具（视频编辑、健身数据集）与元数据标准化项目涌现，反映开源社区正从“能力堆砌”转向“可组合、可互操作的生态构建”。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-16</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-16.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-16.html</guid>
+      <pubDate>Thu, 16 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势显示：AI代理生态已进入“精耕细作”阶段——从编码到交易、安全到营销，开发者正构建高度模块化、可插件化的代理技能库与安全门控；同时性能优化（Rust重写、SIMD过滤）与低成本模型适配成为刚需。此外，开源替代品（CapCut）、个性化辅导系统、健身数据集等垂直应用涌现，预示开发者正从“技术自嗨”转向解决真实场景痛点。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-15</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-15.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-15.html</guid>
+      <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势显示，开发者生态正从“AI生成一切”转向**工程化与安全可控**：多个项目聚焦AI编码代理的建模（组合技能集）、安全拦截（防止破坏命令），以及可直接运行的RAG/代理模板，降低落地门槛。同时，**视频编辑领域出现两大开源CapCut替代**，分别强调插件化/AI集成与Tauri+Rust性能优化，预示桌面工具重写浪潮。**教育化模拟**也成热点——多智能体对冲基金、个人交易代理、健身数据集设计，均以可复现实验形式加速领域入门。此外，Go实现的Grok API网关、全本地知识图谱转换等基础设施工具，反映多模型、多数据的统一管理需求。整体信号：AI工具正从“能做”迈向“能用且安</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-14</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-14.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-14.html</guid>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势显示：AI Agent应用全面爆发，从个人交易、虚拟伴侣到营销技能包，开发者正快速构建可部署的自动化工具；同时，开源替代（如视频编辑器）与工程效率工具（知识图谱、规范驱动开发）并行，强调去中心化、本地化与个性化。数据驱动健身项目则反映垂直领域深耕。整体信号：开发者生态正从单一AI编程辅助转向全链路AI集成与自动化，注重实用性与非千篇一律的体验。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-13</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-13.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-13.html</guid>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
+      <description>当前趋势显示AI编码代理生态正快速成熟：从单体助手转向多代理协作与安全管控（如拦截破坏性命令、统一管理界面）。同时，开发者对本地化、隐私优先的工具需求强烈（家庭自动化、离线生存计算）。金融与量化领域出现多AI模拟与教学系统，数据库重写（Rust PostgreSQL）则体现极致性能追求。整体信号：AI代理正从“辅助”升级为“安全协作的自主工作流”，跨领域应用加速落地。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-12</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-12.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-12.html</guid>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示三大特征：**C++生态重焕活力**（现代测试框架、Google基础库、异步网络库）与**Rust全面渗透**（重写Postgres、全栈JS工具链），共同推动底层性能革命；**AI编码代理工具链爆发**（Claude MCP服务器/模板、OpenAI Codex、AI图表），MCP协议成为新基建；**云原生与类型安全**（Prisma</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-11</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-11.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-11.html</guid>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，AI 编码代理正从实验走向工程化——围绕 Claude 的终端控制、记忆管理、技能框架及模板市场涌现大量工具，旨在解决代理的可靠性与一致性痛点。同时，C++ 基础库（Google 通用库、YAML、测试框架、网络库）持续活跃，反映底层性能优化需求。JavaScript 全能工具链意在颠覆 Node.js 生态，而 Terraform、gRPC、Next.js 等成熟基础设施热度不减。整体信号：开发者正为 AI 代理构建标准化、可组合的“操作系统”，同时追求运行时效率与基础设施升级。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-10</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-10.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-10.html</guid>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，开发者生态正围绕“AI代理自主化”加速演进：从求职助手、渗透测试到视频分析，大量工具为Claude等模型赋予系统交互、文件操作、任务编排能力。同时，RAG</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-09</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-09.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-09.html</guid>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势中，AI代理成为绝对焦点：从生产级工程规范、</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-08</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-08.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-08.html</guid>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势揭示三大信号：一是AI代理从“玩具”迈向“生产”——求职自动化、编码工作流、沙箱隔离、Office套件、视频理解等技能插件密集涌现，开发者正为AI构建可落地的全生命周期工具链；二是离线/边缘化趋势加速，会议助手、TTS、WiFi感知均强调本地运行与CPU效率，反映隐私与延迟刚需；三是系统提示词泄露集合走红，折射出社区对黑箱模型内部规则的强烈探知欲。整体上，AI基础设施正从云端渗透到</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-07</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-07.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-07.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI编码代理生态爆发：多个项目围绕代理技能库、多代理协作、跨平台信息整合展开，形成“代理即工具”的工程化范式。同时本地隐私优先的AI工具（离线会议、WiFi感知）与生产级基础设施（向量数据库、搜索API）涌现，信号开发者正从单一模型调用转向复杂自主工作流构建。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-06</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-06.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-06.html</guid>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
+      <description>近期GitHub趋势显示，AI编码代理生态正从“单点调用”转向“可组合技能包”与“多代理协同”阶段。13种代理的354个生产级技能包覆盖工程、营销、合规等18个领域，填补领域知识空白；多代理工作区管理器支持20-30个代理规模化协调，Git worktree持久化状态解决长任务断连问题。压缩输出token的“穴居人语言”与MCP协议连接Unity编辑器拓宽落地场景。同时，隐私优先（本地转录、自托管相册/模拟器）与开源基础设施（哈佛ML教材、Meta设计系统Astryx）并重，形成从工具到教育的完整闭环。这表明开发者正系统性地解决代理可靠性、成本与协作难题，AI原生开发范式加速成型。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-05</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-05.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-05.html</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日 GitHub 趋势显示，AI 代理生态正加速基础设施标准化：多项目围绕 MCP 协议打通开发工具链（Chrome DevTools、Unity 编辑器），技能包/技能集规范实现跨代理复用，大幅降低接入成本。同时，开发者追求“本地优先 + 隐私保护”（离线会议助手、轻量终端 AI 工作空间），并探索极简 token 策略（穴居人风格）以优化推理成本。此外，多代理协作的渗透测试、代码审查等自动化工具成熟，体现出从单一代理向工程化多智能体系统转变。另一边，自托管照片/游戏/音乐管理方案延续了去中心化替代品热潮。整体信号：AI 开发</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-04</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-04.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-04.html</guid>
+      <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI代理生态的深度集成与成本优化：从跨平台协作（Claude Code桥接OpenAI Codex、MCP操控Chrome DevTools）到输出压缩降低API费用，开发者正追求“多代理协同+精打细算”。同时，结构化开发框架、标准化技能文件与专家角色预设库涌现，试图解决代理随机编程的混乱。此外，开源替代品（Postgres替代Firebase、腾讯沙箱）和轻量自动化工具（SSH自动化、ROM管理器）显示开发者对可控、低成本基础设施的强烈偏好。信号：AI代理从单体工具走向可编排的微服务式协作。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-03</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-03.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-03.html</guid>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub热点集中指向**AI代理的全面渗透与标准化**：从安全（自主渗透测试）、开发（编码代理框架、Chrome DevTools控制）到求职、视频编辑、交易自动化，代理正接管具体工作流。同时涌现效率优化（穴居人式回复减65% token）和互操作性方案（MCP协议、SKILL.md打包专业知识）。PyTorch与Clean Code JS等经典项目仍受关注，但生态信号明确：开发者正快速构建“代理优先”的工具链，聚焦成本效益与开放标准。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-02</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-02.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-02.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
+      <description>当前趋势显示，AI Agent 正从概念验证快速渗透到渗透测试、交易、内容营销等生产场景，配套基础设施（OIDC 认证、MCP 工具链、轻量沙箱）同步爆发，表明开发者生态在系统性构建 Agent 落地底座。同时，成本压缩（免费 AI 网关、低成本 PDF 清洗）和多模态本地化（日语输入法、离线语音转录）成为新热点，反映出对实用、低门槛工具的强烈需求。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-07-01</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-07-01.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-07-01.html</guid>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-30</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-30.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-30.html</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今天趋势显示三个核心方向：隐私优先与本地优先的工具需求激增（无标识消息、离线语音转文字、磁盘加密），开发者正系统性地规避云端数据泄露；多Agent协作与AI工具链深度整合成为新范式（预定义代理配置、投资研究、渗透测试、视频编辑、交易、决策辩论），标志着AI从单一模型向结构化Agent生态演进；开源基础设施加速成熟（GPU加速库、自动驾驶系统、身份认证、云服务目录），降低AI应用的门槛与成本。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-29</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-29.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-29.html</guid>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示：AI代理已渗透到投资、交易、安全、视频编辑等垂直领域，开发者正快速构建可自主决策的智能体。同时，隐私与本地化成为刚需——无标识消息网络、离线语音转文字等火起来。工具链也在向AI优化：MCP服务器毫秒级索引、文档转LLM友好格式、GPU加速库无缝迁移，降低开发门槛。开源自动驾驶拓展硬件兼容性，3D实时重建从视频流发力。整体信号：开发者生态正从“用AI辅助编码”转向“用AI代理驱动全栈应用”，且更注重数据主权与可控性。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-28</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-28.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-28.html</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，AI代理正从单一编码助手演化为全栈协作工厂（23角色、交易系统、研究框架），配套持久记忆与设计规范层解决人机对齐难题。同时，开源基础设施持续爆发：隐私优先的加密网络、本地化个人云、无过滤AI生成工作室及Rust重写的高性能工具（dbt v2.0）表明开发者正追求数据主权与性能极致。生态信号：AI工具链正快速“自主化+私有化”，可组合、可托管、可问责成为新标准。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-27</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-27.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-27.html</guid>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
+      <description>当前趋势核心关键词是“AI代理赋能开源工具链”。GitHub 爆款集中在为编码代理提供结构化工作流（如设计系统格式、质量门禁、AWS 集成），以及将 AI 代理角色化、团队化（23 个角色模拟完整工程团队）。同时，数据管道向 LLM 友好格式转换（PDF/Office→Markdown/JSON）、自媒体爬虫免逆向、去中心化通信等配套工具涌现。开发者生态正从“用 AI 写代码”升级为“用 AI 编排全流程”——从设计、开发、测试到部署，并追求可复现、低成本与隐私保护。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-26</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-26.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-26.html</guid>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI代理的工程化落地：围绕Claude Code衍生的多Agent协作框架、设计系统标准及视频生成工具密集涌现；同时，开源替代商业服务（SEO、旅行规划、个人云）与文档转换等基础设施配套齐头并进。开发者正从“玩AI”转向建设可控、可复用的智能体工作流，自托管与提效成为双主线。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-25</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-25.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-25.html</guid>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日热门GitHub项目呈现**AI代理全面渗透**的趋势：视频制作、股票分析、简历评估、网站克隆、编码验证均被“代理化”，开发者正从工具使用转向**代理编排**。同时，macOS容器工具、Flutter跨平台框架表明**多端部署**仍是刚需；而DPI绕道工具则反映**网络自主性**的持续需求。整体信号：生态加速向**自然语言驱动的全自动工作流**演进。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-24</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-24.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-24.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示：AI代理正加速从单点工具转向全流程自动化系统，围绕Claude Code形成虚拟团队、插件生态与元工厂等协作范式，同时视频生产、股票分析、网络安全等垂直领域涌现专业代理方案，标志着开发者生态向“代理即平台”演进。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-23</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-23.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-23.html</guid>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦于**AI代理的赋权与全栈自动化**：开源视频、语音、代码知识图谱工具为代理提供“感知-行动”闭环；虚拟工程团队、超代理框架、结构化技能集（如网络安全）显著提升个人开发者产出。同时，**本地优先与隐私设计**涌现——自托管 Figma 替代品、PDF 工具箱、语音工作室均强调数据主权。此外，**低资源推理**（4GB GPU 跑70B模型）与 Rust 重写嵌入式数据库，暗示边缘计算正成为代理</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-22</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-22.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-22.html</guid>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势表明，AI Agent 生态正围绕 MCP 协议快速成形：从视频编辑、代码知识图到超级代理框架，Agent 不再只是对话聊天，而是直接操控工具链和底层系统。同时，Agent 记忆与压缩层成为新刚需——持久化知识图谱和令牌压缩方案在降低推理成本的同时保持质量，指向更实用化的自主代理。安全与情报领域也明显升温：OSINT</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-21</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-21.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-21.html</guid>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势聚焦三个方向：1) **AI代理与编码助手全面开花**——从全自动视频制作、跨IDE/CLI的零加价代理框架到根治编码失败模式的技能集，AI代理正从实验走向生产级工作流；2) **开源替代商业产品热潮**——macOS视频编辑器、CRM、设计工具、语音工作室纷纷以“替换XX”姿态涌现，强调自托管、本地化与实时协作；3) **底层性能优化**——Rust/C语言实现的SQLite兼容库、MCP引擎和嵌入式代理框架，追求极低资源消耗与亚毫秒查询。这反映出开发者生态正加速拥抱AI自动化、隐私优先和开源替代，同时对基础设施的性能与可控性提出更高要求。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-20</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-20.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-20.html</guid>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日热榜显示，AI 代理正从辅助编码走向自主协作端到端流程：多个项目聚焦代理的上下文压缩、代码预索引（tree-sitter/MCP）与结构化开发技能框架，追求低成本、低延迟下的智能体效能。同时，原生 Swift 视频编辑器、DiT 音视频生成模型及时间序列基础模型涌现，体现多模态与专业模型向开源生态下沉。P2P 网络、自托管协作平台与跨协议 API 客户端则呼应开发者对去中心化、开放标准的持续需求。整体信号：AI 代理工具链正在加速产品化与工业化。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-19</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-19.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-19.html</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势凸显两大主线：AI编码代理生态爆发（结构化方法论、MCP服务器、持久知识图谱）与开源替代浪潮（Jira/Postman/翻译API）。开发者正从工具消费者转向生产级AI系统构建者，追求轻量内嵌、隐私自主与全栈可控。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-18</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-18.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-18.html</guid>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI编码代理实用化——从MCP服务器降本增效到技能框架与工程化工具链密集涌现，同时Rust在网络栈、ADB等底层工具中加速渗透。开源替代（设计、通讯、客服）与自托管需求旺盛，反映开发者对可控性与隐私的重视。多模态代理、视频生成等AI应用正从概念走向落地，而长上下文推理与时间序列基础模型则预示AI能力边界持续拓展。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-17</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-17.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-17.html</guid>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-16</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-16.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-16.html</guid>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示：开源生态正加速赋能AI Agent的实用落地——从零API费用上网、桌面控制到安全扫描，工具链日趋完整；同时自托管热度不减，涵盖客服、媒体、车辆数据，强调隐私与自主可控；学习资源持续爆发，算法图解、CS自学、全栈AI课程等多元路径降低门槛。开发者社区正从“看”转向“用”，务实解决日常痛点。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-15</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-15.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-15.html</guid>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日 GitHub 趋势显示：开发者正加速构建开源替代方案，从</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-14</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-14.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-14.html</guid>
+      <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI编码代理的工程化治理：技能框架、成本追踪与安全扫描密集出现，表明开发者正从“能用AI”转向“可控、可观测、安全”的Phase 2。同时，KV缓存持久化、Rust编译器、本地优先运行时的涌现，揭示对性能与成本优化的紧迫需求。跨平台集成（多LLM接口、媒体库、客户支持）与隐私敏感工具（翻墙、提示词泄露）并重，反映开源生态在效率与合规间的动态平衡。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-13</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-13.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-13.html</guid>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦 AI 代理的工程化落地：多个项目将开发流程、产品管理方法论封装为结构化技能与命令，标志开发者正从“单点辅助”迈向“全生命周期协作”。同时，自托管协作平台、本地化 NLP 工具包、KV 缓存管理层等基础设施优化兴起，体现对隐私、效率和低延迟的追求。跨平台生产力工具与容器工具涌现，彰显生态成熟。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-12</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-12.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-12.html</guid>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示：开发者生态正从云端AI转向本地优先、隐私优先的代理协作模式，如本地医疗AI和AI编码代理工作流；同时，AI工具链去黑盒化（系统提示词逆向收集）、技能结构化（PM框架编码、专家代理角色定义）及自主迭代框架成为热点。此外，网络自由工具与教育资源开源也因地缘需求持续活跃。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-11</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-11.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-11.html</guid>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
+      <description>近期趋势揭示**AI代理从概念走向工程化**：围绕“可执行技能集”与“协作大脑”形成结构化市场，覆盖需求到部署、产品决策、跨平台搜索等场景，标志着代理软件开发进入模块化与标准化阶段。同时，**开发者工具强调本地优先与隐私**（Markdown知识库、医疗AI、WiFi感知），结合低开销绕过审查技术，反映对数据主权和离线能力的迫切需求。此外，**底层创新活跃**——从零训练LLM的完整流水线、Mac原生Linux容器、Apple官方运行时，说明开发者社区正回归系统原理与基础设施开源。整体生态呈现“代理智能 + 本地可靠 + 底层可控”的三角趋势。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-10</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-10.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-10.html</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
+      <description>近期GitHub热门项目呈现三大趋势：一是**AI代理生态爆发**，从通用代理（支持多LLM与MCP）到垂直场景（求职、内容营销、医疗脱敏）均有成熟方案，且强调本地离线与数据主权；二是**开源工具链向工程化演进**，如Rust向量索引比FAISS更省内存、CV库提供可复用模块、Wi-Fi传感替代摄像头，开发者开始追求生产级质量与资源效率；三是**教育资源与智能体技能市场兴起**，教材开源、系统提示收集、PM框架编码等，反映出社区对透明、可复用的“AI基础设施”的强烈需求。整体信号：AI正从“模型中心”转向“代理+工具+数据”的系统工程，本地优先与合规意识成为新常态。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-09</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-09.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-09.html</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-08</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-08.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-08.html</guid>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI代理的实用化与系统整合：跨平台自主技能、持续学习循环、设计品味注入、多平台营销自动化等，标志着代理从概念走向可定制、可记忆的实用工具。同时，开源替代品（笔记本LM、离线知识服务器）和性能优化（量化推理、压缩向量索引）兴起，信号显示开发者生态正从单一模型转向可扩展、低门槛的集成系统。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-07</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-07.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-07.html</guid>
+      <pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate>
+      <description>近期 GitHub 趋势聚焦“AI 代理”与“开发者效率”两大主线：代理工具链从搜索、记忆到全栈框架、操作系统化全面铺开，且强调本地优先与零 API 费用；AI 编程辅助从插件扩展延伸至结构化开发方法论甚至求职自动化，语音模型与文档解析进一步降低多模态门槛。同时基础设施层（NGINX、安全扫描器、沙盒）迭代不快但持续存在。整体信号：开发者正快速拥抱 Agentic workflow，追求可控、低成本、私密且高召回的工具栈。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-06</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-06.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-06.html</guid>
+      <pubDate>Sat, 06 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势聚焦**AI代理生态的全面落地**：从自进化闭环代理、多智能体群体智能，到token压缩、本地记忆系统、免API数据抓取等基础设施工具密集涌现。开发者正推动代理从“演示玩具”向“生产就绪”进化，同时通过开源替代（如Notebook LM克隆）、隐私优先</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-05</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-05.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-05.html</guid>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，AI代理正从实验走向实用化：聚焦上下文压缩（降60-95% token）、自改进与跨平台优化，降低部署门槛。同时，多模态输入（OCR、语音、社交搜索）和桌面集成（Windows伴侣、NotebookLM替代品）兴起，强调“规范优先”代码生成与安全合规。开发者生态正追求低成本、高交互、可嵌入的代理工具，信号明确：AI代理正在成为生产力基础设施。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-04</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-04.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-04.html</guid>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-03</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-03.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-03.html</guid>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 GMT</pubDate>
+      <description>近期 GitHub 热门项目围绕 AI agent 生态全面铺开：从 token 压缩、多 agent 性能优化、持久记忆引擎到轻量 Web 界面，开发者正系统性解决 agent 成本、记忆、交互和安全等落地瓶颈。同时，数据预处理（文件转 Markdown、自适应 Web 抓取、RAG 课程）和音频 AI（扩散 TTS、语音伴侣）也成热点。信号：开发者社区从“能跑就行”转向工程化、模块化、隐私优先的产品思维，AI 代理与数据管道的成熟度正在快速提升。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-02</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-02.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-02.html</guid>
+      <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI工具链的深度落地：从数据预处理（PDF转Markdown）、持久记忆引擎、多智能体协作到编码助手结构化工作流，开发者正系统性解决AI应用的碎片化与遗忘问题。同时，去审查工具、跨平台游戏引擎和从零构建教程涌现，反映社区追求自主可控与扎实基础。信号：AI从单点能力转向全流程集成，开源生态加速实用化。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-06-01</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-06-01.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-06-01.html</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，开发者正聚焦于构建**自主化AI工作流**与**全栈代理生态**。从一键视频生成、文档管道优化到自适应抓取，工具向端到端、自托管演进；记忆引擎、异步子代理和离线生存电脑则直指代理的持久性与鲁棒性。同时，LLM原理教程、重建经典项目等“元学习”内容激增，反映社区不再满足调包，而是追求底层理解与可控复用。整体信号：开源协作正从单一功能组件转向**可编排、可延续的智能基础设施**。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-31</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-31.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-31.html</guid>
+      <pubDate>Sun, 31 May 2026 00:00:00 GMT</pubDate>
+      <description>今日无法生成趋势总结。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-30</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-30.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-30.html</guid>
+      <pubDate>Sat, 30 May 2026 00:00:00 GMT</pubDate>
+      <description>今日无法生成趋势总结。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-29</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-29.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-29.html</guid>
+      <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
+      <description>今日无法生成趋势总结。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-28</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-28.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-28.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势聚焦AI应用工程化：从内容生成（短视频、金融预测）到编程代理的结构化流程与安全合规（反AI检测、去除对齐、代理技能库），反映开发者从“探索AI能力”转向“实用化、可控化、安全化”。同时，开源基础工具（CRM、微服务编排）持续活跃，生态正向规范化与落地加速演进。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-27</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-27.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-27.html</guid>
+      <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势聚焦AI代理生态的全面工具化：从知识图谱、安全技能库到持久上下文记忆，开发者正系统性地解决AI应用的工程化、质量与性能问题。同时，开源替代品（媒体服务器、CRM、股票平台）和免费资源（域名、应用列表）持续涌现，反映开发者对自主可控与零成本建站的追求。GPU物理求解器等底层技术突破也表明算力基建正在深化。整体信号：AI能力正从玩具走向专业生产工具，开源社区加速商业替代。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-26</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-26.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-26.html</guid>
+      <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub趋势显示：AI编码代理生态加速成熟，大量项目围绕Claude Code等工具进行增强（性能、安全、规则、知识图谱），专业化代理插件（金融、网络安全）及垂直场景（AI伴侣、量化分析）涌现。开发者正从依赖基础模型转向构建结构化工具链，以提升编码效率与质量。金融与文档领域AI应用落地显著，去AI痕迹工具反衬出AI写作泛滥现状。整体信号：AI代理正从通用助手进化为可配置的虚拟工程团队核心。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-25</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-25.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-25.html</guid>
+      <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
+      <description>今天热门仓库显示开发者生态正从“能用AI”转向“用好AI”：大量项目聚焦AI编码助手的效果优化（知识图谱降成本、Claude规则控行为、前端UI技能防平庸），以及将AI封装为可定制的专家角色（Claude插件、虚拟工程团队）。同时，垂直领域持续深耕——金融K线基础模型和网络安全技能集表明AI正渗透专业场景。此外，去AI套路规则和自托管AI伴侣揭示社区对生成内容自然性和自主性的追求。整体趋势是AI工具日益成熟，开发者开始聚焦质量、成本与可控性。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-24</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-24.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-24.html</guid>
+      <pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势凸显**AI编码代理生态成熟**：Claude插件市场、.NET官方技能集、MCP协议驱动调试，将AI从辅助提升为工程团队原生成员。同时，**知识结构化**成为重点——代码知识图谱、预索引库、网络安全技能框架，通过减少工具调用和成本实现效率跃迁。此外，**开源商业替代**（AI演示、金融终端、Odoo ERP）及**实时性能追踪**（长视频生成、Intel PT）反映开发者对透明可控、高性能基础设施的追求。整体呈现“AI代理 + 知识工程 + 开源自建”的三螺旋趋势。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-23</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-23.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-23.html</guid>
+      <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示AI编码代理生态急速膨胀：从Claude官方插件市场、MCP协议控制浏览器到.NET标准化技能集，开发者正加速构建工具链。同时，代码知识图谱（预索引+可视化）与从零构建的AI课程（如Karpathy神经网络课）凸显“理解代码”与“理解原理”的双重需求。此外，边缘AI（穿墙WiFi感知）和跨平台工具（Cloudflare代理、音视频下载器）表明开发者追求更自主、低成本的解决方案。整体信号：AI辅助开发正从单点工具走向平台化、标准化，而基础学习与知识管理仍是社区刚需。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-22</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-22.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-22.html</guid>
+      <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+      <description>今日趋势显示，AI编码代理生态正从单点工具向全栈平台演进：插件市场、技能库、CLI包装器、Chrome DevTools控制等组件密集涌现，开发者追求可控、可组合、低token消耗的代理工作流。同时，自托管与开源替代（WhatsApp API、代理面板）持续活跃，反映去厂商锁定与隐私优先的社区共识。</description>
+    </item>
+    <item>
+      <title>GitHub Trending 日报 · 2026-05-21</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-05-21.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-05-21.html</guid>
+      <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
+      <description>今日GitHub热点显示AI编码代理生态爆发：预索引知识图、持久记忆、结构化技能库、专业角色集合及Claude Code插件目录等，正将编程助手从单点工具升级为可组装协作系统。同时隐私优先（本地LLM、开源个人助手）与全程学术辅助（人机协作插件）并进，反映开发者既追求代理能力深度，也重视数据主权与协作可靠性。</description>
     </item>
   </channel>
 </rss>
