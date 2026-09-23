@@ -3,456 +3,400 @@
   <channel>
     <title>Auto-Trend GitHub Trending 日报</title>
     <link>https://int2t05.github.io/auto-trend/</link>
-    <description>每日 GitHub Trending + RSS 热点 LLM 分析 · 2026-09-22</description>
+    <description>每日 GitHub Trending + RSS 热点 LLM 分析 · 2026-09-23</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
-      <title>Open-Dev-Society/OpenStock</title>
-      <link>https://github.com/Open-Dev-Society/OpenStock</link>
-      <guid isPermaLink="false">https://github.com/Open-Dev-Society/OpenStock</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>开源股票行情 App，实时报价、自选股、自定义价格提醒和公司资料，用 Next.js 搭界面、Finnhub 供数据、TradingView 画图，目标是替代付费行情终端，永久免费。</description>
-      <content:encoded><![CDATA[<p><em>开源股票行情 App，实时报价、自选股、自定义价格提醒和公司资料，用 Next.js 搭界面、Finnhub 供数据、TradingView 画图，目标是替代付费行情终端，永久免费。</em></p>
-<p><strong>亮点</strong></p><ul><li>明显的&#x27;薄前端 + 第三方数据&#x27;取舍：数据、图表、新闻、甚至 AI 推理（Inngest 调 Gemini）全外包，自己只做聚合、自选股和提醒，开发快但延迟和配额完全受制于 Finnhub 和 TradingView</li><li>README 顶部挂了一串以 &#x27;pump&#x27; 结尾的 Solana 代币合约地址，说明项目方在往加密社区导流，这在纯工具类开源项目里并不常见</li></ul>
-<p><strong>核心功能</strong></p><ul><li>行情图不自研，直接嵌 TradingView 的 embeddable widget，K 线、盘口、市场概览全靠外链组件，省掉自己写图表引擎的大头工作</li><li>股票代码、公司资料、市场新闻从 Finnhub API 拉取；价格提醒走 Inngest 的 cron + 事件编排，触发后用 Nodemailer 的 Gmail 通道发邮件，等于不自己搭定时任务服务器和消息队列</li><li>认证用 Better Auth（邮箱密码）+ MongoDB adapter 存用户，受保护路由由 Next.js middleware 统一拦截；搜索框用 cmdk 做 Command+K，请求带防抖，空闲时展示热门股</li></ul>
-<p><strong>适用场景</strong>: 适合不想买付费行情终端的个人投资者和开发者自建盯盘工具，尤其是有美股关注需求、能自己申请 Finnhub 免费 key 的人。也可当作 Next.js 15 + React 19 + Better Auth + Inngest 的完整脚手架来学。</p>
-<p><strong>竞品对比</strong>: 同领域有 Ghostfolio，也是开源自托管，但 Ghostfolio 主打投资组合记账和资产追踪，要自己维护完整数据库；OpenStock 不做账本，只做行情、自选和提醒，且必须依赖第三方 Finnhub key 才能跑起来。跟 TradingView、Yahoo Finance 这类免费商业产品比，差异主要在可自部署和数据可换源。</p>
-<p><strong>成熟度</strong>: 早期到成长期：star 数已到 1.7 万、技术栈和文档较完整，但依赖第三方 API key、AI 与提醒功能仍在扩展，AGPL-3.0 授权对二次分发有强约束，接口可能还会变动。</p>
-<p><strong>趋势信号</strong>: 蹭的是&#x27;开源平替付费金融数据终端&#x27;这波叙事，加上 Open Dev Society 社区同时在推 kitbash 等新项目、配合 star-history 和 trendshift 徽章导流，短期集中拉了一波 star；README 里挂 pump.fun 代币地址，也说明它在借加密社区扩散。</p>]]></content:encoded>
-    </item>
-    <item>
-      <title>trycua/cua</title>
-      <link>https://github.com/trycua/cua</link>
-      <guid isPermaLink="false">https://github.com/trycua/cua</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>开源 computer-use 智能体基建：跨系统桌面驱动、Apple Silicon 本地 VM、云桌面资源池和评测工具，让 agent 能像人一样操作 GUI 软件。</description>
-      <content:encoded><![CDATA[<p><em>开源 computer-use 智能体基建：跨系统桌面驱动、Apple Silicon 本地 VM、云桌面资源池和评测工具，让 agent 能像人一样操作 GUI 软件。</em></p>
-<p><strong>亮点</strong></p><ul><li>把驱动层和环境层拆开：同一套 Driver 既能操作你本机真实应用，也能在云 Fleets 的隔离桌面里跑，本地和云端共用 Sandbox SDK，算是解决&#x27;agent 演示好看、批量跑就崩&#x27;的老问题</li><li>自研小模型做决策而不全靠通用大模型——System 1 只管短决策，规划和推理仍然交给通用 agent，用来压延迟和成本</li></ul>
-<p><strong>核心功能</strong></p><ul><li>Cua Driver 用后台投递方式操作 macOS/Windows/Linux 原生应用，不移动鼠标、不抢焦点，通过 CLI、MCP 或 typed SDK 接进 Claude Code、Codex、Cursor 等 agent</li><li>Lume 在 Apple Silicon 上跑原生虚拟化的 macOS/Linux 虚拟机做本地沙箱；Cua Fleets 把隔离 Linux 桌面做成可申请（claim）的云资源池，代码从池里取一台跑命令、截图，两者共用同一套 Sandbox SDK</li><li>CUA-S1 不对结构化 UI 元素逐 token 生成回答，而是直接给候选值打分做&#x27;System 1&#x27;短决策（比如这个字段填哪个值、这个元素要不要动），配套合出数据生成、训练和评测源码</li></ul>
-<p><strong>适用场景</strong>: 做 computer-use agent 的团队和研究者：批量起隔离桌面跑 GUI 任务、造训练数据、跑 benchmark。也适合想用 agent 自动操作 LibreOffice、Inkscape 这类原生桌面软件（替掉传统 RPA）的开发者。</p>
-<p><strong>竞品对比</strong>: 对比 browser-use、Playwright MCP 这类只覆盖浏览器的方案，Cua 能操作原生桌面软件且跨三大 OS；对比 Anthropic Computer Use、OpenAI Operator 这类闭源云端能力，它是开源、可自托管，还能跑在本地 VM 里。</p>
-<p><strong>成熟度</strong>: Driver 和 Lume 已可用于生产，配套有商业云服务 run.cua.ai；但 CUA-S1 明确标注为早期源码研究版、权重另托管在 Hugging Face，API 可能变。</p>
-<p><strong>趋势信号</strong>: computer-use 是当前 agent 最热的方向（Claude Computer Use、OpenAI Operator 把这块带火），Cua 正好同时放出 Cua Fleets 云桌面和 CUA-S1 小模型两条新产品线，接住了开源基建这块需求。</p>]]></content:encoded>
-    </item>
-    <item>
-      <title>BuilderIO/agent-native</title>
-      <link>https://github.com/BuilderIO/agent-native</link>
-      <guid isPermaLink="false">https://github.com/BuilderIO/agent-native</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>BuilderIO 出的 TypeScript 框架，让开发者只写一份 action，agent 当工具调、前端当函数调，数据和权限全打通，用来做带界面的 AI 应用。</description>
-      <content:encoded><![CDATA[<p><em>BuilderIO 出的 TypeScript 框架，让开发者只写一份 action，agent 当工具调、前端当函数调，数据和权限全打通，用来做带界面的 AI 应用。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心取舍是『agent 不点 UI，而是和 UI 走同一个 action 层』，这样权限、校验、实现只有一份，避免了传统方案里 agent 操作和用户操作两套逻辑对不上的问题</li><li>一个 action 文件自动生成 agent 工具 + HTTP 路由 + MCP Server + CLI 命令，省掉了为每个能力手写多套适配层的活</li></ul>
-<p><strong>核心功能</strong></p><ul><li>定义一次 action，同时暴露成 agent 工具、React hook（useActionQuery）、HTTP 接口、MCP、A2A 和 CLI 六种入口，校验和权限逻辑共用同一份实现</li><li>agent 和 UI 共用同一个数据库和状态：UI 里的操作 agent 能读到，agent 干完的活直接出现在界面上，不用来回同步</li><li>把当前页面、选中记录、活动视图这些前端状态喂给 agent，让它理解用户在看什么，而不是自己瞎点 UI</li><li>生产用 PostgreSQL，本地开发用 PGlite（跑在浏览器/WASM 里的 Postgres），跑在任意 Nitro 兼容的宿主上</li></ul>
-<p><strong>适用场景</strong>: 做 AI 产品的前端和全栈团队，比如要给邮件、日历、数据分析、演示文稿这类业务套一个能人工审核、编辑、分享的 AI 工作界面，而不是只有一个聊天框。BuilderIO 官方也放了 Clips、Design、Slides 等 9 个开源示例应用可直接改。</p>
-<p><strong>竞品对比</strong>: 和 Vercel AI SDK、LangChain 比，这些主要是跑 LLM 和 tool calling 的库，不管 UI 和数据打通；和 CopilotKit 比，它偏向把 AI 塞进已有前端，agent-native 是反过来让 UI 和 agent 从一开始就共享 action 和数据层。最大差异是那个 action 抽象。</p>
-<p><strong>成熟度</strong>: 早期项目，由 BuilderIO 公司维护、有完整文档站和多个示例应用，但版本还没到 1.0，生产接入前建议先小范围验证 API 稳定性。</p>
-<p><strong>趋势信号</strong>: MCP、A2A 协议刚被主流接受，加上今年『agent 产品该长什么样』的讨论从纯聊天框转向带界面的工作台，BuilderIO 借自己的可视化建站背景切入这个空档，所以一天涨了 600 多星。</p>]]></content:encoded>
-    </item>
-    <item>
-      <title>coder/coder</title>
-      <link>https://github.com/coder/coder</link>
-      <guid isPermaLink="false">https://github.com/coder/coder</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>自托管云开发环境平台：用 Terraform 定义工作区、Wireguard 隧道接入、空闲自动关机；AI Agent 的推理循环跑在控制面，工作区内不放 LLM 密钥。</description>
-      <content:encoded><![CDATA[<p><em>自托管云开发环境平台：用 Terraform 定义工作区、Wireguard 隧道接入、空闲自动关机；AI Agent 的推理循环跑在控制面，工作区内不放 LLM 密钥。</em></p>
-<p><strong>亮点</strong></p><ul><li>密钥与执行分离：Agent 循环在控制面跑，工作区只拿任务不拿 API key，管理员能统一换模型、限花费、留审计记录，这是和「每人本地配个 API key」最本质的区别</li><li>环境即 Terraform 模板：复用已有的 Terraform provider 生态来定义开发环境，不想用 Coder 了模板资产也不会废掉；同时团队本身就是 code-server（浏览器里的 VS Code）的作者，编辑器侧是自家东西</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用 Terraform 写模板来定义工作区，同一套配置可以开出 EC2 虚拟机、Kubernetes Pod、Docker 容器，环境本身变成可声明、可回收的基础设施</li><li>工作区通过 Wireguard 隧道连到控制面，不直接对外暴露端口；默认带内置数据库，生产环境可换 PostgreSQL 13+</li><li>Coder Agents 把 AI 编码 Agent 的执行循环放在控制平面（你自己的服务器）上跑，工作区里没有 LLM 密钥，每一步操作都绑定用户身份，方便审计和记账</li><li>AI Gateway 统一代理 Anthropic、OpenAI、Google、Bedrock 和自托管模型，做集中鉴权、成本追踪和审计日志</li><li>检测到空闲就自动关机，省掉每人一台常年开着的开发机</li></ul>
-<p><strong>适用场景</strong>: 平台工程或 DevOps 团队给几十到上百名开发者批量发放开发环境，尤其是金融、医疗这类代码不能放到公有云 SaaS 上的公司；另一个新场景是给 Claude Code、Codex、OpenCode 这类 Agent 开隔离沙箱跑编码任务，由管理员统一管模型和账单。</p>
-<p><strong>竞品对比</strong>: 主要对手是 GitHub Codespaces 和 Gitpod，两者都是托管 SaaS，代码和密钥要放到别人云上；Devpod 是客户端本地起环境、没有控制面，管不了团队治理。Coder 的差异点是自托管 + Terraform 模板 + 内置 Agent 执行面和模型网关。</p>
-<p><strong>成熟度</strong>: 生产可用，已经到 2.x 版本，有付费 Premium 版、OpenSSF 最佳实践徽章和公开的 Discord/讨论区，企业客户在用。</p>
-<p><strong>趋势信号</strong>: AI 编码 Agent 需要一个隔离、可回收、密钥不外泄的执行环境，Coder 顺势把定位从「云开发环境」改成「开发者及其 Agent 的安全环境」，并在官方 Registry 上架了隔离运行 Claude Code、Codex 的模板模块。</p>]]></content:encoded>
-    </item>
-    <item>
-      <title>anthropics/financial-services</title>
-      <link>https://github.com/anthropics/financial-services</link>
-      <guid isPermaLink="false">https://github.com/anthropics/financial-services</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Anthropic 官方开源的金融行业 Claude Agent 合集，覆盖投行、行研、PE、财富管理和基金运营，同一套源码既能装成 Cowork 插件，也能通过 Managed Agents API 无头部署。</description>
-      <content:encoded><![CDATA[<p><em>Anthropic 官方开源的金融行业 Claude Agent 合集，覆盖投行、行研、PE、财富管理和基金运营，同一套源码既能装成 Cowork 插件，也能通过 Managed Agents API 无头部署。</em></p>
-<p><strong>亮点</strong></p><ul><li>合规取舍很明确：README 里写死 Agent 只起草分析稿，不推荐投资、不下单、不过账、不批开户，所有输出必须人工签署，把责任边界划清</li><li>同一个 Agent 支持有头（Cowork 插件）和无头（Managed Agents API + 自己的编排层）两种跑法，用 handoff_request 事件在 Agent 之间做任务交接</li></ul>
-<p><strong>核心功能</strong></p><ul><li>一份源码两种部署：同一份 system prompt 和 skills 目录，既能当 Cowork/Claude Code 插件安装，也能被 deploy-managed-agent.sh 解析上传成 /v1/agents 上的托管 Agent（含 agent.yaml、叶子 subagent、steering 事件）</li><li>技能分层复用：skills 和 /comps、/dcf、/earnings、/ic-memo 这类斜杠命令在垂直插件里写一次，每个 Agent 插件打包一份同步副本做到自包含，sync-agent-skills.py 负责同步</li><li>纯文件结构，markdown + JSON，没有构建步骤；MCP 连接器配置写在 .mcp.json 里，接终端、研报平台、文档库等 11 个数据源</li></ul>
-<p><strong>适用场景</strong>: 投行和 PE 分析师、行研、基金运营团队。用来做 comps/DCF/LBO 模型、pitch deck 和 CIM、财报点评、GL 对账、月末关账、LP 报表审计、KYC 开户审查这类重复劳动，产出的模型和备忘录先给人签字再往下走。</p>
-<p><strong>竞品对比</strong>: 和 LangChain、CrewAI 这类通用 Agent 框架不同，它不造框架，直接给现成金融工作流模板（pitch、GL 对账、KYC），但绑死 Claude。垂直方向对标 Hebbia、Rogo 这类商业金融 AI，区别是开源免费、要自己接数据和合规。</p>
-<p><strong>成熟度</strong>: Anthropic 官方出品，文档和目录结构完整，但无版本号，且 subagent 委派（callable_agents）标注为 Research Preview，属于早期项目，行为可能变。</p>
-<p><strong>趋势信号</strong>: Anthropic 近期主推 Claude Cowork 和 Managed Agents，这是配套的官方垂直样板，加上企业级金融 AI 落地是当下热点，所以当天冲上 trending。</p>]]></content:encoded>
-    </item>
-    <item>
-      <title>Crosstalk-Solutions/project-nomad</title>
-      <link>https://github.com/Crosstalk-Solutions/project-nomad</link>
-      <guid isPermaLink="false">https://github.com/Crosstalk-Solutions/project-nomad</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Project NOMAD 把离线维基百科、可汗学院课程、离线地图和本地 AI 问答用 Docker 打包成一个自托管服务器，一条命令装完，装好后不联网也能用。</description>
-      <content:encoded><![CDATA[<p><em>Project NOMAD 把离线维基百科、可汗学院课程、离线地图和本地 AI 问答用 Docker 打包成一个自托管服务器，一条命令装完，装好后不联网也能用。</em></p>
-<p><strong>亮点</strong></p><ul><li>定位和同类“离线生存电脑”反着来：不追求塞进树莓派的最低配，而是明确建议上 GPU，靠 Docker 生态做可插拔应用目录（Supply Depot），甚至允许用户跑自己的自定义容器</li><li>把“AI 跑在哪”做成设置项而不是写死架构——Ollama 在本地还是远程、用不用 OpenAI 兼容接口，都在管理台里改，一台低配机器也能只当内容服务端</li><li>零遥测 + 只在安装和主动下载内容时联网，README 里直接写明这条设计边界，针对的是数据自主和隐私敏感人群</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用 Docker Compose 编排一整套容器（Kiwix、Kolibri、ProtoMaps、CyberChef、FlatNotes、Qdrant、Ollama），外面套一个 Web 管理台统一负责安装、配置和版本更新，用户只跑一条 curl 安装脚本</li><li>RAG 走 Qdrant 向量库 + Ollama 本地模型，支持上传文档做语义检索；也能把推理地址改成 LM Studio / llama.cpp 这类 OpenAI 兼容接口，让模型跑在另一台机器上，内容服务器和 GPU 机器解耦</li><li>离线内容用 Kiwix 的 ZIM 格式打包（把整站维基百科塞进单个文件），内置 Wikipedia 内容选择器和 ZIM 库管理器，按需下载哪几百万篇文章</li><li>内置硬件跑分和社区排行榜，用分数和 Builder Tag 告诉你这台机器能带动多大的模型</li></ul>
-<p><strong>适用场景</strong>: 适合给断网或网络不稳定的场景用：野外站点、船舶、诊所、偏远学校，运维或老师在一台 Ubuntu 小主机上装好后，学生用浏览器访问 Kolibri 上课、查维基百科；也适合想自己搭本地 AI + 知识库、又不想手工攒 Docker 栈的极客和家庭服务器用户。</p>
-<p><strong>竞品对比</strong>: 同类有 Internet-in-a-Box、Rachel、以及直接用 Kiwix + Kolibri 手工搭的方案，那些多靠 Ansible 脚本和手工配置，NOMAD 的差别是统一管理台 + Docker 编排 + 原生带本地 LLM 的 RAG 问答；和自建 Ollama + Open WebUI 相比，它多了一整套离线内容库。</p>
-<p><strong>成熟度</strong>: 早期项目，靠一条安装脚本和 Docker Compose 两路部署，只支持 Debian 系（Windows 走 WSL2），本身是编排层、干活的组件都是成熟第三方，但版本号和稳定性承诺不明确。</p>
-<p><strong>趋势信号</strong>: 项目出自同名网络硬件测评频道团队，自带视频和社区流量入口；同时本地 LLM、self-hosting 和数据自主这两年在持续升温，这种“离线 AI + 离线知识库”打包方案正好撞上这波情绪。</p>]]></content:encoded>
-    </item>
-    <item>
-      <title>zhouxiaoka/autoclip</title>
-      <link>https://github.com/zhouxiaoka/autoclip</link>
-      <guid isPermaLink="false">https://github.com/zhouxiaoka/autoclip</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>开源视频切片工具：读字幕用 LLM 找高光、打分、切片段，支持本地 Ollama 模型，桌面 / Docker / CLI / MCP 四种用法。</description>
-      <content:encoded><![CDATA[<p><em>开源视频切片工具：读字幕用 LLM 找高光、打分、切片段，支持本地 Ollama 模型，桌面 / Docker / CLI / MCP 四种用法。</em></p>
-<p><strong>亮点</strong></p><ul><li>刻意只做字幕分析、不做视觉理解——换来模型可换、能全本地跑、成本极低，代价是素材类型被限制在口播内容上，这是个明确的取舍而不是能力缺失</li><li>把剪辑工具做成 MCP server，剪辑不再是点界面的活，而是能被 Agent 编排的一步流水线</li></ul>
-<p><strong>核心功能</strong></p><ul><li>分析只吃字幕不看画面：先拿到 SRT 或本地 faster-whisper 转写，再让 LLM 提取大纲、话题时间线、逐段精彩度评分和标题，最后按时间码交给 FFmpeg 切片——所以纯视觉动作、音乐类视频基本没效果</li><li>同一套处理流水线开出三个入口：Tauri 桌面端（打包内置 Python 和 FFmpeg，免装环境）、Docker Compose 的 FastAPI + React Web 界面、以及 CLI 和 stdio MCP server，MCP 客户端可以直接调它跑批处理</li><li>模型可自由替换：云端支持通义千问、Gemini、OpenAI 兼容接口、硅基流动，本地支持 Ollama（默认 qwen2.5:7b）和 LM Studio，本地模式不需要 API Key，字幕文本不出机器</li></ul>
-<p><strong>适用场景</strong>: 做播客、访谈、课程、直播回放切片的个人创作者和二创自媒体，需要批量出抖音 / 小红书 / Shorts / B站 竖版片段；开发者侧可以用 MCP 把它接进 Agent 做批量编排。</p>
-<p><strong>竞品对比</strong>: 对标 Opus Clip、Vizard、Klap 这类云端切片 SaaS 和剪映的智能切片。最大的差别是开源 + 可完全本地跑 + 模型自选，代价是缺云端 SaaS 的成品率和画质处理（人脸跟踪、自动重构比例那类）。</p>
-<p><strong>成熟度</strong>: v1.3.1 已功能完整、README 八语言、文档齐全，但作者声明个人业余维护、回复不固定，属于能用但要自己看 FAQ 排错的阶段。</p>
-<p><strong>趋势信号</strong>: MCP 接口 + 本地小模型 + 短视频二创需求三件事叠在一起，加上 v1.3.x 连续迭代上了 Trendshift 和 GitHub Trending。</p>]]></content:encoded>
-    </item>
-    <item>
-      <title>ruanyf/weekly</title>
-      <link>https://github.com/ruanyf/weekly</link>
-      <guid isPermaLink="false">https://github.com/ruanyf/weekly</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>阮一峰的科技爱好者周刊，每周五发布，用 GitHub 仓库存 400 多期 Markdown，issue 收投稿和招聘，累计 10.4 万 star。</description>
-      <content:encoded><![CDATA[<p><em>阮一峰的科技爱好者周刊，每周五发布，用 GitHub 仓库存 400 多期 Markdown，issue 收投稿和招聘，累计 10.4 万 star。</em></p>
-<p><strong>亮点</strong></p><ul><li>把『周刊』这种传统形态搬到 git 仓库里，读者不只是在读内容，还能看到每期的修改记录和前后讨论，等于自带公开档案</li><li>招聘板块用单条 issue 承载，绕开了做网站、做表单、做审核的全部工程量，是典型的『拿 GitHub 当基础设施』</li></ul>
-<p><strong>核心功能</strong></p><ul><li>每期就是一个 Markdown 文件（docs/issue-NNN.md），GitHub 仓库直接当 CMS 用：413 期全在版本历史里，错字可以提 PR 改，内容能全文搜索</li><li>投稿、勘误、招聘全走 issue：招聘不做页面不做后端，就用一条长期置顶的『谁在招人』issue 堆评论，成本和维护量几乎为零</li><li>固定周五发一期，从 2019 年做到现在 413 期基本没断更，节奏靠人肉自律而不是自动化流水线</li></ul>
-<p><strong>适用场景</strong>: 中文开发者、产品经理、学生每周五花十几分钟扫一遍，快速知道技术圈这周出了什么事、有什么新工具；找工作或招人的工程师直接翻『谁在招人』那条 issue。 也适合不写代码但关心科技行业的人，比如投资人、媒体、硬件从业者看趋势话题。</p>
-<p><strong>竞品对比</strong>: 和 TLDR、Hacker News 摘要、HelloGitHub 月刊比，最大区别是单人主笔、选题不限于技术：AI 产业、职业发展、公司兴衰、社会议题都写，是一份『科技行业观察』而不是纯工具清单。</p>
-<p><strong>成熟度</strong>: 内容极其成熟稳定，已出 413 期、10 万 star、读者规模大；但它不是软件项目，谈不上 API 稳定性，真正风险是主笔只有阮一峰一人，断更等于停刊。</p>
-<p><strong>趋势信号</strong>: 近期几期标题踩中热点——『再见了 React Native』『OpenClaw 2.0 是一个缩影』『你需要知道的 AI 缓存知识』，被微信、微博、X 上大量转发，带动新读者回头补 star。</p>]]></content:encoded>
+      <title>google/ax</title>
+      <link>https://github.com/google/ax</link>
+      <guid isPermaLink="false">https://github.com/google/ax</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Google 开源的 Go 语言 agent 编排运行时,把 agent 任务当 K8s 式声明式工作负载来管:沙箱隔离、预挂仓库、锁出站网络、可暂停恢复。</description>
+      <content:encoded><![CDATA[<p><em>Google 开源的 Go 语言 agent 编排运行时,把 agent 任务当 K8s 式声明式工作负载来管:沙箱隔离、预挂仓库、锁出站网络、可暂停恢复。</em></p>
+<p><strong>亮点</strong></p><ul><li>Gateway 默认只放开你列出的出站主机。agent 调模型 API 和工具服务器都走这条路,能挡住 agent 死循环刷 API 烧钱——这是 agent 相比普通微服务最容易失控的地方。</li><li>把 agent 状态检查点做进 suspend/resume。agent 会持续积累状态,既不是无状态微服务也不是跑完就退的批处理,所以能存下状态、暂停再续跑是它的核心取舍。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>四个声明式原语,全写成 ax.io/v1alpha1 YAML 一次 apply:Task(任务加 CPU/内存限制)、Workspace(启动前预挂 Git 仓库、MCP server、skill 包,让 agent 一上来就是热的)、Gateway(出站流量锁到显式 host 白名单)、Model(指定平台用哪个 LLM,凭据从 K8s secret 取)。</li><li>CLI 走 gRPC 控制面,动作和 kubectl 一样:apply/get/describe/watch/delete,外加 agent 专属动词 ax ssh(进运行中的沙箱看它在干嘛)、suspend/resume(检查点 actor 状态后暂停,再精确恢复)。</li><li>控制面部署在 K8s 上(用 ko 构建镜像,Redis 存状态),沙箱执行交给 Agent Substrate;atenet 路由器负责让你从集群内、笔记本或 gRPC 客户端连到运行中的 task。</li></ul>
+<p><strong>适用场景</strong>: 平台和基础设施工程师,要在集群里同时跑几千个不受信任的 agent。典型流程:agent 克隆仓库改 Go 代码、调 MCP 工具、打模型 API,团队需要卡住每个 agent 的 CPU/内存和能访问的外网域名,还要能随时 ssh 进去看或把它暂停掉。</p>
+<p><strong>竞品对比</strong>: 和 E2B、Daytona 这类沙箱 SDK 比,AX 管的是整个集群的调度和声明式生命周期,不只是创建单个沙箱。和直接拿裸 K8s 跑 agent 比,它多了模型凭据、MCP 预热、出站网络围栏、状态检查点这些 agent 专属的东西。</p>
+<p><strong>成熟度</strong>: 早期项目,API 是 v1alpha1,README 自己警告稳定版之前会有重大破坏性改动;还要自备 K8s 集群和 Agent Substrate 才能跑起来。</p>
+<p><strong>趋势信号</strong>: Google 官方下场做 agent 运行时,正好撞上 MCP 生态铺开、agent 数量变多管不住的窗口,社区缺一层把 agent 当集群工作负载来调度的东西,一天涨 2300 星是这个需求的直接反映。</p>]]></content:encoded>
     </item>
     <item>
       <title>mvt-project/mvt</title>
       <link>https://github.com/mvt-project/mvt</link>
       <guid isPermaLink="false">https://github.com/mvt-project/mvt</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Amnesty 国际开发的手机取证工具 MVT，扫描 iOS/Android 设备找间谍软件痕迹，最近合并了接口大改的 v3 分支。</description>
-      <content:encoded><![CDATA[<p><em>Amnesty 国际开发的手机取证工具 MVT，扫描 iOS/Android 设备找间谍软件痕迹，最近合并了接口大改的 v3 分支。</em></p>
-<p><strong>亮点</strong></p><ul><li>整个工具是围绕 Pegasus 项目推出的，和公开的取证方法论、IOC 库绑定发布，扫什么、怎么扫都有配套文档</li><li>主命令拆成 mvt-ios、mvt-android 和通用的 mvt 三个，剩余功能靠插件包扩展，可以自己写检查模块挂进 check-* 命令</li></ul>
-<p><strong>核心功能</strong></p><ul><li>解析 iPhone 的 iTunes/Finder 备份或完整文件系统镜像，提取短信、WhatsApp、Safari 历史、进程记录和网络使用记录，逐条比对已知间谍软件的痕迹</li><li>从公开仓库下载 STIX 格式的 IOC（入侵指标，即已知恶意域名、进程名、文件哈希等标记），存进本地库后跑扫描命中告警</li><li>Android 侧通过 ADB 抓取 dumpsys、安装包列表和设备配置，检测可疑包名和异常设置</li><li>用 SQLite 存时间线，把不同来源的取证数据按时间对齐，方便交叉核对</li></ul>
-<p><strong>适用场景</strong>: 记者、人权律师、安全研究员和 NGO 工作人员，在怀疑目标人物手机被 Pegasus 之类商业间谍软件盯上时，用命令行对设备做取证扫描，再交给专业团队解读结果。</p>
-<p><strong>竞品对比</strong>: 类似 Cellebrite、Belkasoft 这类商业取证工具，区别是 MVT 开源免费、专为公民社会设计；和 iVerify 比它更偏命令行和深度取证，不是给普通用户自查用的 App。</p>
-<p><strong>成熟度</strong>: 2021 年发布、维护稳定，但刚合并的 v3 有破坏性变更，输出结构可能改动，依赖它做脚本的要注意。</p>
-<p><strong>趋势信号</strong>: v3 分支刚并入主分支，改动了 CLI 和输出格式，引发关注；同时间谍软件目标攻击的新闻持续出现，带动这类取证工具热度。</p>]]></content:encoded>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Amnesty 国际安全实验室开源的移动端取证工具，扫描 iPhone 备份和 Android 提取数据，用公开 IOC 追查 Pegasus 等间谍软件痕迹。近日合并 v3 分支重构 CLI，热度上涨。</description>
+      <content:encoded><![CDATA[<p><em>Amnesty 国际安全实验室开源的移动端取证工具，扫描 iPhone 备份和 Android 提取数据，用公开 IOC 追查 Pegasus 等间谍软件痕迹。近日合并 v3 分支重构 CLI，热度上涨。</em></p>
+<p><strong>亮点</strong></p><ul><li>把检测拆成独立 check 模块，每个模块只扫一类痕迹（域名、进程、配置文件），原始结果全部存成 JSON/JSONL 供二次分析，不做一个&#x27;是/否被黑&#x27;的黑盒结论</li><li>采用自定义许可证，明确只允许经被检者同意的取证分析，禁止用它去查别人的手机，这是同类开源工具里少见的限制</li></ul>
+<p><strong>核心功能</strong></p><ul><li>解析 iOS 备份里的 Manifest.db、plist、netusage.sqlite、shutdown.log、短信/WhatsApp 数据库；Android 侧解析 ADB 或 AndroidQF 抓取的 dumpsys、packages.list、系统日志，从这些系统痕迹里找间谍软件的进程名、异常关机、可疑域名访问</li><li>用 STIX2 格式的 IOC（入侵指标：已知恶意域名、文件哈希、进程名清单）做匹配，IOC 来自 Amnesty 和 mvt-indicators 仓库，可 mvt download-iocs 拉取更新</li><li>v3 引入插件机制，第三方 Python 包通过 entry points 注册自己的 check-* 模块和顶层命令，扩展检测项不用改主仓库代码</li></ul>
+<p><strong>适用场景</strong>: 记者、人权调查员、数字安全取证人员。场景：拿到疑似被盯上的人的 iPhone 本地备份或 Android 全量数据，跑 mvt-ios check-backup 或 mvt-android check-backup，输出 JSON 报告再人工分析。</p>
+<p><strong>竞品对比</strong>: 对比 Cellebrite、Magnet AXIOM 这类商业取证套件（贵、闭源、主要卖给执法机构），MVT 开源免费、面向记者和人权组织，靠公开 IOC 而非厂商私有情报；对比 iMazing、Elcomsoft 的备份解析工具，前者只是导出数据，MVT 专做间谍软件 IOC 匹配。</p>
+<p><strong>成熟度</strong>: 项目 2021 年起由 Amnesty 维护，有完整文档站和 CI，已被记者和人权组织实际使用；但刚合并的 v3 是破坏性变更，依赖其输出格式的脚本可能已失效，API 仍在调整。</p>
+<p><strong>趋势信号</strong>: v3 分支刚合并进主分支，CLI 结构重做并引入插件系统，官方在 issue #757 里说明破坏性变更，引发关注和迁移讨论。</p>]]></content:encoded>
     </item>
     <item>
-      <title>akitaonrails/ai-memory</title>
-      <link>https://github.com/akitaonrails/ai-memory</link>
-      <guid isPermaLink="false">https://github.com/akitaonrails/ai-memory</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Rust 写的单文件二进制，给各种 AI 编程 CLI 加长期记忆：hooks 自动记录会话，编译成 git 版 markdown wiki，换 agent、换机器都能接着干。</description>
-      <content:encoded><![CDATA[<p><em>Rust 写的单文件二进制，给各种 AI 编程 CLI 加长期记忆：hooks 自动记录会话，编译成 git 版 markdown wiki，换 agent、换机器都能接着干。</em></p>
-<p><strong>亮点</strong></p><ul><li>把 Karpathy 提的「compile-not-retrieve」思路落地：不做逐轮事实抽取，而是会话结束时把观察编译成 wiki 页面，检索时再读页面，省掉大量向量和 LLM 调用</li><li>自托管单二进制扛起多用户：内置认证、按人归属、审计日志，wiki 按项目共享、个人 handoff 保持私有，团队功能不是付费墙</li></ul>
-<p><strong>核心功能</strong></p><ul><li>生命周期 hooks 静默抓取 prompt、工具调用和会话边界，在带类型的隐私边界做脱敏，会话结束再合并成可读的 markdown 页面；默认全流程零 LLM 调用，不需要 API key</li><li>记忆的真身是 git 版 markdown wiki（能 grep、能扔进 Obsidian、能手动改），数据库只是派生索引，随时可从文件重建，检索把全文 FTS + 实体 + 关系图（可选向量）融合成一个排序</li><li>跨 agent 交接是一等协议：handoff 是带类型、只能被认领一次的记录，支持 20 多个 harness（Claude Code、Codex、Cursor、Gemini CLI 等）通过 MCP 注册或 hooks 接入，CI 保证每行都对得上</li></ul>
-<p><strong>适用场景</strong>: 同一台机器上在 Claude Code、Codex、Cursor 之间来回切的人，最怕新 agent 重新问一遍架构和踩过的坑；以及想把自己或团队会话知识沉淀到 self-host 服务器、按项目共享的团队。</p>
-<p><strong>竞品对比</strong>: 对标 Mem0/LangMem（逐轮抽事实、只做向量检索）和 Zep/Graphiti（要起图数据库做时间知识图谱）：ai-memory 的差别是 markdown 文件才是真身、零 LLM 默认、单二进制跑；跟 basic-memory / mcp-memory-service 最像，多了自动 hooks 抓取和 claim-once 的跨 agent 交接。</p>
-<p><strong>成熟度</strong>: 早期项目但迭代活跃（一天 167 星），架构文档、支持矩阵、CI 都比较齐，原生 Windows 还是实验状态，接口仍可能变。</p>
-<p><strong>趋势信号</strong>: agent CLI 这两年爆炸式铺开，每家记忆各自为政、锁在本机本工具里，跨 agent 切换和 handoff 变成真实痛点，MCP 生态成熟后正好能用统一协议接进来。</p>]]></content:encoded>
+      <title>anthropics/financial-services</title>
+      <link>https://github.com/anthropics/financial-services</link>
+      <guid isPermaLink="false">https://github.com/anthropics/financial-services</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Anthropic 官方开源的金融业 Agent 参考实现，覆盖投行、股票研究、PE、基金管理十个工作流。同一份 system prompt 和 skills，既能装成 Cowork 插件，也能通过 Managed Agents API 自建部署。</description>
+      <content:encoded><![CDATA[<p><em>Anthropic 官方开源的金融业 Agent 参考实现，覆盖投行、股票研究、PE、基金管理十个工作流。同一份 system prompt 和 skills，既能装成 Cowork 插件，也能通过 Managed Agents API 自建部署。</em></p>
+<p><strong>亮点</strong></p><ul><li>全流程卡在人工签核这一步：明确不做投资建议、不下单、不记账、不放行开户，所有输出都停在待审状态。这是为了绕开金融机构最怕的合规问题，也让 Agent 只能当草稿工具用。</li><li>Skills 单一来源加同步：领域知识只在 vertical-plugins 里写一次，各 agent 打包同步副本，配合 scripts/check.py、validate.py 做一致性校验，保证插件和托管两种跑法的行为一致。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>一份源码、两种部署形态：同一份 system prompt 加 skills 目录，既可打包成 Cowork/Marketplace 插件，也能用 scripts/deploy-managed-agent.sh 解析文件引用、上传 skills、创建 leaf-worker 子代理，再 POST 到 /v1/agents。</li><li>Agent 自包含打包：每个 agent 目录里带一份它用到的 skills 副本（源头是 vertical-plugins，靠 sync-agent-skills.py 同步），装一个 agent 不用再装别的；全部是 markdown 加 JSON，没有构建步骤。</li><li>数据接入走 MCP server：核心插件 financial-analysis 里用 .mcp.json 配了 11 个连接器（行情终端、研究平台、文档库），另外有 LSEG、S&amp;P Global 两个合作方写的 partner-built 插件。</li></ul>
+<p><strong>适用场景</strong>: 投行分析师、股票研究员、PE 投资经理、基金管理会计和财务运营。典型场景：拉 comps/DCF/LBO 模型、写 IC memo 和 earnings note、GL 对账找差异、月末结账跑权责和滚动表、LP 报表分发前审计、KYC 开户材料过规则引擎。</p>
+<p><strong>竞品对比</strong>: 对比 Hebbia、Rogo、AlphaSense 这类金融垂直 AI 产品，它不开箱即用，也不自带数据授权，本质是给企业自己接数据、改 prompt 的参考实现，胜在免费开源且绑死 Claude 生态；对比自建 prompt 库或 LangGraph 之类的通用 Agent 框架，它省掉了投行/PE 工作流的领域知识和插件协议这块。</p>
+<p><strong>成熟度</strong>: Anthropic 官方维护，文档和目录结构完整，但 subagent 委派（callable_agents）还标着 Research Preview，agent 模板是需要按自家流程改的起点，不是买了就能用的产品。</p>
+<p><strong>趋势信号</strong>: Anthropic 正在推 Cowork 和 Managed Agents API，拿付费能力最强的金融业做样板间，顺手用开源 repo 拉企业开发者——官方亲自下场做垂直 Agent 模板，这波热度主要来自这里。</p>]]></content:encoded>
     </item>
     <item>
-      <title>yynxxxxx/Codex-X</title>
-      <link>https://github.com/yynxxxxx/Codex-X</link>
-      <guid isPermaLink="false">https://github.com/yynxxxxx/Codex-X</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>给 OpenAI Codex 桌面端/CLI 套的图形外壳：提示词注入、第三方 API 切换、会话清理、Skills/MCP 管理和 config.toml 查看都在一个 Tauri 桌面窗口里完成，不用手改文件。</description>
-      <content:encoded><![CDATA[<p><em>给 OpenAI Codex 桌面端/CLI 套的图形外壳：提示词注入、第三方 API 切换、会话清理、Skills/MCP 管理和 config.toml 查看都在一个 Tauri 桌面窗口里完成，不用手改文件。</em></p>
-<p><strong>亮点</strong></p><ul><li>把 Codex 的系统指令文件当成可插拔模块：每个提示词独立开关，追加模式下禁用只回滚自己写的那块，不动用户原有自定义规则。</li><li>把“开启 1M 上下文窗口”做成配置编辑页的一个勾选项，保存即改写 config.toml，配合写入前自动备份，省掉手改 TOML 改坏环境的坑。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>Tauri 2 做壳，Rust 后端直接读写 ~/.codex 下的 config.toml 和 auth.json，前端 React 18；提示词写入分“追加到原提示词”和“整段替换”两种模式，禁用时只删自己写进去的那一段，每次写前自动备份。</li><li>提示词模板库离线内置 5 套，启动后从仓库 examples/ 目录拉另外 6 套并缓存本地，断网照样能用；用户可导入 .md、加分类、逐个开关，等于把系统指令当插件管。</li><li>供应商管理把官方 Codex 登录和第三方 API 存成可命名条目，一键写回 config.toml，支持连接检测、拉取模型列表，还能直接导入 cc-switch 的现有配置；用量页用本地 SQLite 按日期/模型聚合 token、缓存命中率，子代理消耗归进主会话不单列。</li></ul>
-<p><strong>适用场景</strong>: 同时用 Codex 桌面端和 CLI、手里握着好几个第三方 API 的开发者或安全/CTF 研究者；需要按项目切提示词、换供应商、清理历史会话、顺手看 token 账单的人。</p>
-<p><strong>竞品对比</strong>: 最直接的对手是 cc-switch——它只管供应商和配置文件切换，Codex-X 还多出提示词库、会话管理、Skills/MCP 和 token 统计，并且能从 cc-switch 导入数据。相比直接手改 ~/.codex/config.toml，多了可视化加备份回滚。内置那批“破甲/逆向”类越狱提示词是它的差异卖点，但也容易碰到模型服务条款。</p>
-<p><strong>成熟度</strong>: Tauri 2 打包了三平台安装包和便携版，功能面铺得挺全，但从仓库体量和社区规模看仍偏早期，配置格式和 UI 可能还会变，用之前把 config.toml、auth.json 备份好。</p>
-<p><strong>趋势信号</strong>: Codex CLI/桌面端最近被大量开发者当主力 Agent 用，Skills 和 MCP 又刚成为热点，配置却散在 config.toml、auth.json 和会话目录里，这类“给 Codex 套图形壳”的工具正好卡在这个窗口期。</p>]]></content:encoded>
+      <title>dream-num/univer</title>
+      <link>https://github.com/dream-num/univer</link>
+      <guid isPermaLink="false">https://github.com/dream-num/univer</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>开源 Office SDK，把表格、文档、PPT 做成可嵌入组件，浏览器和 Node.js 共用一套代码；现在转做 AI Agent 读写办公文件的底座。</description>
+      <content:encoded><![CDATA[<p><em>开源 Office SDK，把表格、文档、PPT 做成可嵌入组件，浏览器和 Node.js 共用一套代码；现在转做 AI Agent 读写办公文件的底座。</em></p>
+<p><strong>亮点</strong></p><ul><li>Agent 改动走 worktree 隔离：Agent 在草稿分支里编辑，人看完 diff 再决定合并，避免 Agent 直接覆盖正式文件。</li><li>表格、文档、PPT、关系表、白板共用一个存储和计算运行时，跨类型的引用和联动数据能一起更新，而不是几个独立编辑器拼在一起。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>用 Canvas 画整个表格画布，只渲染可视区域，而不是像 Handsontable/AG Grid 那样给每个单元格建 DOM 节点，所以几十万行的表也能滚动；公式计算单独抽成一个引擎，靠依赖图做增量重算，只重算受影响的单元格。</li><li>所有能力都是插件：单元格、公式、协同、UI 各自独立，可懒加载、替换或整个拆掉；官方再给几套预置插件包（presets）供快速拼出一个能用的编辑器，另有统一 Facade API 封装 workbook/range/formula/command 这些操作。</li><li>同构设计：同一份代码既能跑浏览器 UI，也能在 Node.js 无头运行，服务端可直接批量读写工作簿、跑公式，Agent 不用开浏览器就能改文件。</li></ul>
+<p><strong>适用场景</strong>: 适合要把表格或文档编辑嵌进自己产品的团队：SaaS 里的报价单/报表、BI 工具里的在线表、低代码平台的数据网格。也适合做 AI Agent 的人——让 Agent 在 Node 侧生成和修改 xlsx/PPT，再交给人在界面上审核。</p>
+<p><strong>竞品对比</strong>: 同团队的老项目 Luckysheet 已基本停更，Univer 是它的 TypeScript 重写，改成插件化 + Canvas；对比 OnlyOffice/Collabora 这类完整套件，它只给 SDK 不管界面和部署；对比 Handsontable/AG Grid，后者是表格控件，没有公式引擎也不管文档和演示；SheetJS/ExcelJS 只做文件解析生成，不提供编辑界面。</p>
+<p><strong>成熟度</strong>: 版本号仍在 0.x，API 有变动可能；但背后是公司团队维护、文档和示例齐全，核心开源加 Pro 商业功能混合，已有商业项目在用。</p>
+<p><strong>趋势信号</strong>: 最近一批 Agent 工具（DeepSeek Harness、OpenClaw、WorkBuddy、MCP 生态）都缺一个能让人和 Agent 共同编辑、并且可审核的办公文件界面，Univer 顺势把定位从「开源 Excel SDK」改成「AI Agent 的 Office Harness」，还配套放出多个 Agent 集成仓库，因此今天涨星。</p>]]></content:encoded>
     </item>
     <item>
-      <title>cloudflare/quiche</title>
-      <link>https://github.com/cloudflare/quiche</link>
-      <guid isPermaLink="false">https://github.com/cloudflare/quiche</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Cloudflare 用 Rust 写的 QUIC 与 HTTP/3 协议库，只管连接状态机，socket、事件循环、定时器全交给调用方，跑在自家边缘网络和 Android DNS 上。</description>
-      <content:encoded><![CDATA[<p><em>Cloudflare 用 Rust 写的 QUIC 与 HTTP/3 协议库，只管连接状态机，socket、事件循环、定时器全交给调用方，跑在自家边缘网络和 Android DNS 上。</em></p>
-<p><strong>亮点</strong></p><ul><li>把 I/O 完全剥出去是刻意设计：正因为库不管 socket 和 async runtime，它才能同时嵌进 curl（C）、Android 系统 DNS（JNI）和 Cloudflare 自己的事件循环，代价是接入门槛明显高于开箱即用的库</li><li>限流相关参数（initial_max_streams、initial_max_data 等）默认全给 0，不给一个看起来合理但实际不适用的默认值，逼调用方显式想清楚自己的并发流和数据量</li></ul>
-<p><strong>核心功能</strong></p><ul><li>只做包的收发处理：recv() 吃原始 UDP 包、send() 吐出待发包，socket 管理、事件循环、定时器都由调用方实现，超时靠 timeout() 返回时间点、到期再调 on_timeout()</li><li>TLS 用 BoringSSL（C 库）的 Rust 绑定，不是纯 Rust 的 rustls；可以传自己的 SSL_CTX 进来，一个 Config 能被多条连接共享</li><li>出包带 pacing 时间戳（SendInfo.at），应用可以配合 Linux 的 SO_TXTIME 或用户态定时器把包摊开发，避免一次性打出一串包造成瞬时拥塞丢包</li></ul>
-<p><strong>适用场景</strong>: 三类人会用：想给自家服务器/代理/CDN 加 HTTP/3 的后端和网络工程师；需要把 QUIC 塞进 C 或 Java 等非 Rust 程序的集成方（curl、Android DNS 解析器就是这么用的）；研究 QUIC/HTTP3 协议细节、需要拿到单包级别控制权的团队。</p>
-<p><strong>竞品对比</strong>: 同类有 quinn（纯 Rust + rustls + 绑定 tokio 的 async API）、微软的 msquic（C，进了 Windows 和 .NET）、以及 ngtcp2+nghttp3（C，curl 的另一条接入路径）。quiche 最大的差别是 TLS 走 BoringSSL 而不是 rustls，且不绑定任何 async 运行时，API 更底层，换来的是嵌入老代码库更省事。</p>
-<p><strong>成熟度</strong>: 版本号仍在 0.x（低于 1.0），API 细节可能微调，但已经是 Cloudflare 全球边缘网络的 HTTP/3 生产依赖，Android 和 curl 也在用，实战验证远超一般 0.x 项目。</p>
-<p><strong>趋势信号</strong>: 今天新增 32 星属于这个仓库的日常水平，没有明显的新版本或事件推动；持续被关注主要是 HTTP/3 在浏览器、CDN 上逐渐默认开启，QUIC 实现库成了基础设施常客。</p>]]></content:encoded>
+      <title>agent-substrate/substrate</title>
+      <link>https://github.com/agent-substrate/substrate</link>
+      <guid isPermaLink="false">https://github.com/agent-substrate/substrate</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Google 开源的 Agent 运行环境：把大量大部分时间在空闲的 Agent 实例多路复用到少量 worker 上，靠内存+文件系统快照做亚秒级挂起恢复，实现高密度沙箱托管。</description>
+      <content:encoded><![CDATA[<p><em>Google 开源的 Agent 运行环境：把大量大部分时间在空闲的 Agent 实例多路复用到少量 worker 上，靠内存+文件系统快照做亚秒级挂起恢复，实现高密度沙箱托管。</em></p>
+<p><strong>亮点</strong></p><ul><li>不自己造一套调度和编排，而是把 Kubernetes 当底座——Pod、HPA 这些直接复用，只在上面加 Agent 专属的调度和低延迟路由。好处是 agent 运行、推理、训练能共用同一套基础设施做整体优化。</li><li>刻意做「低观点」系统：它不管你是不是 AI Agent，只管容器的创建、销毁、挂起、恢复和流量路由。状态存在快照里而不是进程里，所以换机器不用重建，恢复后接着用。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>Actor/Worker 复用模型：把几百上千个有状态 Agent（叫 actor）映射到少量常驻 worker 上，赌的是 Agent 大部分时间在等模型返回、处于空闲，靠这个做超卖。官方 demo 是 250 个有状态 actor 跑在 8 个物理 pod 上，约 30 倍超分。</li><li>全状态挂起/恢复：冻结时把内存和文件系统一起快照下来，恢复只要不到 500ms，单机每秒能做 500 次以上挂起/恢复，actor 可以直接「传送」到池子里任意一台 worker 上接着跑。</li><li>隔离层用 gVisor 和 microVM，管的是标准 OCI 容器，所以对 Agent 框架无感；上层套 Kubernetes，靠 atelet DaemonSet 管 worker、atenet-router 按 header 路由流量到指定 actor，worker 版本用节点 label 卡住。</li></ul>
+<p><strong>适用场景</strong>: 跑大量有状态编码 Agent 会话的团队，比如同时开几百个 Claude Code、Codex 环境并保留文件系统状态；也适合把 MCP 工具服务器做成常驻沙箱，以及 RL 训练里需要成千上万并发 agent 环境的场景。kagent 这类 K8s 原生 Agent 框架的用户是直接目标。</p>
+<p><strong>竞品对比</strong>: 对标 E2B、Modal、Daytona 这类 Agent 沙箱方案，它们基本是一会话一沙箱、用完即弃；Substrate 的重点是把空闲 actor 超卖到共享 worker 池，并深度绑定 Kubernetes，更适合已经有大集群、想自建而非买托管服务的团队。</p>
+<p><strong>成熟度</strong>: 早期项目，README 明确写了不适合生产、API 几乎一定会变，连 Google 官方支持产品都不算，目前只适合尝鲜和内部试点。</p>
+<p><strong>趋势信号</strong>: 和 Google 最近推的 Agent Executor（google/ax）以及 CNCF kagent 接入直接相关，Agent 沙箱基础设施正是当下各家抢着做的赛道，Google 用自家 gVisor 加 K8s 入场所以关注度集中。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · Claude Status – Elevated errors for multiple models</title>
-      <link>https://status.claude.com/incidents/7g1qpkyz5gxh</link>
-      <guid isPermaLink="false">https://status.claude.com/incidents/7g1qpkyz5gxh</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Anthropic 的 Claude 状态页报出多个模型错误率升高，Hacker News 上 83 分 61 条评论，开发者借机讨论把生产流程绑在单一 API 上的风险。</description>
-      <content:encoded><![CDATA[<p><em>Anthropic 的 Claude 状态页报出多个模型错误率升高，Hacker News 上 83 分 61 条评论，开发者借机讨论把生产流程绑在单一 API 上的风险。</em></p>
-<p><strong>亮点</strong></p><ul><li>暴露了一个常被忽视的架构问题：同一厂商下的多模型不是真冗余，因为它们大概率共用推理集群和网关，一起挂的概率很高</li><li>HN 讨论热度高但信息量低，说明大模型 API 的状态页目前只告诉你「坏了」，不告诉你「坏在哪、什么时候好」，这对要做自动降级的系统不够用</li></ul>
-<p><strong>核心功能</strong></p><ul><li>状态页按影响程度分级通告，这次挂的是「多个模型同时 elevated errors」，不是单个模型故障，说明共享的基础设施或路由层更可能是共同故障点</li><li>帖子本身只是一个状态页链接，官方没给根因、受影响模型清单和恢复时间，HN 的 61 条评论基本在猜原因和分享绕行办法</li><li>多模型同时抖动意味着模型级冗余（Opus 挂了切 Sonnet）在这类故障里不起作用，只有换厂商才有效</li></ul>
-<p><strong>适用场景</strong>: 把 Claude API 接进生产流程的团队——做客服机器人、代码补全、Agent 工作流的开发者，出故障时要么排队重试，要么临时切到 OpenAI、Gemini 或本地模型。</p>
-<p><strong>竞品对比</strong>: 和 OpenAI Status、AWS Service Health Dashboard 属于同一类方案，形式上没差别。真正的差距在用户侧：很多接 Claude 的团队没配第二家供应商，所以同样的故障对 Claude 用户的实际杀伤更大。</p>
-<p><strong>成熟度</strong>: 事件进行中，官方只发了状态页通告，没有根因报告和时间线，信息成熟度低，只能等后续 postmortem。</p>
-<p><strong>趋势信号</strong>: Claude 最近被大量接进 Agent 和 Coding 工具，一次多模型抖动会同时打断一大批人的日常开发，所以一条状态页链接就能在 HN 上冲起来。</p>]]></content:encoded>
+      <title>superdesigndev/treg</title>
+      <link>https://github.com/superdesigndev/treg</link>
+      <guid isPermaLink="false">https://github.com/superdesigndev/treg</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>treg 是给 AI Agent 用的「工具版 OpenRouter」：一个 base URL 加一个 token，就能调用 3000+ 个第三方接口（SEO、社媒、爬虫、人物公司信息等），按次计费，不用逐个注册厂商账号。</description>
+      <content:encoded><![CDATA[<p><em>treg 是给 AI Agent 用的「工具版 OpenRouter」：一个 base URL 加一个 token，就能调用 3000+ 个第三方接口（SEO、社媒、爬虫、人物公司信息等），按次计费，不用逐个注册厂商账号。</em></p>
+<p><strong>亮点</strong></p><ul><li>不做模型路由、只做工具路由，并且自己持有 Semrush、Crunchbase、Apollo 这些 $99-$139/月的订阅账号来转售按次调用，绕开注册墙和邀请制 API</li><li>同一个 token 同时覆盖外部目录接口和团队私有工具，私有 key 优先、不计费，等于把「公共工具市场 + 企业密钥管理」合成一层</li><li>配了 Claude Code 插件市场、Claude.ai Connector 和 MiniMax 插件市场三条分发路径，装完不带 token 也能自动引导完成登录和 mcp install</li></ul>
+<p><strong>核心功能</strong></p><ul><li>代理只做转发不改写请求（relays, never models），认证在服务端注入，调用方永远不持有厂商 key，所以上游 API 改了也不用客户端改代码</li><li>四级凭证阶梯：团队自己注册的工具 &gt; 团队存的密钥（走虚拟工具注入）&gt; 已验证的公开免密路由（免费）&gt; 用 treg 自己的账号代付（扣团队预付费余额），自带 key 永远优先且不计费</li><li>一次请求可绑多个密钥（bindings），比如同时注入 OAuth bearer 和 developer-token 头；CLI 类型工具直接把密钥注入到 stripe/gh/vercel 这类厂商二进制里跑</li><li>余额不足返回 HTTP 402，body 里带 balance_micro、estimated_cost_micro、topup_url，Agent 不用读自然语言就能自己决定充值</li><li>MCP 服务分两个面：/mcp/v2/ 只暴露精选目录接口，且把读调用和写调用分开，好让 Claude 拿到准确的安全信号；/mcp/ 则开放团队自有工具和导入的 skills</li><li>strict_query 校验：标记为 strict 的接口会拒绝未声明或重复的 query 参数、不支持的值和请求体</li></ul>
+<p><strong>适用场景</strong>: 适合做 Agent 产品的团队和个人开发者：需要在产品里接一堆第三方数据源（找邮箱、查外链、抓 TikTok 数据、生成语音），又不想一家家开户、按月订阅。也适合企业把内部 API、OAuth 连接和 SKILL.md 统一注册一次，让全团队的 Agent 共用，密钥不出服务器。</p>
+<p><strong>竞品对比</strong>: 和 Composio、Arcade.dev、Smithery 这类工具接入/MCP 注册表比，最大差别是 treg 自己承担厂商账号和账单、按调用次数收费，而不是只帮你管 OAuth；和 OpenRouter 比，它路由的是工具不是模型，但借用了「一个 key 打通全部」的模式。</p>
+<p><strong>成熟度</strong>: 早期项目，仓库刚起来（约 2300 星），有托管服务和自部署文档，但没有版本号和企业落地案例，API 和计费规则还可能变。</p>
+<p><strong>趋势信号</strong>: MCP 在 2025 年成了 Agent 接工具的事实标准，Claude Code 插件市场又刚开放，大家对「工具从哪来、密钥怎么管」的需求集中爆发，treg 正好卡在这个位置，所以一天涨 230 星。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · Socrates vs. the Written Word (2011)</title>
-      <link>https://wondermark.com/socrates-vs-writing/</link>
-      <guid isPermaLink="false">https://wondermark.com/socrates-vs-writing/</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>2011 年的老漫画，把苏格拉底反对文字的理由画成吐槽图，被 HN 翻出来类比今天对 AI 代替思考的担忧。</description>
-      <content:encoded><![CDATA[<p><em>2011 年的老漫画，把苏格拉底反对文字的理由画成吐槽图，被 HN 翻出来类比今天对 AI 代替思考的担忧。</em></p>
-<p><strong>亮点</strong></p><ul><li>最有意思的是那个绕不开的反讽：苏格拉底自己一个字没写，这段&#x27;反对文字&#x27;的话能传到今天，全靠学生柏拉图记下来。</li><li>它把&#x27;新媒体毁掉一代人&#x27;的套路往前推到了两千多年前，说明这类恐慌每换一个媒介就来一遍，跟具体技术关系不大。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>内容取自柏拉图《斐德罗篇》274c 起那段：苏格拉底借埃及神明 Theuth 的故事说，文字会让人不再用脑子记东西，只拿到&#x27;看起来有智慧&#x27;的外壳。</li><li>形式是 Wondermark 的老路子：把 19 世纪版画剪贴拼起来，配现代口气的对话气泡，一两格把古人的论点讲完。</li><li>全文没有代码、没有数据，就是一张漫画；RSS 摘要里也只有链接和 HN 的分数、评论数。</li></ul>
-<p><strong>适用场景</strong>: 写技术博客、做分享的人在讲&#x27;新工具让人变笨&#x27;这类话题时，拿它当开场引子；HN 评论区的 7 条讨论主要也是顺着这个类比聊 AI 和搜索引擎。</p>
-<p><strong>竞品对比</strong>: 同样的位置常被 Nicholas Carr 2008 年的《Is Google Making Us Stupid?》和 Neil Postman 的《娱乐至死》占着。区别是那两篇是现代长文，这一篇是苏格拉底版本，最短、最早，也最适合当梗图用。</p>
-<p><strong>成熟度</strong>: 2011 年的旧漫画，不是项目，没有版本和 issue 一说；本轮 HN 只有 24 分 7 条评论，属于小范围重提。</p>
-<p><strong>趋势信号</strong>: 老梗被翻出来，通常是因为当下在吵大模型让人放弃自己思考，拿苏格拉底这段当历史类比最省事；不过 24 分说明只是小热度，不是大讨论。</p>]]></content:encoded>
+      <title>browser-use/video-use</title>
+      <link>https://github.com/browser-use/video-use</link>
+      <guid isPermaLink="false">https://github.com/browser-use/video-use</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>browser-use 出的 video-use，让你在 Claude Code 或 Codex 里对话剪视频：把素材丢进文件夹，它读转写稿做决策，输出 final.mp4，全程不用 GUI。</description>
+      <content:encoded><![CDATA[<p><em>browser-use 出的 video-use，让你在 Claude Code 或 Codex 里对话剪视频：把素材丢进文件夹，它读转写稿做决策，输出 final.mp4，全程不用 GUI。</em></p>
+<p><strong>亮点</strong></p><ul><li>核心思路跟 browser-use 给 LLM 喂结构化 DOM 而不是截图是同一套：视频也先转成文本接口，只在关键决策点（含糊的停顿、重拍对比、切点检查）才按需生成可视化 PNG。</li><li>以 Agent Skill 形式分发（SKILL.md + 软链到 ~/.claude/skills/），不自建 UI，Claude Code、Codex、Hermes 都能挂载，剪辑能力跟着你的 Agent 走而不是锁在一个 App 里。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>把视频转成文字喂给 LLM：用 ElevenLabs Scribe 一次转写拿到词级时间戳、说话人分离和 (laughter) 这类音频事件，所有 take 压成一个约 12KB 的 takes_packed.md 当主视图；对比逐帧塞给模型（3 万帧 ≈ 4500 万 token）的做法。</li><li>LLM 先输出 EDL（编辑决策表，写明每段从几分几秒切到几分几秒），交给 ffmpeg 渲染；渲染完成后在每个剪切点跑 timeline_view（胶片条+波形+词标签拼成一张图）自检，发现跳帧、爆音、字幕遮挡就打回重渲染，最多 3 轮。</li><li>后期细节用现成工具拼：每个切点加 30ms 音频淡入淡出避免 pop 声，调色走自定义 ffmpeg 链，字幕烧进画面，动画叠加用 Remotion、Manim、HyperFrames 或 PIL，每个动画开一个子 Agent 并行生成。</li><li>会话状态存进 project.md，下次打开同一文件夹能接着上一轮的剪辑思路继续做。</li></ul>
+<p><strong>适用场景</strong>: 做口播、教程、播客、采访的视频创作者和内容团队，用 Claude Code / Codex 在终端里直接剪片，省掉在 Premiere、Descript 或剪映里手动拖时间线、逐个抠 umm 和空白的活。</p>
+<p><strong>竞品对比</strong>: 同赛道有 Descript、剪映的文本剪辑、Opus Clip、auto-editor。最大差别是它没有 GUI，剪辑策略由 LLM 读转写稿自己定并产出 EDL，交互入口直接复用你已有的编码 Agent 和 shell。</p>
+<p><strong>成熟度</strong>: 早期项目，没有版本号，强依赖 ElevenLabs 付费 API 和本地 ffmpeg，安装靠文档驱动，接口和技能规范都可能变。</p>
+<p><strong>趋势信号</strong>: Claude Code / Agent Skills 生态眼下正是热点，加上 browser-use 团队自带关注度，把 Descript 验证过的&quot;文本剪辑&quot;方向搬进终端 Agent，踩中了两个热度叠加。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · Looking forward to Git 2.56 – and 3.0</title>
-      <link>https://lwn.net/SubscriberLink/1094575/2385e98583715c2b/</link>
-      <guid isPermaLink="false">https://lwn.net/SubscriberLink/1094575/2385e98583715c2b/</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>LWN 梳理 Git 2.56 即将落地的改动和 Git 3.0 的长期规划，重点是换掉引用存储后端、迁移 SHA-256、一次性清理历史包袱。</description>
-      <content:encoded><![CDATA[<p><em>LWN 梳理 Git 2.56 即将落地的改动和 Git 3.0 的长期规划，重点是换掉引用存储后端、迁移 SHA-256、一次性清理历史包袱。</em></p>
-<p><strong>亮点</strong></p><ul><li>3.0 被定位成&quot;清理版本&quot;而不是功能版本：借大版本号一次性改默认行为，避免在 2.x 小版本里做静默变更坑用户。</li><li>大版本升级不想砸掉兼容性——仓库格式和传输协议带版本协商，老客户端仍能推拉新仓库，这是 Git 历史上一直坚持的做法。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>reftable 引用存储后端：把&quot;一个分支一个文件&quot;的松散引用改成单个二进制表文件，几十万分支的仓库不再被 inode 和目录扫描拖慢，ref 更新也变成原子写入。</li><li>SHA-256 仓库格式迁移：新格式用 SHA-256 算对象 ID，同时保留 SHA-1 仓库的读写兼容层，靠转换命令迁移而不是重建仓库。</li><li>3.0 集中改默认值：哈希算法、ref 后端、默认分支名这类&quot;一改就影响所有人&quot;的开关，倾向于攒到大版本一起动，而不是在 2.x 里悄悄改。</li></ul>
-<p><strong>适用场景</strong>: 维护超大 monorepo 或自建 Git 托管（GitLab、Gitea、Gerrit）的团队，ref 数量一多就卡在引用存储上；关注仓库格式和哈希算法的安全合规团队则要提前评估 SHA-256 迁移。</p>
-<p><strong>竞品对比</strong>: 同领域有 Jujutsu（jj）和 Mercurial/Sapling。差别在于 jj 直接换掉提交模型（无暂存区、自动 rebase），Git 选择在现有模型上做增量清理和默认值调整，用户不用改工作流。</p>
-<p><strong>成熟度</strong>: 这是路线图讨论而非版本发布：2.56 处于发布前阶段，3.0 还没有时间表，具体条目随时可能变。</p>
-<p><strong>趋势信号</strong>: reftable 和 SHA-256 这类搁置多年的改动终于接近可用，同时 jj 等新工具分走了注意力，社区开始认真讨论 Git 要不要借 3.0 一次性还掉技术债。</p>]]></content:encoded>
+      <title>davila7/claude-code-templates</title>
+      <link>https://github.com/davila7/claude-code-templates</link>
+      <guid isPermaLink="false">https://github.com/davila7/claude-code-templates</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>把 Claude Code 的 agent、斜杠命令、MCP 集成、hook、settings 打包成 npm 模板库，一条 npx 命令装进项目，另带会话监控和体检面板。</description>
+      <content:encoded><![CDATA[<p><em>把 Claude Code 的 agent、斜杠命令、MCP 集成、hook、settings 打包成 npm 模板库，一条 npx 命令装进项目，另带会话监控和体检面板。</em></p>
+<p><strong>亮点</strong></p><ul><li>把 Claude Code 的六种扩展点（agent / command / hook / MCP / setting / skill）抽象成同一种「模板」，用同一套 CLI 参数安装，省掉了手工往 .claude 目录里写 JSON 和 markdown 的活</li><li>用 npm + npx 分发配置而不是走 git clone：版本号跟着 npm 走，安装零依赖，还顺带做了个 aitmpl.com 网页目录当索引</li></ul>
+<p><strong>核心功能</strong></p><ul><li>按分类路径装组件：`npx claude-code-templates@latest --agent development-team/frontend-developer --mcp development/github-integration --yes`，直接把 agent、slash 命令、MCP、hook、setting 写进项目的 Claude Code 配置目录，不用 clone 仓库</li><li>把多个来源的 Skills 聚成一个目录统一索引：包括 Anthropic 官方 anthropics/skills（21 个）、K-Dense-AI 的科研 skills（139 个，生物/化学/医学）、obra/superpowers 的 14 个工作流 skill，用户在 aitmpl.com 上按类浏览后一条命令装上</li><li>自带三个运维工具：`--analytics` 实时看 Claude Code 会话状态和指标，`--chats` 提供手机适配的对话查看页并可用 Cloudflare Tunnel 做远程访问，`--health-check` 体检本地 Claude Code 安装，`--plugins` 统一管插件市场、已装插件和权限</li></ul>
+<p><strong>适用场景</strong>: 日常用 Claude Code 写代码的个人和团队。想让 AI 按团队规范干活的人，会预装 code-reviewer agent、pre-commit 校验 hook、PostgreSQL 或 GitHub 的 MCP 连接；想统一团队里每个人 Claude Code 配置的 Tech Lead 也用得上。</p>
+<p><strong>竞品对比</strong>: 和 awesome-claude-code 这类纯链接清单比，它多了可执行的安装器和监控 UI；和 Claude Code 官方的 plugin marketplace 比，它是第三方聚合，覆盖社区和科研类 skill 更杂，但权威性和审核不如官方。</p>
+<p><strong>成熟度</strong>: 工具本身可用、有文档站（docs.aitmpl.com）和多家赞助（Z.AI、Bright Data、Neon、Vercel OSS），但里面收录的模板来源混杂、质量参差，装之前最好自己看一眼内容。</p>
+<p><strong>趋势信号</strong>: Claude Code 在 2025 年下半年带火了 MCP 和 Skills 生态，加上官方插件市场刚起步，社区急需一个「配置分发器」把散落各处的 agent/skill 收在一起，这个仓库正好卡在这个位置。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · Spymarks, Not Watermarks</title>
-      <link>https://brand.io/article/spymarks/</link>
-      <guid isPermaLink="false">https://brand.io/article/spymarks/</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇观点文，主张别给 AI 生成内容加水印，而是把追踪标记埋进自己原创内容里，用来反查谁抓取、搬运、洗稿。HN 上 242 分、45 条评论。</description>
-      <content:encoded><![CDATA[<p><em>一篇观点文，主张别给 AI 生成内容加水印，而是把追踪标记埋进自己原创内容里，用来反查谁抓取、搬运、洗稿。HN 上 242 分、45 条评论。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心是把溯源问题从&#x27;证明这是 AI 写的&#x27;换成&#x27;证明这是谁抄的&#x27;——前者技术上一直没打赢，后者是取证问题，难度低得多。</li><li>承认水印方案的实际失败：靠模型厂商自觉、靠元数据不丢失，这两条前提在开放网络里基本不成立。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>把标记方向反过来：watermark 是给 AI 输出贴标签，spymark 是在自己内容里埋只有作者知道的独特标记（罕见搭配、特制错字、特定词组），被爬走或洗稿后能反查来源，不依赖模型端配合。</li><li>绕开主动水印的通病：改 logits 分布或后处理加水印，一翻译、一改写、一截图就没了；标记藏在内容本身，经不经过模型都能留下来。</li><li>思路接近情报圈的 canary trap（蜜罐陷阱）：给不同人发略有差异的版本，泄露后看哪个版本外流，就知道是谁漏的——只是搬到了网页和 AI 语料场景。</li></ul>
-<p><strong>适用场景</strong>: 写原创长内容的博主、媒体、出版方，以及做品牌保护/版权维权的法务和市场团队。典型场景是发现自家文章被 AI 摘要站、洗稿号批量搬运后，想拿到能指名道姓的证据，而不是只发个 DMCA。</p>
-<p><strong>竞品对比</strong>: 对手是 C2PA（内容来源与真实性联盟的元数据标准，Adobe、微软等在推）、Google SynthID 这类 AI 输出水印，以及学术界基于 logits 的文本水印。最大差异：它们标记&#x27;来源是不是 AI&#x27;，且要靠平台配合、元数据不被剥离；spymark 标记&#x27;内容是谁的&#x27;，埋在正文里，不需要任何人配合。</p>
-<p><strong>成熟度</strong>: 一篇观点文章，不是代码项目，没有可复现的实现或基准，论点是方向性的。信息基于 HN 条目和标题推断，正文细节未能从 RSS 源获取。</p>
-<p><strong>趋势信号</strong>: 踩在当下几个热点交汇处：AI 爬虫大规模抓取原创内容、出版商集体起诉、C2PA 和 SynthID 落地效果被普遍质疑。HN 上 242 分说明&#x27;水印没用、得换思路&#x27;这个判断有共鸣。</p>]]></content:encoded>
+      <title>Hacker News · Data-Only Attacks Are Easier Than You Think</title>
+      <link>https://www.usenix.org/publications/loginonline/data-only-attacks-are-easier-you-think</link>
+      <guid isPermaLink="false">https://www.usenix.org/publications/loginonline/data-only-attacks-are-easier-you-think</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>USENIX ;login: 一篇文章讲数据-only 攻击：不劫持控制流，只改数据（权限标志、长度、路径、token）就能得手，绕开 CFI 这类防护。</description>
+      <content:encoded><![CDATA[<p><em>USENIX ;login: 一篇文章讲数据-only 攻击：不劫持控制流，只改数据（权限标志、长度、路径、token）就能得手，绕开 CFI 这类防护。</em></p>
+<p><strong>亮点</strong></p><ul><li>把防御视角从“控制流完整性”拽回“数据完整性”：只守返回地址和虚表指针不够，权限标志、配置、会话数据同样是被攻击目标。</li><li>强调经济学而非新原语：不是发现新漏洞类型，而是指出数据-only 路线的成本远低于控制流劫持，防御投入和攻击投入不成比例。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>不改控制流，只改数据：把 isAdmin 布尔值、文件路径、收件人字段、权限位、长度字段改成攻击者想要的值，程序自己会走合法路径，用不着 ROP 链或 shellcode。</li><li>专挑控制流防护的盲区：Intel CET 影子栈、Clang CFI、ASLR 只校验返回地址和间接跳转目标，数据域被篡改它们根本不触发。</li><li>攻击门槛被低估：很多数据-only 攻击不需要内存破坏原语（越界写、UAF），一个逻辑漏洞加一次任意写就能收工，比构造完整 ROP 链省事得多。（注：RSS 只给了标题和链接，正文未抓到，以上为该领域的通用技术点。）</li></ul>
+<p><strong>适用场景</strong>: 面向安全研究员、浏览器/内核/系统开发者，以及做威胁建模的安全工程师。典型场景是评估现有缓解措施（CET、CFI、MTE）到底覆盖了多少攻击面，别以为开了 CFI 就万事大吉。</p>
+<p><strong>竞品对比</strong>: 和 Intel CET 影子栈、Clang CFI、ASLR 这些控制流防护不是同一层面——那些压根不防数据篡改。学术上 Data-Oriented Programming（CCS 2016）等已论证过数据-only 攻击的图灵完备性，本文更像面向工程实践的解释与提醒。</p>
+<p><strong>成熟度</strong>: 信息成熟度：USENIX ;login: 是正式出版物，文章可信；但我只拿到标题和链接，正文没抓到，属于“知道有这篇、细节待读”的阶段，HN 上仅 6 分 0 评论。</p>
+<p><strong>趋势信号</strong>: 控制流防护这两年陆续硬件化落地（Intel CET、ARM MTE、Clang CFI），攻击者自然往这些机制覆盖不到的数据域挪，所以数据-only 攻击的话题又被翻出来讨论；不过这个具体帖子热度很低，基本没人评论。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · I don&#x27;t want to read what you didn&#x27;t write</title>
-      <link>https://blog.colinbreck.com/i-dont-want-to-read-what-you-didnt-write/</link>
-      <guid isPermaLink="false">https://blog.colinbreck.com/i-dont-want-to-read-what-you-didnt-write/</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>作者主张：用 AI 代笔的文章不值得读，写作的价值在于思考过程本身。在 AI 内容泛滥的当下引发该不该标注、算不算数的大争论。</description>
-      <content:encoded><![CDATA[<p><em>作者主张：用 AI 代笔的文章不值得读，写作的价值在于思考过程本身。在 AI 内容泛滥的当下引发该不该标注、算不算数的大争论。</em></p>
-<p><strong>亮点</strong></p><ul><li>它讨论的不是「AI 能不能写出好文章」，而是署名的诚信前提——署名意味着这段判断由你负责，AI 代笔把责任和内容拆开了。</li><li>在生成内容成本趋近于零的时候，把「确定是人写的」本身当成一种稀缺信号。内容的稀缺性从信息量转移到了来源可信度。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>核心主张就是标题本身：读者点开某个人的博客，默认背后是这个人在思考和判断；换成 LLM 代写，语法再漂亮也不是你要读的那个东西。</li><li>关键区分是「写作」和「产出文本」——作者把写博客当成思考工具，想法是在写的过程中才成形的，交给模型等于跳过这一步，读者拿到的是成品，不是思考的结果。</li><li>真正的争论边界在于尺度的定义：用 AI 查错别字、改语法、做翻译算不算「没写」？Hacker News 上 156 条评论主要在吵这条线该划在哪儿。</li></ul>
-<p><strong>适用场景</strong>: 写技术博客、写内部文档、做技术分享的工程师，以及正在定「AI 生成内容要不要标注」规范的团队负责人。招聘和评审场景里，也有人拿它当参照，判断一份文字背后有多少是本人输出的。</p>
-<p><strong>竞品对比</strong>: 话题上和 Paul Graham 的《Writes and Write-Nots》是同一件事的两面：PG 担心的是人不写就慢慢丧失写作能力，这篇是读者视角——你不写，我就不读。差异在于 PG 讲能力退化，Colin 讲阅读契约被破坏。</p>
-<p><strong>成熟度</strong>: 一篇个人观点文章，不是项目，没有版本号也没有数据支撑；HN 458 分、156 条评论说明它踩中了当下最敏感的话题之一，但结论属于个人立场，需要读者自己判断。</p>
-<p><strong>趋势信号</strong>: AI 生成内容已经把技术博客和投稿渠道淹了一遍，HN 本身对 LLM 代写评论和投稿态度明确偏负面，社区对「AI slop」的容忍度正在快速下降，这类文章就变成了情绪出口。</p>]]></content:encoded>
+      <title>Hacker News · Transit rewards (Waymo pays you to take the train)</title>
+      <link>https://waymo.com/blog/2026/09/transit-rewards/</link>
+      <guid isPermaLink="false">https://waymo.com/blog/2026/09/transit-rewards/</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Waymo 推出乘车奖励：用户改坐公交地铁就能换 Waymo 乘车额度，把自动驾驶从&#x27;取代公交&#x27;重新定位成&#x27;接驳公交&#x27;。</description>
+      <content:encoded><![CDATA[<p><em>Waymo 推出乘车奖励：用户改坐公交地铁就能换 Waymo 乘车额度，把自动驾驶从&#x27;取代公交&#x27;重新定位成&#x27;接驳公交&#x27;。</em></p>
+<p><strong>亮点</strong></p><ul><li>商业姿态反着来：自动驾驶公司通常被公交系统当成抢客的对手，Waymo 反过来掏钱补贴公交，换的是监管好感和&#x27;最后一公里&#x27;这个公交本来就做不好的细分市场</li><li>如果奖励以乘车额度而非现金发放，会计上更接近&#x27;公共交通补贴&#x27;而不是&#x27;打折促销&#x27;，在对自动驾驶态度摇摆的城市更容易拿到政策支持</li></ul>
+<p><strong>核心功能</strong></p><ul><li>奖励设计是&#x27;用额度换行为&#x27;：坐一次地铁或公交，返一笔 Waymo 乘车抵扣，钱不发现金、最终回流到自家订单，本质是用补贴买用户少开一趟车</li><li>落地难点在数据打通——要把公交刷卡/购票记录和 Waymo 账户对上号才能自动发奖，跨公司、跨票务系统的对接才是主要工程量</li><li>多半会绑定&#x27;起点或终点在车站附近&#x27;的接驳行程，只补公交覆盖不到的那 1-2 公里，而不是补贴全程打车</li></ul>
+<p><strong>适用场景</strong>: 旧金山、凤凰城这类 Waymo 已运营城市里的通勤族，尤其是住在地铁站一两公里外、又不想把车停到站边的人；公交局也能拿它做联合推广，缓解站点周边停车压力。</p>
+<p><strong>竞品对比</strong>: Uber 和 Lyft 早就有 Transit 功能，把公交时刻表和购票塞进自家 App，但那只是导流，不给钱；Waymo 直接掏钱补贴公交，差别在于它要证明自己是公交的补充而不是替代。</p>
+<p><strong>成熟度</strong>: 只有一篇官方博客，Hacker News 上 32 分、13 条评论，属于早期试点或营销动作；具体奖励规则、覆盖城市、是否长期有效都没披露，落地细节无法验证。</p>
+<p><strong>趋势信号</strong>: Robotaxi 正在多个城市扩张，同时各地政府在推&#x27;减少市中心拥堵、扶持公交&#x27;，Waymo 需要用&#x27;帮公交&#x27;的姿态换取运营许可和公众好感。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · MiMo v2.6</title>
-      <link>https://mimo.xiaomi.com/mimo-v2-6</link>
-      <guid isPermaLink="false">https://mimo.xiaomi.com/mimo-v2-6</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>小米 MiMo 团队放出 v2.6，冲到 HN 首页（687 分、325 条评论）。RSS 只带链接没正文，具体参数和跑分要打开原页确认。</description>
-      <content:encoded><![CDATA[<p><em>小米 MiMo 团队放出 v2.6，冲到 HN 首页（687 分、325 条评论）。RSS 只带链接没正文，具体参数和跑分要打开原页确认。</em></p>
-<p><strong>亮点</strong></p><ul><li>小米是消费电子公司出身，却把模型权重直接开源，正面挤进 Llama、Qwen、DeepSeek 的同一批使用者池子，这在两年前不常见。</li><li>它的想象空间不在榜单分数，而在落地场景：小米手里有手机、汽车、智能家居三条硬件线，端侧部署的天然渠道比纯模型公司宽。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>这条 RSS 只有标题、链接和热度数据（687 分、325 评论），正文一个字没抓到。也就是说模型大小、benchmark、许可证这些关键信息都得回原页看，别照着标题下结论。</li><li>MiMo 是小米的开源模型线，之前发过 MiMo-7B（从零训练、不靠蒸馏的 7B 推理模型）和 MiMo-VL（看图+推理的多模态版本）。v2.6 大概率是这条线的迭代，不是全新系列。</li><li>按 HN 的评论量看，讨论基本分成两拨：一拨抠 license 和显存需求，一拨等第三方复现跑分。这类帖子通常 24 小时内就会有人贴出自己的测试结果。</li></ul>
-<p><strong>适用场景</strong>: 想找便宜替代 GPT/Claude 的团队会先看它——尤其是要做私有化部署、数据不能出内网的金融和医疗公司，以及想在本地显卡上跑模型的独立开发者。小米生态里的手机、车机、IoT 团队也可能拿它做端侧推理。</p>
-<p><strong>竞品对比</strong>: 直接对手是 Qwen、DeepSeek、GLM、Kimi 这些国内开源模型，以及 Meta 的 Llama。最大的差异点是小米自带硬件出货渠道，能让模型直接进手机和车机，而其他家主要靠云 API 和开发者社区。</p>
-<p><strong>成熟度</strong>: 这是新闻/链接条目而非代码仓库，RSS 正文缺失，信息成熟度低——目前唯一可靠的是 HN 热度，模型本身的能力、许可证和稳定性都还没有可核实的信息。</p>
-<p><strong>趋势信号</strong>: 2025 年国内厂商（DeepSeek、Qwen、Kimi、GLM、MiMo）密集放开源模型，几乎每次发布都能冲上 HN 首页，加上小米自带端侧硬件场景，讨论自然被推高。</p>]]></content:encoded>
+      <title>Hacker News · US criticises Australia&#x27;s proposed algorithm opt-out laws as &#x27;censorship&#x27;</title>
+      <link>https://www.bbc.com/news/articles/cqj3dgy8x3vro</link>
+      <guid isPermaLink="false">https://www.bbc.com/news/articles/cqj3dgy8x3vro</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>澳大利亚拟立法让用户关掉推荐算法、改看纯时间线，美国批这是变相审查。平台合规、言论自由、算法监管三方撞在一起，在 HN 上吵成热帖。</description>
+      <content:encoded><![CDATA[<p><em>澳大利亚拟立法让用户关掉推荐算法、改看纯时间线，美国批这是变相审查。平台合规、言论自由、算法监管三方撞在一起，在 HN 上吵成热帖。</em></p>
+<p><strong>亮点</strong></p><ul><li>监管思路换了方向：过去几年各国主要在要求平台『披露算法、做风险评估』，澳大利亚这次直接要求『给用户一个关掉算法的开关』，不动模型只动入口</li><li>美方把强制排序规则直接定性为审查，把技术监管和言论自由绑到一张桌上谈，这个定性一旦被接受，会影响其他国家抄不抄这份作业</li></ul>
+<p><strong>核心功能</strong></p><ul><li>算法开关：强制平台（TikTok、Instagram、YouTube 这类）给用户一个非个性化信息流选项，内容按时间倒序或纯关注队列排，不走推荐模型</li><li>合规与执法：由澳洲监管机构（如 eSafety/ACMA）负责落地，违规平台可能被罚款，具体罚则和豁免条款是争论重点</li><li>争议核心在定义权：反对方认为由政府规定信息怎么排序，等于政府间接决定用户看到什么，所以被叫成 censorship</li></ul>
+<p><strong>适用场景</strong>: 关注平台治理的合规法务、政策研究者，以及做推荐系统的工程师——后者要评估一件事：如果给用户一键关掉个性化排序，日活、停留时长、广告收入会掉多少。</p>
+<p><strong>竞品对比</strong>: 欧盟 DSA 走的是『披露 + 风险评估 + 给研究者数据访问』的软路线，不强制提供非算法版本；澳大利亚这条更硬，直接落到产品功能上。美国本土则靠 FTC 和州法零散处理，没有联邦统一要求。</p>
+<p><strong>成熟度</strong>: 立法提案阶段，还没通过，具体条款和罚则都可能改，现在讨论的是方向不是定稿。</p>
+<p><strong>趋势信号</strong>: 这两年各国密集推算法监管（欧盟 DSA、澳大利亚未成年社媒禁令），加上美国官方近期频繁公开反对盟友的社媒立法，一有新的表态就容易冲上 HN 热榜。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · Transformers Explained Visually</title>
-      <link>https://poloclub.github.io/transformer-explainer/</link>
-      <guid isPermaLink="false">https://poloclub.github.io/transformer-explainer/</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>佐治亚理工做的交互式 Transformer 讲解页：在浏览器本地跑真实 GPT-2，你自己输入一句话，就能看到每一步的注意力权重和下一个词的预测概率怎么算出来。</description>
-      <content:encoded><![CDATA[<p><em>佐治亚理工做的交互式 Transformer 讲解页：在浏览器本地跑真实 GPT-2，你自己输入一句话，就能看到每一步的注意力权重和下一个词的预测概率怎么算出来。</em></p>
-<p><strong>亮点</strong></p><ul><li>关键取舍是拿规模换交互：不用 GPT-4 那类大模型，用 GPT-2 small 才能塞进浏览器本地跑，代价是效果一般，好处是用户改输入、改参数，视图实时跟着变，而不是看手绘示意图。</li><li>所有向量、注意力矩阵都来自真实推理结果，不是画的。所以看到的是模型实际在算什么，不是作者希望你以为它在算什么。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>用 ONNX Runtime Web 把 GPT-2 small（约 1.24 亿参数的模型）直接跑在浏览器里，走 WebGPU/WASM 推理，不需要后端服务器。你改一个字，所有注意力权重和输出概率当场重算。</li><li>把 GPT-2 拆成 tokenizer → embedding → 多层多头注意力 → MLP → 输出 softmax 的完整流水线，每层都能点开看。配了 temperature（控制输出随机性的旋钮）和 top-k 滑块，拖动就能看到下一个词的候选分布怎么变。</li><li>每个注意力头都能展开看 Q/K/V 矩阵和注意力热力图，直观看出当前这个 token 在『看』前面哪几个词——这是纯文字讲解最难讲清的部分。</li></ul>
-<p><strong>适用场景</strong>: 教 NLP 课的老师和学生、想搞明白 attention 到底在算什么的后端/算法工程师、做模型可解释性的研究者。适合当课堂演示或自学第一站，替代纯文字博客。</p>
-<p><strong>竞品对比</strong>: 和 Jay Alammar 的 Illustrated Transformer、BertViz、3Blue1Brown 视频相比，那些要么是静态插图，要么只演示写死的例句。这个的最大差别是能输入你自己的文本、用真实 GPT-2 现场算给你看。</p>
-<p><strong>成熟度</strong>: 研究实验室出品的教学工具，有 IEEE VIS 论文和开源仓库，功能稳定；但只支持 GPT-2 级别的小模型，定位是教学演示，不是生产软件。</p>
-<p><strong>趋势信号</strong>: LLM 全面铺开后『想搞懂注意力到底在干嘛』的需求一直没被满足，加上 WebGPU 和 ONNX Runtime Web 成熟、让浏览器本地跑小模型变得可行，这个页面每次被转发都能冲上首页。</p>]]></content:encoded>
+      <title>Hacker News · The current balance of power in open models</title>
+      <link>https://www.interconnects.ai/p/the-current-balance-of-power-in-open</link>
+      <guid isPermaLink="false">https://www.interconnects.ai/p/the-current-balance-of-power-in-open</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Nathan Lambert 分析当下开放权重模型的势力分布，讨论中美实验室各站在什么位置。</description>
+      <content:encoded><![CDATA[<p><em>Nathan Lambert 分析当下开放权重模型的势力分布，讨论中美实验室各站在什么位置。</em></p>
+<p><strong>亮点</strong></p><ul><li>核心论点是开放阵营的重心已经移到中国实验室，美国前沿实验室（OpenAI、Anthropic、Google）基本不参与，Meta 的开放姿态也在收缩，所以「开放 vs 闭源」不再是美国内部的路线之争。</li><li>把开放权重看成闭源实验室的免费分发渠道：生态、人才、下游工具链都在给闭源模型打工，这一点常被当成「开源威胁论」的反面论证。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>区分「开放权重」和「开源」：参数能下载，但训练数据、训练代码、数据配方基本不公开，只有少数（如 OLMo、部分 Qwen 版本）给了完整训练栈。</li><li>用可核查的外部信号做判断依据：LMArena 和 Artificial Analysis 的排行、Hugging Face 下载量、vLLM/Ollama 上的下游采用度，而不是只看模型卡上的自报分数。</li><li>把发布节奏当成核心指标：中国实验室（DeepSeek、Qwen、Kimi、GLM、MiniMax）按月级别放新权重，美国这边除 Meta 之外主要是 AI2、Nvidia 这类非前沿玩家在撑场。</li></ul>
+<p><strong>适用场景</strong>: 做模型选型的工程团队和创业公司 CTO，用来决定是继续买闭源 API 还是切到自托管开源权重；政策研究者和记者用它理解「开源 AI 监管该不该管、管谁」。</p>
+<p><strong>竞品对比</strong>: 同类信息源里，Epoch AI 和 Stanford AI Index 偏数据统计，SemiAnalysis 偏算力和商业，Interconnects 的特点是作者本人在开源模型圈内（AI2），观点带立场、敢下结论，但不如排行榜那样可复现。</p>
+<p><strong>成熟度</strong>: 观点型分析文章，无代码无数据集；结论依赖写作当时的排行榜快照，几周内就会过时，引用前需核对最新榜单。</p>
+<p><strong>趋势信号</strong>: 2025 年下半年中国实验室（DeepSeek、Qwen、Kimi K2、GLM）密集放出接近前沿的开放权重，同期 Meta 在 Llama 上的开放策略明显退坡，社区在讨论「开放阵营还剩谁」，这条 HN 讨论就是这个情绪的直接反应。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · AI coding has made CI a bottleneck, so we reworked ours to keep up</title>
-      <link>https://linear.app/now/ci-bottleneck-reworked</link>
-      <guid isPermaLink="false">https://linear.app/now/ci-bottleneck-reworked</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Linear 工程博客复盘：AI 编码让 PR 数量暴涨，CI 排队成了新瓶颈，他们重做了自家流水线。HN 176 分、183 条评论，说明这是普遍痛点。</description>
-      <content:encoded><![CDATA[<p><em>Linear 工程博客复盘：AI 编码让 PR 数量暴涨，CI 排队成了新瓶颈，他们重做了自家流水线。HN 176 分、183 条评论，说明这是普遍痛点。</em></p>
-<p><strong>亮点</strong></p><ul><li>点破了一个反直觉的事：单个工程师写代码变快，不等于交付变快。写快了，下游的 CI、评审、合并、部署没跟着快，整体吞吐可能不变甚至更差</li><li>讨论热度高（183 条评论）本身说明这不是 Linear 一家的问题，而是 AI 编码工具普及后整条交付链路的共性缺口</li></ul>
-<p><strong>核心功能</strong></p><ul><li>把瓶颈定位在「验证」环节：AI 代理批量产出 PR 的速度超过了 CI 验证速度，人等的不是代码写完，是流水线跑完</li><li>标题用的是 reworked（重做）而不是扩容：改的是流水线结构，不是单纯加 runner 数量</li><li>RSS 只抓到标题和链接，正文没拿到，具体改法（并行策略、测试选择、缓存复用）无法从现有材料核实，别当成技术方案照着抄</li></ul>
-<p><strong>适用场景</strong>: 适合已经在用 Cursor、Claude Code、Codex 这类工具批量提 PR 的团队，尤其是平台工程、DevEx 或 SRE 角色——他们发现 CI 排队时间从几分钟涨到几十分钟，review 队列也堵了。</p>
-<p><strong>竞品对比</strong>: 同领域有 Buildkite、Depot、Blacksmith、Namespace 这些专门做 CI 加速的服务，思路通常是换更快的 runner 或做缓存。Linear 这篇是自己家的实践复盘，不是产品发布，重点在「怎么改流程」而非「买什么工具」。</p>
-<p><strong>成熟度</strong>: 一篇工程博客，不是代码仓库，没有版本号可看；只能确认这是个真实团队的实践记录，正文未获取，结论当经验参考而非标准答案。</p>
-<p><strong>趋势信号</strong>: 2025 年 AI 编码代理铺开后，社区讨论重心从「AI 能不能写代码」转到了「写完谁来验证」，CI、review、合并这三个环节集体变成瓶颈，HN 上 183 条评论就是同一条船上的人在互相倒苦水。</p>]]></content:encoded>
+      <title>Hacker News · Microsoft killed FoxPro in 2007. Anyway, here&#x27;s FoxPro revived</title>
+      <link>https://foxscript.org/</link>
+      <guid isPermaLink="false">https://foxscript.org/</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>用 Rust 重写 Visual FoxPro 运行时并编译成 wasm，让停更 18 年的 VFP9 老应用继续跑，行为对真实 vfp9.exe 做校验。</description>
+      <content:encoded><![CDATA[<p><em>用 Rust 重写 Visual FoxPro 运行时并编译成 wasm，让停更 18 年的 VFP9 老应用继续跑，行为对真实 vfp9.exe 做校验。</em></p>
+<p><strong>亮点</strong></p><ul><li>思路不是让用户迁移，而是做一个兼容运行时：同一个语言、同一份代码，只换引擎，这才是遗留系统续命的现实做法</li><li>选 wasm 当目标平台，顺手绕开了对 32 位 Windows 运行时的依赖，跨平台和进程隔离一起解决</li></ul>
+<p><strong>核心功能</strong></p><ul><li>新运行时用 Rust 写、编译成 WebAssembly，并以真实 vfp9.exe 作为对照基准逐项校验行为，目标是老代码语义不变</li><li>突破 VFP 原本 2 GB 的表文件上限，同时老式 32 位 .fll 扩展插件仍能加载</li><li>在原语言上补了 lambda、JSON 支持和内置 HTTP 服务器，方便老应用直接对外提供接口</li></ul>
+<p><strong>适用场景</strong>: 手里有一二十年历史的 FoxPro 业务系统、又不敢重写的企业 IT 和外包团队。典型场景是制造业、医疗、政府里那些没人敢碰的内部管理软件，业务逻辑全在里面，重写风险大于收益。</p>
+<p><strong>竞品对比</strong>: 微软 2007 年就停掉了 VFP，所以真正能比的是两类方案：把老系统重写成 .NET/Web 的迁移项目，以及只读写 DBF 文件的库（Python 的 dbf、Rust 的 dbase 等）。FoxScript 的差别是保留完整 VFP 语言和运行行为，而不是只读表数据。</p>
+<p><strong>成熟度</strong>: 早期项目：报告功能尚未实现，构建产物未签名，MIT 许可，由一个客户的续命需求驱动。</p>
+<p><strong>趋势信号</strong>: 它赶上了两股力量叠加：一是「用 Rust/WASM 复活老语言运行时」这一波做法（此前已有 COBOL、Delphi 类似尝试），二是大量企业 VFP 系统在 32 位 Windows 支持逐步退场的背景下急着找续命方案，所以 HN 上一天就攒到 234 分、149 条评论。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · The Advisory Group on Mathematics and Artificial Intelligence</title>
-      <link>https://terrytao.wordpress.com/2026/09/21/advisory-group-on-mathematics-and-artificial-intelligence/</link>
-      <guid isPermaLink="false">https://terrytao.wordpress.com/2026/09/21/advisory-group-on-mathematics-and-artificial-intelligence/</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>陶哲轩在博客宣布参与组建「数学与AI顾问小组」，讨论AI进入数学研究后怎么评估成果、怎么定使用规范。</description>
-      <content:encoded><![CDATA[<p><em>陶哲轩在博客宣布参与组建「数学与AI顾问小组」，讨论AI进入数学研究后怎么评估成果、怎么定使用规范。</em></p>
-<p><strong>亮点</strong></p><ul><li>把数学家、AI实验室、资助方拉到同一张桌子上谈规则，而不是各说各话——这种跨机构的治理动作在数学界不常见。</li><li>定位是「顾问/规范」而不是「造模型」或「做榜」，重点落在验证流程和成果归属，而不是比谁的模型分数高。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>小组要解决的是「AI算不算数」的问题：AI给出的证明、猜想、计算，谁来判断对错，怎么记录署名，这是数学界自己定规矩，不是AI公司定。</li><li>陶哲轩一贯主张机器检查优先——AI生成的证明要过 Lean 这类形式化证明工具（把证明写成计算机能逐步校验的代码），才算真证明。</li><li>评估离不开基准测试，比如 FrontierMath 这类专门给AI出的高难度数学题集，用来区分「模型真会推理」和「模型见过类似题」。</li><li>注意：帖子正文没有被抓取到，以上是围绕该主题的公开脉络，具体条款需看原文。</li></ul>
-<p><strong>适用场景</strong>: 数学研究者、期刊审稿人、高校数学系要面对AI写的证明和论文；做数学推理的AI实验室也需要一套外界认可的评测和合规标准。</p>
-<p><strong>竞品对比</strong>: 已有的类似动作包括 Epoch AI 的 FrontierMath 基准、AIMO 数学竞赛奖、Lean 形式化社区，还有各国数学会的AI声明。区别是这些多在「做评测」或「做工具」，这个小组偏治理和规范，管的是规则不是分数。</p>
-<p><strong>成熟度</strong>: 事件刚起步，只是一篇博文加54条HN讨论，小组名单、章程、产出都还没落地。</p>
-<p><strong>趋势信号</strong>: 近两年大模型在奥数题和前沿数学基准上分数涨得快，数学界从「围观AI」转向「必须表态定规矩」，陶哲轩本人又是这个议题最有分量的发声者之一。</p>]]></content:encoded>
+      <title>Hacker News · Native apps written in TypeScript and CSS</title>
+      <link>https://github.com/geastack/examples</link>
+      <guid isPermaLink="false">https://github.com/geastack/examples</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一个示例仓库，展示用 TypeScript 写逻辑、CSS 写样式，直接编译成原生 App，不走 WebView 也不跑 JS 引擎。HN 上 94 分、34 条评论。</description>
+      <content:encoded><![CDATA[<p><em>一个示例仓库，展示用 TypeScript 写逻辑、CSS 写样式，直接编译成原生 App，不走 WebView 也不跑 JS 引擎。HN 上 94 分、34 条评论。</em></p>
+<p><strong>亮点</strong></p><ul><li>把赌注押在编译期转换而不是运行时桥接上：RN 是 JS 引擎跑逻辑 + 桥接调原生，Flutter 是自带渲染引擎自绘，而这个走的是直接把 TS 翻译成原生代码，理论上更贴近平台，代价是编译器和控件覆盖要自己啃</li><li>输入语言选的是前端已有的 TS 和 CSS，不用新学一门 DSL，迁移成本比 Dart 或 SwiftUI 低</li></ul>
+<p><strong>核心功能</strong></p><ul><li>用编译器把 TypeScript 转成各平台原生代码，App 包里不带 JS 运行时，界面是平台原生控件而不是网页渲染出来的</li><li>CSS 只取布局和样式的一个子集，映射到系统原生布局（比如约束或 flex 类的布局系统），不是套一个浏览器渲染引擎</li><li>仓库是 examples 性质，给的是能直接跑的最小示例，用来看同一份 TS/CSS 在 iOS、Android 等平台各自编译出什么</li></ul>
+<p><strong>适用场景</strong>: 会写前端但不想学 Swift/Kotlin 的开发者，想用 TS + CSS 做移动端或桌面端 App；也适合对 RN、Flutter 的包体和启动速度不满意、想试试编译成原生这条路的团队做技术选型预研。</p>
+<p><strong>竞品对比</strong>: 对手是 React Native、Flutter 和 Capacitor/Tauri。最大差别是不带 JS 引擎、不套 WebView、也不自绘，直接出原生代码；好处是启动和包体，短板是生态、第三方库和控件覆盖远不如 RN/Flutter 成熟。</p>
+<p><strong>成熟度</strong>: RSS 里只有标题和仓库链接，没给版本号、文档和提交频率；从 examples 仓库的定位看属于早期项目，别上生产。</p>
+<p><strong>趋势信号</strong>: HN 上「绕开 WebView 和 JS 运行时、直接把 TS 编译成原生」这条线最近反复被讨论，背景是 RN 新架构和 Flutter 都在处理运行时开销，社区在找更轻的跨平台路子。</p>]]></content:encoded>
     </item>
     <item>
-      <title>Hacker News · NASA’s Mars Sample Return mission is dead</title>
-      <link>https://www.science.org/content/article/nasa-s-mars-sample-return-mission-dead</link>
-      <guid isPermaLink="false">https://www.science.org/content/article/nasa-s-mars-sample-return-mission-dead</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>NASA 火星采样返回任务被判定终止。毅力号已封存的 30 多管样本还躺在火星上，但 110 亿美元成本和 2040 年的时间表压垮了整个项目。</description>
-      <content:encoded><![CDATA[<p><em>NASA 火星采样返回任务被判定终止。毅力号已封存的 30 多管样本还躺在火星上，但 110 亿美元成本和 2040 年的时间表压垮了整个项目。</em></p>
-<p><strong>亮点</strong></p><ul><li>沉没成本是实物：几十亿美元已经花掉，换来的是躺在火星地上的 30 多管样本。任务取消不等于钱能收回，这些管子只能等下一个任务去取。</li><li>NASA 曾让商业公司提交 90 天快速研究，试图用固定价合同的商业着陆器替代自研的 cost-plus 模式。这是它采购思路转向的一次试探，结果没救回项目。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>任务原设计是三段接力：毅力号在杰泽罗陨石坑钻取并封存样本管；随后发射取样着陆器，用机械臂把管子装进火星上升飞行器（MAV，一枚两级固体小火箭，负责把样本罐送出火星引力）；最后由 ESA 的地球返回轨道器在火星轨道接住样本罐并送回地球。</li><li>早期方案打算用 Ingenuity 直升机的放大版去捡样本管，后来取消，改成着陆器机械臂直接抓取，就是为了砍掉一个飞行环节的复杂度。</li><li>成本从立项时约 40 亿美元涨到 110 亿，返回时间从 2033 年滑到 2040 年；2023 年独立审查委员会（Figueroa 报告）直接指出预算和进度都不现实，这是被砍的直接依据。</li></ul>
-<p><strong>适用场景</strong>: 关心的人是行星科学家——他们等这批样本做同位素定年、找古代生命痕迹，地球上做不了这些实验。还有航天承包商（Lockheed Martin、SpaceX、Blue Origin 等都提交过替代方案）和政策圈（国会拨款委员会、NASA 科学任务理事会）。</p>
-<p><strong>竞品对比</strong>: 最大对手是中国天问三号，计划 2028 年前后发射、2031 年左右把火星样本带回地球。日本 MMX 只去火卫一，不碰火星表面。MSR 一死，人类首次火星采样返回大概率归中国。</p>
-<p><strong>成熟度</strong>: 事件已到结论阶段（文章标题即宣布任务终止），但样本如何处置、ESA 已投入的硬件怎么办、有没有替代方案，这些都还没定。</p>
-<p><strong>趋势信号</strong>: NASA 预算被重排、白宫削减科学经费，加上天问三号时间表越来越近，让‘美国要不要放弃火星采样返回’这件事在 HN 上吵了 283 条评论。</p>]]></content:encoded>
+      <title>Hacker News · Obscura: VPN that can&#x27;t log your activity</title>
+      <link>https://obscura.com/#faq-technical</link>
+      <guid isPermaLink="false">https://obscura.com/#faq-technical</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Obscura 推出一款号称&#x27;记录不了你活动&#x27;的 VPN，用双跳拆分架构把&#x27;你是谁&#x27;和&#x27;你访问什么&#x27;分给两家看，HN 上 100 分 84 条讨论。</description>
+      <content:encoded><![CDATA[<p><em>Obscura 推出一款号称&#x27;记录不了你活动&#x27;的 VPN，用双跳拆分架构把&#x27;你是谁&#x27;和&#x27;你访问什么&#x27;分给两家看，HN 上 100 分 84 条讨论。</em></p>
+<p><strong>亮点</strong></p><ul><li>把&#x27;无日志&#x27;从营销承诺变成架构约束：不是靠公司自称不记录，而是设计上任何一方都无法凑齐信息。</li><li>信任被拆成两半，审计范围随之缩小——只需验证转发节点确实不落盘，而不用审计整条链路。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>双跳拆分信任：入口节点只看得到你的真实 IP、看不到目标网站；出口节点只看到目标网站、看不到你的 IP。任何一方单独被查或被迫配合，都拼不出完整的上网记录。</li><li>客户端侧完成加密，入口节点只做转发、不解析目的地，所以&#x27;不记日志&#x27;不是公司口头承诺，而是入口方在协议层就拿不到目标地址。</li><li>入口和出口由不同运营主体分别持有，类似 iCloud Private Relay 的双供应商模型——单一实体无法既知道付款人又知道访问内容。</li></ul>
+<p><strong>适用场景</strong>: 适合记者、跨境远程办公者，以及不想让同一家 VPN 厂商既掌握&#x27;付钱的人是谁&#x27;又掌握&#x27;访问了哪些站点&#x27;的普通用户。对已经在用 iCloud Private Relay、但需要跨设备或自定义出口的人也对口。</p>
+<p><strong>竞品对比</strong>: 对比 Mullvad、Proton VPN 这类&#x27;自己运营全部节点、靠第三方审计和声誉背书&#x27;的方案，Obscura 把信任分散到两个主体。对比 Apple iCloud Private Relay，它不绑定 Safari 或 Apple ID，也不限制在苹果设备上。</p>
+<p><strong>成熟度</strong>: 信息成熟度偏低：目前主要依据官网 FAQ 技术页和 HN 讨论，暂未见公开代码、版本号或第三方审计报告的细节，属于需要自行验证的早期阶段。</p>
+<p><strong>趋势信号</strong>: 近两年英国《调查权力法》修订、美国部分州推动强制留存浏览记录，加上 iCloud Private Relay 只覆盖 Safari，HN 社区对&#x27;架构上就没法记日志&#x27;的思路关注度明显上升。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · When Nodes Start Rejecting Pods: Taints and Tolerations</title>
-      <link>https://dev.to/siddharthajmore/when-nodes-start-rejecting-pods-taints-and-tolerations-1kf3</link>
-      <guid isPermaLink="false">https://dev.to/siddharthajmore/when-nodes-start-rejecting-pods-taints-and-tolerations-1kf3</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Kubernetes 入门教程：讲污点（Taint）怎么让节点拒绝 Pod、容忍（Toleration）怎么放行、三种 effect 的区别，以及它和 node affinity 的反向关系。</description>
-      <content:encoded><![CDATA[<p><em>Kubernetes 入门教程：讲污点（Taint）怎么让节点拒绝 Pod、容忍（Toleration）怎么放行、三种 effect 的区别，以及它和 node affinity 的反向关系。</em></p>
-<p><strong>亮点</strong></p><ul><li>把 taint/toleration 定义成 node affinity 的反向操作：affinity 是 Pod 拉节点（Pod 挑），taint 是节点推 Pod（节点拒），只有显式声明容忍的才进得来</li><li>点破了“调度是一次性决策”这个前提的唯一例外——NoExecute 会回头驱逐已经跑起来的 Pod，NoSchedule 和 PreferNoSchedule 则不会</li></ul>
-<p><strong>核心功能</strong></p><ul><li>拆清三种 effect 的不同后果：NoSchedule 只挡新 Pod、已在跑的不管；PreferNoSchedule 不进过滤阶段，只在打分阶段劝退；NoExecute 会真的驱逐节点上已运行的 Pod，配合 tolerationSeconds 给一段宽限期</li><li>讲明匹配规则：污点是节点上的 key=value:effect，容忍是 Pod 上声明自己接受哪一组；operator 用 Equal 要值对上，用 Exists 只要 key 对上、value 不管</li><li>调度器内部机制：污点复用了 Filter 阶段的逻辑但方向反过来——不是问“这个节点能不能跑”，而是问“这个节点有没有被要求拒绝”，没匹配容忍就淘汰该节点</li></ul>
-<p><strong>适用场景</strong>: K8s 运维、SRE 和平台工程师日常要用。控制面节点默认带污点，防止业务 Pod 挤上去抢资源；GPU 等专用硬件节点打上污点，只让真正需要它的负载落地；节点失联时 node controller 自动打污点把 Pod 赶走。</p>
-<p><strong>竞品对比</strong>: 同主题已有 Kubernetes 官方文档和大批入门博客。差异在讲法：用“节点喷驱虫剂、Pod 是免疫的虫子”这个类比串起三种 effect，并把它和同系列的 node selector / affinity 做正反对照。</p>
-<p><strong>成熟度</strong>: dev.to 上的个人系列教程（约第 3 篇），不是代码仓库，无版本号或提交记录；内容与官方文档一致，适合入门参考，但不属于权威来源。</p>
-<p><strong>趋势信号</strong>: 不是突发新闻，是 K8s 调度这块的常青入门内容；污点与容忍是 CKA/CKAD 的常考点，这篇靠系列连载蹭的是持续存在的考证和学习需求。</p>]]></content:encoded>
+      <title>Hacker News · Pentagon says overreliance on AI contributed to missile strike on Iran school</title>
+      <link>https://www.bloomberg.com/graphics/2026-iran-school-attack/</link>
+      <guid isPermaLink="false">https://www.bloomberg.com/graphics/2026-iran-school-attack/</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>五角大楼承认，对 AI 的过度依赖导致了伊朗一所学校被导弹误击。这是官方罕见地把事故原因直接归到自动化决策流程上，而不只是某个操作员失误。</description>
+      <content:encoded><![CDATA[<p><em>五角大楼承认，对 AI 的过度依赖导致了伊朗一所学校被导弹误击。这是官方罕见地把事故原因直接归到自动化决策流程上，而不只是某个操作员失误。</em></p>
+<p><strong>亮点</strong></p><ul><li>官方把原因写成&#x27;过度依赖 AI&#x27;，等于承认这是系统性流程问题，不是单个士兵或单个模型出错</li><li>对做 Agent 的人是个现成教训：如果人在环只是点一下确认按钮，那这个人其实不在环里</li></ul>
+<p><strong>核心功能</strong></p><ul><li>AI 辅助目标生成：把情报、传感器、坐标数据自动比对，直接产出打击候选清单，而不是只做参谋建议</li><li>人类复核环节被压缩：决策链里人只负责点确认，实际上变成走过场，这就是自动化偏见（automation bias，人倾向相信机器的判断）</li><li>失效点在置信度和阈值：目标附近有学校这类民用设施时，系统没有触发强制人工复核，说明风险规则没跟坐标数据打通</li></ul>
+<p><strong>适用场景</strong>: 军队指挥与情报分析人员：需要重新设计 AI 生成目标清单时的强制复核点 AI 安全、AI 治理和政策研究者：拿它当自动化决策失控的真实案例 做自动驾驶、医疗、信贷等自动化决策的工程师：参考&#x27;人类在环&#x27;怎么设计才不是摆设</p>
+<p><strong>竞品对比</strong>: 和之前曝光的以色列 Lavender、Gospel 目标生成系统是同一类问题。最大差别是这次由美国官方自己出面承认，而不是外部记者或 NGO 爆料。</p>
+<p><strong>成熟度</strong>: 新闻事件，仍在发酵；目前主要依据是 Bloomberg 的图形报道和 HN 讨论，独立核实的信息有限。</p>
+<p><strong>趋势信号</strong>: AI Agent 和自动化决策正大规模落地，叠加此前加沙 AI 目标系统的报道，&#x27;机器做决定、出事谁负责&#x27;已经是技术社区主流议题——HN 上 514 分、253 条评论就是证明。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · Node.js vs Bun: What Actually Changes When You Switch?</title>
-      <link>https://dev.to/huxxaindev/nodejs-vs-bun-what-actually-changes-when-you-switch-2853</link>
-      <guid isPermaLink="false">https://dev.to/huxxaindev/nodejs-vs-bun-what-actually-changes-when-you-switch-2853</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇讲把 TypeScript 后端从 Node.js 迁到 Bun 到底会遇到什么变化的文章，不聊跑分，逐项拆运行时层面的实际差异。</description>
-      <content:encoded><![CDATA[<p><em>一篇讲把 TypeScript 后端从 Node.js 迁到 Bun 到底会遇到什么变化的文章，不聊跑分，逐项拆运行时层面的实际差异。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心论点是「换运行时不是换一个更快的 JS 引擎，而是换一整套运行时生态」，所以专挑跑分覆盖不到的地方讲，比如模块解析规则、子进程行为、原生 addon 装不装得上</li><li>用一张分工图把 Bun 和 tsc 的职责切开，避免团队误以为能跑 .ts 就可以把类型检查工具从 CI 里删掉</li></ul>
-<p><strong>核心功能</strong></p><ul><li>把对比从 benchmark 拉到运行时生态：逐项过模块解析、Web API、HTTP 服务、Streams、WebSocket、Worker、子进程、原生依赖、测试、环境变量、Docker、优雅退出、包兼容、生产调试共 15 个面</li><li>明确区分「执行 TypeScript」和「类型检查 TypeScript」：Bun 能直接跑 .ts，但不做类型检查，所以 package.json 里仍要保留 tsc --noEmit，Bun 只负责执行、装包、打包、跑测试</li><li>底层引擎不同：Node 基于 V8，Bun 用 JavaScriptCore（WebKit 的 JS 引擎），HTTP 层 API 也不一样——Node 是 node:http 的 createServer 回调，Bun 是 Bun.serve</li></ul>
-<p><strong>适用场景</strong>: 给正在评估或已经动手把 TS 后端从 Node 迁到 Bun 的后端工程师看；也适合写 Dockerfile、CI 和部署脚本的人，因为原生依赖编译、优雅退出这些差异会直接决定上线能不能成。</p>
-<p><strong>竞品对比</strong>: 同类 Node vs Bun 文章大多比 requests/sec 和启动时间，这篇不比数字，比迁完之后真实会炸的兼容性问题；相比 Bun 官方 migration guide，它更偏个人踩坑视角，缺官方文档的系统性。</p>
-<p><strong>成熟度</strong>: 一篇个人经验博客，不是官方文档，作者自称两个运行时都实际用过；具体行为随 Bun 版本变化很快，落地前还得对着官方文档核一遍。</p>
-<p><strong>趋势信号</strong>: Bun 从 1.0 走到 1.x 稳定后，开始有人真把生产后端往 Bun 上搬，社区关注点从「快多少」转向「迁过去会不会炸」，这类迁移实录刚好接住了这个需求。</p>]]></content:encoded>
+      <title>Hacker News · SAML: A fractal of bad design</title>
+      <link>https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/</link>
+      <guid isPermaLink="false">https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>安全公司 Trail of Bits 发长文批评 SAML 协议设计，指其 XML 签名与规范化的组合让正确实现几乎不可能，HN 上引发 190 分、116 条讨论。</description>
+      <content:encoded><![CDATA[<p><em>安全公司 Trail of Bits 发长文批评 SAML 协议设计，指其 XML 签名与规范化的组合让正确实现几乎不可能，HN 上引发 190 分、116 条讨论。</em></p>
+<p><strong>亮点</strong></p><ul><li>把问题归因到 XML 本身：命名空间 + 规范化 + 签名三者叠加，导致「正确实现」的门槛高到多数库都做不到，而不是某个厂商写错了</li><li>指出规范留白太多，不同 IdP 和 SP 库对同一份文档的解析行为不一致，安全边界靠实现者自己猜</li></ul>
+<p><strong>核心功能</strong></p><ul><li>XML 签名验证是整个 SAML 最脆的环节：签名对象是 XML 节点树而不是一串字节，验证前要做规范化（C14N），命名空间、属性顺序、空白字符稍有差异，同一个逻辑文档就有多种合法序列化，攻击者可借机做 XML Signature Wrapping，把签名元素挪到别处仍能校验通过</li><li>断言（Assertion）是一张 IdP 用私钥签名的自包含 XML 票据，SP 只验签名，如果漏检 Audience、NotOnOrAfter、InResponseTo 这几个字段，票据就能被重放或挪给别的应用使用</li><li>IdP-initiated SSO 流程里 SP 没发过请求就收到断言，无法用 InResponseTo 做关联校验，等于协议层留了一个只能靠实现者自觉堵的口子</li></ul>
+<p><strong>适用场景</strong>: 企业里负责接 SSO 的工程师和安全团队，对接 Okta、Azure AD、OneLogin 这类 IdP 时要排查签名校验漏洞；渗透测试人员用 SAML Raider 这类 Burp 插件找 XSW 和断言重放问题。</p>
+<p><strong>竞品对比</strong>: 对比 OAuth 2.0 / OIDC：后者用 JSON + JWT，签名对象就是一段确定的字符串，没有规范化歧义，接入代码也短得多。SAML 唯一撑住的是存量——大量企业 IdP 只认它，短期换不掉。</p>
+<p><strong>成熟度</strong>: 这是 Trail of Bits 的安全评论文章而非代码仓库，观点来自一线安全团队，HN 190 分 116 评论说明社区关注度高，但「协议烂还是实现烂」的结论仍有争议。</p>
+<p><strong>趋势信号</strong>: 企业 SSO 一直是漏洞高发区，SAML 装机量巨大却没人愿意重写，安全圈每隔几年就要重提一次它的设计问题，这次由 Trail of Bits 出面发长文把老账重新翻出来。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · [ Video ] A System One AI Doesn’t Talk, It Only Decides – And It’s Perfect for Assess Decide Do</title>
-      <link>https://dev.to/dragos_roua/-video-a-system-one-ai-doesnt-talk-it-only-decides-and-its-perfect-for-assess-decide-do-3nn1</link>
-      <guid isPermaLink="false">https://dev.to/dragos_roua/-video-a-system-one-ai-doesnt-talk-it-only-decides-and-its-perfect-for-assess-decide-do-3nn1</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>有人把非生成式模型 JEV 当决策层，配上 LLM 组成 Assess–Decide–Do 循环，一句话描述需求就能自动生成并自测一个小工具。</description>
-      <content:encoded><![CDATA[<p><em>有人把非生成式模型 JEV 当决策层，配上 LLM 组成 Assess–Decide–Do 循环，一句话描述需求就能自动生成并自测一个小工具。</em></p>
-<p><strong>亮点</strong></p><ul><li>把&quot;决策&quot;从 LLM 里拆出来，交给一个输出空间被锁死的模型。LLM 不能给自己打分，判定权在外部，避开了模型自己评自己（self-grading）常见的放水和偏差。</li><li>需求只写一句话，由 LLM 反向补全规格和测试用例，再用测试结果驱动下一轮决策，形成&quot;写测试—跑测试—定去留&quot;的闭环，而不是靠 LLM 说&quot;我做完了&quot;。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>JEV 不能输出文本，只回答三种结构化原语：noul（是/否）、choice（多选）、score（概率）。作者用它当流程闸门，判断&quot;上下文够不够&quot;和&quot;测试过没过&quot;。</li><li>循环流程具体是：一句话需求 → Assess 阶段 LLM 写出详细规格和测试 → 交回 JEV 判断信息是否充分 → 够了就进 Do 阶段让 LLM 写实现 → 写完再交回 JEV 跑测试，决定是否收工。</li><li>同一套流程跑了两遍对比：官方远程 JEV API + OpenRouter 上的大模型，2 分钟内跑完；本地 JEV 实现 + 本地小模型，耗时接近半小时，性能差距被拉开到约 15 倍。</li></ul>
-<p><strong>适用场景</strong>: 适合在做 AI agent 工作流、代码自动生成与验收的开发者。典型场景是：产品只给一句需求描述，系统自动补全规格、写代码、跑测试，并用一个外置裁判决定是否通过，省掉人工反复确认。也适合想在 CI 或内部工具生成流水线里加一道自动质检的人。</p>
-<p><strong>竞品对比</strong>: 和 LangGraph、AutoGen、CrewAI 这类 agent 编排框架比，最大区别是它把路由和判断这一步外置成专门的决策模型，而不是让 LLM 靠 prompt 吐一段 JSON 来做路由。和普通 LLM 的 function calling / structured output 比，JEV 只能做这三种决策，干不了别的事，相当于把输出空间砍到极小。</p>
-<p><strong>成熟度</strong>: 只有一个带视频的 dev.to 帖子，没给仓库、文档或版本号，JEV 这个名字在公开资料里也难核实，属于很早期、信息严重不足的阶段，别拿它当生产方案评估。</p>
-<p><strong>趋势信号</strong>: System 1 / System 2 这套说法正在流行，加上 agent 圈子对&quot;让 LLM 自己反思&quot;这套做法开始不买账，转向外置决策模型来降延迟、降成本，这篇文章正好踩在这两个话题上。</p>]]></content:encoded>
+      <title>Hacker News · Unreal Agent</title>
+      <link>https://unreallabs.ai/blog/unreal-agent/</link>
+      <guid isPermaLink="false">https://unreallabs.ai/blog/unreal-agent/</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Unreal Labs 发布开源项目 Unreal Agent，冲上 Hacker News 首页（147 分/90 评论），但目前只有仓库和博客链接，技术细节待核实。</description>
+      <content:encoded><![CDATA[<p><em>Unreal Labs 发布开源项目 Unreal Agent，冲上 Hacker News 首页（147 分/90 评论），但目前只有仓库和博客链接，技术细节待核实。</em></p>
+<p><strong>亮点</strong></p><ul><li>发布方式本身是信号：先写博客再挂 GitHub，配上 HN 首发，典型的开源项目冷启动打法，靠一次性流量拉第一批用户和 issue。</li><li>评论（90 条）比点赞（147 分）的比例偏高，在 HN 上一般意味着有人在质疑实际效果或指出和竞品高度相似——这块讨论往往比博客本身信息量更大。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>RSS 抓到的正文只有一行 GitHub 链接（unreallabsai/unreal-agent）和 HN 讨论页，没有任何架构描述，所以它到底用没用 MCP、做没做代码索引、支持哪些模型，都得打开仓库才能确认。</li><li>从命名和发布渠道看，这是一个 Agent 方向的工具（公司名 Unreal Labs，产品名 Unreal Agent），不是模型本身，大概率是跑在现有大模型之上的 agent 框架或客户端。</li><li>唯一可确认的硬数据是社区热度：147 points、90 条评论，评论数相对分数偏高，通常说明有争议或有实际踩坑讨论。</li></ul>
+<p><strong>适用场景</strong>: 想给团队搭一个 AI 编码/自动化 agent 的开发者，会点开博客看它和现有 agent 工具怎么对接。 关注 agent 框架选型的技术负责人，主要看它是否兼容自己已有的模型供应商、IDE 和 CI 流程。</p>
+<p><strong>竞品对比</strong>: 无法判断。现有信息里没有提到任何一个竞品名字，也没给出差异化描述；Agent 框架这赛道已经很挤（LangGraph、CrewAI、OpenAI/Anthropic 官方 SDK、各类 CLI coding agent），它靠什么立足得看仓库 README。</p>
+<p><strong>成熟度</strong>: 未知。没有版本号、提交频率、issue 响应、文档质量中的任何一项信息，建议先看 GitHub 的 release 页和最近 30 天提交情况再决定要不要用。</p>
+<p><strong>趋势信号</strong>: 刚被发到 HN 并拿到 147 分、90 条评论，属于发布当天的流量高峰；但具体触发点（新功能发布、融资、还是社区争议）从这份 RSS 摘要里看不出来。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · Getting It Actually Done</title>
-      <link>https://dev.to/ibrohimislam/getting-it-actually-done-56a8</link>
-      <guid isPermaLink="false">https://dev.to/ibrohimislam/getting-it-actually-done-56a8</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>开源 zoom-out 技能：给 AI 编程 Agent 加一道“真做完了吗”的门，防止只修好表象症状就宣称任务完成。</description>
-      <content:encoded><![CDATA[<p><em>开源 zoom-out 技能：给 AI 编程 Agent 加一道“真做完了吗”的门，防止只修好表象症状就宣称任务完成。</em></p>
-<p><strong>亮点</strong></p><ul><li>核心是用“强制门”而不是“更仔细点”：检查必须发生在宣布修好/诊断完/计划定稿之前，而不是事后补一份报告，作者自己盯的就是“这道门会不会变成走形式的仪式”</li><li>范围升级规则写得很硬：如果那个非本地假设没被证伪，它的范围就直接变成交付物，不允许把系统性问题悄悄降级回本地小修；但允许少修，前提是先说清排除了什么、为什么</li><li>有比例原则：拼写错误和真正孤立的一次性问题，zoom-out 检查照跑但可以快速得出“没有更大的东西”，不强行造流程</li></ul>
-<p><strong>核心功能</strong></p><ul><li>Hypothesis Ledger：收敛答案前必须写至少 3 条假设，其中一条固定留给“我修的这个是不是更大问题的一个实例”，并且必须点名复现特征（同一个工具函数、同一套 schema、同一条渲染路径）和它可能出现的位置，不能用“也许还有更多”糊弄过去</li><li>证据门代替直觉：假设必须给出机制、位置、可观测痕迹和最便宜的验证测试才能进入；只能靠区分性测试或明确矛盾被排除，不能因为“听起来讲得通”就排除，“能解释报上来的症状”被明说不算覆盖全范围的证据</li><li>搜索前的信噪比门：跑任何探测前先说清结果会加强或削弱哪条假设，改不了排序和下一步动作的搜索就别跑，避免 zoom-out 变成无边界的代码审查</li></ul>
-<p><strong>适用场景</strong>: 用 Claude Code、Cursor 等 AI 编程 Agent 干活的人。典型场景是修线上 bug、改多个渲染器共享的业务规则、加缓存层、重构入口点——Agent 报告“修好了”但只改了三处调用点里的一处。</p>
-<p><strong>竞品对比</strong>: 同类东西是 CLAUDE.md / Cursor rules 里的提示词清单、TDD 流程、5 Whys 根因分析。最大差别：它不是一句“记得检查有没有其他调用点”的提示，而是带固定假设槽和证据门的流程，把“症状消失”和“任务完成”明确拆成两个不同标准。</p>
-<p><strong>成熟度</strong>: 早期项目，作者自述还没有干净的前后对比数据，只有一个人在生产中边用边调，流程细节可能还会改。</p>
-<p><strong>趋势信号</strong>: AI 编程 Agent 现在替人写大量代码，“看起来做完其实没做完”变成主要返工来源，社区正集中给 Agent 加验证和门禁环节（skill、hook、subagent 那一波），这个发布踩在 agent skills 生态刚爆发的点上。</p>]]></content:encoded>
+      <title>dev.to · I went looking for sandwiches and found a DEX pool trading with itself</title>
+      <link>https://dev.to/edycutjong/i-went-looking-for-sandwiches-and-found-a-dex-pool-trading-with-itself-2kj8</link>
+      <guid isPermaLink="false">https://dev.to/edycutjong/i-went-looking-for-sandwiches-and-found-a-dex-pool-trading-with-itself-2kj8</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一个纯 Python 写的 DEX 交易检测器，用 CoinMarketCap 免密钥接口抓 swap，本来想抓三明治攻击，却查出某排行榜第一的池子三分之二交易量是三个钱包自买自卖。</description>
+      <content:encoded><![CDATA[<p><em>一个纯 Python 写的 DEX 交易检测器，用 CoinMarketCap 免密钥接口抓 swap，本来想抓三明治攻击，却查出某排行榜第一的池子三分之二交易量是三个钱包自买自卖。</em></p>
+<p><strong>亮点</strong></p><ul><li>核心信号是&quot;同一钱包在同一区块两侧出现&quot;，用 log index 精确到区块内的先后顺序，完全绕开 mempool 和第三方 MEV 标签。</li><li>纯标准库 Python、MIT 协议、不用 API key，抓数到出结论全在公开数据上跑，部署成本极低。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>只用 CoinMarketCap 免密钥的 /v1/dex/tokens/transactions 接口，按游标翻页拿最近 swap，每行带 maker 钱包、区块号、区块内 log 序号、买卖方向、两个金额。不用 mempool 也不用 MEV 标签，因为中间人一定会在链上留下成交记录。</li><li>检测规则：同一个钱包在同一区块内做两笔、方向相反、两笔金额差在 5% 以内，就认定它站在区块两侧；两腿之间夹着哪些成交决定这是不是三明治。因为接口不给池子地址，只能按交易场所加两个代币合约来分组。</li><li>接口里区块号 h 和 log 序号 lgid 是字符串，直接当文本排序 &quot;99&quot; 会排到 &quot;1000&quot; 后面，所有&quot;中间&quot;判断都会算错还不报错。所以引擎第一步就把它们转成整数，转不了的行丢弃并计数，每次出结果都报这个数，还写了一个同名回归测试把坑钉死。</li></ul>
+<p><strong>适用场景</strong>: 适合链上数据分析师、量化研究员，以及做 DEX 聚合器或交易量榜单的团队。他们想搞清自己的成交前后到底发生了什么，或者要判断某个池子的高交易量是真活跃还是刷出来的。</p>
+<p><strong>竞品对比</strong>: 和 EigenPhi、libmev、Flashbots 那类看板比，它们大多做 MEV 标签化或 mempool 抢跑分析，需要付费数据或节点。这个工具只要公开的 DEX 成交接口，而且方向反过来——它真正抓到的是自买自卖的刷量（wash trading），不是三明治。</p>
+<p><strong>成熟度</strong>: 个人早期项目，代码是 stdlib-only 且带回归测试，有线上页面可跑，但没有版本号和社区规模，API 和数据口径可能还会变。</p>
+<p><strong>趋势信号</strong>: 最近的关注点是 DEX 交易量造假和排行榜可信度——文章直接点出被自成交刷到第一名的池子，正好撞上大家对榜单数据是不是真的这类质疑。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · Build a Subscription Billing System in India (2026)</title>
-      <link>https://dev.to/buildbyravirai/build-a-subscription-billing-system-in-india-2026-1421</link>
-      <guid isPermaLink="false">https://dev.to/buildbyravirai/build-a-subscription-billing-system-in-india-2026-1421</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇印度订阅计费的完整搭建指南，讲清 UPI Autopay/e-mandate 委托、RBI 规则、数据模型和 GST 循环发票。</description>
-      <content:encoded><![CDATA[<p><em>一篇印度订阅计费的完整搭建指南，讲清 UPI Autopay/e-mandate 委托、RBI 规则、数据模型和 GST 循环发票。</em></p>
-<p><strong>亮点</strong></p><ul><li>UPI Autopay 单笔 15,000 卢比以内免 AFA（额外验证），超过就要每期都发 OTP。所以 24,000 卢比的年付套餐走 UPI Autopay 就不省事了——要么换成 e-NACH 委托，要么把金额拆成多笔小额扣款。一个数字直接决定架构。</li><li>按套餐挑委托类型，不强制所有人走同一条通道：小额走 UPI Autopay，高额走 e-NACH，卡片用户走 card e-mandate。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>把产品、套餐、价格拆成三张表，金额不写在套餐行上。以后加年付、促销价、多币种时不用改表结构，就能挂多个价格。</li><li>把 mandate（用户银行批准的长期扣款授权）当一等对象，单独建表并带 created/active/paused/revoked/expired 生命周期。不塞进订阅表的隐藏字段，因为委托可能比套餐变更活得更久。</li><li>发票 append-only：开完就不可改，要改只能发 credit note（红字冲销单），且有独立编号序列。这不是偏好，是 GST 对已开税务发票的硬要求。</li><li>webhook 按 event ID 建幂等处理，同一个事件重放多次结果一致，扣款和委托变更全靠回调驱动。</li></ul>
-<p><strong>适用场景</strong>: 印度做月费/年费的 SaaS、OTT、在线教育、健身房和联合办公会员、D2C 订阅盒子的工程和支付团队。场景是：卡或 UPI 扣款失败后没人重试，钱悄悄漏掉，说明已经超出裸网关集成的能力。</p>
-<p><strong>竞品对比</strong>: 对比 Stripe Billing、Chargebee、Razorpay 订阅。差别在于：通用 Stripe 教程假定你能存卡随便重扣，印度不行。文章覆盖的是 RBI e-mandate 才有的东西——每笔扣款前至少 24 小时的预扣款通知、首次注册要 AFA、不能存卡号只能用网络令牌。</p>
-<p><strong>成熟度</strong>: 这是篇技术文章不是代码仓库，作者声称写自生产环境（PlugEV、CloudNX、MultiVendor CRM），但涉及监管数字的都要按自己情况再核实。</p>
-<p><strong>趋势信号</strong>: 印度订阅制业务在涨，但 RBI 的 e-mandate 规则和 UPI Autopay 上限让 Stripe 式开箱方案用不了，开发者只能自己搭这一层。</p>]]></content:encoded>
+      <title>dev.to · Two in three &#x27;liquidity pulled&#x27; alerts are the same wallet putting it back</title>
+      <link>https://dev.to/edycutjong/two-in-three-liquidity-pulled-alerts-are-the-same-wallet-putting-it-back-5f2f</link>
+      <guid isPermaLink="false">https://dev.to/edycutjong/two-in-three-liquidity-pulled-alerts-are-the-same-wallet-putting-it-back-5f2f</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>用 CoinMarketCap DEX API 的 maker 钱包过滤，把「撤池」和「几小时后回补」两条记录关联起来，发现三分之二的 LP 撤离警报其实是同一钱包在换池。</description>
+      <content:encoded><![CDATA[<p><em>用 CoinMarketCap DEX API 的 maker 钱包过滤，把「撤池」和「几小时后回补」两条记录关联起来，发现三分之二的 LP 撤离警报其实是同一钱包在换池。</em></p>
+<p><strong>亮点</strong></p><ul><li>核心洞察是「第二条记录本来就在同一个 API 里，只是没人去 join」——加一个 maker= 参数就把误报率打下来，而不是训练模型或接链上索引。</li><li>每次调用的原始响应体都存进 receipt 并打 sha256，整个结论可复现可审计；示例中 14 次请求全 200、0 credits、50.6 秒跑完。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>用 CMC DEX API 的 maker= 服务端过滤，一次免密钥请求就能拿到某个钱包在该代币所有池子上的全部流动性事件，把「撤出」和「回补」两条记录 join 起来——这是纯 API 使用方式问题，不是新算法。</li><li>startTime 在免密钥层被限流（HTTP 403，错误码 1013），但 endTime 可用，所以改用 lastId 游标向过去翻页，客户端按 ts 自己切出 t0 ±6 小时的窗口。</li><li>判定完全是对 tu（该笔事件的美元金额）做算术：同池回补占比 vs 跨池回补占比，输出 REBALANCE / MIGRATION / CONSOLIDATION / PARTIAL 四类，没有任何模型参与出数。</li></ul>
+<p><strong>适用场景</strong>: 跑 DeFi 国库监控或社群警报机器人的团队、盯盘的交易所/基金风控值班人。以前群里看到「LP removed −$2100 万」只能猜是不是做市商跑了，现在能直接看出是同池补回还是换池搬走。</p>
+<p><strong>竞品对比</strong>: 相比 Whale Alert、各类 DEX 报警 bot 只看第一行就发推送，以及 Nansen / Arkham / DeBank 这类要付费订阅的地址标签服务，它的差异是免密钥、只用公开 API、把同钱包的前后事件做关联，成本几乎为零。</p>
+<p><strong>成熟度</strong>: 个人早期项目，MIT 协议，纯标准库 Python，只有线上 demo（forwarding.edycu.dev），无版本号，样本是 335 条撤池记录，结论依赖单一数据源。</p>
+<p><strong>趋势信号</strong>: DeFi 误报警报长期是社群噪音源，加上近期「LLM 生成的数字不能信」的讨论升温，这篇明确强调「没有模型产生数字」，踩中了当下对可验证、可审计数据的偏好。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · Managing the Hidden Overhead of AI Software Engineering</title>
-      <link>https://dev.to/sizzlebop/managing-the-hidden-overhead-of-ai-software-engineering-179a</link>
-      <guid isPermaLink="false">https://dev.to/sizzlebop/managing-the-hidden-overhead-of-ai-software-engineering-179a</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一篇 dev.to 观点文，讲多开 AI 编码 agent 的隐性成本：省下的写代码时间被转移成了审查和验证负担，形成&quot;验证债务&quot;。</description>
-      <content:encoded><![CDATA[<p><em>一篇 dev.to 观点文，讲多开 AI 编码 agent 的隐性成本：省下的写代码时间被转移成了审查和验证负担，形成&quot;验证债务&quot;。</em></p>
-<p><strong>亮点</strong></p><ul><li>用&quot;测试通过 ≠ 软件符合意图&quot;这个例子拆解 AI 的风险点：问题不在代码质量，在于 prompt 留了空白、模型替你做了决定，而测试覆盖不到那层意图</li><li>指出&quot;多开 agent&quot;有心理因素：看 agent 干活有即时反馈，读两小时架构文档零 commit，而&quot;防止三个烂架构决策&quot;这种价值根本没法和关闭的 PR 数量比</li></ul>
-<p><strong>核心功能</strong></p><ul><li>核心论点是把瓶颈位置说清楚了：AI 没消灭瓶颈，只是把它从&quot;写代码&quot;移到了&quot;理解与验证&quot;，代码生成越快，要人审的代码越多</li><li>提出&quot;验证债务&quot;这个概念：prompt 没写清的细节模型会自己补，比如权限系统里模型选了比你预期更宽松的权限，测试照样全过因为测试只验证权限能跑不通，不验证权限符合你脑子里的安全模型</li><li>引用一个观察：重度使用 AI 的开发者，PR 审查时间显著变长，因为人的审查能力不会随代码产量同步增长</li></ul>
-<p><strong>适用场景</strong>: 日常开好几个 Claude Code、Cursor、Codex 终端同时跑任务的开发者，以及要审 AI 生成 PR 的 Tech Lead。尤其是维护大型遗留系统的团队，改一个函数牵动七处的地方，AI 提效反而会变慢。</p>
-<p><strong>竞品对比</strong>: 和主流的&quot;AI 让开发更快&quot;叙事正相反。多数 AI 提效文章只算生成端的时间，这篇把审查、调试、六周后线上事故这些下游成本算进来，观点更接近 Google DORA 报告里&quot;AI 采用与交付稳定性冲突&quot;的结论。</p>
-<p><strong>成熟度</strong>: 个人经验总结类观点文，无代码无版本，属于社区讨论阶段，结论主观，不能当方法论直接用。</p>
-<p><strong>趋势信号</strong>: AI coding agent 大面积普及后，多终端并行跑 agent 成了不少人的默认姿势，社区开始反过来讨论它的副作用，这类&quot;AI 隐形成本&quot;的反思文章最近明显变多。</p>]]></content:encoded>
+      <title>dev.to · Why I Chose P2P Instead of S3 for My File Transfer Product</title>
+      <link>https://dev.to/anirban00537/why-i-chose-p2p-instead-of-s3-for-my-file-transfer-product-3mgo</link>
+      <guid isPermaLink="false">https://dev.to/anirban00537/why-i-chose-p2p-instead-of-s3-for-my-file-transfer-product-3mgo</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>作者做 ButterShare 大文件传输工具时放弃 S3 中转架构，改用 WebRTC 直连，因为文件从发送方直接传到接收方，服务器只做信令协调，省掉双倍带宽和存储成本。</description>
+      <content:encoded><![CDATA[<p><em>作者做 ButterShare 大文件传输工具时放弃 S3 中转架构，改用 WebRTC 直连，因为文件从发送方直接传到接收方，服务器只做信令协调，省掉双倍带宽和存储成本。</em></p>
+<p><strong>亮点</strong></p><ul><li>核心判断不是 S3 不好，而是 S3 解决的是存储问题，ButterShare 要解决的是传输问题，需求和基础设施的错配才是换架构的原因</li><li>P2P 把成本关系从&#x27;用户越多、存储和带宽越贵&#x27;改成数据面不落在自己服务器上，后端只承担协调角色</li></ul>
+<p><strong>核心功能</strong></p><ul><li>用 WebRTC 做点对点直连，文件字节不经过服务器，后端只负责信令和连接协调</li><li>只在发送方和接收方同时在线时传输，不做持久化中间副本，避免 100GB 文件在基础设施里走两遍</li><li>把存储和传输拆开看：S3 适合文件要在上传者离线后仍可下载的场景，P2P 适合双方在线的一次性搬运</li></ul>
+<p><strong>适用场景</strong>: 适合做大文件临时发送的独立开发者或小团队，比如视频素材、设计工程文件在两人之间直接传，用户不想登录云盘、不想等上传完成，也不想为存储和出网流量付月费。</p>
+<p><strong>竞品对比</strong>: 和 WeTransfer、Dropbox、Google Drive 这类云盘中转方案比，最大差异是不留云端副本、双方在线即传即走；代价是接收方必须在线，不能像 S3 那样异步下载。</p>
+<p><strong>成熟度</strong>: 个人项目自述性质的文章，不是发布版产品，架构思路可参考但无版本号、无性能数据支撑。</p>
+<p><strong>趋势信号</strong>: 大文件传输的带宽和出网（egress）成本一直是独立开发者的痛点，加上 WebRTC 在浏览器端直连的成熟，越来越多人尝试把数据面从云厂商手里挪走。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · Building a Patch Prioritization Rule When a Single Vendor Ships 970 Fixes in a Month</title>
-      <link>https://dev.to/onaeiuspkz/building-a-patch-prioritization-rule-when-a-single-vendor-ships-970-fixes-in-a-month-573g</link>
-      <guid isPermaLink="false">https://dev.to/onaeiuspkz/building-a-patch-prioritization-rule-when-a-single-vendor-ships-970-fixes-in-a-month-573g</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>微软单月放出近千个 CVE，这篇文章给出一套五级补丁优先级规则：先看是否已被实际利用、能否免凭据远程触发，而不是只看 CVSS 分数。</description>
-      <content:encoded><![CDATA[<p><em>微软单月放出近千个 CVE，这篇文章给出一套五级补丁优先级规则：先看是否已被实际利用、能否免凭据远程触发，而不是只看 CVSS 分数。</em></p>
-<p><strong>亮点</strong></p><ul><li>主排序键用「利用证据」而不是「理论严重性」：KEV 目录编码的是已被观察到的利用，作者也点明它的短板是覆盖滞后——漏洞可能在被收录前就已经被打。</li><li>把「定级为 Tier 1」和「把它推到一千台服务器上」明确当成两个问题，认为后者通常才是瓶颈，并要求按结果回头校准规则，而不是抄上一轮的 Tier 归属。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>五级分层排序：Tier 1 是 CISA KEV 或厂商确认的在野利用（9 月里包括 Windows Update Stack、ALPC 提权、SonicWall SMA1000、JFrog Artifactory 认证绕过等）；Tier 2 是免凭据、公网可达的 RCE（DNS Server、RDS、RRAS、SSTP）；Tier 3 是邮件/文件自动触发的 RCE；Tier 4 才是没被利用的本地提权；Tier 5 按风险排期。</li><li>说清 CVSS 单独排序在千级量级为什么失效：7.8 的本地提权需要攻击者已有据点，9.8 的免认证 RCE 不需要，按分数排会把两个已被在野利用的提权洞埋在一堆 7.8 的中间。</li><li>分层是可自动化的：KEV 成员、是否要求认证、网络可达性都是机器可读属性，人工 triage 撑不到四位数；并强调决策和部署要拆开，追踪的是补丁实际装上的比例，不是变更单审批。</li></ul>
-<p><strong>适用场景</strong>: 企业安全运维和漏洞管理团队，每月 Patch Tuesday 后要在几千台 Windows 服务器、Exchange、SonicWall、JFrog 这类资产上排修复顺序的人。</p>
-<p><strong>竞品对比</strong>: 对比常见的 CVSS 排序或 CVSS+EPSS 概率打分方案，最大差别是不拿分数当主排序键，而是用 KEV 在野利用证据加触发条件（免认证、公网可达、是否需用户交互）做硬分层。代价是 KEV 收录有滞后，得接受一部分漏网风险。</p>
-<p><strong>成熟度</strong>: 这是方法论分享而非工具或合规标准，作者自己声明计数因口径不同有出入、Tier 归属要按每次发布重新推导，落地前需按自家资产重做一遍。</p>
-<p><strong>趋势信号</strong>: 微软 2026 年已修约 2750 个漏洞，而 2020 全年才约 1250 个，社区普遍把增量归因于 AI 辅助挖洞让发现速度超过了评估速度，于是「千级补丁量下怎么 triage」成了热点。</p>]]></content:encoded>
+      <title>dev.to · TVL Trend Analysis &amp; Liquidity Risk Assessment: Gemini</title>
+      <link>https://dev.to/dannydoes_2abdf9c/tvl-trend-analysis-liquidity-risk-assessment-gemini-1ila</link>
+      <guid isPermaLink="false">https://dev.to/dannydoes_2abdf9c/tvl-trend-analysis-liquidity-risk-assessment-gemini-1ila</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一篇发在 dev.to 的 Gemini 流动性风险报告，列了 TVL 增长表、10 个攻击向量和整改清单。但署名是占位符、数据无法核实，更像模板或 AI 生成的引流文。</description>
+      <content:encoded><![CDATA[<p><em>一篇发在 dev.to 的 Gemini 流动性风险报告，列了 TVL 增长表、10 个攻击向量和整改清单。但署名是占位符、数据无法核实，更像模板或 AI 生成的引流文。</em></p>
+<p><strong>亮点</strong></p><ul><li>把跨链桥日利用率（1.9% TVL/天）单独拎出来当「单点故障」，而不是只看桥的审计报告——这个视角在同类风险报告里不常见</li><li>把治理攻击和热钱包被盗分开列为两条向量，并给出各自的 TVL 影响上限（15% 和 2.5%），而不是笼统写「治理风险」</li></ul>
+<p><strong>核心功能</strong></p><ul><li>用「7 日平均提现量占 TVL 比例」当流动性健康度指标（当前 3.6%），再叠加 Top-5 资产集中度（USDC 占 45%、ETH 18%）来判断单一资产风险</li><li>按「发生概率 × 影响（占 TVL 百分比）」给 10 个攻击向量排序，涵盖稳定币发行方冻结/脱锚、Optimism 标准桥被利用、Chainlink/Pyth 预言机操纵、多签+热钱包被攻破等</li><li>拿订单簿滑点估退出冲击（1 亿美元 USDC 滑点 0.12%、ETH 0.45%），并用 2.5 亿美元「Liquidity Shield」保险池对 57.95 亿 TVL 算出 4.3% 覆盖率</li><li>以「48 小时内 30% TVL 流出」做压力测试场景，结论是日常提现无压力、但短时会出现偿付缺口</li></ul>
+<p><strong>适用场景</strong>: 面向 DeFi 风控、加密基金投研和交易所尽调团队，做协议流动性体检时的参考框架；但这份具体报告的数据不能直接当事实用，更适合当写作模板。</p>
+<p><strong>竞品对比</strong>: 对标 Gauntlet、Chaos Labs、Rekt 这类 DeFi 风险分析，人家有链上地址、方法论和可复现数据源；这篇没有数据出处、没有链上证据，权威性差一大截，属于社区贴文级别。</p>
+<p><strong>成熟度</strong>: 信息成熟度很低：署名还是占位符「[Your Firm]」，日期写成 2026 年 9 月 23 日，且把「Gemini Earn 接入 Aave/Compound」「DAO 治理」「Liquidity Shield 保险池」当作现状描述，但这些和 Gemini 的公开事实对不上（Gemini Earn 2023 年就停了），基本可判定为模板或 AI 生成，不可作为尽调依据。</p>
+<p><strong>趋势信号</strong>: dev.to 上这类「某某协议 TVL 趋势 + 风险评级」的模板文越来越多，多半是审计/安全团队用 AI 批量生成、靠 Gemini 这类大名字蹭 DeFi 关键词做引流获客。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · Building an Interactive South America Dashboard with Streamlit and World Bank Data</title>
-      <link>https://dev.to/dayan_elvisjahuirapilco/building-an-interactive-south-america-dashboard-with-streamlit-and-world-bank-data-1m1e</link>
-      <guid isPermaLink="false">https://dev.to/dayan_elvisjahuirapilco/building-an-interactive-south-america-dashboard-with-streamlit-and-world-bank-data-1m1e</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>用 Streamlit + Pandas + Plotly 做个交互仪表盘，把世界银行 4 项公开指标做成 12 个南美国家 2000-2025 年的对比看板。</description>
-      <content:encoded><![CDATA[<p><em>用 Streamlit + Pandas + Plotly 做个交互仪表盘，把世界银行 4 项公开指标做成 12 个南美国家 2000-2025 年的对比看板。</em></p>
-<p><strong>亮点</strong></p><ul><li>取数和画图解耦：先用脚本把 API 结果固化成 CSV，前端只读本地文件，所以能免费跑在 Streamlit Community Cloud 上还秒开，全量数据只有 1218 行</li><li>用 latest_common_year 主动牺牲“最新数据”换“可比性”，这是很多同类看板会踩的坑——各国上报年份不齐时直接混用会得出错误结论</li></ul>
-<p><strong>核心功能</strong></p><ul><li>scripts/fetch_data.py 调世界银行 V2 API（不需要 key，按国家代码 + 指标代码 + 年份区间请求），清洗后落地成版本化的本地 CSV 再让前端读，API 抽风或限流时应用照跑</li><li>latest_common_year 函数先算出“所有被选国家都有数据的最新一年”，再用这一年算区域中位数、领先国、地图和排名，避免拿秘鲁 2023 年的数跟别的国家 2018 年的数混在一起比</li><li>一张 Plotly 气泡图同时编码 4 个维度：X 轴人均 GDP、Y 轴预期寿命、气泡大小总人口、气泡颜色上网率；地图用 ISO-3 国家码定位，交互（tooltip、缩放、图例）全部由 Plotly 自带，没写一行 JavaScript</li></ul>
-<p><strong>适用场景</strong>: 适合写经济/社科类报告的学生、记者或数据分析入门者，想快速比较拉美各国收入、寿命、上网率又不想自己下 Excel 画图；也适合当 Streamlit 多页交互看板的起步模板。</p>
-<p><strong>竞品对比</strong>: 对比 Tableau Public / Power BI：那些图表类型更多、拖拽就能出图，但配置在 GUI 里、不好做版本控制和 CI；对比 Our World in Data：OWID 有现成叙事图表但不能自己切片。这个项目的差异点是纯代码、可被 GitHub Actions 校验、用户能自由组合切片，代价是只有 4 个指标、12 个国家、1218 行数据。</p>
-<p><strong>成熟度</strong>: 个人练手/作品集项目，没有版本号和测试套件，只有 GitHub Actions 做基础改动校验，数据规模很小，能当参考模板但不宜直接上生产。</p>
-<p><strong>趋势信号</strong>: 没有特定新版发布或事件触发，属于 dev.to 上长期流行的“Streamlit + 开放数据”作品集题材，热度来自 Streamlit 作为低代码数据应用入口的持续走红。</p>]]></content:encoded>
+      <title>dev.to · I had 47 tabs open during an incident. Never again.</title>
+      <link>https://dev.to/karaniph/i-had-47-tabs-open-during-an-incident-never-again-2kg8</link>
+      <guid isPermaLink="false">https://dev.to/karaniph/i-had-47-tabs-open-during-an-incident-never-again-2kg8</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一篇 AWS 工程师的使用体验文：28KB 的 Chrome 扩展 FocusTab Manager，按域名自动分组标签、用 Chrome 原生 discard 冻结闲置页、零配置可撤销，解决值班时几十个标签卡死笔记本的问题。</description>
+      <content:encoded><![CDATA[<p><em>一篇 AWS 工程师的使用体验文：28KB 的 Chrome 扩展 FocusTab Manager，按域名自动分组标签、用 Chrome 原生 discard 冻结闲置页、零配置可撤销，解决值班时几十个标签卡死笔记本的问题。</em></p>
+<p><strong>亮点</strong></p><ul><li>反向取舍：市面上 Toby、Workona 那类工具都在做 workspace、正则规则、团队同步，它只做「一键整理 + 可撤销」两件事。作者的原话是不想「像管理 AWS Organization 一样管理浏览器」</li><li>用 discard 而不是卸载标签来省内存，这保住了没法重建的上下文——AI 对话历史和调好的 Logs Insights 查询，这些关掉就得重来。代价是内存数字只能估算（写约 60MB/冻结标签），因为 Chrome 不给扩展暴露单标签内存</li></ul>
+<p><strong>核心功能</strong></p><ul><li>按域名自动分组，不用写正则：github.com 的标签合并成「github.com (4)」，*.console.aws.amazon.com 归一组，claude.ai 的对话归一组，组名和颜色自动生成</li><li>冻结闲置标签用的是 Chrome 原生 tab discard，不是关闭页面。标签变灰但 SSO 登录态、Bedrock 试验页状态、Claude 对话滚动位置都还在，点一下秒回</li><li>整个扩展 28KB，设置存在 chrome.storage.local，无账号、无遥测、无云同步；主按钮旁边直接放着 Undo / 折叠 / 全部展开，一键还原</li><li>Ctrl+Shift+D 不开弹窗就冻结全部标签，用于共享屏幕前清理画面</li></ul>
+<p><strong>适用场景</strong>: SRE / 云工程师 / 值班 on-call 的人，在 PagerDuty 报警后要同时开 CloudWatch Logs Insights、EKS 控制台、多个 AWS 账号 SSO 页面和几个 AI 对话标签。也适合任何平时开 40+ 标签、又不想为标签管理器再学一套配置系统的人。</p>
+<p><strong>竞品对比</strong>: 和 Workona、Toby 比，那两家要配工作区、连账号、跨设备同步，FocusTab 全本地零配置；和 OneTab 比，OneTab 是把标签转成列表，恢复时状态可能丢，它靠原生 discard 保住页面状态；和 Chrome 自带的 Memory Saver 比，自带的不分组、不能搜索、也没有一键撤销。</p>
+<p><strong>成熟度</strong>: 本质上是带推广性质的使用体验文，没提版本号和更新记录；扩展本身功能面很窄、只做本地存储、来自个人开发者，能用但长期维护和边界情况（比如多窗口、大量标签时）情况不明。</p>
+<p><strong>趋势信号</strong>: AI 对话标签变成了「不能关」的上下文载体，加上多账号 SSO 频繁过期、控制台标签按账号和区域分裂，让「标签关不掉」从 2015 年的收藏癖变成了 2025-2026 的值班实际痛点；同时大家对 SaaS 标签管理器上传 URL 和 prompt 的做法越来越反感，本地优先的小工具因此有了市场。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · I built a real-time multiplayer brain-games platform on nothing but Firebase and vanilla JS</title>
-      <link>https://dev.to/mognotaapp/i-built-a-real-time-multiplayer-brain-games-platform-on-nothing-but-firebase-and-vanilla-js-4k9a</link>
-      <guid isPermaLink="false">https://dev.to/mognotaapp/i-built-a-real-time-multiplayer-brain-games-platform-on-nothing-but-firebase-and-vanilla-js-4k9a</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一个人用原生 JS 加 Firebase 实时数据库做了个多人对战脑力游戏站，没有游戏服务器，胜负靠数据库事务裁决，文章中讲了这套架构踩的坑。</description>
-      <content:encoded><![CDATA[<p><em>一个人用原生 JS 加 Firebase 实时数据库做了个多人对战脑力游戏站，没有游戏服务器，胜负靠数据库事务裁决，文章中讲了这套架构踩的坑。</em></p>
-<p><strong>亮点</strong></p><ul><li>把数据库事务当裁判用：在没有权威服务端的情况下，把&#x27;谁赢&#x27;这个冲突收敛到单个字段的原子写上，而不是自己写一套锁或状态机。</li><li>登录用 Firebase 匿名账号起步，再升级成 Google 登录且不丢进度，降低了免注册即玩的摩擦。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>胜负判定不走普通 update()，而是走 Firebase 事务：只有当 winner 字段还是空的才提交，先到的合法写入生效，其他并发路径自动变 no-op，避免一方超时计时器和另一方&#x27;找到最后一个词&#x27;同时触发导致的互相覆盖。</li><li>掉线用 onDisconnect() 写一次不够，因为它分不清&#x27;用户主动关标签页&#x27;和&#x27;网络直接断掉没通知服务器&#x27;，所以在线状态改成心跳加时间戳来判断过期，而不是单个布尔标志。</li><li>整个前端无框架、无构建步骤，就是静态 HTML/JS 丢在 Firebase Hosting；匹配、房间、在线状态、好友、周赛 XP 全塞进 Realtime Database；只有头像上传和举报这类必须后端的活，才用几个 Cloudflare Workers 兜底。</li></ul>
-<p><strong>适用场景</strong>: 适合想快速做多人实时小游戏或对战 Demo 的独立开发者，尤其是团队里没人想维护 WebSocket 服务器、房间状态机和扩缩容的那类人。也可以当&#x27;没有权威服务器时怎么处理并发写&#x27;的参考实现。</p>
-<p><strong>竞品对比</strong>: 和 Colyseus、Nakama、Photon 这类游戏服务器框架比，那些都要你跑一个权威服务端进程，Mognota 完全没有服务端游戏逻辑，代价是延迟取决于数据库写入往返，防作弊也基本没有。</p>
-<p><strong>成熟度</strong>: 早期项目，作者自己说&#x27;genuinely early&#x27;，单人开发，连数据库安全规则都一度只存在 Firebase 控制台里，玩法和接口都可能变。</p>
-<p><strong>趋势信号</strong>: Firebase RTDB、Supabase Realtime 这类 BaaS 的实时订阅已经开箱可用，&#x27;少养一个后端&#x27;成了风向，加上作者在文末公开征集&#x27;事务方案会不会卡&#x27;的反馈，这类无服务端实时对战实践文在 dev.to 上容易被讨论。</p>]]></content:encoded>
+      <title>dev.to · Angular Security Headers: A Practical Guide to Securing Your Angular Application</title>
+      <link>https://dev.to/amit-jangid/angular-security-headers-a-practical-guide-to-securing-your-angular-application-g4i</link>
+      <guid isPermaLink="false">https://dev.to/amit-jangid/angular-security-headers-a-practical-guide-to-securing-your-angular-application-g4i</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一篇讲 Angular 应用怎么配 HTTP 安全响应头的入门文章，逐个解释 8 个头的用途，后续会给出 Nginx 和 Docker 的落地配置。</description>
+      <content:encoded><![CDATA[<p><em>一篇讲 Angular 应用怎么配 HTTP 安全响应头的入门文章，逐个解释 8 个头的用途，后续会给出 Nginx 和 Docker 的落地配置。</em></p>
+<p><strong>亮点</strong></p><ul><li>不堆一张&#x27;安全头大全&#x27;清单，而是按&#x27;这个头解决什么问题、在真实部署链路里该放哪一层&#x27;来讲，后面用 Nginx 配置和 Dockerfile 收口。</li><li>把控制分成两层：浏览器侧行为限制（X-Frame-Options、Permissions-Policy）和 HTTP 侧策略下发（HSTS、CSP、COOP/CORP），强调单配一个没用，要成套生效。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>逐个拆解 8 个响应头对应的具体攻击面：HSTS 挡 HTTPS 降级和中间人，X-Content-Type-Options 挡浏览器 MIME 嗅探，X-Frame-Options 挡点击劫持，Referrer-Policy 控制 Referer 往外泄露多少信息，Permissions-Policy 直接关掉用不到的摄像头、定位等浏览器能力。</li><li>用 COOP + CORP 做跨源隔离：COOP 切断 window.opener 引用，防别的页面通过引用操作你的窗口；CORP 限制外部站点直接引用你的资源，挡住跨源读取。</li><li>CSP 被单独拎出来讲，因为它才是防 XSS 的最后一道，也是唯一需要跟 Angular 构建产物（内联脚本、nonce/hash）对齐的头，文中说这部分留到后续配 Nginx 时展开。</li></ul>
+<p><strong>适用场景</strong>: 自己部署 Angular 应用的开发者和管 Nginx/容器的 DevOps。典型触发点是安全扫描工具（Mozilla Observatory、OWASP ZAP）报缺少安全响应头，或者过渗透测试、等保整改时被要求补上。</p>
+<p><strong>竞品对比</strong>: 和 Angular 官方 security guide（主要讲模板 XSS 和消毒，安全头基本一句带过）、OWASP Secure Headers Project（只给通用头清单，不关心你怎么部署）比，差异是它绑死了 Angular + Nginx + Docker 这套具体形态，讲的是配置写在哪、怎么写。</p>
+<p><strong>成熟度</strong>: 系列第 1 篇，属概念铺垫，还没有能直接复制的配置代码；个人博客文章，无版本号和同行评审。</p>
+<p><strong>趋势信号</strong>: 前端从纯托管 SPA 转向自托管 SSR 和容器化部署后，安全头不再由托管平台默认兜底，得开发者自己配，而 CSP 又和 Angular 的构建产物耦合，这类落地文章的需求就上来了。</p>]]></content:encoded>
     </item>
     <item>
-      <title>dev.to · SHOULD I BE SCARED OF AI OR NOT ?</title>
-      <link>https://dev.to/rupak2/should-i-be-scared-of-ai-or-not--elk</link>
-      <guid isPermaLink="false">https://dev.to/rupak2/should-i-be-scared-of-ai-or-not--elk</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>一名工作 1.5 年的开发者发帖：AI 让他一周的活一天干完，但离开 AI 就卡在本不该卡的地方，怀疑自己被削弱了基本功。</description>
-      <content:encoded><![CDATA[<p><em>一名工作 1.5 年的开发者发帖：AI 让他一周的活一天干完，但离开 AI 就卡在本不该卡的地方，怀疑自己被削弱了基本功。</em></p>
-<p><strong>亮点</strong></p><ul><li>把「能交付」和「有能力」拆成两件事：产出速度翻几倍，不代表底层判断力没退化，这是很多生产力文章避而不谈的。</li><li>用一个很小的例子说明依赖程度——连改个颜色都懒得手动做，这比抽象的「依赖 AI」更有说服力。</li></ul>
-<p><strong>核心功能</strong></p><ul><li>作者对比了前后两套工作流：以前要读几小时文档、翻 GitHub issue 和 Stack Overflow、耗一整天调一个 bug，现在把报错粘给 AI 就跳过整个排查过程。</li><li>点出了一个具体的能力断层：他能理解需求、能指挥 AI、能 review 产物、能看出哪里不对，但完全去掉 AI 后会卡在他这个工龄不该卡的地方。</li><li>把问题归结到「挣扎感」消失——搞不懂为什么报错、反复查文档、突然想通的那一刻，才是写代码直觉的来源，而 paste-fix 流程把这个环节短路了。</li></ul>
-<p><strong>适用场景</strong>: 工作 1-3 年、日常靠 Cursor/Claude Code/Copilot 干活的开发者，用来判断自己的成长有没有被工具掏空；也适合团队 tech lead 和带新人的 mentor，用来重新设计代码审查和技能培养方式。</p>
-<p><strong>竞品对比</strong>: 和常见的「AI 让生产力提升 10 倍」宣传正相反，也不是「AI 会取代程序员」的恐慌论。它更接近 Stack Overflow 开发者调查里 AI 信任度下滑那条线，只是把视角收缩到个人技能退化。属于个人观点帖，没有直接竞品。</p>
-<p><strong>成熟度</strong>: 一篇社区讨论帖，没有代码、没有数据、没有方法论，属于抛问题求共鸣，不是可验证的研究结论。</p>
-<p><strong>趋势信号</strong>: Cursor、Claude Code 这类能自己读文件跑命令改代码的 agent（不只是补全一行）在 2025 年普及后，第一批「AI 原生」入行的开发者干到了一两年，正好开始有余力回头反思，于是这类「我是不是变弱了」的帖子集中冒出来。</p>]]></content:encoded>
+      <title>dev.to · How I Send 100GB+ Files Directly Between Browsers Without Cloud Storage</title>
+      <link>https://dev.to/anirban00537/how-i-send-100gb-files-directly-between-browsers-without-cloud-storage-544j</link>
+      <guid isPermaLink="false">https://dev.to/anirban00537/how-i-send-100gb-files-directly-between-browsers-without-cloud-storage-544j</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一篇复盘文章，讲作者用 WebRTC Data Channel 做了 ButterShare，让两个浏览器直接对传 100GB 大文件，文件不落地服务器。</description>
+      <content:encoded><![CDATA[<p><em>一篇复盘文章，讲作者用 WebRTC Data Channel 做了 ButterShare，让两个浏览器直接对传 100GB 大文件，文件不落地服务器。</em></p>
+<p><strong>亮点</strong></p><ul><li>核心取舍是砍掉存储层：同样一个 100GB 文件，传统架构要在自家服务器上走一遍上行一遍下行、差不多 200GB 流量，直连方案里服务器只剩信令开销</li><li>直接复用浏览器自带的 WebRTC Data Channel 传文件分片，不用装客户端也不用自己写传输协议，发个链接就能开始</li></ul>
+<p><strong>核心功能</strong></p><ul><li>文件数据走 WebRTC Data Channel 传二进制分片，服务器只当信令用——交换 SDP offer/answer 和 ICE candidate 帮两端找到彼此，不碰任何一个文件分片</li><li>把「传文件」和「存文件」当两个产品拆开：云存储是异步的（发件人可以关机），直连是同步的（双方必须同时在线），大文件场景下砍掉存储层能省掉上行+下行两份流量</li><li>必须自己处理 NAT/防火墙打洞、分片缓冲、流控和浏览器内存上限，以及断点续传——100GB 传到 97% 断了不能从头再来一遍</li></ul>
+<p><strong>适用场景</strong>: 给同事或客户传几十上百 GB 的工程文件、视频素材、虚拟机镜像的人，比如剪辑师、设计师、游戏开发者。前提是双方同时在线，不想占云盘配额、也不想等上传。</p>
+<p><strong>竞品对比</strong>: 对比 WeTransfer、Google Drive、Dropbox 这类「先上传再发链接」的方案，最大区别是文件不落盘、没有存储配额和带宽账单；对比 Snapdrop、PairDrop 这类已有的浏览器 P2P 传输工具，差异点在于它冲着 100GB 级别的超大文件设计了分片和断点续传。</p>
+<p><strong>成熟度</strong>: 这是个人项目的技术复盘文章，不是开源仓库发布，没有版本号、跑分或生产环境数据，只能说思路可用、落地程度未知。</p>
+<p><strong>趋势信号</strong>: 原因不明——WebRTC 传文件已不是新话题，近期云盘陆续限速和收紧免费额度，绕开服务器中转的方案又被翻出来讨论，但这篇本身没绑定具体发布事件。</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>dev.to · Production RAG on the Lakehouse with BigQuery Vector Search and Apache Iceberg</title>
+      <link>https://dev.to/gde/production-rag-on-the-lakehouse-with-bigquery-vector-search-and-apache-iceberg-5g3</link>
+      <guid isPermaLink="false">https://dev.to/gde/production-rag-on-the-lakehouse-with-bigquery-vector-search-and-apache-iceberg-5g3</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>主张别再把数据搬进独立向量库，而是把向量当普通列存进 BigQuery/Iceberg 表，让向量检索直接在湖仓里做，省掉同步链路和数据漂移。</description>
+      <content:encoded><![CDATA[<p><em>主张别再把数据搬进独立向量库，而是把向量当普通列存进 BigQuery/Iceberg 表，让向量检索直接在湖仓里做，省掉同步链路和数据漂移。</em></p>
+<p><strong>亮点</strong></p><ul><li>核心取舍是&quot;把 AI 搬到数据旁边&quot;而不是&quot;把数据搬到 AI 旁边&quot;：牺牲专用向量库在索引结构上的灵活性，换掉整条同步管道和两套安全模型</li><li>用同一笔事务同时写文本和向量，把 RAG 准确性问题从&quot;管道可靠性问题&quot;降级成&quot;普通数据库一致性问题&quot;</li></ul>
+<p><strong>核心功能</strong></p><ul><li>把 embedding 存成 Iceberg 或 BigQuery 原生表里的一个普通列（ARRAY&lt;FLOAT64&gt;），向量索引建在这列上，和源数据同一张表、同一事务，不再往 Pinecone/Milvus/Weaviate 做 ETL 复制</li><li>更新一行时文本、元数据、向量一起原子提交，不存在&quot;源库改了、向量库还是旧的&quot;这种不一致，原文称之为 metadata drift（元数据漂移）</li><li>权限不走第二套：行级策略、列级脱敏、IAM 角色直接在检索路径上沿用，不需要在向量库里重新实现一遍访问控制</li></ul>
+<p><strong>适用场景</strong>: 适合已经有湖仓、又在做企业 RAG 的数据平台团队，典型场景是商品目录、客服知识库这类数据频繁变更的业务——价格改了、状态改成&quot;已召回&quot;，问答机器人必须立刻跟着变，而不能等同步任务跑完。</p>
+<p><strong>竞品对比</strong>: 对手是 Pinecone、Milvus、Weaviate 这类独立向量库，以及 pgvector 这种把向量塞进现有库的做法；最大的差异在于 BigQuery/Iceberg 方案连数据都不复制，检索和治理是同一个系统，而独立向量库天生要面对同步延迟和权限重复实现。</p>
+<p><strong>成熟度</strong>: 这是一篇厂商立场（Google GDE）的架构倡导文，不是项目发布：BigQuery 向量检索本身已可用、Iceberg 集成也已上线，但文中没有压测数据、成本对比或客户案例，属于方案宣讲而非可复现的实践报告。</p>
+<p><strong>趋势信号</strong>: RAG 从 demo 走向生产后，独立向量库的运维和一致性成本被集中吐槽，Databricks、Snowflake、BigQuery 几乎同时把向量检索塞进自家湖仓，这篇就是这场&quot;向量库要不要单独存在&quot;争论里 Google 侧的喊话。</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>dev.to · Windows can decode (and encode) HEIC without ImageMagick - but your browser can&#x27;t decode it at all</title>
+      <link>https://dev.to/_8729c5bde46be2/windows-can-decode-and-encode-heic-without-imagemagick-but-your-browser-cant-decode-it-at-all-51ca</link>
+      <guid isPermaLink="false">https://dev.to/_8729c5bde46be2/windows-can-decode-and-encode-heic-without-imagemagick-but-your-browser-cant-decode-it-at-all-51ca</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>一篇 dev.to 实测：Windows 11 自带 HEIF 编解码，可用 PowerShell/WIC 把 HEIC 批量转 JPG，而浏览器仍不能直接解码 HEIC。</description>
+      <content:encoded><![CDATA[<p><em>一篇 dev.to 实测：Windows 11 自带 HEIF 编解码，可用 PowerShell/WIC 把 HEIC 批量转 JPG，而浏览器仍不能直接解码 HEIC。</em></p>
+<p><strong>亮点</strong></p><ul><li>不用第三方工具，直接调系统自带 WIC/WinRT 编解码器；PowerShell 循环即可批量转换，还能直接写 HEIC 做测试样本。</li><li>明确区分“改扩展名”和“真转码”，并用 xxd 看文件头验证，避免上传时格式校验失败。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>用 Windows WIC（系统图像编解码接口）从 PowerShell 调 BitmapDecoder 读取 HEIC，再用 JpegBitmapEncoder 批量导出 JPG，不需要装 ImageMagick。</li><li>通过文件头识别真实格式：photo.heic 前 16 字节含 ftypheic，重命名成 .jpg 不会改内容，Windows 仍会识别为 Microsoft HEIF Decoder。</li><li>依赖 Microsoft.HEIFImageExtension 免费包；HEIC 内层是 HEVC 压缩，部分机器还需付费的 Microsoft.HEVCVideoExtension。反向编码用 WinRT BitmapEncoder.HeifEncoderId，因为 WPF 没有 HEIF 编码器。</li></ul>
+<p><strong>适用场景</strong>: Windows 用户或开发者收到 iPhone 的 HEIC 照片，需要批量转 JPG 上传到只收 JPG 的表单或后端；也适合不想把私人照片传到在线转换站的人。</p>
+<p><strong>竞品对比</strong>: 和 ImageMagick、在线 HEIC 转 JPG 网站相比，优势是免安装、本地处理、不泄露照片；限制是只适用于已装 HEIF/HEVC 扩展的 Windows，跨平台和浏览器端仍无原生方案。</p>
+<p><strong>成熟度</strong>: 这是经验分享文章，基于 Windows 11 25H2 实测，步骤可用但依赖 Store 扩展和具体版本；不是正式库或生产工具。</p>
+<p><strong>趋势信号</strong>: iPhone 默认拍 HEIC，很多 Web 上传仍只认 JPG，而主流浏览器至今不原生解码 HEIC，所以免安装的本地转换方法现在被反复讨论。</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>dev.to · The one law the whole series assumes: an AI that goes down silently is worse than one that&#x27;s dead</title>
+      <link>https://dev.to/derekwang85/the-one-law-the-whole-series-assumes-an-ai-that-goes-down-silently-is-worse-than-one-thats-dead-3fc7</link>
+      <guid isPermaLink="false">https://dev.to/derekwang85/the-one-law-the-whole-series-assumes-an-ai-that-goes-down-silently-is-worse-than-one-thats-dead-3fc7</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>dev.to 系列第六篇，讲 AI 编码项目最底层的可靠性：靠幂等、带标注的降级、可见性、快速恢复四招，防止 Agent 静默失败拖垮系统。</description>
+      <content:encoded><![CDATA[<p><em>dev.to 系列第六篇，讲 AI 编码项目最底层的可靠性：靠幂等、带标注的降级、可见性、快速恢复四招，防止 Agent 静默失败拖垮系统。</em></p>
+<p><strong>亮点</strong></p><ul><li>把&quot;静默失败最贵&quot;当第一条原则：报错会触发告警、重试、人工介入，静默什么都不触发，系统看起来健康，直到用户发现业务已经坏了几个小时。</li><li>恢复的瓶颈是定位而不是修补：pre-compile-check.sh 一次性扫出陈旧 import、@ConditionalOnProperty 条件环、启动冒烟三类已知问题族，让人做窄修复而不是一个个踩雷，单次恢复从 45 分钟压到 5 分钟以内。</li></ul>
+<p><strong>核心功能</strong></p><ul><li>幂等靠数据库兜底：seed 脚本从硬编码 ID 改成 INSERT ... ON DUPLICATE KEY UPDATE status=status，重复执行等于空操作；调用方拿不准自己上次写没写成功时，用 idempotencyKey 换第一次的结果，不给第二次下单/扣款。</li><li>降级必须带标注：外部汇率源（NCC feed）挂掉时返回缓存汇率，同时显式提示&quot;汇率数据可能延迟&quot;。作者强调静默降级比直接报错更糟，因为下游会拿过期数据做决策而没人知道。</li><li>后台 worker 不能用 set -e：多 agent swarm 集体启动失败，根因是 set -e 加上 flock 锁竞争，一个 worker 退出把锁污染，后续全部静默死在启动阶段。改成 set +e 加自己的恢复路径，再加一个 5 分钟轮询进程健康、自动重启的 watchdog，恢复时间从手动 30 分钟降到 5 分钟以内。</li></ul>
+<p><strong>适用场景</strong>: 给在生产环境跑 LLM Agent 或多 agent 编排的后端/平台工程师看，尤其是交易、支付、订单这类不能重复扣款、也不能悄悄挂掉的系统。文章里的案例都来自作者自己的交易系统 UAT 和 worker swarm。</p>
+<p><strong>竞品对比</strong>: 思路和《Release It!》里的断路器/隔板、Stripe 的 idempotency key 是同一套可靠性工程，最大差别是前提换了：它假定 AI 比人死得更干净利落——人会变慢、会求助、留半句话，AI 直接静默停住或者假装还在干活，所以冗余和可见性的优先级要往前排。</p>
+<p><strong>成熟度</strong>: 系列文章第六篇，属个人项目经验总结，有具体故障和数字支撑，但没有配套代码仓库、版本号和可复现测试，比成熟的 SRE 实践还差一层。</p>
+<p><strong>趋势信号</strong>: 越来越多团队把 AI agent 和多 agent 编排推上生产，静默失败的事故开始批量出现，于是断路器、幂等、watchdog 这些老工程被重新搬回来套在 Agent 上。</p>]]></content:encoded>
     </item>
   </channel>
 </rss>
