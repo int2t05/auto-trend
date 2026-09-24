@@ -76,21 +76,6 @@ class Analyzer:
         self.client = client or OpenAI(api_key=LLM_API_KEY, base_url=LLM_BASE_URL)
 
     def _build_user_prompt(self, repo: dict) -> str:
-        source = repo.get("source", "github-trending")
-        if source.startswith("rss:"):
-            feed_name = source.split(":", 1)[1]
-            return f"""Analyze this RSS item from {feed_name}:
-
-Title: {repo['full_name']}
-Link: {repo.get('url', '')}
-Source: {source}
-
-Summary:
-{repo.get('description', '')}
-
-Content excerpt:
-{repo.get('readme', '')[:8000]}
-"""
         return f"""Analyze this GitHub trending repository:
 
 Name: {repo['full_name']}

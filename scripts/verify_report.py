@@ -37,8 +37,7 @@ def verify_report(report_path: Path) -> list[str]:
     if fence_count % 2 != 0:
         failures.append(f"代码块未闭合（``` 出现 {fence_count} 次，应为偶数）")
 
-    # 3. 每个 repo 小节必须有 summary（> 开头行）
-    #    同时覆盖 ## 项目详情 与 ## RSS 热点 两个章节，限定到 ## 趋势观察 之前
+    # 3. 每个 repo 小节必须有 summary（> 开头行），限定到 ## 趋势观察 之前
     repo_headers = re.findall(r"^### \[.+\]", content, re.MULTILINE)
     if not repo_headers:
         failures.append("未找到任何项目小节 '### [repo]'")

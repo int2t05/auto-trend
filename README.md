@@ -33,7 +33,6 @@ Settings → Secrets and variables → Actions → New repository secret:
 | `LLM_BASE_URL` | API endpoint (optional, defaults to OpenAI) |
 | `LLM_MODEL` | Model name (optional, defaults to `gpt-4.1-mini`) |
 | `DAILY_REPO_LIMIT` | Max repos per run (optional, defaults to `20`) |
-| `RSS_ITEMS_PER_FEED` | Items per RSS feed (optional, defaults to `10`) |
 | `GITHUB_TOKEN` | GitHub API token (optional, raises rate limit) |
 
 ### 4. Enable GitHub Pages
@@ -69,9 +68,8 @@ https://<your-username>.github.io/auto-trend/
 ```
 GitHub Actions cron (UTC 00:17)
   → Scrape GitHub Trending (httpx + BeautifulSoup)
-  → Fetch RSS feeds concurrently (feedparser)
   → Fetch READMEs concurrently (asyncio)
-  → LLM structured analysis per item (JSON mode)
+  → LLM structured analysis per repo (JSON mode)
   → Global trend summary
   → Render Markdown report
   → Generate RSS feed (one item per daily report)
@@ -80,7 +78,7 @@ GitHub Actions cron (UTC 00:17)
   → GitHub Pages auto-publish
 ```
 
-Each item is analyzed across 7 dimensions: **summary**, **highlights**, **core features**, **use cases**, **competitive comparison**, **maturity**, and **trend signal**.
+Each repo is analyzed across 7 dimensions: **summary**, **highlights**, **core features**, **use cases**, **competitive comparison**, **maturity**, and **trend signal**.
 
 The site itself serves as an RSS source (`/feed.xml`), providing a subscribable RSS link where each daily report is one item.
 
@@ -108,7 +106,6 @@ Compatible with OpenAI, Anthropic, DeepSeek, or any OpenAI-compatible endpoint.
 | `LLM_BASE_URL` | API endpoint | `https://api.openai.com/v1` |
 | `LLM_MODEL` | Model name | `gpt-4.1-mini` |
 | `DAILY_REPO_LIMIT` | Max repos per run | `20` |
-| `RSS_ITEMS_PER_FEED` | Items per RSS feed | `10` |
 | `GITHUB_TOKEN` | GitHub API token (raises rate limit) | _none_ |
 
 ## Project Structure
@@ -119,7 +116,7 @@ auto-trend/
 ├── scripts/                       # Pipeline
 │   ├── main.py                    # Orchestrator
 │   ├── config.py                  # Env config
-│   ├── fetcher.py                 # Scraper + README + RSS fetcher
+│   ├── fetcher.py                 # Scraper + README fetcher
 │   ├── analyzer.py                # LLM analysis (OpenAI SDK)
 │   ├── renderer.py                # Markdown report generator
 │   ├── rss.py                     # RSS 2.0 feed generator
@@ -132,7 +129,6 @@ auto-trend/
 │   ├── daily/                     # Generated reports
 │   ├── feed.xml                   # Generated RSS feed
 │   └── index.html                 # Report index
-├── feeds.yml                      # RSS feed sources
 ├── requirements.txt
 └── package.json                   # E2E dependencies
 ```

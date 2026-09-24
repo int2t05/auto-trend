@@ -35,7 +35,6 @@ jobs:
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_MODEL: ${{ secrets.LLM_MODEL }}
           DAILY_REPO_LIMIT: ${{ secrets.DAILY_REPO_LIMIT }}
-          RSS_ITEMS_PER_FEED: ${{ secrets.RSS_ITEMS_PER_FEED }}
           CI: "true"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/main.py ${{ inputs.report_date }}

@@ -73,7 +73,7 @@ def render_rss_feed(daily_dir: Path) -> str:
         "  <channel>\n"
         "    <title>Auto-Trend GitHub Trending 日报</title>\n"
         f"    <link>{SITE_URL}/</link>\n"
-        "    <description>每日 GitHub Trending + RSS 热点 LLM 分析</description>\n"
+        "    <description>每日 GitHub Trending 项目 LLM 深度分析</description>\n"
         "    <language>zh-CN</language>\n"
         f"    <lastBuildDate>{now_rfc}</lastBuildDate>\n"
         f"{items_xml}\n"

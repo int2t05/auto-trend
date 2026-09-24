@@ -12,8 +12,8 @@ import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from scripts.config import DAILY_REPO_LIMIT, load_feeds
-from scripts.fetcher import fetch_trending_repos, fetch_all_readmes, fetch_rss_items
+from scripts.config import DAILY_REPO_LIMIT
+from scripts.fetcher import fetch_trending_repos, fetch_all_readmes
 from scripts.analyzer import Analyzer, audit_analysis
 from scripts.renderer import render_daily_report
 from scripts.rss import render_rss_feed
@@ -28,7 +28,7 @@ MAX_PIPELINE_ATTEMPTS = 3  # 生成失败后整体重跑次数（含首次）
 
 # LLM 趋势总结失败时的兜底文本，必须 > 50 字符以通过 verify_report 校验
 FALLBACK_TREND_SUMMARY = (
-    "本期趋势总结未能自动生成，请直接查看下方项目详情与 RSS 热点，"
+    "本期趋势总结未能自动生成，请直接查看下方项目详情，"
     "了解今日技术社区的核心亮点、技术方向和动态。"
     "每个条目都包含一句话摘要、核心功能、竞品对比和趋势信号。"
 )
@@ -79,27 +79,18 @@ def git_commit_and_push(report_date: date) -> None:
 async def run_pipeline(report_date: date) -> None:
     print(f"[auto-trend] Starting pipeline for {report_date.isoformat()}")
 
-    feeds = load_feeds()
-    if feeds:
-        print(f"[auto-trend] Loaded {len(feeds)} RSS feeds from feeds.yml")
+    print("[auto-trend] Fetching trending repos...")
+    repos = await fetch_trending_repos(limit=DAILY_REPO_LIMIT)
+    print(f"[auto-trend] Fetched {len(repos)} repos")
 
-    print("[auto-trend] Fetching trending repos and RSS items...")
-    repos, rss_items = await asyncio.gather(
-        fetch_trending_repos(limit=DAILY_REPO_LIMIT),
-        fetch_rss_items(feeds),
-    )
-    print(f"[auto-trend] Fetched {len(repos)} repos, {len(rss_items)} RSS items")
-
-    if not repos and not rss_items:
-        print("[auto-trend] No repos or RSS items found, aborting.")
+    if not repos:
+        print("[auto-trend] No repos found, aborting.")
         return
 
     print("[auto-trend] Fetching READMEs...")
     repos = await fetch_all_readmes(repos)
-    # RSS items already carry content as readme，无需再抓
-    items = repos + rss_items
 
-    print(f"[auto-trend] Analyzing {len(items)} items with LLM...")
+    print(f"[auto-trend] Analyzing {len(repos)} repos with LLM...")
     analyzer = Analyzer()
     analyses: dict[str, dict] = {}
 
@@ -113,7 +104,7 @@ async def run_pipeline(report_date: date) -> None:
         "trend_signal": "",
     }
 
-    for item in items:
+    for item in repos:
         analysis = None
         for attempt in range(1, MAX_ANALYSIS_ATTEMPTS + 1):
             try:
@@ -150,7 +141,7 @@ async def run_pipeline(report_date: date) -> None:
         trend_summary = FALLBACK_TREND_SUMMARY
 
     print("[auto-trend] Rendering report...")
-    report_md = render_daily_report(report_date, items, analyses, trend_summary)
+    report_md = render_daily_report(report_date, repos, analyses, trend_summary)
     report_path = DAILY_DIR / f"{report_date.isoformat()}.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(report_md, encoding="utf-8")
