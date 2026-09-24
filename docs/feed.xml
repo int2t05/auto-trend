@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending + RSS 热点 LLM 分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 23 Sep 2026 05:56:23 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 24 Sep 2026 05:00:50 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-09-24</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-24.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-24.html</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批项目指向同一件事：Agent 正在从演示品变成基础设施。大厂先动手。Google 和 AWS 把 Agent 运行时、编排、SDK 开源，K8s 沙箱、YAML 声明、长时任务、亚秒挂起都安排上。Anthropic 把投行和私募工作流做成可装插件。这说明 Agent 不再只是聊天，它要进生产环境。开发者这边，趋势是“别重写，先装技能”。给 Claude Code 配命令、MCP、hooks；把方法论打包成技能，逼 Agent 先写规格再写代码；用一套 action 同时服务 Agent 和 UI。更关键的是，Agent 开始伸手碰真实软件。GUI 自动化、API 聚合、代码知识图谱、Off</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-23</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-23.html</link>
