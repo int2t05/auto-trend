@@ -5,13 +5,13 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 24 Sep 2026 11:40:18 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 24 Sep 2026 14:19:24 GMT</lastBuildDate>
     <item>
       <title>GitHub Trending 日报 · 2026-09-24</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-24.html</link>
       <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-24.html</guid>
       <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
-      <description>这批项目指向同一件事：Agent 正在从演示品变成基础设施。大厂先动手。Google 和 AWS 把 Agent 运行时、编排、SDK 开源，K8s 沙箱、YAML 声明、长时任务、亚秒挂起都安排上。Anthropic 把投行和私募工作流做成可装插件。这说明 Agent 不再只是聊天，它要进生产环境。开发者这边，趋势是“别重写，先装技能”。给 Claude Code 配命令、MCP、hooks；把方法论打包成技能，逼 Agent 先写规格再写代码；用一套 action 同时服务 Agent 和 UI。更关键的是，Agent 开始伸手碰真实软件。GUI 自动化、API 聚合、代码知识图谱、Off</description>
+      <description>这批项目几乎都在干同一件事：给 AI Agent 修路架桥。过去一年大家比谁的模型强，现在比谁能把 Agent 稳稳用起来。 一是记忆和编排。Hindsight 专管长期记忆，把记忆拆成保留、回忆、反思三步。Google 更直接，开源了 K8s 风格的 Agent 运行时，用 YAML 声明任务，沙箱隔离、网络出口管控都包了。 二是接入现实工具。CLI-Hub 把 CAD、LibreOffice、Zoom 包成命令行，让 Agent 直接调。treg 把 3000 多个第三方 API 打包成一个 token 就能调，按次付费。开源 Office SDK 干脆给 Agent 当无头办公底座。 三</description>
     </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-23</title>
