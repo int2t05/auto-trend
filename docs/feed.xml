@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 24 Sep 2026 14:19:24 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2026 05:03:35 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-09-25</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-25.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-25.html</guid>
+      <pubDate>Fri, 25 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这波热门项目指向一个共同趋势：AI Agent 正在从演示走向生产系统。光有模型不够，大家开始补基础设施。记忆有 Hindsight，编排有 Google 的类 K8s 方案，开发循环有 AWS SDK 打包，技能包能跨 15 个编码工具复用。MCP 连接器、工具聚合代理、桌面软件命令行化，都在解决同一个问题：让 Agent 能稳定调用外部能力。另一个热点是垂直落地。Anthropic 把投行和基金流程做成可安装插件，Univer 让 Agent 读写表格文档，本地照片管理器用本地 AI 处理十万张图。AI 不再只是聊天，而是进入具体工作流。同时，推理成本被重点优化。NVIDIA 量化剪枝蒸馏</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-24</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-24.html</link>
