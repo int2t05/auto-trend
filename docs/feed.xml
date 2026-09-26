@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 25 Sep 2026 05:03:35 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 26 Sep 2026 05:04:51 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-09-26</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-26.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-26.html</guid>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单，AI Agent 项目占了一大半，方向出奇一致：没人再比谁的模型强，都在比谁能把 Agent 管起来。 第一个变化是从单个 Agent 变成一群 Agent。Paperclip 直接给 Agent 排组织架构，分目标、卡预算、审日志；StarNet 用像素房间当权限和交接规则。一个人开十几个终端已经看不过来，工具自然往「管理台」的方向长。 第二个变化是标准化。Anthropic 官方出插件市场和 Agent Skills，技能就是一个带 SKILL.md 的文件夹；Google 用 K8s 风格 YAML 编排 Agent 任务，还能挂起恢复。官方开始定规矩，第三方跟着适配，这跟当</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-25</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-25.html</link>
