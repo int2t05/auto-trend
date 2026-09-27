@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 26 Sep 2026 05:04:51 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 05:23:37 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-09-27</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-27.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-27.html</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批项目凑在一起，指向一件事：AI Agent 正从演示走向生产。Hindsight 管长期记忆，Paperclip 管组织架构、预算和审批流，mobile-mcp 把 iOS 和 Android 真机接进来，Anthropic 的 GitHub Action 让 Claude 直接在 PR 里改代码，还有那包把逆向和 CTF 流程封成技能路由的工具。共同点很清楚——大家不再只比模型聪不聪明，而是比谁能让 Agent 稳定干活。MCP 成了事实上的接线口，记忆、工具、权限都往它上面挂。第二条线是省钱落地。NVIDIA 的模型压缩库、Google 的 Keras 3 和 LiteRT、LLVM </description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-26</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-26.html</link>
