@@ -43,10 +43,9 @@ Settings → Pages → Source: **Deploy from a branch** → Branch: `master` / `
 
 Replace `int2t05` with your GitHub username in these files:
 
-| File | Lines to update |
+| File | Where to update |
 |------|-----------------|
-| `docs/_layouts/default.html` | GitHub link (line 406), footer (line 446) |
-| `docs/index.html` | Footer link (line 14) |
+| `docs/_layouts/default.html` | Header GitHub link, footer |
 | `README.md` | Badge URL, Live Reports link |
 
 ```bash
@@ -130,7 +129,8 @@ auto-trend/
 │   ├── _layouts/default.html      # Apple-style 3-col layout
 │   ├── daily/                     # Generated reports
 │   ├── feed.xml                   # Generated RSS feed
-│   └── index.html                 # Report index
+│   ├── index.html                 # Report index
+│   └── read-state.js              # Read marks (localStorage)
 ├── requirements.txt
 └── package.json                   # E2E dependencies
 ```

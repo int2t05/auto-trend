@@ -45,9 +45,8 @@ Settings → Pages → Source: **Deploy from a branch** → Branch: `master` / `
 
 | 文件 | 需修改位置 |
 |------|-----------|
-| `docs/_layouts/default.html` | GitHub 链接（第 406 行）、页脚（第 446 行） |
-| `docs/index.html` | 页脚链接（第 14 行） |
-| `README.md` | Badge URL、Live Reports 链接 |
+| `docs/_layouts/default.html` | 顶部 GitHub 链接、页脚 |
+| `README.md` / `README_CN.md` | Badge 链接、日报浏览链接 |
 
 ```bash
 grep -r "int2t05" --include="*.md" --include="*.html" --include="*.js" --include="*.json" .
@@ -130,7 +129,8 @@ auto-trend/
 │   ├── _layouts/default.html      # Apple 风格三栏布局
 │   ├── daily/                     # 生成的日报
 │   ├── feed.xml                   # 生成的 RSS feed
-│   └── index.html                 # 日报索引
+│   ├── index.html                 # 日报索引
+│   └── read-state.js              # 已读标记 (localStorage)
 ├── requirements.txt
 └── package.json                   # E2E 依赖
 ```

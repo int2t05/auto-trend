@@ -88,6 +88,7 @@ GITHUB_TOKEN     = ""                                # 可选，提升 GitHub AP
   - `maturity` — 成熟度（早期/成长期/成熟）
   - `trend_signal` — 趋势信号
 - `_normalize_analysis(analysis)` — 在 `json.loads` 之后立即规整字段类型：string 字段（summary/use_cases/competitive_comparison/maturity/trend_signal）强制为 str，list 字段（highlights/core_features）强制为 `list[str]`。LLM 偶尔把 string 字段返回成数组，这里在边界兜底，避免下游渲染崩溃
+- `audit_analysis(analysis)` — 返回缺失或为空的字段名列表，main 据此决定是否重试分析
 - `analyze_trends(analyses)` — 跨项目趋势总结，输出 300-500 字中文段落
 - 使用 `response_format={"type": "json_object"}` 确保结构化输出
 - `@retry(stop=stop_after_attempt(3), wait=exponential)` 指数退避重试 3 次
@@ -182,7 +183,7 @@ verify_report(report_path)
 
 | 场景 | 策略 |
 |------|------|
-| GitHub Trending 页面抓取失败 | httpx 抛异常，pipeline 终止（下次 cron 重试） |
+| GitHub Trending 页面抓取失败 | httpx 抛异常，整体重跑 pipeline（最多 3 次），仍失败则退出不 commit |
 | 单个 README 抓取失败 | 返回空字符串，不影响其他项目 |
 | LLM 单次调用失败 | tenacity 指数退避重试 3 次 |
 | LLM 重试仍失败 | 降级为 FALLBACK dict（summary 用 description 填，其余字段留空） |
@@ -199,7 +200,7 @@ verify_report(report_path)
 | 模块 | 测试数 | 策略 |
 |------|--------|------|
 | config | 3 | monkeypatch 环境变量 |
-| fetcher | 6 | 1 个纯函数测试 + 5 个 mock httpx（README 抓取、总星数补全） |
+| fetcher | 5 | 1 个纯函数测试 + 4 个 mock httpx（README 抓取、总星数补全） |
 | analyzer | 8 | mock OpenAI client + `_normalize_analysis` 类型规整测试 |
 | renderer | 3 | 纯函数，验证 section、排序、语言分布 |
 | rss | 4 | 纯函数，验证 XML 结构、日期降序、跳过非日报文件、空目录 |
@@ -243,6 +244,6 @@ python scripts/main.py
 | analyzer.py | 145 |
 | renderer.py | 118 |
 | rss.py | 82 |
-| verify_report.py | 90 |
+| verify_report.py | 89 |
 | main.py | 200 |
-| **总计** | **759** |
+| **总计** | **758** |
