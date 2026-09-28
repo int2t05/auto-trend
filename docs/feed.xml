@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 27 Sep 2026 05:23:37 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2026 05:28:56 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-09-28</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-28.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-28.html</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+      <description>先看一件事：Agent 不再是炫技的单机玩具了。 今天榜单里，一半项目都在给 Agent 补“上班”要用的东西。有人做管理台，把多个 Agent 编进组织架构图，定目标、发预算、审结果。有人用 YAML 定义团队，把 Claude Code 和 Codex 当员工塞进 tmux，由 lead 统一排任务。这说明多 Agent 跑起来之后，缺的不是算力，是管理。 记忆是另一个战场。那个 Python 记忆系统用 retain/recall/reflect 替代 RAG，一天涨 4500 星。方向很清楚：Agent 得记住事，还得会反思。 办公能力也在补齐。可嵌入的 Office SDK，让 Ag</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-27</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-27.html</link>
