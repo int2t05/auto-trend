@@ -82,6 +82,8 @@ GitHub Actions cron (UTC 00:17)
 
 站点本身作为一个 RSS 源（`/feed.xml`），提供可订阅的 RSS 链接，每份日报对应一条 item。
 
+站点还支持已读标记：日报页可一键切换已读/未读，索引日历弱化已读日期（状态存于浏览器 localStorage，仅本设备生效）。
+
 ## 本地运行
 
 ```bash

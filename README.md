@@ -82,6 +82,8 @@ Each repo is analyzed across 7 dimensions: **summary**, **highlights**, **core f
 
 The site itself serves as an RSS source (`/feed.xml`), providing a subscribable RSS link where each daily report is one item.
 
+The site also supports read marks: toggle read/unread on any report page, and the calendar index dims read dates (state lives in browser localStorage, per device).
+
 ## Local Dev
 
 ```bash

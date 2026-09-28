@@ -20,6 +20,8 @@ GitHub Actions cron (UTC 00:17)
 
 薄层设计，零数据库，零后端服务。整个 pipeline 由 GitHub Actions 驱动，一个 Python 脚本跑完全程。站点本身作为一个纯 GitHub Trending 分析的 RSS 源（`/feed.xml`）。
 
+前端为纯静态页（Jekyll 渲染 `docs/`），无构建步骤。已读标记（`docs/read-state.js`）存于浏览器 localStorage（键 `auto-trend-read`），日报页提供已读/未读切换，索引日历弱化已读日期并提供"全部标为已读"；状态仅本设备生效，不同步。
+
 ## 技术栈
 
 | 层 | 选择 | 说明 |

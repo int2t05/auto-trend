@@ -6,6 +6,7 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}Auto-Trend</title>
   <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
   <link rel="alternate" type="application/rss+xml" title="Auto-Trend" href="{{ '/feed.xml' | relative_url }}">
+  <script src="{{ '/read-state.js' | relative_url }}"></script>
   <style>
     :root {
       --ink: #1d1d1f;
@@ -368,6 +369,43 @@
 
     .site-footer a:hover { color: var(--primary); }
 
+    /* ── 日报页已读切换按钮 ── */
+    .read-toggle-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+
+    .read-toggle {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.12px;
+      color: var(--primary);
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: 980px;
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .read-toggle:hover {
+      border-color: var(--primary);
+      background: rgba(0, 102, 204, 0.04);
+    }
+
+    .read-toggle.is-read {
+      color: var(--body-muted);
+      background: var(--canvas-parchment);
+      border-color: var(--canvas-parchment);
+    }
+
+    .read-toggle.is-read:hover {
+      color: var(--ink);
+      border-color: var(--hairline);
+    }
+
     /* ── Empty State ── */
     .sidebar-empty {
       padding: 0 24px;
@@ -434,6 +472,11 @@
 
     <!-- Center Content -->
     <main class="content-area">
+      {% if page.url contains '/daily/' %}
+      <div class="read-toggle-row">
+        <button class="read-toggle" id="read-toggle" type="button">标记已读</button>
+      </div>
+      {% endif %}
       {{ content }}
     </main>
 
@@ -523,5 +566,30 @@
     });
   })();
   </script>
+  {% if page.url contains '/daily/' %}
+  <script>
+  // 日报页已读切换：日期取自 URL，不解析标题文本
+  (function() {
+    var btn = document.getElementById('read-toggle');
+    if (!btn || !window.ReadState) return;
+
+    var match = location.pathname.match(/\/daily\/(\d{4}-\d{2}-\d{2})/);
+    if (!match) return;
+    var dateStr = match[1];
+
+    // 按已读状态刷新按钮文案与样式
+    function paint(isRead) {
+      btn.textContent = isRead ? '已读 ✓' : '标记已读';
+      btn.classList.toggle('is-read', isRead);
+    }
+
+    paint(window.ReadState.load().has(dateStr));
+
+    btn.addEventListener('click', function() {
+      paint(window.ReadState.toggle(dateStr));
+    });
+  })();
+  </script>
+  {% endif %}
 </body>
 </html>

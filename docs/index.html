@@ -18,6 +18,7 @@ permalink: /
 <script>
   window.__reportDates = "{% for p in site.pages %}{% if p.path contains 'daily/' %}{{ p.name | replace: '.md', '' }},{% endif %}{% endfor %}".split(',').filter(Boolean);
 </script>
+<script src="{{ '/read-state.js' | relative_url }}"></script>
 
 <div class="calendar-card">
   <div class="calendar-header">
@@ -42,9 +43,12 @@ permalink: /
 
   <div class="calendar-legend">
     <span class="legend-dot"></span>
-    <span>有日报</span>
+    <span>未读</span>
+    <span class="legend-dot legend-read"></span>
+    <span>已读</span>
     <span class="legend-dot legend-today"></span>
     <span>今天</span>
+    <button class="legend-mark-all" id="mark-all-read" type="button">全部标为已读</button>
   </div>
 </div>
 
@@ -226,11 +230,26 @@ permalink: /
     transform: scale(0.96);
   }
 
+  /* 已读日报：弱化显示，去蓝底 */
+  .cal-day.has-report.is-read {
+    color: var(--body-muted);
+    background: var(--canvas-parchment);
+    font-weight: 400;
+    box-shadow: none;
+  }
+  .cal-day.has-report.is-read:hover {
+    background: #ececee;
+    box-shadow: none;
+  }
+
   .cal-day.today {
     box-shadow: inset 0 0 0 2px var(--primary);
   }
   .cal-day.today.has-report {
     box-shadow: inset 0 0 0 2px var(--canvas), 0 0 0 3px var(--primary), 0 2px 8px rgba(0, 102, 204, 0.25);
+  }
+  .cal-day.today.has-report.is-read {
+    box-shadow: 0 0 0 2px var(--canvas), 0 0 0 3px var(--primary);
   }
 
   .cal-day.empty {
@@ -258,9 +277,34 @@ permalink: /
     flex-shrink: 0;
   }
 
+  .legend-dot.legend-read {
+    background: var(--hairline);
+  }
+
   .legend-dot.legend-today {
     background: var(--canvas);
     box-shadow: inset 0 0 0 2px var(--primary);
+  }
+
+  .legend-mark-all {
+    margin-left: auto;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.12px;
+    color: var(--body-muted);
+    background: var(--canvas);
+    border: 1px solid var(--hairline);
+    border-radius: 980px;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .legend-mark-all:hover {
+    color: var(--primary);
+    border-color: var(--primary);
   }
 
   @media (max-width: 480px) {
@@ -289,6 +333,7 @@ permalink: /
   var monthSel = document.getElementById('cal-month');
   var prevBtn = document.getElementById('cal-prev');
   var nextBtn = document.getElementById('cal-next');
+  var markAllBtn = document.getElementById('mark-all-read');
 
   var now = new Date();
   var curYear = now.getFullYear();
@@ -319,6 +364,7 @@ permalink: /
   function render() {
     var year = parseInt(yearSel.value);
     var month = parseInt(monthSel.value);
+    var readSet = window.ReadState ? window.ReadState.load() : new Set();
     grid.innerHTML = '';
 
     var firstDay = new Date(year, month, 1);
@@ -341,6 +387,7 @@ permalink: /
         cell = document.createElement('a');
         cell.href = getReportUrl(dateStr);
         cell.className = 'cal-day in-month has-report';
+        if (readSet.has(dateStr)) cell.classList.add('is-read');
       } else {
         cell = document.createElement('span');
         cell.className = 'cal-day in-month';
@@ -367,6 +414,15 @@ permalink: /
     var y = parseInt(yearSel.value);
     if (m === 11) { monthSel.value = 0; yearSel.value = y + 1; }
     else { monthSel.value = m + 1; }
+    render();
+  });
+
+  // 全部标为已读：所有日报日期全量写入已读集
+  markAllBtn.addEventListener('click', function() {
+    if (!window.ReadState) return;
+    var set = window.ReadState.load();
+    reportSet.forEach(function(dateStr) { set.add(dateStr); });
+    window.ReadState.save(set);
     render();
   });
 
