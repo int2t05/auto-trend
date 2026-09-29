@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 28 Sep 2026 05:28:56 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 05:48:03 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-09-29</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-29.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-29.html</guid>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜有个共同点：大家都在给 AI Agent 修基础设施。以前是拼模型，现在是拼周边。Agent 要上班，就得有记忆、有工位、有预算、有审计。你看这几个项目，Paperclip 把 agent 排进组织架构，卡预算、留记录；OpenRig 用 YAML 拉起一支编码 agent 团队，混编 Claude Code 和 Codex，一个 lead 调度；长期记忆那个项目把对话蒸馏成事实和心智模型。这仨说的是同一件事：单个 agent 不够用，得多 agent 协作，还得管得住。 另一条线是「本地、开源、自己掌控」。全本地的 ElevenLabs 替代品，646 种语言，自带 API 和 M</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-28</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-28.html</link>
