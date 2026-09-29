@@ -48,3 +48,31 @@ def test_config_missing_api_key_raises():
     finally:
         if old is not None:
             os.environ["LLM_API_KEY"] = old
+
+
+def test_config_git_identity_explicit_env_wins(monkeypatch):
+    monkeypatch.setenv("LLM_API_KEY", "sk-test")
+    monkeypatch.setenv("GIT_USER_NAME", "alice")
+    monkeypatch.setenv("GIT_USER_EMAIL", "alice@example.com")
+    monkeypatch.setenv("GITHUB_ACTOR", "octocat")
+
+    from scripts import config
+    import importlib
+    importlib.reload(config)
+
+    assert config.GIT_USER_NAME == "alice"
+    assert config.GIT_USER_EMAIL == "alice@example.com"
+
+
+def test_config_git_identity_falls_back_to_github_actor(monkeypatch):
+    monkeypatch.setenv("LLM_API_KEY", "sk-test")
+    monkeypatch.delenv("GIT_USER_NAME", raising=False)
+    monkeypatch.delenv("GIT_USER_EMAIL", raising=False)
+    monkeypatch.setenv("GITHUB_ACTOR", "octocat")
+
+    from scripts import config
+    import importlib
+    importlib.reload(config)
+
+    assert config.GIT_USER_NAME == "octocat"
+    assert config.GIT_USER_EMAIL == "octocat@users.noreply.github.com"

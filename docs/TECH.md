@@ -47,6 +47,8 @@ LLM_BASE_URL     = "https://api.openai.com/v1"       # 可选
 LLM_MODEL        = "gpt-4.1-mini"                    # 可选
 DAILY_REPO_LIMIT = 20                                # 可选
 GITHUB_TOKEN     = ""                                # 可选，提升 GitHub API 配额
+GIT_USER_NAME    = GITHUB_ACTOR 回退                  # 可选，CI git 提交身份
+GIT_USER_EMAIL   = <name>@users.noreply.github.com   # 可选，CI git 提交身份
 ```
 
 ### 2. `scripts/fetcher.py`
@@ -147,6 +149,7 @@ GITHUB_TOKEN     = ""                                # 可选，提升 GitHub AP
 - 每个项目分析失败重试 3 次（`MAX_ANALYSIS_ATTEMPTS`），全失败则用 FALLBACK dict 兜底
 - 整个 pipeline 最多重跑 3 次（`MAX_PIPELINE_ATTEMPTS`），由 `verify_report` 校验失败或 `run_pipeline` 运行时异常触发
 - 单项目分析失败不阻塞全局趋势总结
+- git 提交身份：`GIT_USER_NAME`/`GIT_USER_EMAIL` 显式设置优先，CI 缺省回退 `GITHUB_ACTOR` 的 noreply 地址，均未设置（本地开发）则沿用本地 git 已有身份
 
 ## 数据流
 
@@ -195,11 +198,11 @@ verify_report(report_path)
 
 ## 测试
 
-25 个测试覆盖所有模块：
+27 个测试覆盖所有模块：
 
 | 模块 | 测试数 | 策略 |
 |------|--------|------|
-| config | 3 | monkeypatch 环境变量 |
+| config | 5 | monkeypatch 环境变量（含 git 身份解析：显式环境变量与 GITHUB_ACTOR 回退） |
 | fetcher | 5 | 1 个纯函数测试 + 4 个 mock httpx（README 抓取、总星数补全） |
 | analyzer | 8 | mock OpenAI client + `_normalize_analysis` 类型规整测试 |
 | renderer | 3 | 纯函数，验证 section、排序、语言分布 |
@@ -239,11 +242,11 @@ python scripts/main.py
 
 | 模块 | 行数 |
 |------|------|
-| config.py | 10 |
+| config.py | 17 |
 | fetcher.py | 114 |
 | analyzer.py | 145 |
 | renderer.py | 118 |
 | rss.py | 82 |
 | verify_report.py | 89 |
-| main.py | 200 |
-| **总计** | **758** |
+| main.py | 202 |
+| **总计** | **767** |

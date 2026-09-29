@@ -108,6 +108,8 @@ Compatible with OpenAI, Anthropic, DeepSeek, or any OpenAI-compatible endpoint.
 | `LLM_MODEL` | Model name | `gpt-4.1-mini` |
 | `DAILY_REPO_LIMIT` | Max repos per run | `20` |
 | `GITHUB_TOKEN` | GitHub API token (raises rate limit) | _none_ |
+| `GIT_USER_NAME` | Git commit author name (CI only) | GitHub actor |
+| `GIT_USER_EMAIL` | Git commit author email (CI only) | `<actor>@users.noreply.github.com` |
 
 ## Project Structure
 

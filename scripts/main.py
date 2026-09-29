@@ -12,7 +12,7 @@ import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from scripts.config import DAILY_REPO_LIMIT
+from scripts.config import DAILY_REPO_LIMIT, GIT_USER_EMAIL, GIT_USER_NAME
 from scripts.fetcher import fetch_trending_repos, fetch_all_readmes
 from scripts.analyzer import Analyzer, audit_analysis
 from scripts.renderer import render_daily_report
@@ -45,14 +45,16 @@ def git_commit_and_push(report_date: date) -> None:
     report_path = DAILY_DIR / f"{report_date.isoformat()}.md"
     feed_path = DOCS_DIR / "feed.xml"
 
-    subprocess.run(
-        ["git", "config", "user.name", "int2t"],
-        check=True, cwd=REPO_ROOT,
-    )
-    subprocess.run(
-        ["git", "config", "user.email", "2103859514@qq.com"],
-        check=True, cwd=REPO_ROOT,
-    )
+    # 身份来自配置层（CI 回退 GITHUB_ACTOR），未设置则沿用 runner 本地 git 身份
+    if GIT_USER_NAME and GIT_USER_EMAIL:
+        subprocess.run(
+            ["git", "config", "user.name", GIT_USER_NAME],
+            check=True, cwd=REPO_ROOT,
+        )
+        subprocess.run(
+            ["git", "config", "user.email", GIT_USER_EMAIL],
+            check=True, cwd=REPO_ROOT,
+        )
     subprocess.run(
         ["git", "add", str(report_path), str(feed_path)],
         check=True, cwd=REPO_ROOT,

@@ -108,6 +108,8 @@ python scripts/main.py
 | `LLM_MODEL` | 模型名称 | `gpt-4.1-mini` |
 | `DAILY_REPO_LIMIT` | 每日分析上限 | `20` |
 | `GITHUB_TOKEN` | GitHub API token（提升配额） | _无_ |
+| `GIT_USER_NAME` | git 提交者名称（仅 CI） | GitHub 触发者 |
+| `GIT_USER_EMAIL` | git 提交者邮箱（仅 CI） | `<触发者>@users.noreply.github.com` |
 
 ## 项目结构
 
