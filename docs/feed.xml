@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 29 Sep 2026 05:48:03 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 05:38:25 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-09-30</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-09-30.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-09-30.html</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+      <description>这批项目指向同一个方向：AI Agent 正从演示品变成基础设施。安全、记忆、协作、管理、计费，甚至“发工资”都有人做了。NVIDIA 的沙箱和密钥白名单说明，Agent 要进生产，先得管住权限。Hindsight 给 Agent 长期记忆，LongMemEval 拿 SOTA，意味着“越用越懂你”不再只是口号。多智能体用 YAML 编排、把 Claude Code 和 Codex 当同事，是工作流从单次对话转向常驻团队。MCP 成了连接器，数据库客户端、语音工具、Office SDK 都把自己变成 MCP Server，让 Agent 直接查库、读写文档、调本地模型。另一条线是自托管和本地优</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-29</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-29.html</link>
