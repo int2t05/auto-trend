@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 30 Sep 2026 05:38:25 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 06:03:08 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-01</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-01.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-01.html</guid>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单指向同一件事：AI Agent 正从“能聊天”变成“能干活”，但瓶颈不再是模型会不会写，而是敢不敢让它碰真系统。于是沙箱、密钥代理、权限限制扎堆出现。NVIDIA 的 OpenShell 在内核层管住 agent 的文件、网络和密钥，MCP 官方示例和本地数据库、代码图谱都在解决同一问题：给 agent 工具，但别让它失控。另一个共同点是省钱省 token。上下文瘦身、最懒工程师规则、SQLite 按需召回，都是在给 agent 的“上下文账单”减肥。开发者生态也在变：MCP 成了事实标准入口，Claude Skills 和可编辑技能包把个人工作流产品化；多代理评审、队列化任务开始像</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-09-30</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-09-30.html</link>
