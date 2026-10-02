@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 01 Oct 2026 06:03:08 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 05:44:39 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-02</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-02.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-02.html</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单几乎被一件事占满：怎么管住 AI 编码 agent。Ponytail 逼它少写代码，实测少写一半、快三成；Matt Pocock 等技能包用 /tdd、/grill-me 这类小命令把流程卡住；还有项目专门把工具原始输出挡在上下文外，省 98% token，顺手用 SQLite 防失忆。这些都在回答同一个问题：模型够强了，乱写和跑偏才是新成本。 第二层是秩序。英伟达给每个 agent 上内核级沙箱，策略改动先做形式化验证；Cursor 定了插件规范，把技能和 Salesforce、Gmail 打成可安装包；OpenRig 用 YAML 拼多 agent 团队；Pi 把接口、运行时、</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-01</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-01.html</link>
