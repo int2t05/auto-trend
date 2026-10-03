@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 02 Oct 2026 05:44:39 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2026 05:24:29 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-03</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-03.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-03.html</guid>
+      <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
+      <description>这批项目看下来，方向就一个：大家不再比谁的模型强，而是在给 AI Agent 修路、建规矩、管开销。 第一类是技能包大爆发。前端设计规范、营销框架、红绿 TDD、视频生成，全打包成 Markdown 喂给编码 Agent。Matt Pocock 把自己日常的工程习惯直接开源，谷歌把 GCP 运维知识做成技能包。说明 Agent 的瓶颈已经从「会不会写代码」变成「懂不懂行规」。 第二类是上下文焦虑。让 Agent 说穴居人短句省 65% token，MCP 服务器把工具输出挡在窗口外，代码知识图谱减少重复扫文件。Agent 跑半小时就失忆，已经是公认痛点。 第三类是地盘争夺。Cursor 开源插</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-02</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-02.html</link>
