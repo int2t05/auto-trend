@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 03 Oct 2026 05:24:29 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 04 Oct 2026 06:01:54 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-04</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-04.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-04.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单几乎被同一件事占满：给 AI 编码 Agent 立规矩。有让它偷懒的，动手前先爬七级阶梯，能省就省，实测代码少一半、成本降两成。有让它闭嘴的，输出和读进来的文件都压缩，token 省三到六成。还有把资深工程师的规格、TDD、评审打包成技能，一条命令装进几十种工具。共同点很清楚：大家不再比谁的模型更强，而是比谁把 Agent 管得更好。模型能力到了一条平台线，剩下的差距靠流程、上下文和成本控制来拉。省 token 不是抠门，是让长任务真能跑完。第二层趋势是收敛。Agent 工具太多，Claude Code、Codex、Cursor 各说各话，于是冒出一堆统一层：一个界面收进所有命令行，</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-03</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-03.html</link>
