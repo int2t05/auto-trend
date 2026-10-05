@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 04 Oct 2026 06:01:54 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 05:47:49 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-05</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-05.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-05.html</guid>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单只有一个主角：AI 编程代理，也就是 Claude Code、Codex、Cursor 这类工具。围绕它们，长出了一整条生态链。第一层是给代理补课。营销技能包、前端设计规范、CAD 能力、视频流水线，都在把垂直领域的规则和流程塞进代理。以前你得自己写提示词，现在装个包就行。代理从会写代码，变成会干具体行业的活。第二层是管住代理的手脚。7 级复用阶梯、25 个流程技能、pstack 技能栈，诉求高度一致：别让 AI 乱写。先复现、先复用、再动手。少写 54% 代码不是省事，是省得收拾烂摊子。第三层是给代理装上记忆和遥控。跨会话持久上下文、本机 6 家 CLI 统一接管、手机上审批，说</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-04</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-04.html</link>
