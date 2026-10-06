@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 05 Oct 2026 05:47:49 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 06:27:19 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-06</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-06.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-06.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>这批项目指向同一个方向：AI Agent 正在变成新的操作系统。测试、CAD 建模、剪视频，全被做成 Agent 插件。Claude Code、Cursor、Codex 成了统一入口，围绕它们做工具就能冲上 Trending。今天排第一的正是个 AI 测试 agent，用自然语言写目标，跑通后录成回放，下次不再烧模型算力，直接打 Playwright、Cypress 维护 locator 的痛点。 第二是补短板。Agent 没记性，就有人做跨会话记忆，压缩历史再注入；Agent 没眼睛，就有人做免费联网工具，让它读推特、Reddit、B站、小红书，不付 API 费。记忆和联网，是 agent </description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-05</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-05.html</link>
