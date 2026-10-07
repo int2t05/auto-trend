@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 06 Oct 2026 06:27:19 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 06:06:00 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-07</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-07.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-07.html</guid>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，几乎全是给 AI Agent 加装的配件。技能包、人设库、上下文记忆、图表工具、设计规范，本质是同一个动作：把能力塞进 Claude Code、Codex 这些编码助手里。各家刚开放子 Agent 和插件市场，谁先占住标准，谁就说话有分量。 第二条线是让 Agent 真去干活，而不是陪聊。自然语言驱动 E2E 测试、生成 3D 模型并下单打印、接入逆向工具分析没有源码的程序——AI 的手从编辑器伸进了车间和二进制。 有意思的是另一头在往回拽。有人写技能包逼 Agent 先给结论、别寒暄；有人用 60 条不用大模型的规则，治前端生成物千篇一律。大家开始烦 AI 的啰嗦和套路，就用规</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-06</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-06.html</link>
