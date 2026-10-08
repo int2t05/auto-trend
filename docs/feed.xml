@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 07 Oct 2026 06:06:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2026 06:11:09 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-08</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-08.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-08.html</guid>
+      <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的热门项目指向同一件事：AI Agent 正在从会聊天，变成能干活。给它技能，给它记忆，给它电脑，给它规范和审计。MCP 把逆向工具、抓包、调试串成一个服务。技能集把需求拷问、术语表、流程图、代码评审打包成 Markdown。持久上下文让 Agent 跨会话记住做过什么。cmux 让多个 Agent 并行跑，终端变成调度台。Computer-Use 直接给 Agent 一台可操作的电脑。测试、安全审计、输出规范也在补。以前是 vibe coding，现在是给 Agent 立规矩、留证据、可回放。另一条线是硬核系统突破。PS5 可执行文件被静态重链接成原生程序，绕开模拟器。Epic 开源图形</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-07</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-07.html</link>
