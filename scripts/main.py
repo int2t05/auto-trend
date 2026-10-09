@@ -9,6 +9,7 @@ import asyncio
 import os
 import subprocess
 import sys
+import time
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -25,6 +26,7 @@ DAILY_DIR = DOCS_DIR / "daily"
 
 MAX_ANALYSIS_ATTEMPTS = 3
 MAX_PIPELINE_ATTEMPTS = 3  # 生成失败后整体重跑次数（含首次）
+PIPELINE_RETRY_BACKOFF = 30  # 重试基础间隔（秒），按尝试次数指数退避，等待上游瞬断（如 GitHub 504）恢复
 
 # LLM 趋势总结失败时的兜底文本，必须 > 50 字符以通过 verify_report 校验
 FALLBACK_TREND_SUMMARY = (
@@ -167,7 +169,9 @@ def main():
         except Exception as e:
             print(f"[auto-trend] FAIL: pipeline 运行时异常 (attempt {attempt}): {e}")
             if attempt < MAX_PIPELINE_ATTEMPTS:
-                print("[auto-trend] 重跑生成流程...")
+                wait = PIPELINE_RETRY_BACKOFF * attempt
+                print(f"[auto-trend] {wait}s 后重试（等待上游瞬断恢复）...")
+                time.sleep(wait)
                 continue
             print("[auto-trend] 已达最大重试次数，pipeline 持续崩溃")
             if os.environ.get("CI"):

@@ -28,6 +28,7 @@ def test_main_catches_pipeline_exception_and_retries(mocker):
     mocker.patch("scripts.main.run_pipeline", crash_pipeline)
     mocker.patch("scripts.main.verify_report", verify_mock)
     mocker.patch("scripts.main.git_commit_and_push")
+    mocker.patch("scripts.main.PIPELINE_RETRY_BACKOFF", 0)
     mocker.patch("sys.argv", ["main.py"])
     mocker.patch.dict(os.environ, {"CI": ""})
 
@@ -55,9 +56,41 @@ def test_main_retries_after_crash_then_succeeds(mocker):
     mocker.patch("scripts.main.run_pipeline", flaky_pipeline)
     mocker.patch("scripts.main.verify_report", return_value=[])
     mocker.patch("scripts.main.git_commit_and_push")
+    mocker.patch("scripts.main.PIPELINE_RETRY_BACKOFF", 0)
     mocker.patch("sys.argv", ["main.py"])
     mocker.patch.dict(os.environ, {"CI": ""})
 
     main()  # 不应抛异常
 
     assert call_count == 2
+
+
+def test_main_backs_off_between_pipeline_retries(mocker):
+    """回归 2026-10-09 CI 504 连败：pipeline 重试之间必须指数退避，
+    等待上游瞬断恢复，而非在 1 秒内 3 连败直接退出。"""
+    from scripts.main import main, MAX_PIPELINE_ATTEMPTS, PIPELINE_RETRY_BACKOFF
+
+    call_count = 0
+
+    async def crash_pipeline(report_date):
+        nonlocal call_count
+        call_count += 1
+        raise RuntimeError("Server error '504 Gateway Time-out'")
+
+    sleep_mock = mocker.patch("scripts.main.time.sleep")
+    mocker.patch("scripts.main.run_pipeline", crash_pipeline)
+    mocker.patch("scripts.main.verify_report", return_value=[])
+    mocker.patch("scripts.main.git_commit_and_push")
+    mocker.patch("sys.argv", ["main.py"])
+    mocker.patch.dict(os.environ, {"CI": ""})
+
+    with pytest.raises(SystemExit) as exc_info:
+        main()
+
+    assert exc_info.value.code == 1
+    assert call_count == MAX_PIPELINE_ATTEMPTS
+    # 两次重试前分别等待 30s、60s（指数退避）
+    assert sleep_mock.call_args_list == [
+        mocker.call(PIPELINE_RETRY_BACKOFF),
+        mocker.call(PIPELINE_RETRY_BACKOFF * 2),
+    ]
