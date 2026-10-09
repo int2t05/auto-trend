@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 08 Oct 2026 06:11:09 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2026 09:42:21 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-09</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-09.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-09.html</guid>
+      <pubDate>Fri, 09 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天榜单有个明显信号：AI 编程助手正从「能用」变成「好用」。 一半项目都在给 Agent 补基础设施。claude-mem 管记忆，Matt Pocock 的技能包管流程，Anthropic 一口气开源 11 个岗位插件，还有做图表、做逆向的 MCP 服务器。这些都不是模型本身，是围着模型转的工具链。 核心痛点是老问题：上下文一断就白干。一个人同时开 Claude Code、Codex、Copilot，谁也不认识谁。所以记忆、共享术语表、跨会话注入成了刚需。谁先把碎片拼起来，谁就赢。 第二个信号是反「vibe coding」。Matt Pocock 非要先追问需求、跑 TDD 红绿循环，RE</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-08</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-08.html</link>
