@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 09 Oct 2026 09:42:21 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2026 05:57:55 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-10</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-10.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-10.html</guid>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，主线很清楚：大家都在给 AI Agent 造零件和说明书。 一半项目是“技能包”。Matt Pocock 的 SKILL.md、资深工程师流程打包、SwiftUI 经验、绘图技能，本质都是把人的隐性经验写成 AI 能读的文件。Anthropic 更直接，按岗位发插件，销售、法务、财务各一套。竞争点从“模型多强”转向“经验怎么喂进去”，格式也在收敛：markdown 加 MCP。 另一半是落地和降本。阿里开源内部用了两年的代码审查工具，评论精确到行，同模型下 token 只要 Claude Code 的九分之一；LiteLLM 把网关核心换成 Rust，拼高并发低延迟。企业开始算账</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-09</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-09.html</link>
