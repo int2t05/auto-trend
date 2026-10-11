@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 10 Oct 2026 05:57:55 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 11 Oct 2026 05:52:56 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-11</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-11.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-11.html</guid>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单指向一件事：AI Agent 正在从会聊天变成能干活。MCP 是最明显的信号。逆向工具、浏览器快照、图表绘制、岗位技能，都做成 MCP 或技能包，直接塞给 Agent。Agent 不再只生成代码，还能看二进制、翻日志、画图、做 PPT、跑流程。第二个信号是上下文变贵，大家开始省着用。context-mode 把原始输出挡在窗口外，只喂压缩结果，还用 SQLite 记进度。Karpathy 的吐槽变成 CLAUDE.md，Matt Pocock 做跨 Agent 技能包，都是在给 AI 编程立规矩：少乱猜，少啰嗦，少改无关代码。第三个信号是可控和本地优先。Storyteller 要可</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-10</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-10.html</link>
