@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 12 Oct 2026 06:05:02 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 13 Oct 2026 06:52:00 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-13</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-13.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-13.html</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单，几乎全是给 AI Agent 打下手的基础设施。MCP 成了事实标准:逆向工具、绘图技能、会话记忆,都封装成 MCP 服务器塞进 Claude Code、Cursor。Agent 不再是聊天框,而是能拆二进制、能画图、能连内网的工具人。 第二条线是省钱和降门槛。上下文爆满是普遍痛点,所以有窗口瘦身的 MCP 服务器,把原始数据挡在上下文外,用 SQLite 存记忆,直接冲上 HN 第一。推理侧更狠:1-bit 三值权重、按层切分搬进显存,4GB 显卡跑 70B,单颗 CPU 跑 100B。还有本地代理把 11 种 Agent 的请求转发到 61 家免费模型商,一个月 13 亿 to</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-12</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-12.html</link>
