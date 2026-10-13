@@ -457,7 +457,12 @@
       </ul>
       <div class="sidebar-divider"></div>
       <div class="sidebar-nav-title">日报列表</div>
+      <!-- 日报页取当前日报所属月份；索引页回退到构建月 -->
+      {% if page.path contains 'daily/' %}
+      {% assign current_month = page.name | slice: 0, 7 %}
+      {% else %}
       {% assign current_month = site.time | date: "%Y-%m" %}
+      {% endif %}
       {% assign daily_pages = site.pages | where_exp: "p", "p.path contains 'daily/'" | where_exp: "p", "p.path contains current_month" | sort: "path" | reverse %}
       {% if daily_pages.size > 0 %}
       <ul class="sidebar-nav-list">
