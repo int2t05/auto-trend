@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 13 Oct 2026 06:52:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2026 05:00:16 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-14</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-14.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-14.html</guid>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <description>这批项目共同指向一件事：AI Agent 正从聊天框里走出来，变成能动手的工具使用者。MCP 成了关键接口。逆向工具、语音克隆、图表生成、会话记忆，都包成 Agent 能调用的服务。开发者不再只给人做界面，也在给 Agent 做插槽。另一条线是本地优先。地理数据叠三维地球、VoiceStudio、AirLLM，都在强调本地跑、不填 API key、小显卡也能跑大模型。隐私、成本和可控性被重新放到前面。云端不再是默认答案。还有技能和记忆开始标准化。Vercel 的 skills add 一条命令，把 SKILL.md 装进 80 多个编码 Agent；SQLite+FTS5 给 Agent 做长</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-13</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-13.html</link>
