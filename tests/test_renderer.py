@@ -136,3 +136,43 @@ def test_render_overview_language_distribution():
     )
 
     assert "主要语言分布：Python(2)、Rust(1)。" in report
+
+
+def test_generated_content_cannot_create_html_or_markdown_links():
+    """模型文本按纯文本输出；只有 GitHub 地址生成链接。"""
+    from scripts.renderer import render_daily_report
+
+    repo = {
+        "full_name": "alice/cooltool",
+        "language": "Python",
+        "stars_today": 1,
+        "total_stars": 10,
+        "url": "https://github.com/alice/cooltool",
+    }
+    report = render_daily_report(
+        report_date=date(2026, 10, 15),
+        repos=[repo],
+        analyses={"alice/cooltool": {"summary": '<script>alert(1)</script> [click](javascript:alert(1))'}},
+        trend_summary="<img src=x onerror=alert(1)>",
+    )
+
+    assert "&lt;script&gt;" in report
+    assert "&lt;img" in report
+    assert "[click]" not in report
+    assert "](javascript:" not in report.lower()
+    assert "[alice/cooltool](https://github.com/alice/cooltool)" in report
+
+
+def test_non_http_repository_url_is_plain_text():
+    """External identifiers cannot supply an executable Markdown link scheme."""
+    from scripts.renderer import render_daily_report
+
+    report = render_daily_report(
+        report_date=date(2026, 10, 15),
+        repos=[{"full_name": "alice/cooltool", "url": "javascript:alert(1)"}],
+        analyses={},
+        trend_summary="safe",
+    )
+
+    assert "### alice/cooltool" in report
+    assert "](javascript:" not in report.lower()

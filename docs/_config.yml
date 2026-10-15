@@ -1,1 +1,6 @@
 title: Auto-Trend
+
+# Keep GitHub Pages' Jekyll renderer; generated Markdown uses the shared GFM subset.
+markdown: kramdown
+kramdown:
+  input: GFM
