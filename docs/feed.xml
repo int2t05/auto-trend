@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 14 Oct 2026 05:00:16 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2026 04:52:35 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-15</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-15.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-15.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <description>MCP成了这波项目的最大公约数。逆向工具、语音克隆、科研技能、软件命令行，全都套上MCP让Agent调用。AI Agent正在变成软件的新用户，开发者忙着给工具做Agent接口。具体看，三条线很清楚。一是本地优先。语音克隆桌面应用直接对打ElevenLabs，PentAGI自托管做渗透测试，都在去云端化。二是Agent基建。上下文窗口优化省98%的token，SQLite存记忆，iFixAi审计Agent有没有按业务KPI办事，PentAGI让一队Agent在Docker里自己跑nmap和Metasploit。三是技能封装。177个科研skill打包给任意Agent，自动生成CLI让Agent</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-14</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-14.html</link>
