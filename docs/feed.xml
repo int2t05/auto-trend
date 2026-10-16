@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 15 Oct 2026 04:52:35 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2026 04:38:18 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-16</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-16.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-16.html</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜几乎被“给 AI Agent 打辅助”包场。共同点很清晰：大家不再只卷模型，而是卷 Agent 的外围设施。第一，MCP 成了事实标准。逆向工程、科研技能、编程工具都通过 MCP 接入 Agent，官方也下场做插件市场。第二，省 token 成了刚需。压缩日志、把工具输出挡在上下文外、用本地搜索代替 grep，都是在给上下文减负。第三，技能和方法论开始标准化。177 个科研技能包、开发方法论、跨工具插件层，都想做通用标准，不让 Agent 绑死在某一家。第四，多 Agent 协作和记忆在补课。组队、跨会话、跨机器联邦，说明单次对话不够用了。第五，本地和隐私优先。VoiceStudio</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-15</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-15.html</link>
