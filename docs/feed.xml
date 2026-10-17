@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 16 Oct 2026 04:38:18 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 17 Oct 2026 04:33:02 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-17</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-17.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-17.html</guid>
+      <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单基本是一个主题：给 AI 编程 Agent 铺基础设施。 第一条线是插件标准化。Anthropic 出了官方插件目录，Cursor 出了插件规范仓库，Google 出了给 Agent 看的 Android 开发说明书。SKILL.md、plugin.json 这类清单文件正在变成事实标准。以前每个工具各写各的提示词，现在讲的是“一次配置、多处复用”。有项目直接把 7 种编程助手的技能和安全规则打包成一套，就是这个思路。 第二条线是省上下文。有项目把工具返回的原始数据挡在上下文外，号称省 98%；有项目一条命令索引目录，省 2.7 倍输出 token；还有项目用 SQLite 帮长会话</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-16</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-16.html</link>
