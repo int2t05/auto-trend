@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 17 Oct 2026 04:33:02 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 04:39:39 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-18</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-18.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-18.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单几乎被一件事占满：AI 编程 Agent 的「外挂层」集体爆发。Anthropic 亲自下场做插件市场，一条命令就能装插件；第三方跟着补位，有的统一技能和记忆，有的把桌面软件封成命令行，有的给科研、Android 写 SKILL.md 操作手册。共同点很清楚——模型本身不再是卖点，卖点变成了怎么把 Agent 喂饱、管住。 第二个信号是多 Agent 同框。很多人手上同时开着 Claude Code、Codex、Cursor、OpenCode，问题是每换一个就得重讲一遍背景。于是记忆层、插件抽象层、Orca 这种并行调度台全冒出来了。它们不负责写代码，负责省下重复沟通的成本。 第三</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-17</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-17.html</link>
