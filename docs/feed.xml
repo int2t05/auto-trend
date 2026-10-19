@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 18 Oct 2026 04:39:39 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 04:46:49 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-19</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-19.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-19.html</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，基本是一张“给 AI Agent 修路”的施工图。共同点很清楚：大家不再比谁的模型更聪明，而是比谁给 agent 配的脚手架更顺手。 第一条线是插件化和官方下场。Anthropic 自己开插件市场，一条命令装齐 MCP、斜杠命令、子代理；Cursor 出了 plugin.json 规范；Google 把 Android 开发规范写成 SKILL.md 发给所有人。以前是社区自己摸，现在是厂商定标准，生态从野路子进入铺轨阶段。 第二条线是记忆和编排。共享长期记忆服务、把 Claude Code 和 Codex 塞进同一工作台各占一个 git worktree、Ruflo 往外壳里注</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-18</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-18.html</link>
