@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 19 Oct 2026 04:46:49 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 04:56:18 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-20</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-20.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-20.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单被同一件事占满:大家都在 Claude Code、Codex 这些命令行 Agent 外面搭脚手架。OpenCode 做开源替代,不绑模型厂商;Ruflo 抢着当&quot;原始 harness&quot;,搞 swarm 编排和多机联邦;还有项目把 Agent 装进桌面 IDE,每个跑独立 git worktree,并行出结果再择优合并,手机上还能远程盯。方向很一致——Agent 从聊天框走进了真活儿。长期记忆成了新刚需:hook 静默记录会话,存成 git 里的 markdown,二十多个 Agent 共享同一份上下文、互相交接。省钱也是硬需求,日志和 RAG 片段进模型前先压缩,答案不变、tok</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-19</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-19.html</link>
