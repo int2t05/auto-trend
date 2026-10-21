@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 20 Oct 2026 04:56:18 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 04:54:44 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-21</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-21.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-21.html</guid>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，几乎全是 Claude Code 的外挂。有人给它套执行外壳，把上百个 agent 编成蜂群、共享记忆、跨机器协作；有人做多 agent 调度台，每个 agent 分一个 git worktree 并行跑，桌面加手机统一盯进度；有人往里塞 94 个插件、202 个 agent、2700 个技能包。共同点很清楚：模型本身不再是瓶颈，怎么管住一群 agent 才是。 第二层是省钱和省事。「最懒资深工程师」那套规则、本地上下文压缩层、把代码和 PDF 解析成知识图谱让 agent 查图而不是逐个文件 grep，治的都是同一个病：agent 狂造轮子、token 烧钱。安全审计那个项目更</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-20</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-20.html</link>
