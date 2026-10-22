@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Oct 2026 04:54:44 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 04:54:12 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-22</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-22.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-22.html</guid>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <description>这批项目看下来，主线很清楚：大家不再只卷模型本身，而是开始给 Agent 造配套。头一件事是省钱。Headroom 把工具输出、日志、RAG 片段先压缩再喂给模型，编码场景省两成 token，JSON 能省六到九成。懒资深工程师那层约束更直接，能不写就不写，代码减一半多，成本降两成多，测试覆盖率反而涨了。还有 graphify 用知识图谱代替 grep 翻文件，也是为了少烧 token。第二件事是记忆和调度。跨工具长期记忆那个项目，用 git 版 markdown 存，换 Claude Code 还是 Codex 都能接着干；桌面加手机统一调度多个 worktree 并行跑 Agent，也是同</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-21</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-21.html</link>
