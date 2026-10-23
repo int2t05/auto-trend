@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 22 Oct 2026 04:54:12 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 04:56:29 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-23</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-23.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-23.html</guid>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单基本被&quot;给 AI 编码助手打补丁&quot;这件事占满了。Anthropic 出了 11 个按岗位分的插件，销售、财务、法务装进去就能干活；Ponytail 管住 agent 别乱造轮子，还逼它别省掉校验和安全检查；Cloudflare 干脆把内部的漏洞审计拆成六个阶段、多个互相隔离的子 agent 跑。方向很一致：大家不再纠结模型能不能写代码，开始琢磨怎么让它少烧 token、少犯错、别偷工减料。 另一条线是上下文管理。把代码、文档、SQL、PDF 转成知识图谱，绕开向量库，就是为了让助手少扫文件。这跟&quot;技能包&quot;&quot;规则包&quot;是一回事，都是在给模型省算力、给结果上保险。 还有几个老面孔提醒我们底</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-22</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-22.html</link>
