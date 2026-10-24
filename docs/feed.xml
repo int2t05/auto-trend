@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 23 Oct 2026 04:56:29 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2026 04:41:40 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-24</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-24.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-24.html</guid>
+      <pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这张榜，主线很清楚：Agent 从&quot;会聊天&quot;转向&quot;能干活&quot;，而且开始补工程化的课。 先说安全这一块。Cloudflare 把漏洞挖掘流水线做成 Agent 技能，六阶段审计，关键是一条：每条漏洞结论都得另一个 Agent 来反驳。自己查、自己验不算数。NVIDIA 那边直接给 Agent 造沙箱，内核级卡文件、卡系统调用、卡网络，凭据只在批准的地方注入。一个管结论可信，一个管手脚别乱伸。这说明大家已经默认：Agent 会执行、会碰真东西，那就得先框住。 再看技能化。Anthropic 一次放出 11 个岗位插件包，销售、法务、财务、客服各一套，企业还能 fork 改成自家的术语。红队那 7</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-23</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-23.html</link>
