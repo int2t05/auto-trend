@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Oct 2026 04:41:40 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 25 Oct 2026 04:47:21 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-25</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-25.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-25.html</guid>
+      <pubDate>Sun, 25 Oct 2026 00:00:00 GMT</pubDate>
+      <description>这批项目看下来，最明显的一条线是：编码 Agent 正在从「能跑」走向「能管」。 以前大家比谁的 Agent 会写代码，现在比谁能让 Agent 别乱来。NVIDIA 直接开源了一个受策略约束的沙箱，Agent 能读文件、装包、调 API，但碰不到你的数据和网络。另一边有人把编码 Agent 改造成安全审计员，六阶段流程加独立证伪复核。这说明一个事：企业开始认真担心 Agent 的权限边界了，安全从「事后补」变成「事前关笼子」。 第二条线是配套产业在疯长。AWS 官方把 MCP 服务器、技能包、插件打包好，让 Claude Code、Cursor 这些助手直接查文档、调 API、部署。还有教程</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-24</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-24.html</link>
