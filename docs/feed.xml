@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 25 Oct 2026 04:47:21 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 04:52:53 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-26</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-26.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-26.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
+      <description>这批项目看下来，主线很清楚：Agent 不再只是聊天，开始直接上手干活。Cindy 直接在你本机的文件和已登录应用里操作，Claude Code、Codex 混着用。JetBrains 把编码 Agent 装进一个轻量 IDE，用 git worktree 隔开并行任务。都指向一件事：Agent 从对话框走进了工作台。 第二条线是给 Agent 立规矩。好几个项目专门治“AI 味”：48 套主题加真实浏览器 lint，把千篇一律的页面打回去重做；1 个技能配 62 条离线检测规则，专治模板腔。Cloudflare 的技能包让 Agent 按六阶段做安全审计，漏洞记录要带源码证据、要独立复核、要</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-25</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-25.html</link>
