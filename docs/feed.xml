@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 26 Oct 2026 04:52:53 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 05:12:14 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-27</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-27.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-27.html</guid>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单几乎是同一件事的不同切面：大家都在给编码 Agent 修配套。第一层是规则和技能开始标准化。ECC、CLAUDE.md 原则文件、设计技能包、NVIDIA 的安全扫描器，本质都是往 Agent 里塞插件：把 prompt、规则、记忆、安全检查打包，一次写好，七种工具通用。开发者已经受够了换个工具就重写一遍。第二层是多 Agent 混装。一个客户端塞进 Claude Code、Codex、Grok，任务中途还能换模型；JetBrains 亲自下场做 Agent IDE，用 git worktree 隔离工作区，用 SPEC.md 做长期记忆。IDE 厂商开始抢 Agent 的入口了。第</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-26</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-26.html</link>
