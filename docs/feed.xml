@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 27 Oct 2026 05:12:14 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 28 Oct 2026 05:47:31 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-28</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-28.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-28.html</guid>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单，十来个项目其实在干同一件事：给 AI 编程 Agent 打补丁。没人再造新模型，也没人从零写 Agent。大家都在 Agent 上面盖楼。设计规则包、技能库、配置外壳、开发方法论、统一托管台，全是外围。 原因很直白。模型能力已经拉平，Claude Code、Cursor、Codex、Grok 谁都能写代码。真正的差距跑到别处：页面丑不丑、需求问没问清、几个 Agent 会不会互相抢文件。所以「塑料味」「AI 味」被反复点名。生成能力不缺，缺的是品味和规矩。有人把设计流程写成 markdown，让模型照单执行；有人上 62 条离线规则抓模板味。这是把审美变成可执行的约束。 另一条线是</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-27</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-27.html</link>
