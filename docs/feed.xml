@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 28 Oct 2026 05:47:31 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 29 Oct 2026 05:54:22 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-29</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-29.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-29.html</guid>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，一眼看上去不像在追新模型，倒像在给 Agent 修路、给 Agent 立规矩。 最集中的一类是「技能包」。Anthropic 刚推 Agent Skills，SKILL.md 就成了跨工具的通用格式，于是设计技能、TDD 技能包、Expo 官方技能包一夜之间全冒出来。大家在写同一种文件：告诉编码 Agent 该按什么规矩干活。 第二类是「管住 Agent」。有人把 pi 塞进 Monaco，用 git worktree 隔离并行任务，用 SPEC.md 存长期项目记忆，让 vibe coding 也有分支和评审。有人做了 62 条规则的设计检查器，专门在 Agent 说「完工」之</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-28</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-28.html</link>
