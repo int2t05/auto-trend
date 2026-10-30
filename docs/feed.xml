@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 29 Oct 2026 05:54:22 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 30 Oct 2026 05:55:27 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-30</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-30.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-30.html</guid>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单有个明显的共性：没人再比谁的模型聪明了，大家都在给编码 agent 补配套。 一半项目在做“托管”。把 Claude、Codex、Grok 这些 CLI 塞进独立虚拟机、独立工作区，统一管队列、管文件，还让它们互相通信。有人干脆把它们包成聊天软件里的多个 bot，各带人格和记忆，数据留在本地。说白了，各家 CLI 最近扎堆发布，工具碎了一地，中间层的机会就来了。 另一半在做“规矩”。以前跟 AI 说句“做得高级点”就完了，现在得写成 SKILL.md、AGENTS.md，配 62 条静态检查规则，出货前把那股 AI 味拦下来。还有项目把 TDD 流程、spec 先行、49 人工作室</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-29</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-29.html</link>
