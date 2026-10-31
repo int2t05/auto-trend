@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 30 Oct 2026 05:55:27 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 05:50:18 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-10-31</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-10-31.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-10-31.html</guid>
+      <pubDate>Sat, 31 Oct 2026 00:00:00 GMT</pubDate>
+      <description>看完这批项目，一个感觉特别明显：大家不再比谁的模型强，而是在给 Agent 补基础设施。第一件大事是记忆。跨会话记忆、Macro 的双向图、JetBrains 的 SPEC.md、AI 家教的长期记忆，都在解决同一个问题——Agent 干长活会断片，记不住上一轮干了啥。第二件是技能包成了新的分发格式。SKILL.md 满天飞：Anthropic 官方出手，Expo 官方出手，Matt Pocock 把自己天天用的指令也开源了。本质都是教 Agent 别瞎写、别啰嗦、别不测试、别千篇一律。第三个信号是权限和审计。AI 同事的工具调用要先过网关审批、再写审计记录；开源 Grok Bot 每个联系人</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-30</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-30.html</link>
