@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 31 Oct 2026 05:50:18 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2026 06:13:08 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-01</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-01.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-01.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单几乎被一件事占满：给 AI 编程助手上管理。有人补长期记忆，有人开源自己天天用的 agent 技能包，有人把 Claude Code 拆成 49 个子代理、按总监主管专员三层分工，还有人做远程控制台，用手机管电脑上跑的 Agent。共同点很清楚——模型会不会写代码已经不是瓶颈，怎么组织它才是。Claude Code 刚补齐 subagents、skills、hooks 三件套，社区一周内就把配套工法全做出来了。这很像当年 npm 生态起来的样子，只不过这次打包的不是库，是流程和规范。 第二个信号是反同质化。24 个命令调界面风格、62 条规则拦 AI 生成的丑设计，说明 AI 写前端</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-10-31</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-10-31.html</link>
