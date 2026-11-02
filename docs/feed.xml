@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 01 Nov 2026 06:13:08 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2026 06:13:53 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-02</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-02.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-02.html</guid>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <description>这批项目有个共同点：没人再卷模型本身，全在卷模型外面那层。第一件事是给 Agent 装记忆和调度。压缩工具调用轨迹、49 个 Agent 分工的仿游戏工作室、手机远程接管本机 Claude Code，都是在解决同一个问题——Agent 能干活了，但记性差、管不过来。第二件事是本地优先。两个离线语音听写、单卡跑 290B MoE 的推理引擎、自托管的 AI 安全运营中心、每个 bot 一台容器的 CopilotKit，思路一致：数据不出门，订阅不重买，机器钱要省。那个用 Zig 写的无头浏览器，省 16 倍内存，就是给 AI 抓网页算账。第三件事是垂直资产开始变成可运行的数据。K 线基础模型把行</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-01</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-01.html</link>
