@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 02 Nov 2026 06:13:53 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 06:54:16 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-03</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-03.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-03.html</guid>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单基本被同一件事占满：怎么把 AI agent 当团队来管。 一大半项目在给 agent 补基础设施。跨会话持久记忆、提示词技能包、把资深工程师的套路拆成小指令、用系统无障碍树让 agent 点桌面应用、MCP 直接抓网页、Rust 写的 worktree 工具方便同时开几个 agent。还有直接把 Claude Code 配成 49 人工作室，做成有预算和审批的&quot;AI 员工后台&quot;。这些解决的是同一个毛病：单开一个会话很惊艳，一开十几个就乱套。没有记忆，没有分工，没人拦着写烂代码。 另一个明确方向是本地推理往下压。FreeToken 把显卡、CPU、内存拼成一个池子，一张 24G 卡跑</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-02</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-02.html</link>
