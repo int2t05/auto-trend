@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 03 Nov 2026 06:54:16 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 06:30:44 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-04</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-04.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-04.html</guid>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天榜单上大半项目不是给人用的，是给 AI 编码 Agent 用的。Claude Code、Codex、Cursor 成了新的“操作系统”，大家围着它们做配件。 第一类是给 Agent 立规矩。有人开源 .agents 技能包，逼它先问清需求、先写失败测试再改代码。有人塞进 49 个工作室角色、74 条命令，用三层审批卡住乱写乱改。还有 hook 记忆方案，把上次会话的工具调用压成摘要，下次自动注入。信号很直白：Agent 能力够了，缺的是流程和记性。 第二类是给 Agent 装手。Vercel 的桌面工具走操作系统无障碍树，不截图也不猜坐标。Scrapling 给爬虫套上 MCP 接口。Sp</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-03</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-03.html</link>
