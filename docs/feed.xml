@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 04 Nov 2026 06:30:44 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 06:54:07 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-05</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-05.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-05.html</guid>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，一半项目都在干同一件事：给 AI 编码 Agent 打地基。 Worktrunk 解决多个 Agent 并行跑任务时互相踩文件。持久记忆项目解决 Agent 一关就失忆。Vercel 的桌面 CLI 不截图，改读系统无障碍树，让 Agent 真的能点、能输入。Spec Kit 把「先写规格再写代码」做成斜杠命令。Garry Tan 的 23 个命令，把写代码拆成 CEO、设计、评审、QA 的流水线。这不是模型变强了，是大家发现模型再强，工程护栏不补上就是白费。 第二个共同点：上下文不再靠猜。英伟达开源语义本体层，把指标定义和血缘喂给 Agent，自然语言转 SQL 才有据可依。抓</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-04</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-04.html</link>
