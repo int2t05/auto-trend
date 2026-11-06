@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 05 Nov 2026 06:54:07 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 06 Nov 2026 06:54:23 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-06</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-06.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-06.html</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天热榜几乎被同一件事占满：大家都在给 AI Agent 写说明书。 Matt Pocock 开源了自己的技能包，Garry Tan 开源了 23 个斜杠命令，把 AI 拆成 CEO、设计、评审、QA 几个角色；Google 把 GCP 认证、GKE 排障写成 SKILL.md，一条 npx 装进去；Scenario 教 Agent 出图出视频；还有人直接打包 6 个技能做成合集。格式高度一致：Markdown、小份、可改、装进 Claude Code 或 Cursor 就能用。 第二个共同点是 MCP。Scrapling 靠 MCP server 和 Agent Skill 冲上榜单；Ver</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-05</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-05.html</link>
