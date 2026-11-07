@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 06 Nov 2026 06:54:23 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2026 06:05:16 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-07</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-07.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-07.html</guid>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+      <description>这波 trending 最明显的信号，是 AI Agent 集体从「会聊天」转向「真上岗」。Google 把 GCP 运维写成给 Agent 看的操作手册，英伟达让 Agent 生成 SQL 前先对齐业务定义、跑完再校验并给出来源，安全审计项目强调每条结论都能追到源码，Matt Pocock 干脆把日常 AI 编码套路打包成可复用插件。共同点很清楚：大家不再满足于让模型「答一句」，而是给它流程、术语表、验证环节，让它稳定把活干完。误报要能查、结论要能溯源，这是 Agent 工程化的第一步。 第二个信号是老框架们集体焕新，而且方向都冲着 AI 去。React 迁到独立组织、发布 Compiler</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-06</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-06.html</link>
