@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 07 Nov 2026 06:05:16 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2026 06:09:28 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-08</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-08.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-08.html</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单就一个关键词：给 agent 发工作手册。 Anthropic 把 Agent Skills 官方实现开源了。一个技能就是一个带 SKILL.md 的文件夹，模型按需加载。这条线一开，别人马上跟上。Google 把云产品文档和排障流程打包成技能，一条 npx 装进 Claude Code。Cloudflare 做安全审计技能，六阶段流程，找漏洞的和验漏洞的还不是同一个 agent。Matt Pocock 把自己天天用的技能包也放了出来。Vercel 干脆写了个 Rust 命令行浏览器，让 agent 一条条敲 shell 命令读网页，读无障碍树，比截图省 token。 共同点很清楚：</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-07</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-07.html</link>
