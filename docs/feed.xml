@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 08 Nov 2026 14:49:57 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 06:39:49 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-09</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-09.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-09.html</guid>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <description>这批项目基本围绕一件事：把 AI Agent 从演示做成能干活的软件。 先看工具层。Vercel 出了 Rust 写的命令行浏览器，让 agent 一条命令开网页、读无障碍树，省 token 也好点按钮。那个上下文压缩插件更直接，把对话压成分层摘要，一个会话跑几十天、几百亿 token 不爆窗口，还能省五倍左右 token。加上 Anthropic 开源的 Agent Skills，技能就是装 SKILL.md 的文件夹，按需加载，连自家在用的 docx、pdf、pptx、xlsx 源码都放出来了。Agent 现在有了手脚、有了记忆、有了技能包。 再看底座。NVKE 让平台团队在裸金属 GPU</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-08</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-08.html</link>
