@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 09 Nov 2026 06:39:49 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 07:24:46 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-10</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-10.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-10.html</guid>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天的榜单几乎被 Agent 的工具层占满了。Anthropic 连发两个官方仓库，一个把技能拆成带 SKILL.md 的文件夹，一个把客服、电脑操作、浏览器自动化做成能直接跑的例子。这说明竞争点已经从模型跑分，转移到了“agent 到底怎么干活”。接口正在统一。记忆层走 MCP，Home Assistant 被包成 87 个 MCP 工具，Vercel 的浏览器工具干脆把 shell 命令当成 API。大家都想让自己的东西被任意 agent 调用，MCP 成了事实上的统一接口。另一条线是工具本身在重做。Meta 的设计系统明说 CLI 是给 AI 编码助手设计的，人和 agent 共用同一套</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-09</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-09.html</link>
