@@ -107,9 +107,17 @@ def render_daily_report(
     repos: list[dict],
     analyses: dict[str, dict],
     trend_summary: str,
+    recent_repo_names: set[str] | None = None,
 ) -> str:
-    # 项目按日增星数降序
-    repos = sorted(repos, key=lambda r: r.get("stars_today", 0), reverse=True)
+    # 新项目置顶，近期重复项目置底；各自按当日新增 Star 降序。
+    recent_repo_names = {name.casefold() for name in (recent_repo_names or set())}
+    repos = sorted(
+        repos,
+        key=lambda repo: (
+            str(repo.get("full_name", "")).casefold() in recent_repo_names,
+            -repo.get("stars_today", 0),
+        ),
+    )
 
     lines = [f"# GitHub Trending 日报 · {report_date.isoformat()}", ""]
 
@@ -131,7 +139,7 @@ def render_daily_report(
     lines.append(_plain_markdown_text(trend_summary))
     lines.append("")
 
-    # Project details — sorted by daily stars descending
+    # 项目详情按新旧分组，并在组内按当日新增 Star 降序排列。
     lines.append("## 项目详情")
     lines.append("")
     for repo in repos:

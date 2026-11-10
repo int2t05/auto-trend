@@ -16,6 +16,7 @@ from pathlib import Path
 from scripts.config import DAILY_REPO_LIMIT, GIT_USER_EMAIL, GIT_USER_NAME
 from scripts.fetcher import fetch_trending_repos, fetch_all_readmes
 from scripts.analyzer import Analyzer, audit_analysis
+from scripts.history import load_recent_repo_names
 from scripts.renderer import render_daily_report
 from scripts.rss import render_rss_feed
 from scripts.verify_report import verify_report
@@ -83,6 +84,10 @@ def git_commit_and_push(report_date: date) -> None:
 async def run_pipeline(report_date: date) -> None:
     print(f"[auto-trend] Starting pipeline for {report_date.isoformat()}")
 
+    # 从已提交的日报恢复最近七天的仓库记录，无需额外状态文件。
+    recent_repo_names = load_recent_repo_names(DAILY_DIR, report_date)
+    print(f"[auto-trend] Loaded {len(recent_repo_names)} repos from recent reports")
+
     print("[auto-trend] Fetching trending repos...")
     repos = await fetch_trending_repos(limit=DAILY_REPO_LIMIT)
     print(f"[auto-trend] Fetched {len(repos)} repos")
@@ -145,7 +150,13 @@ async def run_pipeline(report_date: date) -> None:
         trend_summary = FALLBACK_TREND_SUMMARY
 
     print("[auto-trend] Rendering report...")
-    report_md = render_daily_report(report_date, repos, analyses, trend_summary)
+    report_md = render_daily_report(
+        report_date,
+        repos,
+        analyses,
+        trend_summary,
+        recent_repo_names=recent_repo_names,
+    )
     report_path = DAILY_DIR / f"{report_date.isoformat()}.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(report_md, encoding="utf-8")

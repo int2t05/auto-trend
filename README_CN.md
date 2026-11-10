@@ -79,6 +79,8 @@ GitHub Actions cron (UTC 00:17)
 
 每个项目输出 7 个维度的分析：**一句话概括**、**亮点**、**核心功能**、**适用场景**、**竞品对比**、**成熟度评估**、**趋势信号**。
 
+日报详情会把近 7 天未出现的项目排在前面，近期重复入榜的项目放在最后；每组内仍按当日新增 Star 排序。
+
 站点本身作为一个 RSS 源（`/feed.xml`），提供可订阅的 RSS 链接，每份日报对应一条 item。
 
 站点还支持已读标记：日报页可一键切换已读/未读，索引日历弱化已读日期（状态存于浏览器 localStorage，仅本设备生效）。
@@ -119,6 +121,7 @@ auto-trend/
 ├── scripts/                       # 核心流水线
 │   ├── main.py                    # 编排器
 │   ├── config.py                  # 环境配置
+│   ├── history.py                 # 近期日报项目记录
 │   ├── fetcher.py                 # 爬虫 + README 获取
 │   ├── analyzer.py                # LLM 分析 (OpenAI SDK)
 │   ├── renderer.py                # Markdown 报告生成

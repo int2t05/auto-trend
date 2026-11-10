@@ -79,6 +79,8 @@ GitHub Actions cron (UTC 00:17)
 
 Each repo is analyzed across 7 dimensions: **summary**, **highlights**, **core features**, **use cases**, **competitive comparison**, **maturity**, and **trend signal**.
 
+Report details put projects absent from the previous 7 days first and recurring projects last; each group remains sorted by today's star growth.
+
 The site itself serves as an RSS source (`/feed.xml`), providing a subscribable RSS link where each daily report is one item.
 
 The site also supports read marks: toggle read/unread on any report page, and the calendar index dims read dates (state lives in browser localStorage, per device).
@@ -119,6 +121,7 @@ auto-trend/
 ├── scripts/                       # Pipeline
 │   ├── main.py                    # Orchestrator
 │   ├── config.py                  # Env config
+│   ├── history.py                 # Recent report repository history
 │   ├── fetcher.py                 # Scraper + README fetcher
 │   ├── analyzer.py                # LLM analysis (OpenAI SDK)
 │   ├── renderer.py                # Markdown report generator

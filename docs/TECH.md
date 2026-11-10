@@ -5,17 +5,18 @@
 ```
 GitHub Actions cron (UTC 00:17)
   │
-  ├─ 1. fetcher.fetch_trending_repos()   抓 GitHub Trending 页面 HTML
-  ├─ 2. fetcher.fetch_all_readmes()       并发抓各项目 README (raw.githubusercontent.com)
+  ├─ 1. history.load_recent_repo_names() 读取前 7 天日报中的项目
+  ├─ 2. fetcher.fetch_trending_repos()   抓 GitHub Trending 页面 HTML
+  ├─ 3. fetcher.fetch_all_readmes()       并发抓各项目 README (raw.githubusercontent.com)
   │
-  ├─ 3. analyzer.analyze_repo()          逐个项目调 LLM 做 7 维结构化分析
-  ├─ 4. analyzer.analyze_trends()         跨项目趋势总结
+  ├─ 4. analyzer.analyze_repo()          逐个项目调 LLM 做 7 维结构化分析
+  ├─ 5. analyzer.analyze_trends()         跨项目趋势总结
   │
-  ├─ 5. renderer.render_daily_report()   组装 Markdown 日报
-  ├─ 6. rss.render_rss_feed()            扫描 docs/daily/*.md 生成 RSS feed（每份日报一条 item）
-  ├─ 7. verify_report.verify_report()    结构完整性校验，拦截 LLM 截断
+  ├─ 6. renderer.render_daily_report()   新项目置顶、近期重复项目置底
+  ├─ 7. rss.render_rss_feed()            扫描 docs/daily/*.md 生成 RSS feed（每份日报一条 item）
+  ├─ 8. verify_report.verify_report()    结构完整性校验，拦截 LLM 截断
   │
-  └─ 8. git add + commit + push  →  GitHub Pages 自动发布
+  └─ 9. git add + commit + push  →  GitHub Pages 自动发布
 ```
 
 薄层设计，零数据库，零后端服务。整个 pipeline 由 GitHub Actions 驱动，一个 Python 脚本跑完全程。站点本身作为一个纯 GitHub Trending 分析的 RSS 源（`/feed.xml`）。
@@ -97,9 +98,15 @@ GIT_USER_EMAIL   = <name>@users.noreply.github.com   # 可选，CI git 提交身
 
 **System Prompt**：定义在 `prompts/analysis.md`，要求 LLM 做判断而非复述 README。
 
-### 4. `scripts/renderer.py`
+### 4. `scripts/history.py`
+
+**职责**：从 `docs/daily/` 中读取指定日报日期前 7 天的项目标题，返回近期出现过的仓库名集合。缺少某天日报时跳过该日；历史状态直接来自已提交的 Markdown，不另存数据库或状态文件。
+
+### 5. `scripts/renderer.py`
 
 **职责**：将结构化数据组装为 Markdown 日报。纯函数，无副作用。
+
+项目详情按近期是否出现过分组：近 7 天日报中未出现的项目在前，出现过的项目在后；每组内部仍按当日新增 Star 降序排列。
 
 日报结构：
 ```
@@ -107,7 +114,7 @@ GIT_USER_EMAIL   = <name>@users.noreply.github.com   # 可选，CI git 提交身
 
 ## 概览          ← 项目统计 + 语言分布 + LLM 趋势总结
 
-## 项目详情       ← 按当日新增 Star 降序，逐个展开 7 维分析
+## 项目详情       ← 新项目在前、近 7 天重复项目在后，组内按当日新增 Star 降序
 
 ## 趋势观察       ← LLM 跨项目趋势判断
 ```
@@ -117,7 +124,7 @@ GIT_USER_EMAIL   = <name>@users.noreply.github.com   # 可选，CI git 提交身
  `Python` ⭐ +1,234 今日新增 · 100,000 总星数
 ```
 
-### 5. `scripts/rss.py`
+### 6. `scripts/rss.py`
 
 **职责**：将每日日报生成为 RSS 2.0 XML（`docs/feed.xml`），供订阅者通过 RSS 链接获取更新。纯函数，无副作用。
 
@@ -129,7 +136,7 @@ GIT_USER_EMAIL   = <name>@users.noreply.github.com   # 可选，CI git 提交身
 - 按日期降序排列（最新在前）
 - 每次生成时全量扫描，无状态累积
 
-### 6. `scripts/verify_report.py`
+### 7. `scripts/verify_report.py`
 
 **职责**：生成后结构完整性校验，拦截 LLM 截断。轻量：只查结构，不查内容质量。
 
@@ -139,12 +146,13 @@ GIT_USER_EMAIL   = <name>@users.noreply.github.com   # 可选，CI git 提交身
 3. 每个 `### [repo]` 小节有 summary（`>` 开头行），缺失率 ≤20%
 4. 结尾收束（句号/问号/感叹号/分割线收尾）
 
-### 7. `scripts/main.py`
+### 8. `scripts/main.py`
 
 **职责**：编排整个 pipeline。
 
 - 支持命令行指定日期：`python scripts/main.py 2026-05-20`
 - 默认取 UTC 当天日期
+- 从日报日期前 7 天的 Markdown 项目标题读取历史集合，并传给 renderer 排序
 - `CI` 环境变量控制是否执行 git commit/push（本地运行不 push）
 - 每个项目分析失败重试 3 次（`MAX_ANALYSIS_ATTEMPTS`），全失败则用 FALLBACK dict 兜底
 - 整个 pipeline 最多重跑 3 次（`MAX_PIPELINE_ATTEMPTS`），由 `verify_report` 校验失败或 `run_pipeline` 运行时异常触发
@@ -171,7 +179,11 @@ analyses
   → Analyzer.analyze_trends() × 1 次
   → str trend_summary
 
-render_daily_report(repos, analyses, trend_summary)
+docs/daily/YYYY-MM-DD.md (目标日期前 7 天)
+  → load_recent_repo_names()
+  → set[str] recent_repo_names
+
+render_daily_report(repos, analyses, trend_summary, recent_repo_names)
   → Markdown 日报 (docs/daily/YYYY-MM-DD.md)
 
 render_rss_feed(daily_dir)
@@ -242,11 +254,12 @@ python scripts/main.py
 
 | 模块 | 行数 |
 |------|------|
-| config.py | 17 |
-| fetcher.py | 114 |
-| analyzer.py | 145 |
-| renderer.py | 118 |
-| rss.py | 82 |
-| verify_report.py | 89 |
-| main.py | 202 |
-| **总计** | **767** |
+| config.py | 14 |
+| fetcher.py | 89 |
+| analyzer.py | 127 |
+| history.py | 20 |
+| renderer.py | 135 |
+| rss.py | 69 |
+| verify_report.py | 71 |
+| main.py | 185 |
+| **总计** | **710** |
