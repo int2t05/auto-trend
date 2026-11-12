@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 11 Nov 2026 06:30:29 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 07:17:02 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-12</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-12.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-12.html</guid>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜几乎只有一个关键词：给 AI 打工。 Agent Skills 这个词正在刷屏，Chrome 团队把 Web API 的正确写法做成技能包，shadcn 把「贵模型规划、便宜模型执行」做成了产品，还有人把资深工程师的流程拆成 25 个技能文件，一条 npx 装进 70 多种 Agent。Meta 开源设计系统时，干脆把文档同时写给人和 AI 看。 一个共同判断正在成形：AI 编码的瓶颈不是生成代码，而是上下文和流程。所以大家忙着给 Agent 修路。Vercel 给浏览器套上一条 shell 命令，Home Assistant 把 87 个操作包成 MCP 工具，OpenAI 把 C</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-11</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-11.html</link>
