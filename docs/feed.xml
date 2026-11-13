@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Nov 2026 07:17:02 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 13 Nov 2026 06:51:33 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-13</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-13.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-13.html</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
+      <description>这批项目看下来，一句话：AI 编程的重心从「能不能写」转到了「写得靠不靠谱」。 给 Agent 立规矩的占了大半。Chrome 官方出 skill，拦住 AI 写老掉牙的前端代码；Addy Osmani 把资深工程师那套 spec、TDD、评审打包成 25 个技能包；Meta 的设计系统文档干脆写成人和 AI 都能读。以前是喂 prompt，现在是喂工程规范。 另一条线是把 Agent 关进笼子再用。Codex 做安全扫描，能验证、出补丁、接 CI；OpenBot 给每个 Bot 一台隔离虚拟机，动手前要审批，动完留审计。企业想用 computer-use，但不想把权限和数据交出去。 第三是「</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-12</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-12.html</link>
