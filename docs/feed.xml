@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 13 Nov 2026 06:51:33 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 14 Nov 2026 06:30:21 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-14</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-14.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-14.html</guid>
+      <pubDate>Sat, 14 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这批项目有个很明显的共同点：大家不再比谁的模型会写代码，而是在比谁能把 Agent 塞进真实的工作流程里，还让人放心。 第一类是给 Agent 补基础设施。阿里开源代码审查 CLI，把选文件、配规则这类确定性活儿交给流水线，LLM 只做动态判断，图的就是评论准、省 token。OpenAI 亲自下场做安全扫描，扫仓库、验漏洞、出带证据的补丁。Chrome 联手 Edge、Firefox、MDN 发技能包，直接往编码助手的上下文里塞现代 Web API，让它别再用十年前的老写法。Chrome DevTools 也出了 MCP 服务器，Agent 改完前端能自己开真浏览器验证。这些动作说明，大</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-13</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-13.html</link>
