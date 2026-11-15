@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 14 Nov 2026 06:30:21 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 06:39:54 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-15</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-15.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-15.html</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 GMT</pubDate>
+      <description>这波项目讲的是同一件事：AI 编程 agent 开始补工程化短板。以前比谁生成得快，现在比谁少闯祸。人工审阅界面、腾讯的审批 SOP、阿里的代码审查流水线，都在给 agent 加关卡。Google 联合微软、Mozilla、MDN 做 Web 特性 skill，是在治 AI 写旧前端代码的毛病。Chrome DevTools 官方 MCP 让 agent 直接看控制台和网络请求，说明工具链正从“猜”转向“实测”。AG-UI 补上 Agent 与前端交互协议，MCP、A2A 之后，标准层在拼完整。Univer 改叫 AI office SDK，Qwen 做终端代理并打通 IM，TensorFol</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-14</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-14.html</link>
