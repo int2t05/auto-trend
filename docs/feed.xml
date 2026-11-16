@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 15 Nov 2026 06:39:54 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 06:37:28 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-16</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-16.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-16.html</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 GMT</pubDate>
+      <description>这批项目看着分散，说的其实是同一件事：模型不再是主角，把它接进工作流才是。一半的项目在给 Agent 修管道。MCP 统一接口，事件协议统一前后端，Chrome 直接把 DevTools 包成 MCP 服务器。各家都在抢着定标准，让 Agent 能真正动手。另一半在把经验打包成 Skills：漏洞打法、前端最佳实践、交易风控，全变成 SKILL.md，装进 Claude Code、Cursor。大家想明白了，与其反复提示，不如把流程固化成可安装的零件。再往下是干活的基础设施。腾讯用 SOP 串联十个 CLI，阿里把内部评审工具开源，还有人给 Agent 加弹窗审阅。共同点很清楚：要沙箱，要人工</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-15</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-15.html</link>
