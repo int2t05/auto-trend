@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 16 Nov 2026 06:37:28 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 08:01:03 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-17</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-17.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-17.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜指向同一个变化：Agent 正从演示品变成生产工具，围绕它的配套层在快速成型。一头是协议和标准。Agent 事件流协议冻结 1.0，多家框架接同一套前端；MCP、Skills 被做成可安装的包，浏览器、视频剪辑、Office、设计稿都能被 Agent 调用。另一头是验货和审稿。多 Agent 并行后，人审不过来，于是本地评审界面、技能体检、误报更低的代码审查流水线集中出现。大家不再只问“Agent 能不能做”，而是问“做得对不对、安不安全、省不省钱”。开发者生态也在变：Skills 像新的 npm 包，MCP 像新的 USB-C 接口，谁先把工具封装好，谁就占住 Agent 的入口。</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-16</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-16.html</link>
