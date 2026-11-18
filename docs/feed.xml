@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 17 Nov 2026 08:01:03 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 07:35:46 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-18</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-18.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-18.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这批项目，几乎都在干同一件事：给 AI Agent 修路、装护栏、定规矩。先说技能包。漏洞红队、跨平台搜社区讨论、Stitch 设计稿转代码，都被打包成一个个可加载的 Skills。这说明技能正在变成新的分发单位，像当年的 npm 包，谁把好用的技能攒成包，谁就占住入口。再看大厂动作。阿里把内部用了两年的代码评审 CLI 开源，腾讯把 10 种编码 Agent 编排成带 Docker 沙箱和人工审批的 SOP。这是个明确信号：Agent 交付开始要可重复、可审计，不再靠人肉盯。第三个信号是协作界面被补上了。Plannotator 弹出评审面板让你划线批注，腾讯流程里有人工审批门，事件流规范</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-17</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-17.html</link>
