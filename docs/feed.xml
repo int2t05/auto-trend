@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 18 Nov 2026 07:35:46 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 07:34:19 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-19</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-19.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-19.html</guid>
+      <pubDate>Thu, 19 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，主角只有两个：Agent，和它的工具包。 Cursor 一次放出 40 多个插件，用一个 plugin.json 就把技能指令、CLI、SaaS 接口打包成 Agent 能直接调用的东西。Google Labs 把 Stitch 拆成 Agent Skills。NVIDIA 出了评测框架，专门检查技能包规不规范、安不安全、有没有用，还能接进 CI。还有给 Agent 加统一记忆和安全层的、给 Agent 装开发方法论的、把桌面软件裹成 JSON 命令行绕开 MCP 部署成本的。这些项目说的是同一件事：Agent 的技能，正在从随手写的提示词，变成有清单、有标准、有评测、有分发渠道</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-18</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-18.html</link>
