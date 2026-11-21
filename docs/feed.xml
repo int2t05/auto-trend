@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 20 Nov 2026 07:23:38 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2026 07:16:03 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-21</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-21.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-21.html</guid>
+      <pubDate>Sat, 21 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这批热榜，几乎不是在造模型，而是在给 Agent 装手脚。第一类最扎眼：一堆「技能包」。渗透测试方法论、先问需求再写代码的开发流程、一句话出图表、并行搜十几个平台的简报，全被打包成 skill 文件。装进 Claude Code、Cursor、Codex，Agent 就多会一门手艺。第二类是接口。网页抓取工具直接注册成 MCP 服务器，Google 的设计工具也走 Stitch MCP，Cursor 官方插件让 Agent 连上 Gmail、Salesforce、GitHub。MCP 正在变成 Agent 接外部系统的通用插座。第三类是「让 Agent 真去干活」。CLI-Hub 给只有图</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-20</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-20.html</link>
