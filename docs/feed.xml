@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 21 Nov 2026 07:16:03 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 22 Nov 2026 06:56:27 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-22</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-22.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-22.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，一眼看过去全是“技能包”。漏洞挖掘打包成技能，开发流程打包成技能，画图表打包成技能，连 Google Stitch 的 UI 生成也打包成技能。共同点很直白：大家不再比谁的模型强，而是比谁能把一套做法塞进 Agent 手里，让它照着干。 第二层变化是，技能包覆盖的范围在扩大。以前只能包提示词，现在开始包 GUI 软件：给 CAD、LibreOffice、Obsidian 套一层命令行外壳，Agent 用纯文本就能操作，不用截图点鼠标。也开始包数据：Firecrawl 一个 API 喂干净的 Markdown，还出了 Rust 单二进制和免注册调用。Agent 的手和眼，正在被一块</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-21</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-21.html</link>
