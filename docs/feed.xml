@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 22 Nov 2026 06:56:27 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2026 07:46:09 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-23</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-23.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-23.html</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单，大半是“给 Agent 装技能”的活儿。Claude Code 有红队测试包，Cursor 有官方插件规范，还有画图技能、检索技能、设计技能。Cursor 干脆把自己从 IDE 变成了插件市场。意思很明确：Agent 不只是聊天框，它正在变成平台，技能就是插件，谁定标准谁收租。第二个信号是 MCP。Firecrawl Local 装完自动注册成 MCP server，Google Stitch 也走 MCP。这协议正在变成 Agent 连接各类工具的通用接口，抓网页、做设计、连 SaaS 都从这儿进。第三，Agent 开始进入真实工程环节。CI 一挂自动读日志、推理根因并推送修复</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-22</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-22.html</link>
