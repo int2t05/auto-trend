@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 23 Nov 2026 07:46:09 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Nov 2026 10:00:13 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-24</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-24.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-24.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这榜单基本在说一件事：Agent 正从“聊天”变成“干活”。一多半项目是给编码 Agent 装机能的包——Bug 猎人知识包、开发方法论、画图技能、调研技能、谷歌 Stitch 的 UI 生成，还有 Cursor 官方的插件规范。自己写 prompt 那套不够看了，现在流行打成可分发的标准件，一条命令装进 Claude Code 或 Cursor。第二个信号是接口在统一。CLI-Hub 给软件套层命令行让 Agent 直接调，网页转 markdown 做成单二进制走 MCP 直连，都是在拆“每个工具单独接一次”这堵墙。第三，本地化在加速。3 块钱 2 小时在单张 3090 上训出 64M </description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-23</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-23.html</link>
