@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 24 Nov 2026 10:00:13 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 08:42:35 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-25</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-25.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-25.html</guid>
+      <pubDate>Wed, 25 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单有个很明显的共同点：大家都在给 AI Agent 配装备。一边是 Claude Code、Cursor 这些工具刚开放插件和技能市场，另一边开发者立刻把技能打包上架。安全打靶、绘图、搜索、读设计稿、写 CI 修复，全是“让 Agent 直接干活”的模块。 第二个趋势是 Agent 的操作方式在变。以前是截图加点击，现在流行让模型走命令行。港大把一堆软件包成 CLI，Firecrawl 加 MCP 自动接入，思路一样：给 Agent 一个它最熟的 shell，比教它看屏幕靠谱。 第三，本地化和低成本成了卖点。3090 两小时三块钱训小模型，Intel 工具箱在本地 CPU 和 NPU</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-24</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-24.html</link>
