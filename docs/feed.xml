@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 25 Nov 2026 08:42:35 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 08:26:58 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-26</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-26.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-26.html</guid>
+      <pubDate>Thu, 26 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天这份榜单几乎只有一个主题：大家在给 AI Agent 造“零件”和“说明书”。 一半项目是技能包和插件。有人把 85 个 Claude Code 技能打包成红队作业流程，有人给编码 Agent 装上“先问需求、再写规格、再拆任务”的开发规范，有人把 FreeCAD、LibreOffice 这些没 API 的老软件套一层命令行壳，让 Agent 能直接上手操作。Google 把 Stitch 拆成 Skills，Cursor 干脆开源了自己的插件规范和官方插件仓。信号很清楚：模型能力不再是瓶颈，“怎么让 Agent 按流程干活”才是。经验正在被固化成文件。 另一半是本地化。3 块钱、2 小时</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-25</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-25.html</link>
