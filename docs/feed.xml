@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 26 Nov 2026 08:26:58 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 08:43:57 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-27</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-27.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-27.html</guid>
+      <pubDate>Fri, 27 Nov 2026 00:00:00 GMT</pubDate>
+      <description>这批项目凑在一起，指向一件事：大家不再比谁的模型强，开始比谁给 Agent 装的东西多。 最明显的是 SKILL.md、plugin.json 这类「技能清单」成了新标准。漏洞赏金方法论、开发流程、画图、搜索、Stitch 出设计稿、App Store 拒审规则，全被打包成技能包塞进 Claude Code 和 Cursor。Agent 不再是聊天框，而是被接上 CAD、Obsidian、Burp 的一双手。MCP 则成了通用接口，谁都来插一下。 第二个共同点是「先立规矩再干活」。superpowers 那套先问需求、写规格、再让子 Agent 分工 TDD，说明社区开始操心 Agent 一上</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-26</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-26.html</link>
