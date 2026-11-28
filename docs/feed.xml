@@ -5,7 +5,14 @@
     <link>https://int2t05.github.io/auto-trend/</link>
     <description>每日 GitHub Trending 项目 LLM 深度分析</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 27 Nov 2026 08:43:57 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 07:56:09 GMT</lastBuildDate>
+    <item>
+      <title>GitHub Trending 日报 · 2026-11-28</title>
+      <link>https://int2t05.github.io/auto-trend/daily/2026-11-28.html</link>
+      <guid isPermaLink="true">https://int2t05.github.io/auto-trend/daily/2026-11-28.html</guid>
+      <pubDate>Sat, 28 Nov 2026 00:00:00 GMT</pubDate>
+      <description>今天的热榜，一半是在给 AI Agent 装零件。技能包、插件、CLI 封装、MCP 接口，都在做同一件事：把 Agent 从“会聊天”改造成“能干活”。 趋势有几条很明确。第一，标准正在抢跑。Agent Skills、MCP、Cursor 的官方 manifest，都想让同一套东西在 Claude Code、Cursor、Codex 上通用。谁定接口，谁就先占位。第二，大厂开始把自家能力拆开，供 Agent 调用。Google 把 Stitch 的设计能力做成技能，Intel 把推理工具箱摊开，Firecrawl 直接给个 Rust 单二进制，不要数据库也不要容器。第三，开发者不再迷信大模型</description>
+    </item>
     <item>
       <title>GitHub Trending 日报 · 2026-11-27</title>
       <link>https://int2t05.github.io/auto-trend/daily/2026-11-27.html</link>
